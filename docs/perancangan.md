@@ -382,15 +382,15 @@ flowchart LR
 ## 8. Tautan Rancangan Aktual dan Bukti Wireframe
 
 * **Tautan Publik Google Stitch Project (Aktual & Terverifikasi):**  
-  [https://stitch.withgoogle.com/projects/3279874328774814817](https://stitch.withgoogle.com/projects/3279874328774814817)  
-  *Nama Project:* SARPRAS - Sistem Manajemen Sarana dan Prasarana  
-  *ID Project:* 3279874328774814817 (Akses Publik)
+  [https://stitch.withgoogle.com/projects/5290689202880346844](https://stitch.withgoogle.com/projects/5290689202880346844)  
+  *Nama Project:* SIM Sarpras Asset Management  
+  *ID Project:* 5290689202880346844 (Status: Aktif, Digenerate via Google Stitch)
 
 * **Bukti Visual Tangkapan Layar Wireframe (Tersimpan Lokal di Repositori):**
   1. **Dashboard Eksekutif:** `assets/img/stitch_dashboard.png`  
      ![Wireframe Dashboard](../assets/img/stitch_dashboard.png)
-  2. **Data Master Inventaris:** `assets/img/stitch_master_data.png`  
-     ![Wireframe Data Master](../assets/img/stitch_master_data.png)
+  2. **Data Master Inventaris:** `assets/img/stitch_datamaster.png`  
+     ![Wireframe Data Master](../assets/img/stitch_datamaster.png)
   3. **Formulir Registrasi Aset:** `assets/img/stitch_form.png`  
      ![Wireframe Form](../assets/img/stitch_form.png)
   4. **Pusat Laporan & KIR:** `assets/img/stitch_laporan.png`  
@@ -399,7 +399,7 @@ flowchart LR
      ![Wireframe Login](../assets/img/stitch_login.png)
 
 * **Status Tautan Figma:**  
-  Rancangan wireframe dan komponen antarmuka resmi berpusat langsung pada Google Stitch Project ID `3279874328774814817` dan file spesifikasi token `docs/DESIGN.md`. Tautan Figma eksternal tidak dicantumkan menggunakan URL fiktif; file desain dapat diimpor langsung ke Figma menggunakan aset HTML/CSS Stitch yang telah diunduh di repositori.
+  Rancangan wireframe dan komponen antarmuka resmi berpusat langsung pada Google Stitch Project ID `5290689202880346844` dan file spesifikasi token `docs/DESIGN.md`. Tautan publik Figma dapat disematkan secara mandiri oleh mahasiswa setelah membagikan tautan file Figma kerja pribadi (tidak menggunakan tautan fiktif agar terhindar dari galat 404).
 
 * **Aset Latar Belakang & Grafis:**  
   Tersimpan secara lokal pada repositori: `assets/img/login-bg.jpg` (Arsitektur resolusi tinggi, siap offline).
