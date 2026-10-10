@@ -379,13 +379,29 @@ flowchart LR
 
 ---
 
-## 8. Tautan Rancangan dan Wireframing
+## 8. Tautan Rancangan Aktual dan Bukti Wireframe
 
-* **Tautan Figma High-Fidelity Prototype & Design System:**  
-  [https://www.figma.com/design/sarpras-admin-panel-uas-web2](https://www.figma.com/design/sarpras-admin-panel-uas-web2)
-* **Tautan Stitch Google / Low-Fidelity Interactive Wireframe:**  
-  [https://stitch.withgoogle.com/projects/sarpras-management-hub](https://stitch.withgoogle.com/projects/sarpras-management-hub)
-* **Aset Latar Belakang & Visual:**  
+* **Tautan Publik Google Stitch Project (Aktual & Terverifikasi):**  
+  [https://stitch.withgoogle.com/projects/3279874328774814817](https://stitch.withgoogle.com/projects/3279874328774814817)  
+  *Nama Project:* SARPRAS - Sistem Manajemen Sarana dan Prasarana  
+  *ID Project:* 3279874328774814817 (Akses Publik)
+
+* **Bukti Visual Tangkapan Layar Wireframe (Tersimpan Lokal di Repositori):**
+  1. **Dashboard Eksekutif:** `assets/img/stitch_dashboard.png`  
+     ![Wireframe Dashboard](../assets/img/stitch_dashboard.png)
+  2. **Data Master Inventaris:** `assets/img/stitch_master_data.png`  
+     ![Wireframe Data Master](../assets/img/stitch_master_data.png)
+  3. **Formulir Registrasi Aset:** `assets/img/stitch_form.png`  
+     ![Wireframe Form](../assets/img/stitch_form.png)
+  4. **Pusat Laporan & KIR:** `assets/img/stitch_laporan.png`  
+     ![Wireframe Laporan](../assets/img/stitch_laporan.png)
+  5. **Portal Login:** `assets/img/stitch_login.png`  
+     ![Wireframe Login](../assets/img/stitch_login.png)
+
+* **Status Tautan Figma:**  
+  Rancangan wireframe dan komponen antarmuka resmi berpusat langsung pada Google Stitch Project ID `3279874328774814817` dan file spesifikasi token `docs/DESIGN.md`. Tautan Figma eksternal tidak dicantumkan menggunakan URL fiktif; file desain dapat diimpor langsung ke Figma menggunakan aset HTML/CSS Stitch yang telah diunduh di repositori.
+
+* **Aset Latar Belakang & Grafis:**  
   Tersimpan secara lokal pada repositori: `assets/img/login-bg.jpg` (Arsitektur resolusi tinggi, siap offline).
 
 ---
