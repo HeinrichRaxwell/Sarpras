@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SaranaPrasana Asset Management</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .welcome-hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.9)), url('../assets/img/login-bg.jpg') center/cover no-repeat;
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      color: #FFFFFF;
+      margin-bottom: var(--spacing-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-date-pill {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dashboard-charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-gutter);
+      margin-bottom: var(--spacing-xl);
+    }
+    .dashboard-bottom-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--spacing-gutter);
+      margin-bottom: var(--spacing-xl);
+    }
+    @media (max-width: 1024px) {
+      .dashboard-charts-grid,
+      .dashboard-bottom-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .chart-box-relative {
+      position: relative;
+      height: 260px;
+      width: 100%;
+    }
+    .activity-feed-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .activity-feed-item:last-child {
+      border-bottom: none;
+    }
+    .activity-icon-bubble {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .location-progress-item {
+      margin-bottom: 14px;
+    }
+    .location-progress-item:last-child {
+      margin-bottom: 0;
+    }
+    .location-progress-bar {
+      height: 8px;
+      background: var(--color-bg-canvas);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .location-progress-fill {
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: var(--radius-full);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
+
+  <div class="app-layout-wrapper">
+    
+    <!-- 1. SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-box" style="background: var(--color-primary);">SP</div>
+        <div class="brand-title-wrap">
+          <span class="brand-title">SaranaPrasana</span>
+          <span class="brand-subtitle">Asset Management</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <div class="menu-category-label">Menu Utama</div>
+        <a href="dashboard.html" class="nav-link active">
+          <span class="material-symbols-outlined nav-icon">dashboard</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        
+        <div class="menu-category-label">Master & Transaksi</div>
+        <a href="data-master.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">inventory_2</span>
+          <span class="nav-label">Data Master</span>
+          <span class="badge-counter">248</span>
+        </a>
+        <a href="form.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">add_box</span>
+          <span class="nav-label">Tambah Aset</span>
+        </a>
+        <a href="laporan.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">description</span>
+          <span class="nav-label">Laporan</span>
+        </a>
+
+        <div class="menu-category-label">Sistem</div>
+        <a href="../index.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">logout</span>
+          <span class="nav-label">Keluar</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar" style="background: var(--color-primary);">AD</div>
+        <div class="user-details">
+          <div class="user-name">Admin</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. CONTENT WRAPPER -->
+    <div class="app-content-wrapper">
+      
+      <!-- Top Command Header -->
+      <header class="top-command-header">
+        <div class="header-left-cluster">
+          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Perkecil/Perbesar Navigasi" aria-label="Toggle Sidebar">
+            <span class="material-symbols-outlined" id="sidebarToggleIcon">chevron_left</span>
+          </button>
+          
+          <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <span class="breadcrumb-item">SaranaPrasana</span>
+            <span class="material-symbols-outlined breadcrumb-separator">chevron_right</span>
+            <span class="breadcrumb-item active">Dashboard</span>
+          </nav>
+        </div>
+
+        <div class="header-center-search">
+          <div class="search-input-wrapper">
+            <span class="material-symbols-outlined search-icon-prefix">search</span>
+            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari aset, lokasi, atau nomor inventaris..." onkeydown="if(event.key==='Enter'){window.location.href='data-master.html?q='+encodeURIComponent(this.value);}">
+            <span class="search-shortcut-badge">Enter</span>
+          </div>
+        </div>
+
+        <div class="header-right-cluster">
+          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Ganti Tema">
+            <span class="material-symbols-outlined" id="themeToggleIcon">dark_mode</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- 3. MAIN VIEWPORT -->
+      <main class="main-viewport">
+        
+        <!-- Welcome Hero Banner (Sesuai Foto Showcase) -->
+        <section class="welcome-hero-banner">
+          <div>
+            <h1 style="font-size: 26px; font-weight: 700; margin-bottom: 6px;">
+              Selamat Datang, Admin 👋
+            </h1>
+            <p style="font-size: 14px; color: rgba(255,255,255,0.85);">
+              Berikut adalah ringkasan kondisi sarana dan prasarana di instansi Anda.
+            </p>
+          </div>
+          <div class="hero-date-pill">
+            <span class="material-symbols-outlined" style="font-size: 18px;">calendar_today</span>
+            <span>Sen, 13 Okt 2025</span>
+          </div>
+        </section>
+
+        <!-- KPI Metric Cards Row (4 Kartu Persis di Foto) -->
+        <section class="kpi-grid">
+          <!-- Total Aset: 248 (+12%) -->
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-label">Total Aset</div>
+              <div class="kpi-value" id="kpiTotalAset">248</div>
+              <div class="kpi-trend trend-up">
+                <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                <span>+ 12% dari bulan lalu</span>
+              </div>
+            </div>
+            <div class="kpi-icon-wrapper icon-blue">
+              <span class="material-symbols-outlined">inventory_2</span>
+            </div>
+          </div>
+
+          <!-- Aset Aktif: 230 (+10%) -->
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-label">Aset Aktif</div>
+              <div class="kpi-value" id="kpiAsetAktif" style="color: var(--color-success);">230</div>
+              <div class="kpi-trend trend-up">
+                <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
+                <span>+ 10% dari bulan lalu</span>
+              </div>
+            </div>
+            <div class="kpi-icon-wrapper icon-emerald">
+              <span class="material-symbols-outlined">task_alt</span>
+            </div>
+          </div>
+
+          <!-- Aset Rusak: 8 (-2%) -->
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-label">Aset Rusak</div>
+              <div class="kpi-value" id="kpiAsetRusak" style="color: var(--color-warning);">8</div>
+              <div class="kpi-trend trend-warning">
+                <span class="material-symbols-outlined" style="font-size: 16px;">trending_down</span>
+                <span>- 2% dari bulan lalu</span>
+              </div>
+            </div>
+            <div class="kpi-icon-wrapper icon-amber">
+              <span class="material-symbols-outlined">warning</span>
+            </div>
+          </div>
+
+          <!-- Aset Dalam Perawatan: 10 (+5%) -->
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-label">Aset Dalam Perawatan</div>
+              <div class="kpi-value" id="kpiAsetPerawatan" style="color: #8B5CF6;">10</div>
+              <div class="kpi-trend trend-up" style="color: #8B5CF6;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">build</span>
+                <span>+ 5% dari bulan lalu</span>
+              </div>
+            </div>
+            <div class="kpi-icon-wrapper" style="background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">
+              <span class="material-symbols-outlined">construction</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Charts Grid (Kondisi Aset Donut & Aset per Kategori Bar) -->
+        <section class="dashboard-charts-grid">
+          
+          <!-- Donut Chart: Kondisi Aset -->
+          <div class="card-panel">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Kondisi Aset</h2>
+                <div style="font-size: 12px; color: var(--color-text-muted);">Status kelayakan operasional sarpras</div>
+              </div>
+            </div>
+            <div class="chart-box-relative">
+              <canvas id="kondisiDonutCanvas"></canvas>
+            </div>
+          </div>
+
+          <!-- Bar Chart: Aset per Kategori -->
+          <div class="card-panel">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Aset per Kategori</h2>
+                <div style="font-size: 12px; color: var(--color-text-muted);">Distribusi unit berdasarkan kategori barang</div>
+              </div>
+            </div>
+            <div class="chart-box-relative">
+              <canvas id="kategoriBarCanvas"></canvas>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Bottom Row: Aktivitas Terbaru & Lokasi Aset -->
+        <section class="dashboard-bottom-grid">
+          
+          <!-- Aktivitas Terbaru -->
+          <div class="card-panel">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Aktivitas Terbaru</h2>
+                <div style="font-size: 12px; color: var(--color-text-muted);">Riwayat log transaksi dan mutasi sarpras</div>
+              </div>
+              <a href="data-master.html" class="btn btn-secondary" style="height: 30px; font-size: 12px; padding: 0 10px;">
+                Lihat Semua
+              </a>
+            </div>
+            <div style="padding: 10px 20px 20px 20px;">
+              <div class="activity-feed-item">
+                <div class="activity-icon-bubble" style="background: rgba(16, 185, 129, 0.12); color: #10B981;">
+                  <span class="material-symbols-outlined" style="font-size: 20px;">add_shopping_cart</span>
+                </div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Pengadaan Laptop Lenovo ThinkPad</div>
+                    <span class="badge-status badge-success">Pengadaan</span>
+                  </div>
+                  <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">
+                    Admin &bull; 12 Okt 2025, 14:32
+                  </div>
+                </div>
+              </div>
+
+              <div class="activity-feed-item">
+                <div class="activity-icon-bubble" style="background: rgba(31, 70, 229, 0.12); color: #1F46E5;">
+                  <span class="material-symbols-outlined" style="font-size: 20px;">build</span>
+                </div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Pemeliharaan AC Ruang Rapat</div>
+                    <span class="badge-status badge-primary">Pemeliharaan</span>
+                  </div>
+                  <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">
+                    Admin &bull; 11 Okt 2025, 11:20
+                  </div>
+                </div>
+              </div>
+
+              <div class="activity-feed-item">
+                <div class="activity-icon-bubble" style="background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">
+                  <span class="material-symbols-outlined" style="font-size: 20px;">sync_alt</span>
+                </div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Aset Printer HP dipindahkan ke Lokasi B</div>
+                    <span class="badge-status" style="background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">Mutasi</span>
+                  </div>
+                  <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">
+                    Admin &bull; 10 Okt 2025, 09:15
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lokasi Aset -->
+          <div class="card-panel">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Lokasi Aset</h2>
+                <div style="font-size: 12px; color: var(--color-text-muted);">Sebaran inventaris fisik per gedung</div>
+              </div>
+              <a href="data-master.html" style="font-size: 12px; font-weight: 600; color: var(--color-primary); text-decoration: none;">
+                Lihat Semua &gt;
+              </a>
+            </div>
+            <div style="padding: 16px 20px 20px 20px;">
+              <div class="location-progress-item">
+                <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                  <span style="font-weight: 600; color: var(--color-text-title);">Gedung A</span>
+                  <span style="font-weight: 700; color: var(--color-primary);">98 unit</span>
+                </div>
+                <div class="location-progress-bar">
+                  <div class="location-progress-fill" style="width: 39.5%;"></div>
+                </div>
+              </div>
+
+              <div class="location-progress-item">
+                <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                  <span style="font-weight: 600; color: var(--color-text-title);">Gedung B</span>
+                  <span style="font-weight: 700; color: var(--color-primary);">76 unit</span>
+                </div>
+                <div class="location-progress-bar">
+                  <div class="location-progress-fill" style="width: 30.6%;"></div>
+                </div>
+              </div>
+
+              <div class="location-progress-item">
+                <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                  <span style="font-weight: 600; color: var(--color-text-title);">Gedung C</span>
+                  <span style="font-weight: 700; color: var(--color-primary);">42 unit</span>
+                </div>
+                <div class="location-progress-bar">
+                  <div class="location-progress-fill" style="width: 16.9%;"></div>
+                </div>
+              </div>
+
+              <div class="location-progress-item">
+                <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                  <span style="font-weight: 600; color: var(--color-text-title);">Luar Gedung</span>
+                  <span style="font-weight: 700; color: var(--color-primary);">32 unit</span>
+                </div>
+                <div class="location-progress-bar">
+                  <div class="location-progress-fill" style="width: 12.9%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- 4. FOOTER -->
+      <footer class="app-footer">
+        <div>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi.</div>
+        <div style="font-family: var(--font-mono);">SaranaPrasana v1.0.0</div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/js/chart.min.js"></script>
+  <script src="../assets/js/data-mock.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Donut Chart: Kondisi Aset (Persis Foto Showcase)
+      const ctxDonut = document.getElementById('kondisiDonutCanvas');
+      if (ctxDonut) {
+        new Chart(ctxDonut, {
+          type: 'doughnut',
+          data: {
+            labels: ['Baik (72%)', 'Rusak (3%)', 'Dalam Perawatan (4%)', 'Hilang (1%)', 'Lainnya (20%)'],
+            datasets: [{
+              data: [179, 8, 10, 2, 49],
+              backgroundColor: ['#10B981', '#EF4444', '#F97316', '#64748B', '#CBD5E1'],
+              borderWidth: 2,
+              borderColor: '#FFFFFF'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { boxWidth: 12, font: { size: 11, family: 'Inter' } }
+              }
+            },
+            cutout: '72%'
+          }
+        });
+      }
+
+      // Bar Chart: Aset per Kategori (Persis Foto Showcase)
+      const ctxBar = document.getElementById('kategoriBarCanvas');
+      if (ctxBar) {
+        new Chart(ctxBar, {
+          type: 'bar',
+          data: {
+            labels: ['Komputer', 'Kendaraan', 'Peralatan Kantor', 'Elektronik', 'Furniture'],
+            datasets: [{
+              label: 'Jumlah Aset',
+              data: [60, 45, 38, 32, 18],
+              backgroundColor: '#1F46E5',
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 15, font: { family: 'Inter' } }
+              },
+              x: {
+                ticks: { font: { family: 'Inter' } }
+              }
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

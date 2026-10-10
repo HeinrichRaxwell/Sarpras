@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tambah Aset - SaranaPrasana Asset Management</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .form-two-column-showcase {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--spacing-gutter);
+      margin-bottom: 40px;
+    }
+    @media (max-width: 1024px) {
+      .form-two-column-showcase {
+        grid-template-columns: 1fr;
+      }
+    }
+    .upload-zone-showcase {
+      border: 2px dashed #CBD5E1;
+      border-radius: var(--radius-md);
+      padding: 36px 20px;
+      text-align: center;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .upload-zone-showcase:hover {
+      border-color: var(--color-primary);
+      background: var(--color-bg-canvas);
+    }
+    .preview-card-showcase {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      background: #FFFFFF;
+      margin-top: 16px;
+    }
+    .preview-image-box {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--color-bg-canvas);
+      border: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
+
+  <div class="app-layout-wrapper">
+    
+    <!-- 1. SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-box" style="background: var(--color-primary);">SP</div>
+        <div class="brand-title-wrap">
+          <span class="brand-title">SaranaPrasana</span>
+          <span class="brand-subtitle">Asset Management</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <div class="menu-category-label">Menu Utama</div>
+        <a href="dashboard.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">dashboard</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        
+        <div class="menu-category-label">Master & Transaksi</div>
+        <a href="data-master.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">inventory_2</span>
+          <span class="nav-label">Data Master</span>
+          <span class="badge-counter">248</span>
+        </a>
+        <a href="form.html" class="nav-link active">
+          <span class="material-symbols-outlined nav-icon">add_box</span>
+          <span class="nav-label">Tambah Aset</span>
+        </a>
+        <a href="laporan.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">description</span>
+          <span class="nav-label">Laporan</span>
+        </a>
+
+        <div class="menu-category-label">Sistem</div>
+        <a href="../index.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">logout</span>
+          <span class="nav-label">Keluar</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar" style="background: var(--color-primary);">AD</div>
+        <div class="user-details">
+          <div class="user-name">Admin</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. CONTENT WRAPPER -->
+    <div class="app-content-wrapper">
+      
+      <!-- Top Command Header -->
+      <header class="top-command-header">
+        <div class="header-left-cluster">
+          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Perkecil/Perbesar Navigasi" aria-label="Toggle Sidebar">
+            <span class="material-symbols-outlined" id="sidebarToggleIcon">chevron_left</span>
+          </button>
+          
+          <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <span class="breadcrumb-item">Data Master</span>
+            <span class="material-symbols-outlined breadcrumb-separator">chevron_right</span>
+            <span class="breadcrumb-item active">Tambah Aset</span>
+          </nav>
+        </div>
+
+        <div class="header-right-cluster">
+          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Ganti Tema">
+            <span class="material-symbols-outlined" id="themeToggleIcon">dark_mode</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- 3. MAIN VIEWPORT -->
+      <main class="main-viewport">
+        
+        <!-- Page Header Block (Sesuai Foto Screen 3) -->
+        <div class="page-header-block">
+          <div>
+            <h1 class="page-title">Tambah Aset</h1>
+            <p class="page-description">Isi informasi aset dengan lengkap dan benar.</p>
+          </div>
+          <div>
+            <a href="data-master.html" class="btn btn-secondary">
+              <span class="material-symbols-outlined">arrow_back</span>
+              Kembali
+            </a>
+          </div>
+        </div>
+
+        <!-- Two Column Form (Persis Screen 3 Showcase) -->
+        <form id="formTambahAset" onsubmit="submitFormAset(event)">
+          <div class="form-two-column-showcase">
+            
+            <!-- Kolom Kiri: Informasi Dasar -->
+            <div class="card-panel" style="padding: 24px;">
+              <h2 class="card-title" style="margin-bottom: 20px; font-size: 16px;">Informasi Dasar</h2>
+
+              <!-- Nama Aset * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpNamaAset">Nama Aset <span class="required">*</span></label>
+                <input type="text" id="inpNamaAset" class="form-input" placeholder="Masukkan nama aset" required>
+                <div class="form-error" id="errNamaAset" style="display: none; color: var(--color-danger); font-size: 11.5px; margin-top: 4px;">Nama aset wajib diisi.</div>
+              </div>
+
+              <!-- Kategori * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpKategori">Kategori <span class="required">*</span></label>
+                <select id="inpKategori" class="form-select" required>
+                  <option value="">Pilih Kategori</option>
+                  <option value="Komputer">Komputer</option>
+                  <option value="Elektronik">Elektronik</option>
+                  <option value="Kendaraan">Kendaraan</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Peralatan Kantor">Peralatan Kantor</option>
+                </select>
+              </div>
+
+              <!-- Nomor Inventaris * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpNomorInventaris">Nomor Inventaris <span class="required">*</span></label>
+                <input type="text" id="inpNomorInventaris" class="form-input font-code" placeholder="Contoh: ASST-001" required>
+              </div>
+
+              <!-- Lokasi * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpLokasi">Lokasi <span class="required">*</span></label>
+                <select id="inpLokasi" class="form-select" required>
+                  <option value="">Pilih Lokasi</option>
+                  <option value="Gedung A - Ruang 101">Gedung A - Ruang 101</option>
+                  <option value="Gedung A - Ruang 102">Gedung A - Ruang 102</option>
+                  <option value="Gedung B - Ruang 201">Gedung B - Ruang 201</option>
+                  <option value="Gedung B - Ruang 202">Gedung B - Ruang 202</option>
+                  <option value="Gedung C - Ruang 301">Gedung C - Ruang 301</option>
+                  <option value="Luar Gedung">Luar Gedung</option>
+                </select>
+              </div>
+
+              <!-- Kondisi * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpKondisi">Kondisi <span class="required">*</span></label>
+                <select id="inpKondisi" class="form-select" required>
+                  <option value="">Pilih Kondisi</option>
+                  <option value="Baik">Baik</option>
+                  <option value="Dalam Perawatan">Dalam Perawatan</option>
+                  <option value="Rusak">Rusak</option>
+                </select>
+              </div>
+
+              <!-- Tgl Perolehan * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpTglPerolehan">Tgl Perolehan <span class="required">*</span></label>
+                <input type="date" id="inpTglPerolehan" class="form-input" required>
+              </div>
+
+              <!-- Supplier * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpSupplier">Supplier <span class="required">*</span></label>
+                <select id="inpSupplier" class="form-select" required>
+                  <option value="">Pilih Supplier</option>
+                  <option value="PT Lenovo Indonesia">PT Lenovo Indonesia</option>
+                  <option value="CV Mitra Mandiri">CV Mitra Mandiri</option>
+                  <option value="Dealer Honda Astra">Dealer Honda Astra</option>
+                  <option value="Daikin Official Store">Daikin Official Store</option>
+                  <option value="Informa Furnishing">Informa Furnishing</option>
+                  <option value="PT Sentra Komputindo">PT Sentra Komputindo</option>
+                </select>
+              </div>
+
+              <!-- Keterangan -->
+              <div class="form-group">
+                <label class="form-label" for="inpKeterangan">Keterangan</label>
+                <textarea id="inpKeterangan" class="form-textarea" placeholder="Masukkan keterangan (opsional)" rows="3"></textarea>
+              </div>
+            </div>
+
+            <!-- Kolom Kanan: Upload Gambar & Aksi -->
+            <div>
+              <div class="card-panel" style="padding: 24px;">
+                <h2 class="card-title" style="margin-bottom: 14px; font-size: 16px;">Upload Gambar</h2>
+                
+                <!-- Drag and drop zone -->
+                <div class="upload-zone-showcase" onclick="document.getElementById('fileUploadPicker').click()">
+                  <input type="file" id="fileUploadPicker" accept="image/*" style="display: none;" onchange="handleImagePicked(event)">
+                  <span class="material-symbols-outlined" style="font-size: 40px; color: var(--color-primary); margin-bottom: 10px;">cloud_upload</span>
+                  <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Klik untuk upload foto / drag & drop</div>
+                  <div style="font-size: 11.5px; color: var(--color-text-muted); margin-top: 4px;">Format: JPG, PNG (Maks 2MB)</div>
+                </div>
+
+                <!-- Preview Box -->
+                <div class="preview-card-showcase" id="previewCardWrap">
+                  <div style="font-size: 12px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 8px;">Pratinjau Foto Aset</div>
+                  <img id="imagePreviewTarget" src="../assets/img/login-bg.jpg" alt="Preview Foto" class="preview-image-box">
+                </div>
+
+                <!-- Form Action Buttons (Persis di Foto: Batal & Simpan) -->
+                <div style="display: flex; gap: 12px; margin-top: 24px;">
+                  <button type="button" class="btn btn-secondary" style="flex: 1; height: 42px;" onclick="window.location.href='data-master.html'">
+                    Batal
+                  </button>
+                  <button type="submit" class="btn btn-primary" style="flex: 1; height: 42px; background: var(--color-primary);">
+                    <span class="material-symbols-outlined">save</span>
+                    Simpan
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </main>
+
+      <footer class="app-footer">
+        <div>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi.</div>
+        <div style="font-family: var(--font-mono);">SaranaPrasana v1.0.0</div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/js/data-mock.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    let photoDataUri = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set default date to today
+      document.getElementById('inpTglPerolehan').value = new Date().toISOString().slice(0, 10);
+      
+      // Auto-generate next code: A-011
+      const assets = getStoredAssets();
+      const nextNum = assets.length + 1;
+      const formattedNum = nextNum < 10 ? `A-00${nextNum}` : nextNum < 100 ? `A-0${nextNum}` : `A-${nextNum}`;
+      document.getElementById('inpNomorInventaris').value = formattedNum;
+    });
+
+    function handleImagePicked(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        photoDataUri = evt.target.result;
+        document.getElementById('imagePreviewTarget').src = photoDataUri;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function submitFormAset(e) {
+      e.preventDefault();
+
+      const nama = document.getElementById('inpNamaAset').value.trim();
+      const kategori = document.getElementById('inpKategori').value;
+      const id = document.getElementById('inpNomorInventaris').value.trim();
+      const lokasi = document.getElementById('inpLokasi').value;
+      const kondisi = document.getElementById('inpKondisi').value;
+      const tglRaw = document.getElementById('inpTglPerolehan').value;
+      const supplier = document.getElementById('inpSupplier').value;
+      const keterangan = document.getElementById('inpKeterangan').value.trim();
+
+      if (!nama) {
+        document.getElementById('errNamaAset').style.display = 'block';
+        return;
+      }
+
+      // Format date to "dd Mmm yyyy"
+      const d = new Date(tglRaw);
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+      const formattedDate = `${String(d.getDate()).padStart(2, '0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+
+      const newAsset = {
+        id: id,
+        nama: nama,
+        kategori: kategori,
+        lokasi: lokasi,
+        kondisi: kondisi,
+        tanggal: formattedDate,
+        rawDate: tglRaw,
+        supplier: supplier,
+        nilai: 10000000,
+        keterangan: keterangan || 'Aset baru ditambahkan'
+      };
+
+      addAsset(newAsset);
+      alert(`Berhasil! Aset [${id}] ${nama} telah berhasil disimpan.`);
+      window.location.href = 'data-master.html';
+    }
+  </script>
+</body>
+</html>

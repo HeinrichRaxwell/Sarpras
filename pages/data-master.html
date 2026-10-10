@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Aset - SaranaPrasana Asset Management</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .filter-bar-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--color-border);
+      justify-content: space-between;
+    }
+    .filter-inputs-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      flex: 1;
+    }
+    .filter-select-compact {
+      height: 38px;
+      padding: 0 12px;
+      font-size: 13px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: #FFFFFF;
+      color: var(--color-text-body);
+      font-family: var(--font-sans);
+    }
+    .search-input-field {
+      height: 38px;
+      padding: 0 12px 0 36px;
+      font-size: 13px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      min-width: 260px;
+      font-family: var(--font-sans);
+    }
+    .search-input-field:focus,
+    .filter-select-compact:focus {
+      border-color: var(--color-primary);
+      outline: none;
+    }
+    .pagination-bar-showcase {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-top: 1px solid var(--color-border);
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+    .pagination-list {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .page-pill {
+      min-width: 30px;
+      height: 30px;
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+      background: #FFFFFF;
+      border-radius: 6px;
+      color: var(--color-text-body);
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .page-pill.active {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border-color: var(--color-primary);
+      font-weight: 600;
+    }
+    .table-action-icon-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      background: #FFFFFF;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .table-action-icon-btn:hover {
+      background: var(--color-bg-canvas);
+      color: var(--color-primary);
+    }
+    .table-action-icon-btn.delete-btn:hover {
+      background: rgba(239, 68, 68, 0.08);
+      color: var(--color-danger);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
+
+  <div class="app-layout-wrapper">
+    
+    <!-- 1. SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-box" style="background: var(--color-primary);">SP</div>
+        <div class="brand-title-wrap">
+          <span class="brand-title">SaranaPrasana</span>
+          <span class="brand-subtitle">Asset Management</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <div class="menu-category-label">Menu Utama</div>
+        <a href="dashboard.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">dashboard</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        
+        <div class="menu-category-label">Master & Transaksi</div>
+        <a href="data-master.html" class="nav-link active">
+          <span class="material-symbols-outlined nav-icon">inventory_2</span>
+          <span class="nav-label">Data Master</span>
+          <span class="badge-counter" id="sideBadgeCount">248</span>
+        </a>
+        <a href="form.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">add_box</span>
+          <span class="nav-label">Tambah Aset</span>
+        </a>
+        <a href="laporan.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">description</span>
+          <span class="nav-label">Laporan</span>
+        </a>
+
+        <div class="menu-category-label">Sistem</div>
+        <a href="../index.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">logout</span>
+          <span class="nav-label">Keluar</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar" style="background: var(--color-primary);">AD</div>
+        <div class="user-details">
+          <div class="user-name">Admin</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. CONTENT WRAPPER -->
+    <div class="app-content-wrapper">
+      
+      <!-- Top Command Header -->
+      <header class="top-command-header">
+        <div class="header-left-cluster">
+          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Perkecil/Perbesar Navigasi" aria-label="Toggle Sidebar">
+            <span class="material-symbols-outlined" id="sidebarToggleIcon">chevron_left</span>
+          </button>
+          
+          <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <span class="breadcrumb-item">Dashboard</span>
+            <span class="material-symbols-outlined breadcrumb-separator">chevron_right</span>
+            <span class="breadcrumb-item">Data Master</span>
+            <span class="material-symbols-outlined breadcrumb-separator">chevron_right</span>
+            <span class="breadcrumb-item active">Aset</span>
+          </nav>
+        </div>
+
+        <div class="header-right-cluster">
+          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Ganti Tema">
+            <span class="material-symbols-outlined" id="themeToggleIcon">dark_mode</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- 3. MAIN VIEWPORT -->
+      <main class="main-viewport">
+        
+        <!-- Page Title & Primary Action (Sesuai Foto Screen 2) -->
+        <div class="page-header-block">
+          <div>
+            <h1 class="page-title">Data Aset</h1>
+            <p class="page-description">Kelola semua data aset yang ada di sistem.</p>
+          </div>
+          <div>
+            <a href="form.html" class="btn btn-primary" style="background: var(--color-primary);">
+              <span class="material-symbols-outlined">add</span>
+              + Tambah Aset
+            </a>
+          </div>
+        </div>
+
+        <!-- Master Data Card Panel -->
+        <section class="card-panel">
+          
+          <!-- Filter Toolbar (Persis di Foto) -->
+          <div class="filter-bar-showcase">
+            <div class="filter-inputs-cluster">
+              <!-- Dropdown Semua Kategori -->
+              <select class="filter-select-compact" id="selectKategori" onchange="applyFilters()">
+                <option value="ALL">Semua Kategori</option>
+                <option value="Komputer">Komputer</option>
+                <option value="Elektronik">Elektronik</option>
+                <option value="Kendaraan">Kendaraan</option>
+                <option value="Furniture">Furniture</option>
+              </select>
+
+              <!-- Dropdown Semua Lokasi -->
+              <select class="filter-select-compact" id="selectLokasi" onchange="applyFilters()">
+                <option value="ALL">Semua Lokasi</option>
+                <option value="Gedung A">Gedung A</option>
+                <option value="Gedung B">Gedung B</option>
+                <option value="Gedung C">Gedung C</option>
+                <option value="Luar Gedung">Luar Gedung</option>
+              </select>
+
+              <!-- Dropdown Semua Kondisi -->
+              <select class="filter-select-compact" id="selectKondisi" onchange="applyFilters()">
+                <option value="ALL">Semua Kondisi</option>
+                <option value="Baik">Baik</option>
+                <option value="Dalam Perawatan">Dalam Perawatan</option>
+                <option value="Rusak">Rusak</option>
+              </select>
+
+              <!-- Input Search -->
+              <div style="position: relative;">
+                <span class="material-symbols-outlined" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--color-text-muted);">search</span>
+                <input type="text" class="search-input-field" id="inputSearchQuery" placeholder="Cari nama aset / nomor inventaris..." oninput="applyFilters()">
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="table-action-icon-btn" onclick="exportDataToCSV()" title="Unduh CSV">
+                <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+              </button>
+              <button type="button" class="table-action-icon-btn" onclick="resetMasterTable()" title="Reset ke 10 Data Awal">
+                <span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Master Data Grid (Persis Kolom & 10 Data di Foto) -->
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)"></th>
+                  <th style="width: 70px;">No.</th>
+                  <th>Nama Aset</th>
+                  <th>Kategori</th>
+                  <th>Lokasi</th>
+                  <th>Kondisi</th>
+                  <th>Tgl Perolehan</th>
+                  <th style="width: 90px; text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="assetTableBody">
+                <!-- Data populated dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Footer (Sesuai Foto Showcase) -->
+          <div class="pagination-bar-showcase">
+            <div id="paginationInfoLabel">Menampilkan 1 - 10 dari 248 data</div>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div class="pagination-list">
+                <button type="button" class="page-pill" onclick="changePagePrev()">&lt;</button>
+                <button type="button" class="page-pill active">1</button>
+                <button type="button" class="page-pill" onclick="alert('Halaman 2 mock data')">2</button>
+                <button type="button" class="page-pill" onclick="alert('Halaman 3 mock data')">3</button>
+                <button type="button" class="page-pill" onclick="alert('Halaman 4 mock data')">4</button>
+                <button type="button" class="page-pill" onclick="alert('Halaman 5 mock data')">5</button>
+                <span style="font-size: 12px; color: var(--color-text-muted); padding: 0 4px;">...</span>
+                <button type="button" class="page-pill" onclick="alert('Halaman 25 mock data')">25</button>
+                <button type="button" class="page-pill" onclick="changePageNext()">&gt;</button>
+              </div>
+
+              <select class="filter-select-compact" style="height: 30px; font-size: 12px;">
+                <option>10 / halaman</option>
+                <option>25 / halaman</option>
+                <option>50 / halaman</option>
+              </select>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <footer class="app-footer">
+        <div>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi.</div>
+        <div style="font-family: var(--font-mono);">SaranaPrasana v1.0.0</div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Hapus (Destructive Guard) -->
+  <div class="modal-overlay" id="modalDeleteConfirm" role="dialog" aria-modal="true" aria-labelledby="modalDelTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalDelTitle" style="color: var(--color-danger); display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined">warning</span>
+          Konfirmasi Hapus Aset
+        </h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalDeleteConfirm')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah Anda yakin ingin menghapus data aset berikut dari sistem?</p>
+        <div style="margin: 12px 0; padding: 12px; background: var(--color-bg-canvas); border: 1px solid var(--color-border); border-radius: var(--radius-md);">
+          <div style="font-weight: 700; color: var(--color-text-title);" id="delItemName">-</div>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted);" id="delItemCode">-</div>
+        </div>
+        <p style="font-size: 12px; color: var(--color-text-muted);">
+          Data yang dihapus akan diperbarui langsung pada penyimpanan peramban (localStorage).
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalDeleteConfirm')">Batal</button>
+        <button type="button" class="btn btn-danger" id="btnExecuteDelete">Ya, Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit Aset -->
+  <div class="modal-overlay" id="modalEditAsset" role="dialog" aria-modal="true" aria-labelledby="modalEditTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalEditTitle">Edit Data Aset</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalEditAsset')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="editFormSubmit" onsubmit="saveEditChanges(event)">
+        <div class="modal-body">
+          <input type="hidden" id="editAssetKey">
+          
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label">Nomor Inventaris</label>
+            <input type="text" id="editFieldCode" class="form-input" disabled style="background: var(--color-bg-canvas); font-family: var(--font-mono);">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editFieldNama">Nama Aset <span class="required">*</span></label>
+            <input type="text" id="editFieldNama" class="form-input" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editFieldKategori">Kategori</label>
+            <select id="editFieldKategori" class="form-select">
+              <option value="Komputer">Komputer</option>
+              <option value="Elektronik">Elektronik</option>
+              <option value="Kendaraan">Kendaraan</option>
+              <option value="Furniture">Furniture</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editFieldLokasi">Lokasi Ruangan</label>
+            <input type="text" id="editFieldLokasi" class="form-input" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editFieldKondisi">Kondisi</label>
+            <select id="editFieldKondisi" class="form-select">
+              <option value="Baik">Baik</option>
+              <option value="Dalam Perawatan">Dalam Perawatan</option>
+              <option value="Rusak">Rusak</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalEditAsset')">Batal</button>
+          <button type="submit" class="btn btn-primary" style="background: var(--color-primary);">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../assets/js/data-mock.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    let targetedDeleteId = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check query param from search bar
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (q) {
+        document.getElementById('inputSearchQuery').value = q;
+      }
+      renderTableData();
+    });
+
+    function getConditionBadge(cond) {
+      if (cond === 'Baik') {
+        return '<span class="badge-status badge-success">Baik</span>';
+      } else if (cond === 'Dalam Perawatan') {
+        return '<span class="badge-status badge-warning">Dalam Perawatan</span>';
+      } else {
+        return '<span class="badge-status badge-danger">Rusak</span>';
+      }
+    }
+
+    function renderTableData() {
+      const assets = getStoredAssets();
+      const catVal = document.getElementById('selectKategori').value;
+      const locVal = document.getElementById('selectLokasi').value;
+      const condVal = document.getElementById('selectKondisi').value;
+      const query = document.getElementById('inputSearchQuery').value.toLowerCase().trim();
+
+      const filtered = assets.filter(item => {
+        const matchCat = catVal === 'ALL' || item.kategori === catVal;
+        const matchLoc = locVal === 'ALL' || item.lokasi.includes(locVal);
+        const matchCond = condVal === 'ALL' || item.kondisi === condVal;
+        const matchQ = !query || 
+          item.id.toLowerCase().includes(query) ||
+          item.nama.toLowerCase().includes(query) ||
+          item.lokasi.toLowerCase().includes(query);
+
+        return matchCat && matchLoc && matchCond && matchQ;
+      });
+
+      const tbody = document.getElementById('assetTableBody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align: center; padding: 40px; color: var(--color-text-muted);">
+              Tidak ada data aset yang cocok dengan kriteria filter.
+            </td>
+          </tr>
+        `;
+      } else {
+        tbody.innerHTML = filtered.map(item => `
+          <tr>
+            <td><input type="checkbox" class="row-checkbox" value="${item.id}"></td>
+            <td class="font-code font-bold">${item.id}</td>
+            <td style="font-weight: 500; color: var(--color-text-title);">${item.nama}</td>
+            <td>${item.kategori}</td>
+            <td>${item.lokasi}</td>
+            <td>${getConditionBadge(item.kondisi)}</td>
+            <td>${item.tanggal}</td>
+            <td style="text-align: center;">
+              <div style="display: flex; gap: 6px; justify-content: center;">
+                <button type="button" class="table-action-icon-btn" onclick="openEditModal('${item.id}')" title="Edit Data">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
+                </button>
+                <button type="button" class="table-action-icon-btn delete-btn" onclick="openDeleteConfirm('${item.id}')" title="Hapus Aset">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('paginationInfoLabel').textContent = 
+        `Menampilkan 1 - ${Math.min(10, filtered.length)} dari ${assets.length} data`;
+    }
+
+    function applyFilters() {
+      renderTableData();
+    }
+
+    function toggleSelectAll(master) {
+      document.querySelectorAll('.row-checkbox').forEach(cb => {
+        cb.checked = master.checked;
+      });
+    }
+
+    function openEditModal(id) {
+      const item = getAssetById(id);
+      if (!item) return;
+
+      document.getElementById('editAssetKey').value = item.id;
+      document.getElementById('editFieldCode').value = item.id;
+      document.getElementById('editFieldNama').value = item.nama;
+      document.getElementById('editFieldKategori').value = item.kategori;
+      document.getElementById('editFieldLokasi').value = item.lokasi;
+      document.getElementById('editFieldKondisi').value = item.kondisi;
+
+      openModal('modalEditAsset');
+    }
+
+    function saveEditChanges(e) {
+      e.preventDefault();
+      const id = document.getElementById('editAssetKey').value;
+      const nama = document.getElementById('editFieldNama').value.trim();
+      const kategori = document.getElementById('editFieldKategori').value;
+      const lokasi = document.getElementById('editFieldLokasi').value.trim();
+      const kondisi = document.getElementById('editFieldKondisi').value;
+
+      updateAsset(id, { nama, kategori, lokasi, kondisi });
+      closeModal('modalEditAsset');
+      renderTableData();
+    }
+
+    function openDeleteConfirm(id) {
+      const item = getAssetById(id);
+      if (!item) return;
+
+      targetedDeleteId = id;
+      document.getElementById('delItemName').textContent = item.nama;
+      document.getElementById('delItemCode').textContent = item.id;
+
+      document.getElementById('btnExecuteDelete').onclick = function() {
+        if (targetedDeleteId) {
+          deleteAsset(targetedDeleteId);
+          targetedDeleteId = null;
+          closeModal('modalDeleteConfirm');
+          renderTableData();
+        }
+      };
+
+      openModal('modalDeleteConfirm');
+    }
+
+    function resetMasterTable() {
+      if (confirm('Reset seluruh data aset ke 10 item awal showcase?')) {
+        resetMockData();
+        renderTableData();
+      }
+    }
+
+    function exportDataToCSV() {
+      const assets = getStoredAssets();
+      let csv = 'No,Nama Aset,Kategori,Lokasi,Kondisi,Tgl Perolehan\n';
+      assets.forEach(a => {
+        csv += `"${a.id}","${a.nama.replace(/"/g, '""')}","${a.kategori}","${a.lokasi}","${a.kondisi}","${a.tanggal}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'SaranaPrasana_Data_Aset.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function changePagePrev() {
+      alert('Anda berada di halaman pertama');
+    }
+
+    function changePageNext() {
+      alert('Data showcase ditampilkan pada halaman 1');
+    }
+  </script>
+</body>
+</html>
