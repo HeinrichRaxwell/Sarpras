@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary-fixed-dim":"#adc6ff","on-primary":"#ffffff","secondary":"#4648d4","tertiary":"#006947","tertiary-container":"#00855b","surface-dim":"#d2daf0","surface-container-low":"#f1f3ff","outline":"#727785","surface-tint":"#005ac2","surface-container-lowest":"#ffffff","surface-container-highest":"#dbe2f9","on-secondary-fixed":"#07006c","on-primary-fixed":"#001a42","inverse-primary":"#adc6ff","secondary-fixed":"#e1e0ff","inverse-surface":"#293041","on-secondary-fixed-variant":"#2f2ebe","on-tertiary-fixed":"#002113","error":"#ba1a1a","on-tertiary-fixed-variant":"#005236","outline-variant":"#c2c6d6","on-surface-variant":"#424754","surface-variant":"#dbe2f9","primary-container":"#2170e4","secondary-container":"#6063ee","tertiary-fixed":"#6ffbbe","on-primary-fixed-variant":"#004395","surface":"#f9f9ff","primary-fixed":"#d8e2ff","on-error-container":"#93000a","surface-container-high":"#e0e8ff","surface-container":"#e9edff","on-secondary-container":"#fffbff","on-tertiary":"#ffffff","surface-bright":"#f9f9ff","tertiary-fixed-dim":"#4edea3","on-background":"#141b2c","on-tertiary-container":"#f5fff6","on-error":"#ffffff","primary":"#0058be","secondary-fixed-dim":"#c0c1ff","error-container":"#ffdad6","on-primary-container":"#fefcff","background":"#f9f9ff","on-surface":"#141b2c","on-secondary":"#ffffff","inverse-on-surface":"#edf0ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-sm":"0.5rem","margin-lg":"2rem","space-2xl":"2rem","space-md":"0.75rem","space-xl":"1.5rem","margin":"1rem","gutter":"1rem","margin-md":"1.5rem","space-lg":"1rem","gutter-lg":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-xs":["Inter"],"body-lg":["Inter"],"display-hero":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"body-md":["Inter"],"display-hero-mobile":["Plus Jakarta Sans"],"body-md-medium":["Inter"],"label-md":["Inter"],"headline-lg":["Plus Jakarta Sans"],"mono-data":["Inter"]},"fontSize":{"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-xs":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"400"}],"display-hero":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"display-hero-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md-medium":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"mono-data":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}]}}}};</script></head><body class="bg-[#F5F7FB] font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-[#101828] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="p-space-lg bg-[#101828]"><div class="flex items-center gap-space-sm"><img alt="SaranaPrasana Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V4ntbmj45QMBkAd08159c9jyLOLBTUPZhHuVP_vO0kZm82K3L9AY9KJXBrcCTGVsbXAkeZYmBtkwMQvORW5YFFxwRJtXMsv6OqyAD0-qdscB0dEKB-9lcvda4ak3NpbdIM1vUwzrMIZ5dz-c8dGdSpqf8lRM10R3_KZHOe0ZyJ1qZxka_m9BD-cvWSOTOPynwAQK3RBHkDbYmJ3ouBZ_uk76n8RHwsxbFSvX2WBDtAhdtuFW3BbxMwVb4"/><div class="flex flex-col min-w-0"><span class="text-[#ffffff] font-headline-sm font-bold truncate leading-tight">SaranaPrasana</span><span class="text-[#94A3B8] font-label-xs">Asset Management</span></div></div><div class="mt-space-md pt-space-xs"><div class="flex items-center gap-space-xs px-space-sm py-1 bg-[#18243A] rounded-lg text-slate-300 font-label-xs"><span class="material-symbols-outlined text-[14px] text-primary-fixed">domain</span><span class="truncate font-body-sm text-slate-300">Telkom / Kampus Utama</span></div></div></div><nav class="px-space-sm space-y-space-md py-space-sm" data-active-classes="bg-[#18243A] text-[#3B82F6] font-semibold border-l-4 border-[#3B82F6]"><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">DASHBOARD</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span>Dashboard</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">DATA MASTER</div><a aria-current="page" class="flex items-center px-space-md py-2 rounded-lg transition-all gap-space-md bg-[#18243A] text-[#3B82F6] font-semibold border-l-4 border-[#3B82F6]" data-path="data-aset" href="#"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span>Data Aset</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="kategori-aset" href="#"><span class="material-symbols-outlined text-[18px]">sell</span><span>Kategori Aset</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="lokasi" href="#"><span class="material-symbols-outlined text-[18px]">location_on</span><span>Lokasi</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="supplier" href="#"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span>Supplier</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">TRANSAKSI</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="pengadaan" href="#"><span class="material-symbols-outlined text-[18px]">shopping_cart</span><span>Pengadaan</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="pemeliharaan" href="#"><span class="material-symbols-outlined text-[18px]">build</span><span>Pemeliharaan</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="mutasi-aset" href="#"><span class="material-symbols-outlined text-[18px]">compare_arrows</span><span>Mutasi Aset</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">LAPORAN</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="laporan-aset" href="#"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span>Laporan Aset</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="laporan-pemeliharaan" href="#"><span class="material-symbols-outlined text-[18px]">description</span><span>Laporan Pemeliharaan</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="riwayat-aktivitas" href="#"><span class="material-symbols-outlined text-[18px]">history</span><span>Riwayat Aktivitas</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">PENGATURAN</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="profil-admin" href="#"><span class="material-symbols-outlined text-[18px]">manage_accounts</span><span>Profil Admin</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="pengaturan-sistem" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span>Pengaturan Sistem</span></a></div></nav></div><div class="p-space-md bg-[#101828]"><div class="flex items-center justify-between p-space-sm rounded-lg bg-[#18243A]"><div class="flex items-center gap-space-sm min-w-0"><div class="relative flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmYnbms0_W8SxBPiGaWX7BFNJPZefy6t7FpqooD3fA57wpWyXil0gS_z4NlEmxjvQJqvX0VWh5sYl8kWxjbUVOHPhd6ErMsvP4KoOQ4jwgkBgVvwYuXsKxOnknL2o1UBDebUHt86-Vs4jqdrpPRHqPz_x9Y3UyMEerEMlPjy7YxQNKt29ZyvWoMnQqHvuu9AX_A9xpHtXlohZBW8mrdCA1FkYzh-hR5CgPq27X53rSOEsj5Dm-_uWR"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-tertiary-fixed-dim ring-2 ring-[#18243A]"></span></div><div class="flex flex-col min-w-0"><span class="text-[#ffffff] font-body-sm font-semibold truncate leading-tight">Rian Hidayat, S.Kom</span><span class="text-slate-400 font-label-xs truncate">Super Admin Sarpras</span></div></div><button class="text-slate-400 hover:text-[#ffffff] p-1 rounded transition-colors" title="Keluar" type="button"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm"><span class="material-symbols-outlined text-[18px]">home</span><span>/</span><span class="font-body-md-medium text-on-surface">Sarana &amp; Prasarana</span></div><div class="relative hidden lg:block w-96"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-full pl-9 pr-14 py-space-xs bg-surface text-on-surface placeholder:text-on-surface-variant/70 rounded-lg font-body-sm focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Cari aset, no. inventaris, lokasi, pemeliharaan..." type="text"/><span class="absolute right-space-sm top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container font-mono-data text-[10px] text-on-surface-variant">Ctrl+K</span></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span><span class="font-label-md text-on-surface">TA 2024/2025 Genap</span></div><button class="relative p-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-error text-on-error rounded-full text-[10px] flex items-center justify-center font-bold">3</span></button><button class="flex items-center gap-space-xs px-space-md py-2 bg-primary text-on-primary rounded-lg font-body-md-medium hover:bg-primary-container transition-all shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Transaksi</span></button><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmYnbms0_W8SxBPiGaWX7BFNJPZefy6t7FpqooD3fA57wpWyXil0gS_z4NlEmxjvQJqvX0VWh5sYl8kWxjbUVOHPhd6ErMsvP4KoOQ4jwgkBgVvwYuXsKxOnknL2o1UBDebUHt86-Vs4jqdrpPRHqPz_x9Y3UyMEerEMlPjy7YxQNKt29ZyvWoMnQqHvuu9AX_A9xpHtXlohZBW8mrdCA1FkYzh-hR5CgPq27X53rSOEsj5Dm-_uWR"/><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div></header><main class="relative pt-16 bg-[#F5F7FB] min-h-screen p-8 max-w-[1600px] mx-auto"><div class="flex flex-col w-full space-y-space-xl">
+<!-- Toast Notification Preview -->
+<div class="flex items-center justify-between px-space-lg py-space-md bg-tertiary text-on-tertiary rounded-xl shadow-md transition-all duration-300" id="toastNotification">
+<div class="flex items-center gap-space-md">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-tertiary">Berhasil Memperbarui Data</p>
+<p class="font-body-sm text-body-sm text-on-tertiary/90">Data aset <span class="font-mono-data font-semibold">AST-KOM-2024-0012</span> berhasil disimpan ke sistem inventaris.</p>
+</div>
+</div>
+<button class="text-on-tertiary/80 hover:text-on-tertiary p-1 rounded-lg" onclick="document.getElementById('toastNotification').remove()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Header Area -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span>Beranda</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Data Master</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-body-md-medium">Data Aset</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Data Aset</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kelola seluruh inventaris sarana dan prasarana kampus dan universitas secara terpadu.</p>
+</div>
+<!-- Top Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-surface-container-lowest text-on-surface rounded-lg font-body-md-medium text-body-md-medium shadow-sm hover:bg-surface-container-high transition-all" onclick="toggleModal('modalBarcodeScanner')" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">qr_code_scanner</span>
+<span>Scan QR / Barcode</span>
+</button>
+<div class="relative">
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-surface-container-lowest text-on-surface rounded-lg font-body-md-medium text-body-md-medium shadow-sm hover:bg-surface-container-high transition-all" onclick="toggleDropdown('colVisibilityMenu')" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">view_column</span>
+<span>Visibilitas Kolom</span>
+<span class="px-1.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-xs text-label-xs">7/7 Aktif</span>
+</button>
+<div class="hidden absolute right-0 mt-2 w-56 bg-surface-container-lowest rounded-xl shadow-xl z-30 p-space-sm space-y-1" id="colVisibilityMenu">
+<label class="flex items-center gap-space-sm px-space-sm py-1.5 hover:bg-surface-container-low rounded-lg font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Nomor Inventaris</span>
+</label>
+<label class="flex items-center gap-space-sm px-space-sm py-1.5 hover:bg-surface-container-low rounded-lg font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Nama Aset &amp; Spesifikasi</span>
+</label>
+<label class="flex items-center gap-space-sm px-space-sm py-1.5 hover:bg-surface-container-low rounded-lg font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Kategori</span>
+</label>
+<label class="flex items-center gap-space-sm px-space-sm py-1.5 hover:bg-surface-container-low rounded-lg font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Lokasi &amp; Ruangan</span>
+</label>
+<label class="flex items-center gap-space-sm px-space-sm py-1.5 hover:bg-surface-container-low rounded-lg font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Kondisi</span>
+</label>
+<label class="flex items-center gap-space-sm px-space-sm py-1.5 hover:bg-surface-container-low rounded-lg font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Nilai Perolehan</span>
+</label>
+<label class="flex items-center gap-space-sm px-space-sm py-1.5 hover:bg-surface-container-low rounded-lg font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Status Garansi</span>
+</label>
+</div>
+</div>
+<div class="relative">
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-surface-container-lowest text-on-surface rounded-lg font-body-md-medium text-body-md-medium shadow-sm hover:bg-surface-container-high transition-all" onclick="toggleDropdown('exportDropdown')" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">download</span>
+<span>Export Data</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-2 w-44 bg-surface-container-lowest rounded-xl shadow-xl z-30 p-1 space-y-1" id="exportDropdown">
+<button class="w-full flex items-center gap-space-sm px-space-md py-2 text-left font-body-sm text-body-sm hover:bg-surface-container-low rounded-lg" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">table_view</span>
+<span>Excel (.xlsx)</span>
+</button>
+<button class="w-full flex items-center gap-space-sm px-space-md py-2 text-left font-body-sm text-body-sm hover:bg-surface-container-low rounded-lg" type="button">
+<span class="material-symbols-outlined text-[18px] text-error">picture_as_pdf</span>
+<span>Dokumen PDF</span>
+</button>
+<button class="w-full flex items-center gap-space-sm px-space-md py-2 text-left font-body-sm text-body-sm hover:bg-surface-container-low rounded-lg" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">data_object</span>
+<span>CSV File</span>
+</button>
+</div>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-primary text-on-primary rounded-lg font-body-md-medium text-body-md-medium shadow-sm hover:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Tambah Aset</span>
+</button>
+</div>
+</div>
+<!-- Filter & Toolbar Bar -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-space-md">
+<!-- Top Filter Row: Search & Dropdowns -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-space-sm items-center">
+<!-- Search Input -->
+<div class="xl:col-span-4 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-8 py-2 bg-surface text-on-surface rounded-lg font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-low" id="searchInput" placeholder="Cari nama aset, no. inventaris, serial number..." type="text"/>
+<button class="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface" onclick="document.getElementById('searchInput').value=''" type="button">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+</button>
+</div>
+<!-- Kategori Filter -->
+<div class="xl:col-span-2">
+<div class="relative">
+<select class="w-full appearance-none pl-space-md pr-8 py-2 bg-surface text-on-surface rounded-lg font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-low cursor-pointer">
+<option>Semua Kategori</option>
+<option>Komputer</option>
+<option>Elektronik</option>
+<option>Furniture</option>
+<option>Kendaraan</option>
+<option>Laboratorium</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Lokasi Filter -->
+<div class="xl:col-span-3">
+<div class="relative">
+<select class="w-full appearance-none pl-space-md pr-8 py-2 bg-surface text-on-surface rounded-lg font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-low cursor-pointer">
+<option>Semua Lokasi Kampus</option>
+<option>Gedung A - R. Sidang Utama</option>
+<option>Gedung B - Lab Multimedia</option>
+<option>Gedung C - Ruang Dosen</option>
+<option>Gedung Rektorat</option>
+<option>Perpustakaan Pusat</option>
+<option>Pool Operasional</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Kondisi Filter -->
+<div class="xl:col-span-2">
+<div class="relative">
+<select class="w-full appearance-none pl-space-md pr-8 py-2 bg-surface text-on-surface rounded-lg font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-low cursor-pointer">
+<option>Semua Kondisi</option>
+<option>Baik</option>
+<option>Rusak Ringan</option>
+<option>Rusak Berat</option>
+<option>Pemeliharaan</option>
+<option>Hilang</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Reset Filter Button -->
+<div class="xl:col-span-1 flex justify-end">
+<button class="w-full flex items-center justify-center gap-1 py-2 px-space-sm bg-surface-container text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+<!-- Quick Chips & Results Row -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-on-surface-variant">Penyaring Cepat:</span>
+<button class="px-space-md py-1 bg-surface-container text-on-surface rounded-full font-label-xs text-label-xs hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" type="button">
+          Aset Kritis
+        </button>
+<button class="px-space-md py-1 bg-primary text-on-primary rounded-full font-label-xs text-label-xs shadow-sm" type="button">
+          Garansi Aktif
+        </button>
+<button class="px-space-md py-1 bg-surface-container text-on-surface rounded-full font-label-xs text-label-xs hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" type="button">
+          Baru Ditambahkan (30 Hari)
+        </button>
+<button class="px-space-md py-1 bg-surface-container text-on-surface rounded-full font-label-xs text-label-xs hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors" type="button">
+          Perlu Servis
+        </button>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant">
+        Menampilkan <span class="font-headline-sm text-primary font-bold">10</span> dari <span class="font-headline-sm text-on-surface font-bold">248</span> aset terdaftar
+      </div>
+</div>
+</div>
+<!-- Batch Action Toolbar (Reveals on selection) -->
+<div class="flex flex-wrap items-center justify-between px-space-lg py-space-md bg-secondary text-on-secondary rounded-xl shadow-md" id="batchActionToolbar">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center justify-center w-7 h-7 rounded-full bg-secondary-container text-on-secondary font-mono-data text-label-md">
+<span id="selectedCounter">2</span>
+</div>
+<span class="font-body-md-medium text-body-md-medium">Aset dipilih untuk aksi kolektif</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="flex items-center gap-1.5 px-space-md py-1.5 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-on-secondary rounded-lg font-body-sm text-body-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+<span>Cetak Label Barcode</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-1.5 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-on-secondary rounded-lg font-body-sm text-body-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">move_up</span>
+<span>Mutasi Lokasi</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-1.5 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-on-secondary rounded-lg font-body-sm text-body-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">event_repeat</span>
+<span>Jadwalkan Servis</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-1.5 bg-error text-on-error rounded-lg font-body-sm text-body-sm hover:opacity-90 transition-opacity" onclick="openDeleteModal('2 Aset Terpilih')" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Hapus Masal</span>
+</button>
+</div>
+</div>
+<!-- Comprehensive Data Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<!-- Table Header -->
+<thead class="bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs uppercase tracking-wider">
+<tr>
+<th class="p-space-md w-12 text-center">
+<input class="w-4 h-4 accent-primary rounded cursor-pointer" id="selectAllCheckbox" onchange="toggleSelectAll(this)" type="checkbox"/>
+</th>
+<th class="p-space-md font-semibold">Nomor Inventaris</th>
+<th class="p-space-md font-semibold">Nama Aset &amp; Spesifikasi</th>
+<th class="p-space-md font-semibold">Kategori</th>
+<th class="p-space-md font-semibold">Lokasi &amp; Ruangan</th>
+<th class="p-space-md font-semibold">Kondisi</th>
+<th class="p-space-md font-semibold text-right">Tanggal &amp; Nilai</th>
+<th class="p-space-md font-semibold">Status Garansi</th>
+<th class="p-space-md font-semibold text-center w-28">Aksi</th>
+</tr>
+</thead>
+<!-- Table Body -->
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm">
+<!-- Row 1: Selected Row -->
+<tr class="bg-primary-fixed/20 hover:bg-primary-fixed/30 transition-colors">
+<td class="p-space-md text-center">
+<input checked="" class="row-checkbox w-4 h-4 accent-primary rounded cursor-pointer" onchange="updateBatchCount()" type="checkbox"/>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">devices</span>
+<span class="font-mono-data text-mono-data font-semibold text-primary">AST-KOM-2024-0012</span>
+</div>
+<span class="text-on-surface-variant font-label-xs text-label-xs">SN: C02FM31908LK</span>
+</td>
+<td class="p-space-md">
+<div class="font-body-md-medium text-body-md-medium text-on-surface">Apple iMac 24" M3 16GB/512GB (Blue)</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Chip Apple M3 8-Core CPU / 10-Core GPU, Retina 4.5K</div>
+</td>
+<td class="p-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs">Komputer</span>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface">Gedung B - Lab Multimedia 02</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Lantai 2, Meja Stasiun A-04</div>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-xs text-label-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                Baik
+              </span>
+</td>
+<td class="p-space-md text-right">
+<div class="font-mono-data text-mono-data font-semibold text-on-surface">Rp 26.500.000</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">14 Jan 2024</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-tertiary font-label-xs text-label-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>Aktif (s/d Jan 2026)</span>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Lihat Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Edit" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error rounded" m3')"="" onclick="openDeleteModal('Apple iMac 24\" title="Hapus" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Selected Row -->
+<tr class="bg-primary-fixed/20 hover:bg-primary-fixed/30 transition-colors">
+<td class="p-space-md text-center">
+<input checked="" class="row-checkbox w-4 h-4 accent-primary rounded cursor-pointer" onchange="updateBatchCount()" type="checkbox"/>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">videocam</span>
+<span class="font-mono-data text-mono-data font-semibold text-primary">AST-ELK-2023-0184</span>
+</div>
+<span class="text-on-surface-variant font-label-xs text-label-xs">SN: EPS-2250-8819</span>
+</td>
+<td class="p-space-md">
+<div class="font-body-md-medium text-body-md-medium text-on-surface">Projector Epson EB-2250U 5000 Lumens</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">WUXGA Full HD, 3LCD Ceiling Mounted Projector</div>
+</td>
+<td class="p-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs">Elektronik</span>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface">Gedung A - Ruang Sidang Utama</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Lantai 3, Plafon Tengah</div>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-xs text-label-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+                Pemeliharaan
+              </span>
+</td>
+<td class="p-space-md text-right">
+<div class="font-mono-data text-mono-data font-semibold text-on-surface">Rp 18.200.000</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">22 Agu 2023</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-secondary-container font-label-xs text-label-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">build_circle</span>
+<span>Perlu Servis</span>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Lihat Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Edit" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error rounded" onclick="openDeleteModal('Projector Epson EB-2250U')" title="Hapus" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-space-md text-center">
+<input class="row-checkbox w-4 h-4 accent-primary rounded cursor-pointer" onchange="updateBatchCount()" type="checkbox"/>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">chair</span>
+<span class="font-mono-data text-mono-data font-semibold text-primary">AST-FUR-2022-0943</span>
+</div>
+<span class="text-on-surface-variant font-label-xs text-label-xs">SN: HM-MR2-9902</span>
+</td>
+<td class="p-space-md">
+<div class="font-body-md-medium text-body-md-medium text-on-surface">Kursi Kerja Herman Miller Mirra 2</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Ergonomic Mesh Chair, Butterfly Back Graphite</div>
+</td>
+<td class="p-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs">Furniture</span>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface">Gedung Rektorat - R. Warek I</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Lantai 4, Ruang Kerja Pimpinan</div>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-xs text-label-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                Baik
+              </span>
+</td>
+<td class="p-space-md text-right">
+<div class="font-mono-data text-mono-data font-semibold text-on-surface">Rp 14.800.000</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">10 Mei 2022</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-tertiary font-label-xs text-label-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>Garansi 12 Thn</span>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Lihat Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Edit" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error rounded" onclick="openDeleteModal('Kursi Kerja Herman Miller')" title="Hapus" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-space-md text-center">
+<input class="row-checkbox w-4 h-4 accent-primary rounded cursor-pointer" onchange="updateBatchCount()" type="checkbox"/>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">dns</span>
+<span class="font-mono-data text-mono-data font-semibold text-primary">AST-SRV-2021-0034</span>
+</div>
+<span class="text-on-surface-variant font-label-xs text-label-xs">SN: DELL-740-9281</span>
+</td>
+<td class="p-space-md">
+<div class="font-body-md-medium text-body-md-medium text-on-surface">Server Dell PowerEdge R740 64GB Xeon</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">2x Intel Xeon Gold 5218, 8x 1.2TB SAS 10K, PERC H730P</div>
+</td>
+<td class="p-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs">Komputer</span>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface">Ruang Server Lt. 2 (Data Center)</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Rack System A-02 Unit 12-14</div>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-xs text-label-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                Rusak Ringan
+              </span>
+</td>
+<td class="p-space-md text-right">
+<div class="font-mono-data text-mono-data font-semibold text-on-surface">Rp 89.000.000</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">05 Nov 2021</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-xs text-label-xs">
+<span class="material-symbols-outlined text-[14px]">gpp_bad</span>
+<span>Expired</span>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Lihat Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Edit" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error rounded" onclick="openDeleteModal('Server Dell PowerEdge R740')" title="Hapus" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-space-md text-center">
+<input class="row-checkbox w-4 h-4 accent-primary rounded cursor-pointer" onchange="updateBatchCount()" type="checkbox"/>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">biotech</span>
+<span class="font-mono-data text-mono-data font-semibold text-primary">AST-LAB-2024-0056</span>
+</div>
+<span class="text-on-surface-variant font-label-xs text-label-xs">SN: OLY-CX23-3882</span>
+</td>
+<td class="p-space-md">
+<div class="font-body-md-medium text-body-md-medium text-on-surface">Mikroskop Digital Olympus CX23</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Binocular LED Optical System with 4K HDMI Sensor Hook</div>
+</td>
+<td class="p-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs">Laboratorium</span>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface">Gedung B - Lab Biologi 101</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Lantai 1, Lemari Instrumen 03</div>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-xs text-label-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                Baik
+              </span>
+</td>
+<td class="p-space-md text-right">
+<div class="font-mono-data text-mono-data font-semibold text-on-surface">Rp 32.400.000</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">18 Feb 2024</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-tertiary font-label-xs text-label-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>Aktif (s/d Feb 2027)</span>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Lihat Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Edit" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error rounded" onclick="openDeleteModal('Mikroskop Olympus CX23')" title="Hapus" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-space-md text-center">
+<input class="row-checkbox w-4 h-4 accent-primary rounded cursor-pointer" onchange="updateBatchCount()" type="checkbox"/>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">airport_shuttle</span>
+<span class="font-mono-data text-mono-data font-semibold text-primary">AST-KND-2020-0008</span>
+</div>
+<span class="text-on-surface-variant font-label-xs text-label-xs">Plat: B 1092 UPA</span>
+</td>
+<td class="p-space-md">
+<div class="font-body-md-medium text-body-md-medium text-on-surface">Toyota HiAce Commuter 2.5 M/T Silver</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">16 Passenger Capacity, Mesin Diesel 2KD-FTV D-4D</div>
+</td>
+<td class="p-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs">Kendaraan</span>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface">Pool Kendaraan Operasional</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Area Parkir Rektorat Timur</div>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-xs text-label-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                Baik
+              </span>
+</td>
+<td class="p-space-md text-right">
+<div class="font-mono-data text-mono-data font-semibold text-on-surface">Rp 540.000.000</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">12 Mar 2020</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-primary font-label-xs text-label-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">local_gas_station</span>
+<span>Servis Rutin</span>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Lihat Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Edit" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error rounded" onclick="openDeleteModal('Toyota HiAce Commuter')" title="Hapus" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-space-md text-center">
+<input class="row-checkbox w-4 h-4 accent-primary rounded cursor-pointer" onchange="updateBatchCount()" type="checkbox"/>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">ac_unit</span>
+<span class="font-mono-data text-mono-data font-semibold text-primary">AST-ELK-2022-0419</span>
+</div>
+<span class="text-on-surface-variant font-label-xs text-label-xs">SN: DK-FTKC50-311</span>
+</td>
+<td class="p-space-md">
+<div class="font-body-md-medium text-body-md-medium text-on-surface">AC Split Daikin Inverter 2 PK FTKC50</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Freon R32, Intelligent Eye, Titanium Apatite Filter</div>
+</td>
+<td class="p-space-md">
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-xs text-label-xs">Elektronik</span>
+</td>
+<td class="p-space-md">
+<div class="text-on-surface">Gedung C - Ruang Dosen 304</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">Lantai 3, Dinding Samping Kiri</div>
+</td>
+<td class="p-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error text-on-error font-label-xs text-label-xs font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error"></span>
+                Rusak Berat
+              </span>
+</td>
+<td class="p-space-md text-right">
+<div class="font-mono-data text-mono-data font-semibold text-on-surface">Rp 11.500.000</div>
+<div class="text-on-surface-variant font-label-xs text-label-xs">20 Jun 2022</div>
+</td>
+<td class="p-space-md">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-xs text-label-xs">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span>Expired</span>
+</div>
+</td>
+<td class="p-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Lihat Detail" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-primary rounded" title="Edit" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error rounded" onclick="openDeleteModal('AC Split Daikin 2 PK')" title="Hapus" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="flex flex-col sm:flex-row items-center justify-between p-space-md bg-surface-container-high/50 gap-space-md">
+<!-- Data Scope Counter & Per Page -->
+<div class="flex items-center gap-space-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Menampilkan <span class="font-semibold text-on-surface">1-7</span> dari <span class="font-semibold text-on-surface">248</span> data</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span>Baris:</span>
+<select class="bg-surface-container-lowest text-on-surface px-2 py-1 rounded-lg text-body-sm font-body-sm focus:outline-none cursor-pointer">
+<option>10 per halaman</option>
+<option>25 per halaman</option>
+<option>50 per halaman</option>
+<option>100 per halaman</option>
+</select>
+</div>
+</div>
+<!-- Pagination Buttons -->
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 text-on-surface-variant hover:text-on-surface rounded-lg font-label-md text-label-md transition-colors" title="Pertama" type="button">
+          Pertama
+        </button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface rounded-lg transition-colors" title="Sebelumnya" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-sm" type="button">
+          1
+        </button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" type="button">
+          2
+        </button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" type="button">
+          3
+        </button>
+<span class="px-1 text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" type="button">
+          25
+        </button>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface rounded-lg transition-colors" title="Berikutnya" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+<button class="px-2 py-1 text-on-surface-variant hover:text-on-surface rounded-lg font-label-md text-label-md transition-colors" title="Terakhir" type="button">
+          Terakhir
+        </button>
+</div>
+</div>
+</div>
+<!-- Reusable Confirmation Modal: Hapus Aset -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4" id="deleteConfirmModal">
+<div class="bg-surface-container-lowest max-w-md w-full rounded-xl shadow-xl p-space-lg space-y-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Hapus Data Aset?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Apakah Anda yakin ingin menghapus aset <span class="font-semibold text-on-surface" id="modalTargetAssetName">terpilih</span>? Tindakan ini akan menghapus riwayat inventaris dan tidak dapat dibatalkan.
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-2 bg-surface-container text-on-surface rounded-lg font-body-md-medium text-body-md-medium hover:bg-surface-container-high transition-colors" onclick="closeDeleteModal()" type="button">
+          Batal
+        </button>
+<button class="px-space-md py-2 bg-error text-on-error rounded-lg font-body-md-medium text-body-md-medium hover:bg-error/90 transition-opacity" onclick="confirmDelete()" type="button">
+          Ya, Hapus Aset
+        </button>
+</div>
+</div>
+</div>
+<!-- Scanner QR Modal Mockup -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4" id="modalBarcodeScanner">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-xl shadow-xl p-space-lg space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">qr_code_scanner</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Pemindai Label Inventaris</h3>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="toggleModal('modalBarcodeScanner')" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="relative w-full h-64 bg-inverse-surface rounded-xl flex flex-col items-center justify-center overflow-hidden">
+<div class="w-48 h-48 border-2 border-primary rounded-xl flex items-center justify-center relative">
+<div class="absolute inset-x-0 h-0.5 bg-primary animate-pulse"></div>
+<span class="material-symbols-outlined text-surface text-[48px] opacity-40">barcode_scanner</span>
+</div>
+<p class="font-label-xs text-label-xs text-inverse-on-surface mt-3">Arahkan kamera ke QR Code atau Barcode aset fisik</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Status Kamera: <span class="text-tertiary font-semibold">Aktif</span></span>
+<button class="px-space-md py-2 bg-surface-container text-on-surface rounded-lg font-body-md-medium text-body-md-medium" onclick="toggleModal('modalBarcodeScanner')" type="button">
+          Tutup
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function toggleDropdown(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('hidden');
+  }
+
+  function toggleModal(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('hidden');
+  }
+
+  function toggleSelectAll(master) {
+    const checkboxes = document.querySelectorAll('.row-checkbox');
+    checkboxes.forEach(cb => cb.checked = master.checked);
+    updateBatchCount();
+  }
+
+  function updateBatchCount() {
+    const selected = document.querySelectorAll('.row-checkbox:checked').length;
+    const counter = document.getElementById('selectedCounter');
+    const toolbar = document.getElementById('batchActionToolbar');
+    if (counter) counter.textContent = selected;
+    if (toolbar) {
+      if (selected > 0) {
+        toolbar.classList.remove('hidden');
+      } else {
+        toolbar.classList.add('hidden');
+      }
+    }
+  }
+
+  function openDeleteModal(assetName) {
+    const target = document.getElementById('modalTargetAssetName');
+    if (target) target.textContent = assetName;
+    const modal = document.getElementById('deleteConfirmModal');
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  function closeDeleteModal() {
+    const modal = document.getElementById('deleteConfirmModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function confirmDelete() {
+    closeDeleteModal();
+    const toast = document.getElementById('toastNotification');
+    if (toast) {
+      toast.classList.remove('hidden');
+      toast.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Dismiss dropdowns on outside click
+  window.addEventListener('click', function(e) {
+    const colMenu = document.getElementById('colVisibilityMenu');
+    const expMenu = document.getElementById('exportDropdown');
+    if (colMenu && !e.target.closest('#colVisibilityMenu') && !e.target.closest('button[onclick*="colVisibilityMenu"]')) {
+      colMenu.classList.add('hidden');
+    }
+    if (expMenu && !e.target.closest('#exportDropdown') && !e.target.closest('button[onclick*="exportDropdown"]')) {
+      expMenu.classList.add('hidden');
+    }
+  });
+</script></main></div></body></html>

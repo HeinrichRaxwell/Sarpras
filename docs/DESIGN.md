@@ -1,63 +1,68 @@
 # Design System Specification
-## SaranaPrasana - Asset Management (v1.0.0)
+## SaranaPrasana Admin Dashboard (Stitch Project 8744053701019094011)
+### Design Theme: Sarana Enterprise Ops
 
-Standar acuan desain antarmuka berbasis Clean Enterprise UI & Material Architecture sesuai spesifikasi resmi:
-
----
-
-## 1. Color Palette Tokens
-
-| Nama Token | HEX Code | CSS Variable | Peran & Penggunaan |
-| :--- | :--- | :--- | :--- |
-| **Primary** | `#1F46E5` | `--color-primary` | Warna utama tombol CTA, state aktif navigasi, dan aksen fokus. |
-| **Secondary** | `#06B6D4` | `--color-secondary` | Aksen grafis, grafik pendukung, dan badge informasi. |
-| **Accent** | `#F59E0B` | `--color-accent` | Penanda visual sekunder, sorotan kartu metrik. |
-| **Success** | `#10B981` | `--color-success` | Kondisi aset Baik, pertumbuhan positif, status Disetujui. |
-| **Warning** | `#F97316` | `--color-warning` | Status Dalam Perawatan, tiket pemeliharaan aktif. |
-| **Danger** | `#EF4444` | `--color-danger` | Status Aset Rusak, tombol hapus, modal konfirmasi kritis. |
-| **Background** | `#F8FAFC` | `--color-bg-canvas` | Latar belakang kanvas ruang kerja (Slate 50). |
-| **Sidebar** | `#1E293B` | `--color-sidebar-bg` | Bilah navigasi vertikal samping (Dark Slate Navy). |
-| **Text Primary** | `#0F172A` | `--color-text-title` | Judul utama, angka metrik KPI, teks sel tabel tebal. |
-| **Text Secondary** | `#64748B` | `--color-text-muted` | Subjudul, label sekunder, placeholder formulir. |
+Dokumentasi resmi token desain antarmuka berbasis Google Stitch Project ID `8744053701019094011`.
 
 ---
 
-## 2. Typography Scale (Inter Font Family)
-
-Font keluarga tunggal: **Inter** (`sans-serif`), dioptimalkan untuk keterbacaan data tabel dan formulir administratif.
-
-* **Bold (24px):** Judul halaman utama (`h1.page-title`, Dashboard & Master Data).
-* **Semibold (18px):** Subjudul bagian kartu data dan modal dialog heading.
-* **Medium (16px):** Label item navigasi sidebar dan judul widget.
-* **Regular (14px):** Teks paragraf, isi sel tabel, dan input formulir.
-* **Caption (12px):** Label kecil, timestamp log aktivitas, dan teks bantuan formulir.
+## 1. Fondasi Arsitektur Desain
+* **Platform:** Web Back-Office (Desktop-first, Fluid Adaptive Grid)
+* **Karakter Visual:** Corporate Modernism berpadu dengan ketajaman developer-tooling (gaya Linear / Stripe)
+* **Kontras Struktural:** Bilah navigasi samping bernuansa Dark Slate Navy (#101828) membungkus kanvas ruang kerja terang (#F5F7FB)
+* **Elevasi & Kedalaman:** Border hairline 1px (#E6EAF0), ambient soft shadows tanpa drop shadow berat
 
 ---
 
-## 3. Komponen Antarmuka Terstandarisasi
+## 2. Palet Warna Baku (Color Palette Tokens)
 
-### A. Tombol (Buttons)
-* **Button Primary:** Latar `#1F46E5`, teks `#FFFFFF`, tinggi 38px, radius 8px, padding 0 16px.
-* **Button Secondary:** Latar `#FFFFFF`, border 1px solid `#E2E8F0`, teks `#334155`.
-* **Button Danger:** Latar `#EF4444`, teks `#FFFFFF`, untuk aksi destruktif.
-* **Button Success:** Latar `#10B981`, teks `#FFFFFF`, untuk aksi persetujuan.
-
-### B. Status Badges (Pills)
-* **Kondisi Baik:** Background `rgba(16, 185, 129, 0.12)`, teks `#10B981`, radius 9999px.
-* **Dalam Perawatan:** Background `rgba(249, 115, 22, 0.12)`, teks `#F97316`, radius 9999px.
-* **Rusak:** Background `rgba(239, 68, 68, 0.12)`, teks `#EF4444`, radius 9999px.
-
-### C. Kartu Metrik (Summary KPI Cards)
-* Background `#FFFFFF`, border 1px solid `#E2E8F0`, padding 20px, radius 12px, soft ambient shadow.
+| Token Peran | Nilai HEX | Penggunaan & Konteks Antarmuka |
+| :--- | :--- | :--- |
+| **Shell Primary (Sidebar)** | `#101828` | Latar belakang bilah navigasi vertikal tetap (Dark Slate Navy) |
+| **Shell Elevated (Active Nav)** | `#18243A` | Kontainer menu aktif dan item terpilih di sidebar |
+| **Shell Border** | `#22314E` | Garis pemisah struktural pada panel sidebar |
+| **Workspace Canvas** | `#F5F7FB` | Latar belakang ruang kerja utama (Cool Grey-Blue) |
+| **Surface Level 1 (Cards & Tables)** | `#FFFFFF` | Latar belakang kontainer kartu, tabel data, dan modal dialog |
+| **Surface Level 2 (Headers & Wells)** | `#F8FAFC` | Header tabel, background input pencarian, dan panel sekunder |
+| **Divider & Border** | `#E6EAF0` | Garis batas 1px pada kartu dan pemisah sel tabel |
+| **Primary Operational** | `#3B82F6` | Tombol aksi primer (+ Tambah Aset, + Transaksi), border aktif |
+| **Primary Hover** | `#2563EB` | State hover tombol primer |
+| **Secondary Analytical** | `#6366F1` | Aksen analitik, grafik komparasi, dan visualisasi kategori |
+| **Success / Operable** | `#10B981` | Status Baik, badge Sistem Siap, tren pertumbuhan positif |
+| **Warning / Maintenance** | `#F59E0B` | Status Pemeliharaan, peringatan servis berkala |
+| **Critical / Defect** | `#EF4444` | Status Rusak / Kendala Kritis, tombol hapus massal |
+| **Text Title / Headings** | `#141B2C` | Teks judul utama halaman, angka metrik KPI (Slate 900) |
+| **Text Body** | `#334155` | Isi sel tabel, teks deskripsi, dan paragraf |
+| **Text Muted** | `#64748B` | Label sekunder, placeholder formulir, dan penanda waktu |
 
 ---
 
-## 4. Checklist 8 Fitur Utama Sistem
-1. Dashboard interaktif (chart dan statistik)
-2. Data master aset (tabel dan aksi CRUD)
-3. Form input dan edit dengan validasi JavaScript
-4. Laporan dan detail aset (cetak A4 / unduh)
-5. Sidebar responsif dan toggle drawer
-6. Modal konfirmasi hapus (destructive guard)
-7. Notifikasi dan indikator status real-time
-8. Desain modern clean enterprise dengan subtle glassmorphism
+## 3. Tipografi (Typography Hierarchy)
+
+* **Display & Headings:** `Plus Jakarta Sans` (Geometric modern sans-serif)
+  - Display Hero: 36px / Bold 700
+  - Headline Large: 24px / SemiBold 600 (Judul Halaman Dashboard & Data Aset)
+  - Headline Medium: 20px / SemiBold 600 (Judul Kartu Widget)
+  - Headline Small: 16px / SemiBold 600 (Label Metrik & Sub-panel)
+* **Body, Input & Tabular:** `Inter` (Optimized for dense UI data)
+  - Body Large: 16px / Regular 400
+  - Body Medium: 14px / Regular 400 & Medium 500 (Isi Tabel & Form Input)
+  - Body Small: 13px / Regular 400 (Teks Keterangan & Sub-label)
+  - Label Medium: 12px / Medium 500 (Badge Pill & Status)
+  - Label XS: 11px / SemiBold 600 (Kategori Tag & Header Tabel)
+* **Angka Tabular:** Enforced `font-variant-numeric: tabular-nums` pada seluruh nilai Rupiah, kuantitas inventaris, dan kode nomor inventaris.
+
+---
+
+## 4. Komponen Antarmuka Terstandarisasi
+
+1. **Tombol Primer (Primary Action):**
+   Tinggi 38px / 40px, latar `#3B82F6`, teks `#FFFFFF`, radius 6px/8px, hover `#2563EB`, aktif scale(0.99).
+2. **Tombol Sekunder (Outline Button):**
+   Tinggi 38px, latar `#FFFFFF`, border 1px `#E6EAF0`, teks `#101828`, hover latar `#F8FAFC`.
+3. **Bilah Aksi Massal (Bulk Action Bar):**
+   Kontainer melayang kontras tinggi saat baris tabel dipilih (Cetak Barcode, Mutasi Lokasi, Jadwalkan Servis, Hapus Masal).
+4. **Badge Status Kondisi:**
+   - Baik: Background `#ECFDF5`, teks `#047857`, dot indikator 6px `#10B981`
+   - Pemeliharaan: Background `#FFFBEB`, teks `#B45309`, dot indikator 6px `#F59E0B`
+   - Rusak: Background `#FEF2F2`, teks `#B91C1C`, dot indikator 6px `#EF4444`
