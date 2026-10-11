@@ -1,294 +1,398 @@
 <!DOCTYPE html>
 <html lang="id">
-<head><title>Tambah Aset Baru - SaranaPrasana</title><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary-fixed-dim":"#adc6ff","on-primary":"#ffffff","secondary":"#4648d4","tertiary":"#006947","tertiary-container":"#00855b","surface-dim":"#d2daf0","surface-container-low":"#f1f3ff","outline":"#727785","surface-tint":"#005ac2","surface-container-lowest":"#ffffff","surface-container-highest":"#dbe2f9","on-secondary-fixed":"#07006c","on-primary-fixed":"#001a42","inverse-primary":"#adc6ff","secondary-fixed":"#e1e0ff","inverse-surface":"#293041","on-secondary-fixed-variant":"#2f2ebe","on-tertiary-fixed":"#002113","error":"#ba1a1a","on-tertiary-fixed-variant":"#005236","outline-variant":"#c2c6d6","on-surface-variant":"#424754","surface-variant":"#dbe2f9","primary-container":"#2170e4","secondary-container":"#6063ee","tertiary-fixed":"#6ffbbe","on-primary-fixed-variant":"#004395","surface":"#f9f9ff","primary-fixed":"#d8e2ff","on-error-container":"#93000a","surface-container-high":"#e0e8ff","surface-container":"#e9edff","on-secondary-container":"#fffbff","on-tertiary":"#ffffff","surface-bright":"#f9f9ff","tertiary-fixed-dim":"#4edea3","on-background":"#141b2c","on-tertiary-container":"#f5fff6","on-error":"#ffffff","primary":"#0058be","secondary-fixed-dim":"#c0c1ff","error-container":"#ffdad6","on-primary-container":"#fefcff","background":"#f9f9ff","on-surface":"#141b2c","on-secondary":"#ffffff","inverse-on-surface":"#edf0ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-sm":"0.5rem","margin-lg":"2rem","space-2xl":"2rem","space-md":"0.75rem","space-xl":"1.5rem","margin":"1rem","gutter":"1rem","margin-md":"1.5rem","space-lg":"1rem","gutter-lg":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"body-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-xs":["Inter"],"body-lg":["Inter"],"display-hero":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"body-md":["Inter"],"display-hero-mobile":["Plus Jakarta Sans"],"body-md-medium":["Inter"],"label-md":["Inter"],"headline-lg":["Plus Jakarta Sans"],"mono-data":["Inter"]},"fontSize":{"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-xs":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"400"}],"display-hero":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"display-hero-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md-medium":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"mono-data":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"500"}]}}}};</script></head>
-<body class="bg-[#F5F7FB] font-body-md text-on-surface antialiased">
-<aside class="fixed left-0 top-0 h-full w-64 bg-[#101828] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="p-space-lg bg-[#101828]"><div class="flex items-center gap-space-sm"><img alt="SaranaPrasana Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V4ntbmj45QMBkAd08159c9jyLOLBTUPZhHuVP_vO0kZm82K3L9AY9KJXBrcCTGVsbXAkeZYmBtkwMQvORW5YFFxwRJtXMsv6OqyAD0-qdscB0dEKB-9lcvda4ak3NpbdIM1vUwzrMIZ5dz-c8dGdSpqf8lRM10R3_KZHOe0ZyJ1qZxka_m9BD-cvWSOTOPynwAQK3RBHkDbYmJ3ouBZ_uk76n8RHwsxbFSvX2WBDtAhdtuFW3BbxMwVb4"/><div class="flex flex-col min-w-0"><span class="text-[#ffffff] font-headline-sm font-bold truncate leading-tight">SaranaPrasana</span><span class="text-[#94A3B8] font-label-xs">Asset Management</span></div></div><div class="mt-space-md pt-space-xs"><div class="flex items-center gap-space-xs px-space-sm py-1 bg-[#18243A] rounded-lg text-slate-300 font-label-xs"><span class="material-symbols-outlined text-[14px] text-primary-fixed">domain</span><span class="truncate font-body-sm text-slate-300">Telkom / Kampus Utama</span></div></div></div><nav class="px-space-sm space-y-space-md py-space-sm" data-active-classes="bg-[#18243A] text-[#3B82F6] font-semibold border-l-4 border-[#3B82F6]"><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">DASHBOARD</div><a aria-current="page" class="flex items-center px-space-md py-2 rounded-lg transition-all gap-space-md bg-[#18243A] text-[#3B82F6] font-semibold border-l-4 border-[#3B82F6]" data-path="dashboard" href="dashboard.html"><span class="material-symbols-outlined text-[18px]">dashboard</span><span>Dashboard</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">DATA MASTER</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="data-aset" href="data-master.html"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span>Data Aset</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="kategori-aset" href="data-master.html"><span class="material-symbols-outlined text-[18px]">sell</span><span>Kategori Aset</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="lokasi" href="data-master.html"><span class="material-symbols-outlined text-[18px]">location_on</span><span>Lokasi</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="supplier" href="data-master.html"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span>Supplier</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">TRANSAKSI</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="pengadaan" href="form.html" aria-current="page" class="flex items-center px-space-md py-2 rounded-lg transition-all gap-space-md bg-[#18243A] text-[#3B82F6] font-semibold border-l-4 border-[#3B82F6]"><span class="material-symbols-outlined text-[18px]">shopping_cart</span><span>Pengadaan</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="pemeliharaan" href="data-master.html"><span class="material-symbols-outlined text-[18px]">build</span><span>Pemeliharaan</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="mutasi-aset" href="data-master.html"><span class="material-symbols-outlined text-[18px]">compare_arrows</span><span>Mutasi Aset</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">LAPORAN</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="laporan-aset" href="laporan.html"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span>Laporan Aset</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="laporan-pemeliharaan" href="laporan.html"><span class="material-symbols-outlined text-[18px]">description</span><span>Laporan Pemeliharaan</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="riwayat-aktivitas" href="laporan.html"><span class="material-symbols-outlined text-[18px]">history</span><span>Riwayat Aktivitas</span></a></div><div class="space-y-1"><div class="px-space-md py-1 text-slate-500 font-label-xs uppercase tracking-wider">PENGATURAN</div><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="profil-admin" href="#"><span class="material-symbols-outlined text-[18px]">manage_accounts</span><span>Profil Admin</span></a><a class="flex items-center px-space-md py-2 rounded-lg text-slate-300 hover:bg-[#18243A] hover:text-[#ffffff] transition-all font-body-md-medium gap-space-md" data-path="pengaturan-sistem" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span>Pengaturan Sistem</span></a></div></nav></div><div class="p-space-md bg-[#101828]"><div class="flex items-center justify-between p-space-sm rounded-lg bg-[#18243A]"><div class="flex items-center gap-space-sm min-w-0"><div class="relative flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmYnbms0_W8SxBPiGaWX7BFNJPZefy6t7FpqooD3fA57wpWyXil0gS_z4NlEmxjvQJqvX0VWh5sYl8kWxjbUVOHPhd6ErMsvP4KoOQ4jwgkBgVvwYuXsKxOnknL2o1UBDebUHt86-Vs4jqdrpPRHqPz_x9Y3UyMEerEMlPjy7YxQNKt29ZyvWoMnQqHvuu9AX_A9xpHtXlohZBW8mrdCA1FkYzh-hR5CgPq27X53rSOEsj5Dm-_uWR"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-tertiary-fixed-dim ring-2 ring-[#18243A]"></span></div><div class="flex flex-col min-w-0"><span class="text-[#ffffff] font-body-sm font-semibold truncate leading-tight">Rian Hidayat, S.Kom</span><span class="text-slate-400 font-label-xs truncate">Super Admin Sarpras</span></div></div><button class="text-slate-400 hover:text-[#ffffff] p-1 rounded transition-colors" title="Keluar" type="button"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside>
-<header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm"><span class="material-symbols-outlined text-[18px]">home</span><span>/</span><span class="font-body-md-medium text-on-surface">Sarana &amp; Prasarana</span></div><div class="relative hidden lg:block w-96"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-full pl-9 pr-14 py-space-xs bg-surface text-on-surface placeholder:text-on-surface-variant/70 rounded-lg font-body-sm focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Cari aset, no. inventaris, lokasi, pemeliharaan..." type="text" onkeydown="if(event.key==='Enter'){window.location.href='data-master.html?q='+encodeURIComponent(this.value);}"/><span class="absolute right-space-sm top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container font-mono-data text-[10px] text-on-surface-variant">Ctrl+K</span></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">calendar_today</span><span class="font-label-md text-on-surface">TA 2024/2025 Genap</span></div><button class="relative p-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-error text-on-error rounded-full text-[10px] flex items-center justify-center font-bold">3</span></button><button class="flex items-center gap-space-xs px-space-md py-2 bg-primary text-on-primary rounded-lg font-body-md-medium hover:bg-primary-container transition-all shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Transaksi</span></button><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmYnbms0_W8SxBPiGaWX7BFNJPZefy6t7FpqooD3fA57wpWyXil0gS_z4NlEmxjvQJqvX0VWh5sYl8kWxjbUVOHPhd6ErMsvP4KoOQ4jwgkBgVvwYuXsKxOnknL2o1UBDebUHt86-Vs4jqdrpPRHqPz_x9Y3UyMEerEMlPjy7YxQNKt29ZyvWoMnQqHvuu9AX_A9xpHtXlohZBW8mrdCA1FkYzh-hR5CgPq27X53rSOEsj5Dm-_uWR"/><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div></header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tambah Aset - SaranaPrasana Asset Management</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .form-columns-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--spacing-gutter);
+      margin-bottom: 40px;
+    }
+    @media (max-width: 1024px) {
+      .form-columns-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .upload-zone-box {
+      border: 2px dashed #CBD5E1;
+      border-radius: var(--radius-md);
+      padding: 36px 20px;
+      text-align: center;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .upload-zone-box:hover {
+      border-color: var(--color-primary);
+      background: var(--color-bg-canvas);
+    }
+    .image-preview-wrapper {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      background: #FFFFFF;
+      margin-top: 16px;
+    }
+    .preview-img {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--color-bg-canvas);
+      border: 1px solid var(--color-border);
+    }
+    .sidebar-accordion-item {
+      margin-bottom: 4px;
+    }
+    .sidebar-sub-menu {
+      padding-left: 36px;
+      margin-top: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .sidebar-sub-link {
+      padding: 6px 12px;
+      font-size: 12.5px;
+      color: var(--color-sidebar-text);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      display: block;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .sidebar-sub-link:hover {
+      background: var(--color-sidebar-hover);
+      color: #FFFFFF;
+    }
+    .sidebar-sub-link.active {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
 
-<main class="relative pt-16 bg-[#F5F7FB] min-h-screen p-8 max-w-[1600px] mx-auto">
-  <div class="flex flex-col w-full space-y-6 pb-12">
+  <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
+
+  <div class="app-layout-wrapper">
     
-    <!-- Breadcrumb & Page Header -->
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-      <div class="space-y-1">
-        <div class="flex items-center gap-1.5 text-slate-500 text-xs font-medium">
-          <span>Beranda</span>
-          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-          <span>Data Master</span>
-          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-          <span class="text-blue-600 font-semibold">Tambah Aset Baru</span>
+    <!-- 1. SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-box" style="background: var(--color-primary);">SP</div>
+        <div class="brand-title-wrap">
+          <span class="brand-title">SaranaPrasana</span>
+          <span class="brand-subtitle">Asset Management</span>
         </div>
-        <h1 class="text-2xl font-bold font-['Plus_Jakarta_Sans'] text-slate-900 tracking-tight">Formulir Registrasi Aset Baru</h1>
-        <p class="text-sm text-slate-500">Catat dan inventarisasikan sarana atau prasarana baru ke dalam pangkalan data SaranaPrasana.</p>
       </div>
-      <div>
-        <a href="data-master.html" class="flex items-center gap-1.5 px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 rounded-lg text-sm font-medium border border-slate-200 shadow-sm transition-all">
-          <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-          <span>Kembali ke Data Aset</span>
+
+      <nav class="sidebar-menu">
+        <div class="menu-category-label">Menu Utama</div>
+        <a href="dashboard.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">dashboard</span>
+          <span class="nav-label">Dashboard</span>
         </a>
-      </div>
-    </div>
-
-    <!-- Two-Column Registration Form -->
-    <form id="addAssetForm" onsubmit="handleFormSubmit(event)">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        <!-- Left Column: Technical Metadata (7 cols) -->
-        <div class="lg:col-span-7 bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-5">
-          <div class="border-b border-slate-100 pb-3">
-            <h2 class="text-base font-bold font-['Plus_Jakarta_Sans'] text-slate-900">1. Identifikasi & Spesifikasi Aset</h2>
-            <p class="text-xs text-slate-500">Masukkan detail perangkat, nomor seri, dan penempatan fisik sarana.</p>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1" for="namaAset">Nama Barang / Aset <span class="text-red-500">*</span></label>
-            <input type="text" id="namaAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600" placeholder="Contoh: Apple iMac 24 M3 16GB/512GB" required oninput="updateTagPreview()">
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="kodeAset">Nomor Inventaris (Auto)</label>
-              <input type="text" id="kodeAset" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-mono font-bold text-blue-700" readonly>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="snAset">Serial Number (SN) / Plat</label>
-              <input type="text" id="snAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 font-mono" placeholder="Contoh: C02FM31908LK" oninput="updateTagPreview()">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="kategoriAset">Kategori <span class="text-red-500">*</span></label>
-              <select id="kategoriAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-blue-600" required onchange="updateTagPreview()">
-                <option value="Komputer">Komputer & Laptop</option>
-                <option value="Elektronik">Elektronik & Audio Visual</option>
-                <option value="Furniture">Furniture & Meubel</option>
-                <option value="Laboratorium">Laboratorium</option>
-                <option value="Kendaraan">Kendaraan Operasional</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="kondisiAset">Kondisi Fisik <span class="text-red-500">*</span></label>
-              <select id="kondisiAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:border-blue-600" required onchange="updateTagPreview()">
-                <option value="Baik">Baik (Siap Digunakan)</option>
-                <option value="Pemeliharaan">Pemeliharaan (Dalam Servis)</option>
-                <option value="Rusak">Rusak / Tidak Layak</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1" for="spesifikasiAset">Spesifikasi Teknis</label>
-            <textarea id="spesifikasiAset" rows="2" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600" placeholder="Rincian prosesor, memori, daya listrik, atau dimensi..." oninput="updateTagPreview()"></textarea>
-          </div>
-
-          <div class="border-b border-slate-100 pb-3 pt-2">
-            <h2 class="text-base font-bold font-['Plus_Jakarta_Sans'] text-slate-900">2. Penempatan & Nilai Perolehan</h2>
-            <p class="text-xs text-slate-500">Tentukan gedung, ruangan, nilai buku, dan status garansi.</p>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="gedungAset">Gedung Kampus <span class="text-red-500">*</span></label>
-              <select id="gedungAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900" required onchange="updateTagPreview()">
-                <option value="Gedung D">Gedung D (Lab Terpadu)</option>
-                <option value="Gedung A">Gedung A (Rektorat)</option>
-                <option value="Gedung B">Gedung B (Fakultas Teknik)</option>
-                <option value="Gedung C">Gedung C (Fakultas Bisnis)</option>
-                <option value="Luar Gedung">Luar Gedung (Area Parkir)</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="ruanganAset">Ruangan Spesifik <span class="text-red-500">*</span></label>
-              <input type="text" id="ruanganAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400" placeholder="Contoh: Lab Multimedia 02 Lt. 2" required oninput="updateTagPreview()">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="tanggalAset">Tanggal Pengadaan <span class="text-red-500">*</span></label>
-              <input type="date" id="tanggalAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900" required>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="nilaiAset">Nilai Perolehan (Rp) <span class="text-red-500">*</span></label>
-              <input type="number" id="nilaiAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm font-mono text-slate-900 placeholder:text-slate-400" placeholder="0" min="0" required oninput="updateTagPreview()">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="garansiAset">Status Garansi</label>
-              <input type="text" id="garansiAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400" placeholder="Contoh: aktif (s/d Jan 2026)">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1" for="supplierAset">Nama Supplier / Rekanan</label>
-              <input type="text" id="supplierAset" class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 placeholder:text-slate-400" placeholder="Contoh: PT Apple Indonesia">
-            </div>
+        <div class="sidebar-accordion-item">
+          <a href="data-master.html" class="nav-link">
+            <span class="material-symbols-outlined nav-icon">folder</span>
+            <span class="nav-label">Data Master</span>
+            <span class="material-symbols-outlined" style="margin-left: auto; font-size: 16px;">expand_more</span>
+          </a>
+          <div class="sidebar-sub-menu">
+            <a href="data-master.html" class="sidebar-sub-link">Aset</a>
+            <a href="data-master.html?cat=Komputer" class="sidebar-sub-link">Kategori Aset</a>
+            <a href="data-master.html?loc=Gedung" class="sidebar-sub-link">Lokasi</a>
+            <a href="data-master.html" class="sidebar-sub-link">Supplier</a>
           </div>
         </div>
 
-        <!-- Right Column: Upload & Live Thermal Tag Preview (5 cols) -->
-        <div class="lg:col-span-5 space-y-6">
+        <div class="sidebar-accordion-item">
+          <a href="form.html" class="nav-link active">
+            <span class="material-symbols-outlined nav-icon">receipt_long</span>
+            <span class="nav-label">Transaksi</span>
+            <span class="material-symbols-outlined" style="margin-left: auto; font-size: 16px;">expand_more</span>
+          </a>
+          <div class="sidebar-sub-menu">
+            <a href="form.html" class="sidebar-sub-link active">Pengadaan</a>
+            <a href="data-master.html?cond=Perawatan" class="sidebar-sub-link">Pemeliharaan</a>
+            <a href="data-master.html" class="sidebar-sub-link">Mutasi</a>
+          </div>
+        </div>
+
+        <a href="laporan.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">description</span>
+          <span class="nav-label">Laporan</span>
+        </a>
+
+        <a href="javascript:void(0)" onclick="alert('Modul Pengaturan Sistem')" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">settings</span>
+          <span class="nav-label">Pengaturan</span>
+        </a>
+
+        <div class="menu-category-label">Autentikasi</div>
+        <a href="../index.html" class="nav-link">
+          <span class="material-symbols-outlined nav-icon">logout</span>
+          <span class="nav-label">Keluar</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar" style="background: var(--color-primary);">AD</div>
+        <div class="user-details">
+          <div class="user-name">Admin</div>
+          <div class="user-role">Administrator</div>
+        </div>
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-sidebar-text); cursor: pointer;" onclick="window.location.href='../index.html'" title="Keluar">logout</span>
+      </div>
+    </aside>
+
+    <!-- 2. CONTENT WRAPPER -->
+    <div class="app-content-wrapper">
+      
+      <!-- Top Command Header -->
+      <header class="top-command-header">
+        <div class="header-left-cluster">
+          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Perkecil/Perbesar Navigasi" aria-label="Toggle Sidebar">
+            <span class="material-symbols-outlined" id="sidebarToggleIcon">chevron_left</span>
+          </button>
           
-          <!-- Photo Upload Card -->
-          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-            <h2 class="text-base font-bold font-['Plus_Jakarta_Sans'] text-slate-900 mb-1">Upload Dokumentasi Fisik</h2>
-            <p class="text-xs text-slate-500 mb-4">Unggah bukti foto penempatan aset di lokasi.</p>
-
-            <div class="border-2 border-dashed border-slate-200 hover:border-blue-500 rounded-xl p-6 text-center bg-slate-50 hover:bg-blue-50/20 cursor-pointer transition-colors" onclick="document.getElementById('photoInput').click()">
-              <input type="file" id="photoInput" accept="image/*" class="hidden" onchange="handlePhotoPick(event)">
-              <span class="material-symbols-outlined text-4xl text-blue-600 mb-2">cloud_upload</span>
-              <div class="text-sm font-semibold text-slate-800">Klik untuk upload foto / drag & drop</div>
-              <div class="text-xs text-slate-400 mt-1">Format: JPG, PNG, WebP (Maks 2MB)</div>
-            </div>
-
-            <div id="previewPhotoWrap" class="mt-4 hidden relative">
-              <img id="previewPhotoImg" src="" alt="Preview Foto" class="w-full h-44 object-cover rounded-lg border border-slate-200">
-              <button type="button" onclick="clearPhoto()" class="absolute top-2 right-2 w-7 h-7 bg-black/60 hover:bg-black text-white rounded-full flex items-center justify-center text-xs">✕</button>
-            </div>
-          </div>
-
-          <!-- Thermal Tag Simulation Card -->
-          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-            <h2 class="text-base font-bold font-['Plus_Jakarta_Sans'] text-slate-900 mb-1">Label Tag Barcode Resmi</h2>
-            <p class="text-xs text-slate-500 mb-4">Simulasi label thermal BMN ukuran 80 x 50 mm.</p>
-
-            <div class="p-4 bg-white border border-slate-300 rounded-lg shadow-sm">
-              <div class="flex items-center justify-between border-b-2 border-slate-900 pb-2 mb-3">
-                <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-800">SARANAPRASANA KAMPUS</span>
-                <span class="text-[10px] font-bold text-slate-500">BMN INVENTARIS</span>
-              </div>
-              <div class="flex gap-3 items-center">
-                <div class="w-16 h-16 bg-slate-900 rounded flex items-center justify-center text-white flex-shrink-0">
-                  <span class="material-symbols-outlined text-3xl">qr_code_2</span>
-                </div>
-                <div class="min-w-0 text-xs">
-                  <div class="font-mono font-bold text-blue-700 text-sm" id="tagCode">AST-KOM-2024-0013</div>
-                  <div class="font-bold text-slate-900 truncate" id="tagName">Nama Sarana Baru</div>
-                  <div class="text-slate-500 truncate" id="tagLoc">Gedung D / Ruangan</div>
-                  <div class="font-mono text-slate-700" id="tagVal">Rp 0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2 text-xs text-emerald-800">
-              <span class="material-symbols-outlined text-base text-emerald-600">verified</span>
-              <span>Siap diverifikasi dan dicetak ke stiker inventaris fisik.</span>
-            </div>
-          </div>
-
+          <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <span class="breadcrumb-item">Data Master</span>
+            <span class="material-symbols-outlined breadcrumb-separator">chevron_right</span>
+            <span class="breadcrumb-item active">Tambah Aset</span>
+          </nav>
         </div>
 
-      </div>
-
-      <!-- Sticky Action Bar -->
-      <div class="mt-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-        <div class="text-xs text-slate-500 hidden sm:block">
-          Pastikan seluruh field bertanda bintang (*) telah diisi sebelum menyimpan data.
-        </div>
-        <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
-          <button type="button" onclick="window.location.href='data-master.html'" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-lg transition-colors">
-            Batal
-          </button>
-          <button type="submit" class="px-6 py-2.5 bg-[#0058be] hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm transition-all transform active:scale-95 flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[18px]">save</span>
-            <span>+ Simpan Data Aset</span>
+        <div class="header-right-cluster">
+          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Ganti Tema">
+            <span class="material-symbols-outlined" id="themeToggleIcon">dark_mode</span>
           </button>
         </div>
-      </div>
-    </form>
+      </header>
 
+      <!-- 3. MAIN VIEWPORT -->
+      <main class="main-viewport">
+        
+        <!-- Page Header Block (Persis Foto Screen 3) -->
+        <div class="page-header-block">
+          <div>
+            <h1 class="page-title">Tambah Aset</h1>
+            <p class="page-description">Isi informasi aset dengan lengkap dan benar.</p>
+          </div>
+          <div>
+            <a href="data-master.html" class="btn btn-secondary">
+              <span class="material-symbols-outlined">arrow_back</span>
+              Kembali
+            </a>
+          </div>
+        </div>
+
+        <!-- Two Column Form (Persis Screen 3 Showcase) -->
+        <form id="formTambahAset" onsubmit="handleFormSubmit(event)">
+          <div class="form-columns-grid">
+            
+            <!-- Kolom Kiri: Informasi Dasar -->
+            <div class="card-panel" style="padding: 24px;">
+              <h2 class="card-title" style="margin-bottom: 20px; font-size: 16px;">Informasi Dasar</h2>
+
+              <!-- Nama Aset * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpNama">Nama Aset <span class="required">*</span></label>
+                <input type="text" id="inpNama" class="form-input" placeholder="Masukkan nama aset" required>
+                <div class="form-error" id="errNama" style="display: none; color: var(--color-danger); font-size: 11.5px; margin-top: 4px;">Nama aset wajib diisi.</div>
+              </div>
+
+              <!-- Kategori * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpKategori">Kategori <span class="required">*</span></label>
+                <select id="inpKategori" class="form-select" required>
+                  <option value="">Pilih Kategori</option>
+                  <option value="Komputer">Komputer</option>
+                  <option value="Elektronik">Elektronik</option>
+                  <option value="Kendaraan">Kendaraan</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Peralatan Kantor">Peralatan Kantor</option>
+                </select>
+              </div>
+
+              <!-- Nomor Inventaris * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpKode">Nomor Inventaris <span class="required">*</span></label>
+                <input type="text" id="inpKode" class="form-input font-code" placeholder="Contoh: ASST-001" required>
+              </div>
+
+              <!-- Lokasi * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpLokasi">Lokasi <span class="required">*</span></label>
+                <select id="inpLokasi" class="form-select" required>
+                  <option value="">Pilih Lokasi</option>
+                  <option value="Gedung A - Ruang 101">Gedung A - Ruang 101</option>
+                  <option value="Gedung A - Ruang 102">Gedung A - Ruang 102</option>
+                  <option value="Gedung B - Ruang 201">Gedung B - Ruang 201</option>
+                  <option value="Gedung B - Ruang 202">Gedung B - Ruang 202</option>
+                  <option value="Gedung C - Ruang 301">Gedung C - Ruang 301</option>
+                  <option value="Luar Gedung">Luar Gedung</option>
+                </select>
+              </div>
+
+              <!-- Kondisi * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpKondisi">Kondisi <span class="required">*</span></label>
+                <select id="inpKondisi" class="form-select" required>
+                  <option value="">Pilih Kondisi</option>
+                  <option value="Baik">Baik</option>
+                  <option value="Dalam Perawatan">Dalam Perawatan</option>
+                  <option value="Rusak">Rusak</option>
+                </select>
+              </div>
+
+              <!-- Tgl Perolehan * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpTanggal">Tgl Perolehan <span class="required">*</span></label>
+                <input type="date" id="inpTanggal" class="form-input" required>
+              </div>
+
+              <!-- Supplier * -->
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="inpSupplier">Supplier <span class="required">*</span></label>
+                <select id="inpSupplier" class="form-select" required>
+                  <option value="">Pilih Supplier</option>
+                  <option value="PT Lenovo Indonesia">PT Lenovo Indonesia</option>
+                  <option value="CV Mitra Mandiri">CV Mitra Mandiri</option>
+                  <option value="Dealer Honda Astra">Dealer Honda Astra</option>
+                  <option value="Daikin Official Store">Daikin Official Store</option>
+                  <option value="Informa Furnishing">Informa Furnishing</option>
+                  <option value="PT Sentra Komputindo">PT Sentra Komputindo</option>
+                </select>
+              </div>
+
+              <!-- Keterangan -->
+              <div class="form-group">
+                <label class="form-label" for="inpKeterangan">Keterangan</label>
+                <textarea id="inpKeterangan" class="form-textarea" placeholder="Masukkan keterangan (opsional)" rows="3"></textarea>
+              </div>
+            </div>
+
+            <!-- Kolom Kanan: Upload Gambar & Aksi -->
+            <div>
+              <div class="card-panel" style="padding: 24px;">
+                <h2 class="card-title" style="margin-bottom: 14px; font-size: 16px;">Upload Gambar</h2>
+                
+                <!-- Drag and drop zone -->
+                <div class="upload-zone-box" onclick="document.getElementById('pickerFile').click()">
+                  <input type="file" id="pickerFile" accept="image/*" style="display: none;" onchange="handleFilePicked(event)">
+                  <span class="material-symbols-outlined" style="font-size: 40px; color: var(--color-primary); margin-bottom: 10px;">cloud_upload</span>
+                  <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Klik untuk upload foto / drag & drop</div>
+                  <div style="font-size: 11.5px; color: var(--color-text-muted); margin-top: 4px;">Format: JPG, PNG (Maks 2MB)</div>
+                </div>
+
+                <!-- Preview Box Foto Laptop Sesuai Foto Showcase -->
+                <div class="image-preview-wrapper" id="previewWrap">
+                  <div style="font-size: 12px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 8px;">Pratinjau Foto Aset</div>
+                  <img id="imgTarget" src="../assets/img/login-bg.jpg" alt="Preview Foto" class="preview-img">
+                </div>
+
+                <!-- Form Action Buttons (Persis di Foto: Batal & Simpan) -->
+                <div style="display: flex; gap: 12px; margin-top: 24px;">
+                  <button type="button" class="btn btn-secondary" style="flex: 1; height: 42px;" onclick="window.location.href='data-master.html'">
+                    Batal
+                  </button>
+                  <button type="submit" class="btn btn-primary" style="flex: 1; height: 42px; background: var(--color-primary);">
+                    <span class="material-symbols-outlined">save</span>
+                    Simpan
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </main>
+
+      <footer class="app-footer">
+        <div>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi.</div>
+        <div style="font-family: var(--font-mono);">SaranaPrasana v1.0.0</div>
+      </footer>
+    </div>
   </div>
-</main>
 
-<script src="../assets/js/data-mock.js"></script>
-<script>
-  let pickedPhotoUri = null;
+  <script src="../assets/js/data-mock.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    let photoUploaded = null;
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const assets = getStoredAssets();
-    const nextNum = assets.length + 1;
-    const formattedNum = nextNum < 10 ? 'AST-KOM-2024-000' + nextNum : 'AST-KOM-2024-00' + nextNum;
-    document.getElementById('kodeAset').value = formattedNum;
-    document.getElementById('tanggalAset').value = new Date().toISOString().slice(0, 10);
-    updateTagPreview();
-  });
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('inpTanggal').value = new Date().toISOString().slice(0, 10);
+      
+      const assets = getStoredAssets();
+      const nextNum = assets.length + 1;
+      const formattedNum = nextNum < 10 ? 'A-00' + nextNum : nextNum < 100 ? 'A-0' + nextNum : 'A-' + nextNum;
+      document.getElementById('inpKode').value = formattedNum;
+    });
 
-  function updateTagPreview() {
-    const nama = document.getElementById('namaAset').value.trim() || 'Nama Sarana Baru';
-    const kode = document.getElementById('kodeAset').value;
-    const gedung = document.getElementById('gedungAset').value;
-    const ruangan = document.getElementById('ruanganAset').value.trim() || 'Ruangan';
-    const nilai = parseFloat(document.getElementById('nilaiAset').value) || 0;
+    function handleFilePicked(e) {
+      const file = e.target.files[0];
+      if (!file) return;
 
-    document.getElementById('tagName').textContent = nama;
-    document.getElementById('tagCode').textContent = kode;
-    document.getElementById('tagLoc').textContent = gedung + ' / ' + ruangan;
-    document.getElementById('tagVal').textContent = formatRupiah(nilai);
-  }
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        photoUploaded = evt.target.result;
+        document.getElementById('imgTarget').src = photoUploaded;
+      };
+      reader.readAsDataURL(file);
+    }
 
-  function handlePhotoPick(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-      pickedPhotoUri = evt.target.result;
-      document.getElementById('previewPhotoImg').src = pickedPhotoUri;
-      document.getElementById('previewPhotoWrap').classList.remove('hidden');
-    };
-    reader.readAsDataURL(file);
-  }
+    function handleFormSubmit(e) {
+      e.preventDefault();
 
-  function clearPhoto() {
-    pickedPhotoUri = null;
-    document.getElementById('photoInput').value = '';
-    document.getElementById('previewPhotoWrap').classList.add('hidden');
-  }
+      const nama = document.getElementById('inpNama').value.trim();
+      const kategori = document.getElementById('inpKategori').value;
+      const id = document.getElementById('inpKode').value.trim();
+      const lokasi = document.getElementById('inpLokasi').value;
+      const kondisi = document.getElementById('inpKondisi').value;
+      const tglRaw = document.getElementById('inpTanggal').value;
+      const supplier = document.getElementById('inpSupplier').value;
+      const keterangan = document.getElementById('inpKeterangan').value.trim();
 
-  function handleFormSubmit(e) {
-    e.preventDefault();
+      if (!nama) {
+        document.getElementById('errNama').style.display = 'block';
+        return;
+      }
 
-    const id = document.getElementById('kodeAset').value.trim();
-    const nama = document.getElementById('namaAset').value.trim();
-    const sn = document.getElementById('snAset').value.trim() || 'SN: -';
-    const kategori = document.getElementById('kategoriAset').value;
-    const kondisi = document.getElementById('kondisiAset').value;
-    const spesifikasi = document.getElementById('spesifikasiAset').value.trim();
-    const gedung = document.getElementById('gedungAset').value;
-    const ruangan = document.getElementById('ruanganAset').value.trim();
-    const rawDate = document.getElementById('tanggalAset').value;
-    const nilai = parseFloat(document.getElementById('nilaiAset').value) || 0;
-    const garansi = document.getElementById('garansiAset').value.trim() || 'Garansi Toko';
-    const supplier = document.getElementById('supplierAset').value.trim() || 'Supplier Rekanan';
+      const d = new Date(tglRaw);
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+      const formattedDate = String(d.getDate()).padStart(2, '0') + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
 
-    const d = new Date(rawDate);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-    const formattedDate = String(d.getDate()).padStart(2, '0') + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+      const newAsset = {
+        id: id,
+        nama: nama,
+        kategori: kategori,
+        lokasi: lokasi,
+        gedung: lokasi.split(' - ')[0] || 'Gedung A',
+        kondisi: kondisi,
+        tanggal: formattedDate,
+        rawDate: tglRaw,
+        supplier: supplier,
+        nilai: 10000000,
+        keterangan: keterangan || 'Aset baru ditambahkan'
+      };
 
-    const newAsset = {
-      id: id,
-      nama: nama,
-      sn: sn,
-      spesifikasi: spesifikasi,
-      kategori: kategori,
-      lokasi: gedung + ' - ' + ruangan,
-      detailLokasi: ruangan,
-      gedung: gedung,
-      kondisi: kondisi,
-      nilai: nilai,
-      tanggal: formattedDate,
-      rawDate: rawDate,
-      garansi: garansi,
-      garansiStatus: kondisi === 'Baik' ? 'valid' : 'warning',
-      supplier: supplier,
-      pic: 'Rian Hidayat, S.Kom'
-    };
-
-    addAsset(newAsset);
-    alert('Berhasil! Aset [' + id + '] ' + nama + ' telah didaftarkan ke inventaris SaranaPrasana.');
-    window.location.href = 'data-master.html';
-  }
-</script>
+      addAsset(newAsset);
+      alert('Berhasil! Aset [' + id + '] ' + nama + ' telah berhasil disimpan.');
+      window.location.href = 'data-master.html';
+    }
+  </script>
 </body>
 </html>
