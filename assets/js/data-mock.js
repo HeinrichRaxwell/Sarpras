@@ -200,3 +200,15 @@ function formatRupiah(number) {
     maximumFractionDigits: 0
   }).format(number);
 }
+
+// Expose Store to Window
+window.SarprasStore = {
+  getStoredAssets,
+  saveAssets,
+  addAsset,
+  updateAsset,
+  deleteAsset,
+  getAssetById,
+  resetMockData,
+  formatRupiah
+};
