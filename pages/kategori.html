@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kategori Aset - SaranaPrasana</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Local Canonical Design System Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
+
+  <div class="app-layout-wrapper">
+    <!-- 1. APP SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-box">SP</div>
+        <div class="brand-title-wrap">
+          <span class="brand-title">SaranaPrasana</span>
+          <span class="brand-subtitle">Asset Management</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <div class="menu-category-label">MENU UTAMA</div>
+
+        <!-- Dashboard Link -->
+        <a href="dashboard.html" class="nav-link ">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span class="nav-label">Dashboard</span>
+        </a>
+
+        <!-- Data Master Accordion -->
+        <div class="sidebar-accordion-item open" id="accordMaster">
+          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordMaster')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+            <span class="nav-label">Data Master</span>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="sidebar-sub-menu">
+            <a href="data-master.html" class="sidebar-sub-link ">Aset</a>
+            <a href="kategori.html" class="sidebar-sub-link active">Kategori Aset</a>
+            <a href="lokasi.html" class="sidebar-sub-link ">Lokasi</a>
+          </div>
+        </div>
+
+        <!-- Transaksi Accordion -->
+        <div class="sidebar-accordion-item " id="accordTrans">
+          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-8"/><path d="M16 12h-8"/><path d="M16 16h-5"/></svg>
+            <span class="nav-label">Transaksi</span>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="sidebar-sub-menu">
+            <a href="pemeliharaan.html" class="sidebar-sub-link ">Pemeliharaan</a>
+          </div>
+        </div>
+
+        <!-- Laporan Link -->
+        <a href="laporan.html" class="nav-link ">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+          <span class="nav-label">Laporan</span>
+        </a>
+
+        <!-- Pengaturan Link -->
+        <a href="javascript:void(0)" onclick="alert('Modul Pengaturan Sistem SaranaPrasana v2.0')" class="nav-link">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span class="nav-label">Pengaturan</span>
+        </a>
+
+        <div class="menu-category-label" style="margin-top: 14px;">AUTENTIKASI</div>
+
+        <a href="../index.html" class="nav-link">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          <span class="nav-label">Keluar</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer User Card -->
+      <div class="sidebar-user-card">
+        <div class="user-avatar">AD</div>
+        <div class="user-details">
+          <span class="user-name">Admin</span>
+          <span class="user-role">Administrator</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. APP CONTENT WRAPPER -->
+    <div class="app-content-wrapper">
+      <!-- Top Command Header -->
+      <header class="top-command-header">
+        <div class="header-left-cluster">
+          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Toggle Sidebar">
+            <span id="sidebarToggleIcon" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span>
+          </button>
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html" class="breadcrumb-item">Dashboard</a>
+            <span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            <span class="breadcrumb-item">Data Master</span>
+            <span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            <span class="breadcrumb-item active">Kategori Aset</span>
+          </nav>
+        </div>
+
+        <div class="header-center-search">
+          <div class="search-input-wrapper">
+            <span class="search-icon-prefix" style="display: flex;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari kategori aset...">
+            <span class="search-shortcut-badge">Ctrl K</span>
+          </div>
+        </div>
+
+        <div class="header-right-cluster">
+          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Tema">
+            <span id="themeToggleIconContainer" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+          </button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="user-avatar" style="width: 32px; height: 32px; font-size: 12px;">AD</div>
+            <span style="font-size: 13.5px; font-weight: 600;">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Viewport -->
+      <main class="main-viewport">
+        <div class="page-header-block">
+          <div>
+            <h1 class="page-title">Kategori Aset</h1>
+            <p class="page-description">Kelompok inventaris sarana dan prasarana berdasarkan jenis dan fungsi.</p>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="alert('Modal Tambah Kategori Baru')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+            + Tambah Kategori
+          </button>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid" style="margin-bottom: 24px;">
+          <div class="kpi-card" style="padding: 18px;">
+            <div>
+              <span class="kpi-label">Total Kategori</span>
+              <div class="kpi-value" style="font-size: 24px;">5</div>
+              <span style="font-size: 12px; color: var(--color-text-muted);">Klasifikasi Resmi BMN</span>
+            </div>
+            <div class="kpi-icon-wrapper icon-blue"><svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></div>
+          </div>
+
+          <div class="kpi-card" style="padding: 18px;">
+            <div>
+              <span class="kpi-label">Unit Terbanyak</span>
+              <div class="kpi-value" style="font-size: 24px;">Komputer</div>
+              <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">60 Unit Terdata</span>
+            </div>
+            <div class="kpi-icon-wrapper icon-emerald"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+          </div>
+
+          <div class="kpi-card" style="padding: 18px;">
+            <div>
+              <span class="kpi-label">Nilai Terbesar</span>
+              <div class="kpi-value" style="font-size: 20px;">Rp 29,2 Jt</div>
+              <span style="font-size: 12px; color: var(--color-text-muted);">Sektor TIK &amp; PC</span>
+            </div>
+            <div class="kpi-icon-wrapper icon-amber"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          </div>
+
+          <div class="kpi-card" style="padding: 18px;">
+            <div>
+              <span class="kpi-label">Status Kelayakan</span>
+              <div class="kpi-value" style="font-size: 24px;">92%</div>
+              <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Kondisi Prima</span>
+            </div>
+            <div class="kpi-icon-wrapper icon-rose"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+          </div>
+        </div>
+
+        <!-- Table Panel -->
+        <section class="card-panel">
+          <div class="card-header">
+            <h3 class="card-title">Daftar Kategori Terdaftar</h3>
+            <span style="font-size: 12px; color: var(--color-text-muted);">Sinkronisasi Database PostgreSQL 16</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 120px;">Kode Kategori</th>
+                  <th>Nama Kategori</th>
+                  <th>Deskripsi Klasifikasi</th>
+                  <th style="text-align: center;">Jumlah Item</th>
+                  <th>Status</th>
+                  <th style="width: 100px; text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-KOM</td>
+                  <td style="font-weight: 600;">Komputer</td>
+                  <td style="color: var(--color-text-muted);">Perangkat TIK, Laptop, PC Workstation, dan Server</td>
+                  <td style="text-align: center; font-weight: 700;">3 Unit</td>
+                  <td><span class="badge-status badge-success">Aktif</span></td>
+                  <td style="text-align: center;">
+                    <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="window.location.href='data-master.html?cat=Komputer'">Lihat Aset</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-ELK</td>
+                  <td style="font-weight: 600;">Elektronik</td>
+                  <td style="color: var(--color-text-muted);">Peralatan elektronik, pendingin ruangan, dan proyektor</td>
+                  <td style="text-align: center; font-weight: 700;">4 Unit</td>
+                  <td><span class="badge-status badge-success">Aktif</span></td>
+                  <td style="text-align: center;">
+                    <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="window.location.href='data-master.html?cat=Elektronik'">Lihat Aset</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-KND</td>
+                  <td style="font-weight: 600;">Kendaraan</td>
+                  <td style="color: var(--color-text-muted);">Kendaraan dinas operasional roda dua dan roda empat</td>
+                  <td style="text-align: center; font-weight: 700;">1 Unit</td>
+                  <td><span class="badge-status badge-success">Aktif</span></td>
+                  <td style="text-align: center;">
+                    <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="window.location.href='data-master.html?cat=Kendaraan'">Lihat Aset</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-FUR</td>
+                  <td style="font-weight: 600;">Furniture</td>
+                  <td style="color: var(--color-text-muted);">Mebel, meja kerja, kursi kantor ergonomis, dan lemari arsip</td>
+                  <td style="text-align: center; font-weight: 700;">2 Unit</td>
+                  <td><span class="badge-status badge-success">Aktif</span></td>
+                  <td style="text-align: center;">
+                    <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="window.location.href='data-master.html?cat=Furniture'">Lihat Aset</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-ALAT</td>
+                  <td style="font-weight: 600;">Peralatan Kantor</td>
+                  <td style="color: var(--color-text-muted);">Perlengkapan administrasi dan alat penunjang operasional</td>
+                  <td style="text-align: center; font-weight: 700;">0 Unit</td>
+                  <td><span class="badge-status badge-success">Aktif</span></td>
+                  <td style="text-align: center;">
+                    <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="window.location.href='data-master.html?cat=Peralatan+Kantor'">Lihat Aset</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi. Sistem Manajemen Aset Kampus.</span>
+        <span>SaranaPrasana v2.0.0</span>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/js/icons.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

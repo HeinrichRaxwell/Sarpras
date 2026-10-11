@@ -148,6 +148,7 @@
 
   <div class="app-layout-wrapper">
     <!-- 1. APP SIDEBAR -->
+        <!-- 1. APP SIDEBAR -->
     <aside class="app-sidebar" id="appSidebar">
       <div class="sidebar-brand">
         <div class="brand-icon-box">SP</div>
@@ -175,22 +176,20 @@
           </div>
           <div class="sidebar-sub-menu">
             <a href="data-master.html" class="sidebar-sub-link active">Aset</a>
-            <a href="data-master.html?cat=Komputer" class="sidebar-sub-link">Kategori Aset</a>
-            <a href="data-master.html?loc=Gedung+A" class="sidebar-sub-link">Lokasi</a>
-            <a href="data-master.html" class="sidebar-sub-link">Supplier</a>
+            <a href="kategori.html" class="sidebar-sub-link ">Kategori Aset</a>
+            <a href="lokasi.html" class="sidebar-sub-link ">Lokasi</a>
           </div>
         </div>
 
-        <!-- Transaksi Accordion (Hanya Pemeliharaan & Mutasi, Tanpa Duplikasi Tambah Data) -->
-        <div class="sidebar-accordion-item" id="accordTrans">
+        <!-- Transaksi Accordion -->
+        <div class="sidebar-accordion-item " id="accordTrans">
           <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
             <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-8"/><path d="M16 12h-8"/><path d="M16 16h-5"/></svg>
             <span class="nav-label">Transaksi</span>
             <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </div>
           <div class="sidebar-sub-menu">
-            <a href="data-master.html?cond=Dalam+Perawatan" class="sidebar-sub-link">Pemeliharaan</a>
-            <a href="data-master.html" class="sidebar-sub-link">Mutasi Aset</a>
+            <a href="pemeliharaan.html" class="sidebar-sub-link ">Pemeliharaan</a>
           </div>
         </div>
 
