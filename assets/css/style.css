@@ -304,6 +304,9 @@ button, input, select, textarea {
 .accordion-chevron {
   font-size: 18px;
   color: #94A3B8;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
   transition: transform 0.2s ease;
 }
 

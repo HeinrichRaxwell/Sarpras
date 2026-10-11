@@ -3,50 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Master Layout - SaranaPrasana Asset Management</title>
-  
+  <title>Master Shell Template - SaranaPrasana</title>
+  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Local Canonical Design System Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    .sidebar-accordion-item {
-      margin-bottom: 4px;
-    }
-    .sidebar-sub-menu {
-      padding-left: 36px;
-      margin-top: 2px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .sidebar-sub-link {
-      padding: 6px 12px;
-      font-size: 12.5px;
-      color: var(--color-sidebar-text);
-      text-decoration: none;
-      border-radius: var(--radius-sm);
-      display: block;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-    .sidebar-sub-link:hover {
-      background: var(--color-sidebar-hover);
-      color: #FFFFFF;
-    }
-  </style>
 </head>
 <body>
-
   <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
 
   <div class="app-layout-wrapper">
-    
-    <!-- 1. SIDEBAR NAVIGATION -->
+    <!-- 1. APP SIDEBAR -->
     <aside class="app-sidebar" id="appSidebar">
       <div class="sidebar-brand">
-        <div class="brand-icon-box" style="background: var(--color-primary);">SP</div>
+        <div class="brand-icon-box">SP</div>
         <div class="brand-title-wrap">
           <span class="brand-title">SaranaPrasana</span>
           <span class="brand-subtitle">Asset Management</span>
@@ -54,271 +26,121 @@
       </div>
 
       <nav class="sidebar-menu">
-        <div class="menu-category-label">Menu Utama</div>
+        <div class="menu-category-label">MENU UTAMA</div>
+
         <a href="pages/dashboard.html" class="nav-link active">
-          <span class="material-symbols-outlined nav-icon">dashboard</span>
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
           <span class="nav-label">Dashboard</span>
         </a>
-        
-        <div class="sidebar-accordion-item">
-          <a href="pages/data-master.html" class="nav-link">
-            <span class="material-symbols-outlined nav-icon">folder</span>
+
+        <div class="sidebar-accordion-item open" id="accordMaster">
+          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordMaster')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
             <span class="nav-label">Data Master</span>
-            <span class="material-symbols-outlined" style="margin-left: auto; font-size: 16px;">expand_more</span>
-          </a>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
           <div class="sidebar-sub-menu">
-            <a href="pages/data-master.html" class="sidebar-sub-link">Aset</a>
+            <a href="pages/data-master.html" class="sidebar-sub-link active">Aset</a>
             <a href="pages/data-master.html?cat=Komputer" class="sidebar-sub-link">Kategori Aset</a>
-            <a href="pages/data-master.html?loc=Gedung" class="sidebar-sub-link">Lokasi</a>
+            <a href="pages/data-master.html?loc=Gedung+A" class="sidebar-sub-link">Lokasi</a>
             <a href="pages/data-master.html" class="sidebar-sub-link">Supplier</a>
           </div>
         </div>
 
-        <div class="sidebar-accordion-item">
-          <a href="pages/form.html" class="nav-link">
-            <span class="material-symbols-outlined nav-icon">receipt_long</span>
+        <div class="sidebar-accordion-item" id="accordTrans">
+          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-8"/><path d="M16 12h-8"/><path d="M16 16h-5"/></svg>
             <span class="nav-label">Transaksi</span>
-            <span class="material-symbols-outlined" style="margin-left: auto; font-size: 16px;">expand_more</span>
-          </a>
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
           <div class="sidebar-sub-menu">
-            <a href="pages/form.html" class="sidebar-sub-link">Pengadaan</a>
-            <a href="pages/data-master.html?cond=Perawatan" class="sidebar-sub-link">Pemeliharaan</a>
-            <a href="pages/data-master.html" class="sidebar-sub-link">Mutasi</a>
+            <a href="pages/data-master.html?cond=Dalam+Perawatan" class="sidebar-sub-link">Pemeliharaan</a>
+            <a href="pages/data-master.html" class="sidebar-sub-link">Mutasi Aset</a>
           </div>
         </div>
 
         <a href="pages/laporan.html" class="nav-link">
-          <span class="material-symbols-outlined nav-icon">description</span>
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
           <span class="nav-label">Laporan</span>
         </a>
 
         <a href="javascript:void(0)" onclick="alert('Modul Pengaturan')" class="nav-link">
-          <span class="material-symbols-outlined nav-icon">settings</span>
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="nav-label">Pengaturan</span>
         </a>
 
-        <div class="menu-category-label">Autentikasi</div>
+        <div class="menu-category-label" style="margin-top: 14px;">AUTENTIKASI</div>
+
         <a href="index.html" class="nav-link">
-          <span class="material-symbols-outlined nav-icon">logout</span>
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
           <span class="nav-label">Keluar</span>
         </a>
       </nav>
 
       <div class="sidebar-user-card">
-        <div class="user-avatar" style="background: var(--color-primary);">AD</div>
+        <div class="user-avatar">AD</div>
         <div class="user-details">
-          <div class="user-name">Admin</div>
-          <div class="user-role">Administrator</div>
+          <span class="user-name">Admin</span>
+          <span class="user-role">Administrator</span>
         </div>
-        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-sidebar-text); cursor: pointer;" onclick="window.location.href='index.html'" title="Keluar">logout</span>
       </div>
     </aside>
 
-    <!-- 2. CONTENT WRAPPER -->
+    <!-- 2. APP CONTENT WRAPPER -->
     <div class="app-content-wrapper">
-      
-      <!-- Top Command Header -->
       <header class="top-command-header">
         <div class="header-left-cluster">
-          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Perkecil/Perbesar Navigasi" aria-label="Toggle Sidebar">
-            <span class="material-symbols-outlined" id="sidebarToggleIcon">chevron_left</span>
+          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Toggle Sidebar">
+            <span id="sidebarToggleIcon" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span>
           </button>
-          
-          <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <nav class="breadcrumb-nav">
             <span class="breadcrumb-item">SaranaPrasana</span>
-            <span class="material-symbols-outlined breadcrumb-separator">chevron_right</span>
-            <span class="breadcrumb-item active">Master Layout Template</span>
+            <span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+            <span class="breadcrumb-item active">Master Layout</span>
           </nav>
         </div>
 
         <div class="header-center-search">
           <div class="search-input-wrapper">
-            <span class="material-symbols-outlined search-icon-prefix">search</span>
-            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari aset, lokasi, atau nomor inventaris...">
+            <span class="search-icon-prefix" style="display: flex;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari data di sistem...">
             <span class="search-shortcut-badge">Ctrl K</span>
           </div>
         </div>
 
         <div class="header-right-cluster">
-          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Ganti Tema">
-            <span class="material-symbols-outlined" id="themeToggleIcon">dark_mode</span>
+          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Tema">
+            <span id="themeToggleIconContainer" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
           </button>
-          <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">
-            AD
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="user-avatar" style="width: 32px; height: 32px; font-size: 12px;">AD</div>
+            <span style="font-size: 13.5px; font-weight: 600;">Admin</span>
           </div>
         </div>
       </header>
 
-      <!-- 3. MAIN VIEWPORT (SLOT HALAMAN) -->
       <main class="main-viewport">
         <div class="page-header-block">
           <div>
-            <h1 class="page-title">Master Template Dasar (layout.html)</h1>
-            <p class="page-description">Fondasi antarmuka responsif Milestone 2 berbasis Clean Enterprise UI & Material Architecture.</p>
-          </div>
-          <div style="display: flex; gap: 10px;">
-            <button type="button" class="btn btn-secondary" onclick="openModal('modalDemo')">
-              <span class="material-symbols-outlined">visibility</span>
-              Uji Modal Dialog
-            </button>
-            <a href="pages/form.html" class="btn btn-primary" style="background: var(--color-primary);">
-              <span class="material-symbols-outlined">add</span>
-              + Tambah Aset
-            </a>
+            <h1 class="page-title">Master Shell Template</h1>
+            <p class="page-description">Kerangka layout modular Milestone 2 untuk slicing antarmuka admin panel.</p>
           </div>
         </div>
 
-        <!-- 4 KPI Summary Cards Row (Sesuai Foto Showcase) -->
-        <section class="kpi-grid">
-          <div class="kpi-card">
-            <div>
-              <div class="kpi-label">Total Aset</div>
-              <div class="kpi-value">248</div>
-              <div class="kpi-trend trend-up">
-                <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
-                <span>+ 12% dari bulan lalu</span>
-              </div>
-            </div>
-            <div class="kpi-icon-wrapper icon-blue">
-              <span class="material-symbols-outlined">inventory_2</span>
-            </div>
-          </div>
-
-          <div class="kpi-card">
-            <div>
-              <div class="kpi-label">Aset Aktif</div>
-              <div class="kpi-value" style="color: var(--color-success);">230</div>
-              <div class="kpi-trend trend-up">
-                <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
-                <span>+ 10% dari bulan lalu</span>
-              </div>
-            </div>
-            <div class="kpi-icon-wrapper icon-emerald">
-              <span class="material-symbols-outlined">task_alt</span>
-            </div>
-          </div>
-
-          <div class="kpi-card">
-            <div>
-              <div class="kpi-label">Aset Rusak</div>
-              <div class="kpi-value" style="color: var(--color-warning);">8</div>
-              <div class="kpi-trend trend-warning">
-                <span class="material-symbols-outlined" style="font-size: 16px;">trending_down</span>
-                <span>- 2% dari bulan lalu</span>
-              </div>
-            </div>
-            <div class="kpi-icon-wrapper icon-amber">
-              <span class="material-symbols-outlined">warning</span>
-            </div>
-          </div>
-
-          <div class="kpi-card">
-            <div>
-              <div class="kpi-label">Aset Dalam Perawatan</div>
-              <div class="kpi-value" style="color: #8B5CF6;">10</div>
-              <div class="kpi-trend trend-up" style="color: #8B5CF6;">
-                <span class="material-symbols-outlined" style="font-size: 16px;">build</span>
-                <span>+ 5% dari bulan lalu</span>
-              </div>
-            </div>
-            <div class="kpi-icon-wrapper" style="background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">
-              <span class="material-symbols-outlined">construction</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- Preview Data Grid Panel -->
-        <section class="card-panel">
+        <div class="card-panel">
           <div class="card-header">
-            <h2 class="card-title">Pratinjau Tabel Master (Layout Slot)</h2>
-            <a href="pages/data-master.html" class="btn btn-secondary" style="height: 32px; font-size: 12px; padding: 0 12px;">
-              Buka Halaman Lengkap
-            </a>
+            <h3 class="card-title">Konten Halaman Terbuka</h3>
           </div>
-          
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Nama Aset</th>
-                  <th>Kategori</th>
-                  <th>Lokasi</th>
-                  <th>Kondisi</th>
-                  <th>Tgl Perolehan</th>
-                  <th style="text-align: center;">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="font-code font-bold">A-001</td>
-                  <td style="font-weight: 500;">Laptop Lenovo ThinkPad</td>
-                  <td>Komputer</td>
-                  <td>Gedung A - Ruang 101</td>
-                  <td><span class="badge-status badge-success">Baik</span></td>
-                  <td>12 Jan 2023</td>
-                  <td style="text-align: center;">
-                    <button type="button" class="btn btn-secondary" style="height: 28px; font-size: 11.5px; padding: 0 8px;" onclick="openModal('modalDemo')">Detail</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-code font-bold">A-002</td>
-                  <td style="font-weight: 500;">Printer HP LaserJet</td>
-                  <td>Elektronik</td>
-                  <td>Gedung B - Ruang 201</td>
-                  <td><span class="badge-status badge-success">Baik</span></td>
-                  <td>05 Mar 2022</td>
-                  <td style="text-align: center;">
-                    <button type="button" class="btn btn-secondary" style="height: 28px; font-size: 11.5px; padding: 0 8px;" onclick="openModal('modalDemo')">Detail</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-code font-bold">A-003</td>
-                  <td style="font-weight: 500;">Motor Honda Beat</td>
-                  <td>Kendaraan</td>
-                  <td>Luar Gedung</td>
-                  <td><span class="badge-status badge-warning">Dalam Perawatan</span></td>
-                  <td>20 Jun 2021</td>
-                  <td style="text-align: center;">
-                    <button type="button" class="btn btn-secondary" style="height: 28px; font-size: 11.5px; padding: 0 8px;" onclick="openModal('modalDemo')">Detail</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div style="padding: 32px; text-align: center; color: var(--color-text-muted);">
+            Area konten dinamis siap diisi oleh modul Dashboard, Data Master, atau Laporan.
           </div>
-        </section>
+        </div>
       </main>
 
-      <!-- 4. FOOTER -->
       <footer class="app-footer">
-        <div>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi.</div>
-        <div style="font-family: var(--font-mono);">SaranaPrasana v1.0.0</div>
+        <span>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi.</span>
+        <span>Milestone 2 - Master Layout Template</span>
       </footer>
-    </div>
-  </div>
-
-  <!-- Modal Demo Dialog -->
-  <div class="modal-overlay" id="modalDemo" role="dialog" aria-modal="true" aria-labelledby="modalDemoTitle">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3 class="modal-title" id="modalDemoTitle">Informasi Modal Template</h3>
-        <button type="button" class="modal-close-btn" onclick="closeModal('modalDemo')" aria-label="Tutup Dialog">
-          <span class="material-symbols-outlined">close</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Komponen modal ini mematuhi standar aksesibilitas antarmuka:</p>
-        <ul style="margin: 12px 0 0 20px; line-height: 1.7;">
-          <li>Latar belakang dilengkapi efek <strong>backdrop-filter: blur(4px)</strong>.</li>
-          <li>Dapat ditutup dengan tombol Escape pada keyboard.</li>
-          <li>Dapat ditutup dengan mengklik area gelap di luar kotak modal.</li>
-          <li>Z-index terkunci di level 9999 untuk mencegah tertutup elemen sticky.</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="closeModal('modalDemo')">Tutup</button>
-        <button type="button" class="btn btn-primary" onclick="closeModal('modalDemo')">Selesai</button>
-      </div>
     </div>
   </div>
 
