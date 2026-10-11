@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laporan Aset - SaranaPrasana Asset Management</title>
+  <title>SaranaPrasana - Asset Management</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,73 +12,244 @@
   
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    .laporan-header-cluster {
+    /* Welcome Hero Card dengan Background Foto Fasad Gedung Modern */
+    .welcome-hero-card {
+      background: linear-gradient(135deg, rgba(31, 70, 229, 0.88), rgba(15, 23, 42, 0.84)), url('../assets/img/login-bg.jpg') center/cover no-repeat;
+      border-radius: var(--radius-lg);
+      padding: 30px 32px;
+      color: #FFFFFF;
+      margin-bottom: var(--spacing-xl);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: var(--spacing-xl);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      position: relative;
+      overflow: hidden;
     }
-    .date-filter-pill {
+    .welcome-hero-card::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 45%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06));
+      pointer-events: none;
+    }
+    .date-pill-glass {
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #FFFFFF;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      padding: 8px 16px;
-      font-size: 13px;
-      color: var(--color-text-body);
-      box-shadow: var(--shadow-sm);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    .laporan-charts-row {
+    .charts-row-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--spacing-gutter);
       margin-bottom: var(--spacing-xl);
     }
+    .bottom-widgets-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--spacing-gutter);
+      margin-bottom: var(--spacing-xl);
+    }
     @media (max-width: 1024px) {
-      .laporan-charts-row {
+      .charts-row-grid,
+      .bottom-widgets-grid {
         grid-template-columns: 1fr;
       }
     }
-    .chart-box-compact {
+    .chart-box-wrap {
       position: relative;
-      height: 240px;
+      height: 270px;
       width: 100%;
     }
-    .sidebar-accordion-item {
-      margin-bottom: 4px;
-    }
-    .sidebar-sub-menu {
-      padding-left: 36px;
-      margin-top: 2px;
+    .activity-row {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-border);
     }
-    .sidebar-sub-link {
-      padding: 6px 12px;
-      font-size: 12.5px;
-      color: var(--color-sidebar-text);
+    .activity-row:last-child {
+      border-bottom: none;
+    }
+    .activity-icon-sq {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .location-progress-row {
+      margin-bottom: 16px;
+    }
+    .location-progress-row:last-child {
+      margin-bottom: 0;
+    }
+    .location-progress-bar-bg {
+      height: 8px;
+      background: var(--color-bg-canvas);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .location-progress-bar-fill {
+      height: 100%;
+      background: var(--color-primary);
+      border-radius: var(--radius-full);
+    }
+    .filter-bar-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--color-border);
+      justify-content: space-between;
+    }
+    .filter-controls-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      flex: 1;
+    }
+    .filter-select {
+      height: 38px;
+      padding: 0 12px;
+      font-size: 13px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: #FFFFFF;
+      color: var(--color-text-body);
+      font-family: var(--font-sans);
+    }
+    .search-input-field {
+      height: 38px;
+      padding: 0 12px 0 36px;
+      font-size: 13px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      min-width: 260px;
+      font-family: var(--font-sans);
+    }
+    .search-input-field:focus,
+    .filter-select:focus {
+      border-color: var(--color-primary);
+      outline: none;
+    }
+    .pagination-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-top: 1px solid var(--color-border);
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+    .pagination-pills {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .page-btn-pill {
+      min-width: 30px;
+      height: 30px;
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+      background: #FFFFFF;
+      border-radius: 6px;
+      color: var(--color-text-body);
+      font-size: 12px;
+      cursor: pointer;
       text-decoration: none;
-      border-radius: var(--radius-sm);
-      display: block;
+    }
+    .page-btn-pill.active {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border-color: var(--color-primary);
+      font-weight: 600;
+    }
+    .action-icon-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      background: #FFFFFF;
+      cursor: pointer;
+      color: var(--color-text-muted);
       transition: background 0.15s ease, color 0.15s ease;
     }
-    .sidebar-sub-link:hover {
-      background: var(--color-sidebar-hover);
-      color: #FFFFFF;
-    }
-    .sidebar-sub-link.active {
+    .action-icon-btn:hover {
+      background: var(--color-bg-canvas);
       color: var(--color-primary);
-      font-weight: 600;
+    }
+    .action-icon-btn.delete-btn:hover {
+      background: rgba(239, 68, 68, 0.08);
+      color: var(--color-danger);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+    .form-columns-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--spacing-gutter);
+      margin-bottom: 40px;
+    }
+    @media (max-width: 1024px) {
+      .form-columns-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .upload-zone-box {
+      border: 2px dashed #CBD5E1;
+      border-radius: var(--radius-md);
+      padding: 36px 20px;
+      text-align: center;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .upload-zone-box:hover {
+      border-color: var(--color-primary);
+      background: var(--color-bg-canvas);
+    }
+    .image-preview-wrapper {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      background: #FFFFFF;
+      margin-top: 16px;
+    }
+    .preview-img {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--color-bg-canvas);
+      border: 1px solid var(--color-border);
     }
     @media print {
       .app-sidebar,
       .top-command-header,
-      .laporan-header-cluster,
       .app-footer,
       .no-print {
         display: none !important;
@@ -104,6 +275,7 @@
     
     <!-- 1. SIDEBAR NAVIGATION -->
     <aside class="app-sidebar" id="appSidebar">
+      <!-- Brand Header -->
       <div class="sidebar-brand">
         <div class="brand-icon-box" style="background: var(--color-primary);">SP</div>
         <div class="brand-title-wrap">
@@ -112,46 +284,50 @@
         </div>
       </div>
 
+      <!-- Navigation Menu -->
       <nav class="sidebar-menu">
         <div class="menu-category-label">Menu Utama</div>
-        <a href="dashboard.html" class="nav-link">
+        
+        <a id="nav-dashboard" onclick="navigateTo('dashboard')" class="nav-link active">
           <span class="material-symbols-outlined nav-icon">dashboard</span>
           <span class="nav-label">Dashboard</span>
         </a>
         
-        <div class="sidebar-accordion-item">
-          <a href="data-master.html" class="nav-link">
+        <!-- Accordion 1: Data Master -->
+        <div class="sidebar-accordion-item" id="accordMaster">
+          <div class="nav-link accordion-toggle-btn">
             <span class="material-symbols-outlined nav-icon">folder</span>
             <span class="nav-label">Data Master</span>
-            <span class="material-symbols-outlined" style="margin-left: auto; font-size: 16px;">expand_more</span>
-          </a>
+            <span class="material-symbols-outlined accordion-chevron">expand_more</span>
+          </div>
           <div class="sidebar-sub-menu">
-            <a href="data-master.html" class="sidebar-sub-link">Aset</a>
-            <a href="data-master.html?cat=Komputer" class="sidebar-sub-link">Kategori Aset</a>
-            <a href="data-master.html?loc=Gedung" class="sidebar-sub-link">Lokasi</a>
-            <a href="data-master.html" class="sidebar-sub-link">Supplier</a>
+            <a id="sub-master-aset" onclick="navigateTo('master')" class="sidebar-sub-link">Aset</a>
+            <a onclick="navigateTo('master'); filterTableByCat('Komputer');" class="sidebar-sub-link">Kategori Aset</a>
+            <a onclick="navigateTo('master'); filterTableByLoc('Gedung');" class="sidebar-sub-link">Lokasi</a>
+            <a onclick="navigateTo('master')" class="sidebar-sub-link">Supplier</a>
           </div>
         </div>
 
-        <div class="sidebar-accordion-item">
-          <a href="form.html" class="nav-link">
+        <!-- Accordion 2: Transaksi -->
+        <div class="sidebar-accordion-item" id="accordTrans">
+          <div class="nav-link accordion-toggle-btn">
             <span class="material-symbols-outlined nav-icon">receipt_long</span>
             <span class="nav-label">Transaksi</span>
-            <span class="material-symbols-outlined" style="margin-left: auto; font-size: 16px;">expand_more</span>
-          </a>
+            <span class="material-symbols-outlined accordion-chevron">expand_more</span>
+          </div>
           <div class="sidebar-sub-menu">
-            <a href="form.html" class="sidebar-sub-link">Pengadaan</a>
-            <a href="data-master.html?cond=Perawatan" class="sidebar-sub-link">Pemeliharaan</a>
-            <a href="data-master.html" class="sidebar-sub-link">Mutasi</a>
+            <a id="sub-trans-pengadaan" onclick="navigateTo('form')" class="sidebar-sub-link">Pengadaan</a>
+            <a onclick="navigateTo('master'); filterTableByCond('Dalam Perawatan');" class="sidebar-sub-link">Pemeliharaan</a>
+            <a onclick="navigateTo('master')" class="sidebar-sub-link">Mutasi</a>
           </div>
         </div>
 
-        <a href="laporan.html" class="nav-link active">
+        <a id="nav-laporan" onclick="navigateTo('laporan')" class="nav-link">
           <span class="material-symbols-outlined nav-icon">description</span>
           <span class="nav-label">Laporan</span>
         </a>
 
-        <a href="javascript:void(0)" onclick="alert('Modul Pengaturan Sistem')" class="nav-link">
+        <a onclick="alert('Modul Pengaturan Sistem')" class="nav-link">
           <span class="material-symbols-outlined nav-icon">settings</span>
           <span class="nav-label">Pengaturan</span>
         </a>
@@ -163,13 +339,13 @@
         </a>
       </nav>
 
+      <!-- User Profile Card -->
       <div class="sidebar-user-card">
         <div class="user-avatar" style="background: var(--color-primary);">AD</div>
         <div class="user-details">
           <div class="user-name">Admin</div>
           <div class="user-role">Administrator</div>
         </div>
-        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-sidebar-text); cursor: pointer;" onclick="window.location.href='../index.html'" title="Keluar">logout</span>
       </div>
     </aside>
 
@@ -177,189 +353,754 @@
     <div class="app-content-wrapper">
       
       <!-- Top Command Header -->
-      <header class="top-command-header">
+      <header class="top-command-header no-print">
         <div class="header-left-cluster">
           <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Perkecil/Perbesar Navigasi" aria-label="Toggle Sidebar">
             <span class="material-symbols-outlined" id="sidebarToggleIcon">chevron_left</span>
           </button>
           
-          <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <nav class="breadcrumb-nav" aria-label="Breadcrumb" id="breadcrumbArea">
             <span class="breadcrumb-item">SaranaPrasana</span>
             <span class="material-symbols-outlined breadcrumb-separator">chevron_right</span>
-            <span class="breadcrumb-item active">Laporan</span>
+            <span class="breadcrumb-item active" id="breadcrumbCurrent">Dashboard</span>
           </nav>
+        </div>
+
+        <div class="header-center-search">
+          <div class="search-input-wrapper">
+            <span class="material-symbols-outlined search-icon-prefix">search</span>
+            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari aset, lokasi, atau nomor inventaris..." onkeydown="handleGlobalSearch(event)">
+            <span class="search-shortcut-badge">Enter</span>
+          </div>
         </div>
 
         <div class="header-right-cluster">
           <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Mode Gelap/Terang" aria-label="Ganti Tema">
             <span class="material-symbols-outlined" id="themeToggleIcon">dark_mode</span>
           </button>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">
+            AD
+          </div>
         </div>
       </header>
 
-      <!-- 3. MAIN VIEWPORT -->
+      <!-- 3. MAIN VIEWPORT (SLOT 4 VIEW TERPADU SPA) -->
       <main class="main-viewport">
         
-        <!-- Page Title & Header Actions (Persis Screen 4 Showcase) -->
-        <div class="laporan-header-cluster">
-          <div>
-            <h1 class="page-title">Laporan Aset</h1>
-            <p class="page-description">Lihat dan unduh laporan aset sesuai periode yang diinginkan.</p>
-          </div>
-
-          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-            <div class="date-filter-pill">
-              <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-primary);">calendar_today</span>
-              <span>01/10/2025 - 31/10/2025</span>
+        <!-- ========================================== -->
+        <!-- VIEW 1: DASHBOARD EKSEKUTIF                -->
+        <!-- ========================================== -->
+        <div id="view-dashboard" class="app-view">
+          
+          <!-- Welcome Hero Card dengan Foto Fasad Gedung Modern Sesuai Foto Showcase -->
+          <section class="welcome-hero-card">
+            <div style="position: relative; z-index: 2;">
+              <h1 style="font-size: 26px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em;">
+                Selamat Datang, Admin 👋
+              </h1>
+              <p style="font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                Berikut adalah ringkasan kondisi sarana dan prasarana di instansi Anda.
+              </p>
             </div>
-            
-            <button type="button" class="btn btn-primary" onclick="window.print()" style="background: var(--color-primary);">
-              <span class="material-symbols-outlined">download</span>
-              Unduh Laporan
-            </button>
-          </div>
+            <div class="date-pill-glass" style="position: relative; z-index: 2;">
+              <span class="material-symbols-outlined" style="font-size: 18px;">calendar_today</span>
+              <span>Sen, 13 Okt 2025</span>
+            </div>
+          </section>
+
+          <!-- KPI Metric Cards Row (4 Kartu Persis di Foto: 248 / 230 / 8 / 10) -->
+          <section class="kpi-grid">
+            <div class="kpi-card" onclick="navigateTo('master')" style="cursor: pointer;">
+              <div>
+                <div class="kpi-label">Total Aset</div>
+                <div class="kpi-value">248</div>
+                <div class="kpi-trend trend-up">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">trending_up</span>
+                  <span>+ 12% dari bulan lalu</span>
+                </div>
+              </div>
+              <div class="kpi-icon-wrapper icon-blue">
+                <span class="material-symbols-outlined">inventory_2</span>
+              </div>
+            </div>
+
+            <div class="kpi-card" onclick="navigateTo('master'); filterTableByCond('Baik');" style="cursor: pointer;">
+              <div>
+                <div class="kpi-label">Aset Aktif</div>
+                <div class="kpi-value" style="color: var(--color-success);">230</div>
+                <div class="kpi-trend trend-up">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
+                  <span>+ 10% dari bulan lalu</span>
+                </div>
+              </div>
+              <div class="kpi-icon-wrapper icon-emerald">
+                <span class="material-symbols-outlined">task_alt</span>
+              </div>
+            </div>
+
+            <div class="kpi-card" onclick="navigateTo('master'); filterTableByCond('Rusak');" style="cursor: pointer;">
+              <div>
+                <div class="kpi-label">Aset Rusak</div>
+                <div class="kpi-value" style="color: var(--color-warning);">8</div>
+                <div class="kpi-trend trend-warning">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">trending_down</span>
+                  <span>- 2% dari bulan lalu</span>
+                </div>
+              </div>
+              <div class="kpi-icon-wrapper icon-amber">
+                <span class="material-symbols-outlined">warning</span>
+              </div>
+            </div>
+
+            <div class="kpi-card" onclick="navigateTo('master'); filterTableByCond('Dalam Perawatan');" style="cursor: pointer;">
+              <div>
+                <div class="kpi-label">Aset Dalam Perawatan</div>
+                <div class="kpi-value" style="color: #8B5CF6;">10</div>
+                <div class="kpi-trend trend-up" style="color: #8B5CF6;">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">build</span>
+                  <span>+ 5% dari bulan lalu</span>
+                </div>
+              </div>
+              <div class="kpi-icon-wrapper" style="background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">
+                <span class="material-symbols-outlined">construction</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Charts Row (Kondisi Aset Donut & Aset per Kategori Bar) -->
+          <section class="charts-row-grid">
+            <div class="card-panel">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Kondisi Aset</h2>
+                  <div style="font-size: 12px; color: var(--color-text-muted);">Status kelayakan operasional sarpras</div>
+                </div>
+              </div>
+              <div class="chart-box-wrap">
+                <canvas id="dashDonutChart"></canvas>
+              </div>
+            </div>
+
+            <div class="card-panel">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Aset per Kategori</h2>
+                  <div style="font-size: 12px; color: var(--color-text-muted);">Distribusi unit berdasarkan kategori barang</div>
+                </div>
+              </div>
+              <div class="chart-box-wrap">
+                <canvas id="dashBarChart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <!-- Bottom Widgets (Aktivitas Terbaru & Lokasi Aset) -->
+          <section class="bottom-widgets-grid">
+            <div class="card-panel">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Aktivitas Terbaru</h2>
+                  <div style="font-size: 12px; color: var(--color-text-muted);">Riwayat log transaksi dan mutasi sarpras</div>
+                </div>
+                <button type="button" class="btn btn-secondary" style="height: 30px; font-size: 12px; padding: 0 10px;" onclick="navigateTo('master')">
+                  Lihat Semua
+                </button>
+              </div>
+              <div style="padding: 10px 20px 20px 20px;">
+                <div class="activity-row">
+                  <div class="activity-icon-sq" style="background: rgba(16, 185, 129, 0.12); color: #10B981;">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">add_shopping_cart</span>
+                  </div>
+                  <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Pengadaan Laptop Lenovo ThinkPad</div>
+                      <span class="badge-status badge-success">Pengadaan</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">
+                      Admin &bull; 12 Okt 2025, 14:32
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-row">
+                  <div class="activity-icon-sq" style="background: rgba(31, 70, 229, 0.12); color: #1F46E5;">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">build</span>
+                  </div>
+                  <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Pemeliharaan AC Ruang Rapat</div>
+                      <span class="badge-status badge-primary">Pemeliharaan</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">
+                      Admin &bull; 11 Okt 2025, 11:20
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-row">
+                  <div class="activity-icon-sq" style="background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">sync_alt</span>
+                  </div>
+                  <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Aset Printer HP dipindahkan ke Lokasi B</div>
+                      <span class="badge-status" style="background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">Mutasi</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">
+                      Admin &bull; 10 Okt 2025, 09:15
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-panel">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Lokasi Aset</h2>
+                  <div style="font-size: 12px; color: var(--color-text-muted);">Sebaran inventaris fisik per gedung</div>
+                </div>
+                <button type="button" onclick="navigateTo('master')" style="background: none; border: none; font-size: 12px; font-weight: 600; color: var(--color-primary); cursor: pointer;">
+                  Lihat Semua &gt;
+                </button>
+              </div>
+              <div style="padding: 16px 20px 20px 20px;">
+                <div class="location-progress-row">
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span style="font-weight: 600; color: var(--color-text-title);">Gedung A</span>
+                    <span style="font-weight: 700; color: var(--color-primary);">98 unit</span>
+                  </div>
+                  <div class="location-progress-bar-bg">
+                    <div class="location-progress-bar-fill" style="width: 39.5%;"></div>
+                  </div>
+                </div>
+
+                <div class="location-progress-row">
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span style="font-weight: 600; color: var(--color-text-title);">Gedung B</span>
+                    <span style="font-weight: 700; color: var(--color-primary);">76 unit</span>
+                  </div>
+                  <div class="location-progress-bar-bg">
+                    <div class="location-progress-bar-fill" style="width: 30.6%;"></div>
+                  </div>
+                </div>
+
+                <div class="location-progress-row">
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span style="font-weight: 600; color: var(--color-text-title);">Gedung C</span>
+                    <span style="font-weight: 700; color: var(--color-primary);">42 unit</span>
+                  </div>
+                  <div class="location-progress-bar-bg">
+                    <div class="location-progress-bar-fill" style="width: 16.9%;"></div>
+                  </div>
+                </div>
+
+                <div class="location-progress-row">
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span style="font-weight: 600; color: var(--color-text-title);">Luar Gedung</span>
+                    <span style="font-weight: 700; color: var(--color-primary);">32 unit</span>
+                  </div>
+                  <div class="location-progress-bar-bg">
+                    <div class="location-progress-bar-fill" style="width: 12.9%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
         </div>
 
-        <!-- 4 Mini KPI Metric Cards Row (248 / 230 / 8 / 10) -->
-        <section class="kpi-grid">
-          <div class="kpi-card" style="padding: 16px 20px;">
-            <div>
-              <div class="kpi-label">Total Aset</div>
-              <div class="kpi-value" style="font-size: 22px;">248</div>
-            </div>
-            <div class="kpi-icon-wrapper icon-blue" style="width: 40px; height: 40px;">
-              <span class="material-symbols-outlined">inventory_2</span>
-            </div>
-          </div>
-
-          <div class="kpi-card" style="padding: 16px 20px;">
-            <div>
-              <div class="kpi-label">Aset Aktif</div>
-              <div class="kpi-value" style="font-size: 22px; color: var(--color-success);">230</div>
-            </div>
-            <div class="kpi-icon-wrapper icon-emerald" style="width: 40px; height: 40px;">
-              <span class="material-symbols-outlined">task_alt</span>
-            </div>
-          </div>
-
-          <div class="kpi-card" style="padding: 16px 20px;">
-            <div>
-              <div class="kpi-label">Aset Rusak</div>
-              <div class="kpi-value" style="font-size: 22px; color: var(--color-warning);">8</div>
-            </div>
-            <div class="kpi-icon-wrapper icon-amber" style="width: 40px; height: 40px;">
-              <span class="material-symbols-outlined">warning</span>
-            </div>
-          </div>
-
-          <div class="kpi-card" style="padding: 16px 20px;">
-            <div>
-              <div class="kpi-label">Aset Dalam Perawatan</div>
-              <div class="kpi-value" style="font-size: 22px; color: #8B5CF6;">10</div>
-            </div>
-            <div class="kpi-icon-wrapper" style="width: 40px; height: 40px; background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">
-              <span class="material-symbols-outlined">build</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- Analytics Row: Ringkasan Kondisi & Aset per Lokasi -->
-        <section class="laporan-charts-row">
+        <!-- ========================================== -->
+        <!-- VIEW 2: DATA MASTER ASET                   -->
+        <!-- ========================================== -->
+        <div id="view-master" class="app-view hidden">
           
-          <div class="card-panel">
-            <div class="card-header">
-              <h2 class="card-title">Ringkasan Kondisi Aset</h2>
-            </div>
-            <div class="chart-box-compact">
-              <canvas id="chartKondisiLaporan"></canvas>
-            </div>
-          </div>
-
-          <div class="card-panel">
-            <div class="card-header">
-              <h2 class="card-title">Aset Terbanyak per Lokasi</h2>
-            </div>
-            <div class="chart-box-compact">
-              <canvas id="chartLokasiLaporan"></canvas>
-            </div>
-          </div>
-
-        </section>
-
-        <!-- Detail Laporan Table (Persis Foto Showcase) -->
-        <section class="card-panel">
-          <div class="card-header">
+          <div class="page-header-block">
             <div>
-              <h2 class="card-title">Detail Laporan</h2>
-              <div style="font-size: 12px; color: var(--color-text-muted);">Rekapitulasi fisik inventaris periode berjalan</div>
+              <h1 class="page-title">Data Aset</h1>
+              <p class="page-description">Kelola semua data aset yang ada di sistem.</p>
             </div>
-            <button type="button" class="btn btn-secondary no-print" onclick="window.print()" style="font-size: 12.5px;">
-              <span class="material-symbols-outlined" style="font-size: 16px;">picture_as_pdf</span>
-              Export PDF
-            </button>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="navigateTo('form')" style="background: var(--color-primary);">
+                <span class="material-symbols-outlined">add</span>
+                + Tambah Aset
+              </button>
+            </div>
           </div>
 
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th style="width: 80px;">No.</th>
-                  <th>Nama Aset</th>
-                  <th>Kategori</th>
-                  <th>Lokasi</th>
-                  <th>Kondisi</th>
-                  <th>Tgl Perolehan</th>
-                </tr>
-              </thead>
-              <tbody id="laporanTableBody">
-                <!-- Rendered dynamically -->
-              </tbody>
-            </table>
+          <section class="card-panel">
+            <div class="filter-bar-row">
+              <div class="filter-controls-group">
+                <select class="filter-select" id="masterFilterCat" onchange="filterTableMaster()">
+                  <option value="ALL">Semua Kategori</option>
+                  <option value="Komputer">Komputer</option>
+                  <option value="Elektronik">Elektronik</option>
+                  <option value="Kendaraan">Kendaraan</option>
+                  <option value="Furniture">Furniture</option>
+                </select>
+
+                <select class="filter-select" id="masterFilterLoc" onchange="filterTableMaster()">
+                  <option value="ALL">Semua Lokasi</option>
+                  <option value="Gedung A">Gedung A</option>
+                  <option value="Gedung B">Gedung B</option>
+                  <option value="Gedung C">Gedung C</option>
+                  <option value="Luar Gedung">Luar Gedung</option>
+                </select>
+
+                <select class="filter-select" id="masterFilterCond" onchange="filterTableMaster()">
+                  <option value="ALL">Semua Kondisi</option>
+                  <option value="Baik">Baik</option>
+                  <option value="Dalam Perawatan">Dalam Perawatan</option>
+                  <option value="Rusak">Rusak</option>
+                </select>
+
+                <div style="position: relative;">
+                  <span class="material-symbols-outlined" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--color-text-muted);">search</span>
+                  <input type="text" class="search-input-field" id="masterSearchInput" placeholder="Cari nama aset / nomor inventaris..." oninput="filterTableMaster()">
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 8px;">
+                <button type="button" class="action-icon-btn" onclick="exportDataToCSV()" title="Unduh CSV">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+                </button>
+                <button type="button" class="action-icon-btn" onclick="window.print()" title="Cetak Tabel">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">print</span>
+                </button>
+                <button type="button" class="action-icon-btn" onclick="resetMasterTable()" title="Reset Data">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;"><input type="checkbox" id="masterSelectAll" onchange="toggleSelectAllRows(this)"></th>
+                    <th style="width: 70px;">No.</th>
+                    <th>Nama Aset</th>
+                    <th>Kategori</th>
+                    <th>Lokasi</th>
+                    <th>Kondisi</th>
+                    <th>Tgl Perolehan</th>
+                    <th style="width: 90px; text-align: center;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="masterTableBodyRows">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination-bar-row">
+              <div id="masterPaginationLabel">Menampilkan 1 - 10 dari 248 data</div>
+              
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="pagination-pills">
+                  <button type="button" class="page-btn-pill" onclick="alert('Halaman sebelumnya')">&lt;</button>
+                  <button type="button" class="page-btn-pill active">1</button>
+                  <button type="button" class="page-btn-pill" onclick="alert('Halaman 2 mock data')">2</button>
+                  <button type="button" class="page-btn-pill" onclick="alert('Halaman 3 mock data')">3</button>
+                  <button type="button" class="page-btn-pill" onclick="alert('Halaman 4 mock data')">4</button>
+                  <button type="button" class="page-btn-pill" onclick="alert('Halaman 5 mock data')">5</button>
+                  <span style="font-size: 12px; color: var(--color-text-muted); padding: 0 4px;">...</span>
+                  <button type="button" class="page-btn-pill" onclick="alert('Halaman 25 mock data')">25</button>
+                  <button type="button" class="page-btn-pill" onclick="alert('Halaman berikutnya')">&gt;</button>
+                </div>
+
+                <select class="filter-select" style="height: 30px; font-size: 12px;">
+                  <option>10 / halaman</option>
+                  <option>25 / halaman</option>
+                  <option>50 / halaman</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: FORM TAMBAH ASET                   -->
+        <!-- ========================================== -->
+        <div id="view-form" class="app-view hidden">
+          
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Tambah Aset</h1>
+              <p class="page-description">Isi informasi aset dengan lengkap dan benar.</p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-secondary" onclick="navigateTo('master')">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Kembali
+              </button>
+            </div>
           </div>
-        </section>
+
+          <form id="formAddAssetView" onsubmit="submitNewAsset(event)">
+            <div class="form-columns-grid">
+              
+              <!-- Kolom Kiri: Informasi Dasar -->
+              <div class="card-panel" style="padding: 24px;">
+                <h2 class="card-title" style="margin-bottom: 20px; font-size: 16px;">Informasi Dasar</h2>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label class="form-label" for="addNama">Nama Aset <span class="required">*</span></label>
+                  <input type="text" id="addNama" class="form-input" placeholder="Masukkan nama aset" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label class="form-label" for="addKategori">Kategori <span class="required">*</span></label>
+                  <select id="addKategori" class="form-select" required>
+                    <option value="">Pilih Kategori</option>
+                    <option value="Komputer">Komputer</option>
+                    <option value="Elektronik">Elektronik</option>
+                    <option value="Kendaraan">Kendaraan</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Peralatan Kantor">Peralatan Kantor</option>
+                  </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label class="form-label" for="addKode">Nomor Inventaris <span class="required">*</span></label>
+                  <input type="text" id="addKode" class="form-input font-code" placeholder="Contoh: ASST-001" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label class="form-label" for="addLokasi">Lokasi <span class="required">*</span></label>
+                  <select id="addLokasi" class="form-select" required>
+                    <option value="">Pilih Lokasi</option>
+                    <option value="Gedung A - Ruang 101">Gedung A - Ruang 101</option>
+                    <option value="Gedung A - Ruang 102">Gedung A - Ruang 102</option>
+                    <option value="Gedung B - Ruang 201">Gedung B - Ruang 201</option>
+                    <option value="Gedung B - Ruang 202">Gedung B - Ruang 202</option>
+                    <option value="Gedung C - Ruang 301">Gedung C - Ruang 301</option>
+                    <option value="Luar Gedung">Luar Gedung</option>
+                  </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label class="form-label" for="addKondisi">Kondisi <span class="required">*</span></label>
+                  <select id="addKondisi" class="form-select" required>
+                    <option value="Baik">Baik</option>
+                    <option value="Dalam Perawatan">Dalam Perawatan</option>
+                    <option value="Rusak">Rusak</option>
+                  </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label class="form-label" for="addTanggal">Tgl Perolehan <span class="required">*</span></label>
+                  <input type="date" id="addTanggal" class="form-input" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label class="form-label" for="addSupplier">Supplier <span class="required">*</span></label>
+                  <select id="addSupplier" class="form-select" required>
+                    <option value="PT Lenovo Indonesia">PT Lenovo Indonesia</option>
+                    <option value="CV Mitra Mandiri">CV Mitra Mandiri</option>
+                    <option value="Dealer Honda Astra">Dealer Honda Astra</option>
+                    <option value="Daikin Official Store">Daikin Official Store</option>
+                    <option value="Informa Furnishing">Informa Furnishing</option>
+                    <option value="PT Sentra Komputindo">PT Sentra Komputindo</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="addKeterangan">Keterangan</label>
+                  <textarea id="addKeterangan" class="form-textarea" placeholder="Masukkan keterangan (opsional)" rows="3"></textarea>
+                </div>
+              </div>
+
+              <!-- Kolom Kanan: Upload Gambar & Aksi -->
+              <div>
+                <div class="card-panel" style="padding: 24px;">
+                  <h2 class="card-title" style="margin-bottom: 14px; font-size: 16px;">Upload Gambar</h2>
+                  
+                  <div class="upload-zone-box" onclick="document.getElementById('filePhotoInput').click()">
+                    <input type="file" id="filePhotoInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+                    <span class="material-symbols-outlined" style="font-size: 40px; color: var(--color-primary); margin-bottom: 10px;">cloud_upload</span>
+                    <div style="font-weight: 600; font-size: 13.5px; color: var(--color-text-title);">Klik untuk upload foto / drag & drop</div>
+                    <div style="font-size: 11.5px; color: var(--color-text-muted); margin-top: 4px;">Format: JPG, PNG (Maks 2MB)</div>
+                  </div>
+
+                  <div class="image-preview-wrapper" id="photoPreviewCard">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 8px;">Pratinjau Foto Aset</div>
+                    <img id="photoPreviewImg" src="../assets/img/login-bg.jpg" alt="Preview Foto" class="preview-img">
+                  </div>
+
+                  <div style="display: flex; gap: 12px; margin-top: 24px;">
+                    <button type="button" class="btn btn-secondary" style="flex: 1; height: 42px;" onclick="navigateTo('master')">
+                      Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1; height: 42px; background: var(--color-primary);">
+                      <span class="material-symbols-outlined">save</span>
+                      Simpan
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: PUSAT LAPORAN                      -->
+        <!-- ========================================== -->
+        <div id="view-laporan" class="app-view hidden">
+          
+          <div class="laporan-header-cluster no-print">
+            <div>
+              <h1 class="page-title">Laporan Aset</h1>
+              <p class="page-description">Lihat dan unduh laporan aset sesuai periode yang diinginkan.</p>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <div class="date-filter-pill">
+                <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-primary);">calendar_today</span>
+                <span>01/10/2025 - 31/10/2025</span>
+              </div>
+              
+              <button type="button" class="btn btn-primary" onclick="window.print()" style="background: var(--color-primary);">
+                <span class="material-symbols-outlined">download</span>
+                Unduh Laporan
+              </button>
+            </div>
+          </div>
+
+          <section class="kpi-grid no-print">
+            <div class="kpi-card" style="padding: 16px 20px;">
+              <div>
+                <div class="kpi-label">Total Aset</div>
+                <div class="kpi-value" style="font-size: 22px;">248</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-blue" style="width: 40px; height: 40px;">
+                <span class="material-symbols-outlined">inventory_2</span>
+              </div>
+            </div>
+
+            <div class="kpi-card" style="padding: 16px 20px;">
+              <div>
+                <div class="kpi-label">Aset Aktif</div>
+                <div class="kpi-value" style="font-size: 22px; color: var(--color-success);">230</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-emerald" style="width: 40px; height: 40px;">
+                <span class="material-symbols-outlined">task_alt</span>
+              </div>
+            </div>
+
+            <div class="kpi-card" style="padding: 16px 20px;">
+              <div>
+                <div class="kpi-label">Aset Rusak</div>
+                <div class="kpi-value" style="font-size: 22px; color: var(--color-warning);">8</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-amber" style="width: 40px; height: 40px;">
+                <span class="material-symbols-outlined">warning</span>
+              </div>
+            </div>
+
+            <div class="kpi-card" style="padding: 16px 20px;">
+              <div>
+                <div class="kpi-label">Aset Dalam Perawatan</div>
+                <div class="kpi-value" style="font-size: 22px; color: #8B5CF6;">10</div>
+              </div>
+              <div class="kpi-icon-wrapper" style="width: 40px; height: 40px; background: rgba(139, 92, 246, 0.12); color: #8B5CF6;">
+                <span class="material-symbols-outlined">build</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="laporan-charts-row no-print">
+            <div class="card-panel">
+              <div class="card-header">
+                <h2 class="card-title">Ringkasan Kondisi Aset</h2>
+              </div>
+              <div class="chart-box-compact">
+                <canvas id="laporanDonutChartCanvas"></canvas>
+              </div>
+            </div>
+
+            <div class="card-panel">
+              <div class="card-header">
+                <h2 class="card-title">Aset Terbanyak per Lokasi</h2>
+              </div>
+              <div class="chart-box-compact">
+                <canvas id="laporanBarChartCanvas"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <section class="card-panel">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Detail Laporan</h2>
+                <div style="font-size: 12px; color: var(--color-text-muted);">Rekapitulasi fisik inventaris periode berjalan</div>
+              </div>
+              <button type="button" class="btn btn-secondary no-print" onclick="window.print()" style="font-size: 12.5px;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">picture_as_pdf</span>
+                Export PDF
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 80px;">No.</th>
+                    <th>Nama Aset</th>
+                    <th>Kategori</th>
+                    <th>Lokasi</th>
+                    <th>Kondisi</th>
+                    <th>Tgl Perolehan</th>
+                  </tr>
+                </thead>
+                <tbody id="laporanTableBodyRows">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </div>
 
       </main>
 
-      <footer class="app-footer">
+      <!-- 4. FOOTER -->
+      <footer class="app-footer no-print">
         <div>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi.</div>
         <div style="font-family: var(--font-mono);">SaranaPrasana v1.0.0</div>
       </footer>
     </div>
   </div>
 
+  <!-- Modal Edit Aset -->
+  <div class="modal-overlay" id="modalEditItem" role="dialog" aria-modal="true" aria-labelledby="modalEditItemHeading">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalEditItemHeading">Edit Data Aset</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalEditItem')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="formEditAset" onsubmit="saveEditedAssetItem(event)">
+        <div class="modal-body">
+          <input type="hidden" id="editModalTargetId">
+          
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label">Nomor Inventaris</label>
+            <input type="text" id="editModalCodePreview" class="form-input font-code" disabled style="background: var(--color-bg-canvas);">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editModalName">Nama Aset <span class="required">*</span></label>
+            <input type="text" id="editModalName" class="form-input" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editModalCat">Kategori</label>
+            <select id="editModalCat" class="form-select">
+              <option value="Komputer">Komputer</option>
+              <option value="Elektronik">Elektronik</option>
+              <option value="Kendaraan">Kendaraan</option>
+              <option value="Furniture">Furniture</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editModalLoc">Lokasi Ruangan</label>
+            <input type="text" id="editModalLoc" class="form-input" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label class="form-label" for="editModalCond">Kondisi</label>
+            <select id="editModalCond" class="form-select">
+              <option value="Baik">Baik</option>
+              <option value="Dalam Perawatan">Dalam Perawatan</option>
+              <option value="Rusak">Rusak</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalEditItem')">Batal</button>
+          <button type="submit" class="btn btn-primary" style="background: var(--color-primary);">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Hapus Aset (Destructive Guard) -->
+  <div class="modal-overlay" id="modalConfirmDelete" role="dialog" aria-modal="true" aria-labelledby="modalConfirmDelHead">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalConfirmDelHead" style="color: var(--color-danger); display: flex; align-items: center; gap: 8px;">
+          <span class="material-symbols-outlined">warning</span>
+          Konfirmasi Hapus Aset
+        </h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalConfirmDelete')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah Anda yakin ingin menghapus data inventaris berikut?</p>
+        <div style="margin: 12px 0; padding: 12px; background: var(--color-bg-canvas); border: 1px solid var(--color-border); border-radius: var(--radius-md);">
+          <div style="font-weight: 700; color: var(--color-text-title);" id="delItemNameDisp">-</div>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted);" id="delItemCodeDisp">-</div>
+        </div>
+        <p style="font-size: 12px; color: var(--color-danger);">
+          Data yang dihapus akan terhapus langsung dari penyimpanan lokal peramban.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalConfirmDelete')">Batal</button>
+        <button type="button" class="btn btn-danger" id="btnExecuteDeleteModal">Ya, Hapus Aset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="../assets/js/chart.min.js"></script>
   <script src="../assets/js/data-mock.js"></script>
   <script src="../assets/js/main.js"></script>
   <script>
+    let pendingDelId = null;
+    let photoDataSelected = null;
+
     document.addEventListener('DOMContentLoaded', function() {
-      const assets = getStoredAssets();
+      initDashboardCharts();
+      renderMasterTableData();
+      renderLaporanTableData();
+      setupNewAssetCode();
+    });
 
-      // Render table rows
-      const tbody = document.getElementById('laporanTableBody');
-      if (tbody) {
-        tbody.innerHTML = assets.map(item => `
-          <tr>
-            <td class="font-code font-bold">${item.id}</td>
-            <td style="font-weight: 500; color: var(--color-text-title);">${item.nama}</td>
-            <td>${item.kategori}</td>
-            <td>${item.lokasi}</td>
-            <td>
-              <span class="badge-status ${item.kondisi === 'Baik' ? 'badge-success' : item.kondisi === 'Dalam Perawatan' ? 'badge-warning' : 'badge-danger'}">
-                ${item.kondisi}
-              </span>
-            </td>
-            <td>${item.tanggal}</td>
-          </tr>
-        `).join('');
+    function handleGlobalSearch(e) {
+      if (e.key === 'Enter') {
+        const val = document.getElementById('globalSearchInput').value.trim();
+        navigateTo('master');
+        document.getElementById('masterSearchInput').value = val;
+        filterTableMaster();
       }
+    }
 
-      // Chart 1: Donut Chart Kondisi Aset (Sesuai Foto)
-      const ctxKondisi = document.getElementById('chartKondisiLaporan');
-      if (ctxKondisi) {
-        new Chart(ctxKondisi, {
+    function setupNewAssetCode() {
+      const assets = getStoredAssets();
+      const nextNum = assets.length + 1;
+      const formattedNum = nextNum < 10 ? 'A-00' + nextNum : nextNum < 100 ? 'A-0' + nextNum : 'A-' + nextNum;
+      const inp = document.getElementById('addKode');
+      if (inp) inp.value = formattedNum;
+      const inpDate = document.getElementById('addTanggal');
+      if (inpDate) inpDate.value = new Date().toISOString().slice(0, 10);
+    }
+
+    function initDashboardCharts() {
+      // Donut Chart Dashboard: Kondisi Aset
+      const ctxDonut = document.getElementById('dashDonutChart');
+      if (ctxDonut) {
+        new Chart(ctxDonut, {
           type: 'doughnut',
           data: {
-            labels: ['Baik (72%)', 'Rusak (3%)', 'Perawatan (4%)', 'Hilang (1%)', 'Lainnya (20%)'],
+            labels: ['Baik (72%)', 'Rusak (3%)', 'Dalam Perawatan (4%)', 'Hilang (1%)', 'Lainnya (20%)'],
             datasets: [{
               data: [179, 8, 10, 2, 49],
               backgroundColor: ['#1F46E5', '#EF4444', '#8B5CF6', '#06B6D4', '#CBD5E1'],
@@ -376,15 +1117,74 @@
                 labels: { boxWidth: 12, font: { size: 11, family: 'Inter' } }
               }
             },
+            cutout: '72%'
+          }
+        });
+      }
+
+      // Bar Chart Dashboard: Aset per Kategori
+      const ctxBar = document.getElementById('dashBarChart');
+      if (ctxBar) {
+        new Chart(ctxBar, {
+          type: 'bar',
+          data: {
+            labels: ['Komputer', 'Kendaraan', 'Peralatan Kantor', 'Elektronik', 'Furniture'],
+            datasets: [{
+              label: 'Jumlah Aset',
+              data: [60, 45, 38, 32, 18],
+              backgroundColor: ['#1F46E5', '#10B981', '#F59E0B', '#8B5CF6', '#F43F5E'],
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 80,
+                ticks: { stepSize: 20, font: { family: 'Inter' } }
+              },
+              x: {
+                ticks: { font: { family: 'Inter' } }
+              }
+            }
+          }
+        });
+      }
+
+      // Donut Chart Laporan
+      const ctxLapDonut = document.getElementById('laporanDonutChartCanvas');
+      if (ctxLapDonut) {
+        new Chart(ctxLapDonut, {
+          type: 'doughnut',
+          data: {
+            labels: ['Baik (72%)', 'Rusak (3%)', 'Perawatan (4%)', 'Hilang (1%)', 'Lainnya (20%)'],
+            datasets: [{
+              data: [179, 8, 10, 2, 49],
+              backgroundColor: ['#1F46E5', '#EF4444', '#8B5CF6', '#06B6D4', '#CBD5E1'],
+              borderWidth: 2,
+              borderColor: '#FFFFFF'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11, family: 'Inter' } } }
+            },
             cutout: '70%'
           }
         });
       }
 
-      // Chart 2: Horizontal Bar Chart Lokasi Terbanyak (Gedung A 98, Gedung B 76, Gedung C 42, Luar Gedung 32)
-      const ctxLokasi = document.getElementById('chartLokasiLaporan');
-      if (ctxLokasi) {
-        new Chart(ctxLokasi, {
+      // Bar Chart Laporan: Aset Terbanyak per Lokasi
+      const ctxLapBar = document.getElementById('laporanBarChartCanvas');
+      if (ctxLapBar) {
+        new Chart(ctxLapBar, {
           type: 'bar',
           data: {
             labels: ['Gedung A', 'Gedung B', 'Gedung C', 'Luar Gedung'],
@@ -399,22 +1199,251 @@
             indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false }
-            },
+            plugins: { legend: { display: false } },
             scales: {
-              x: {
-                beginAtZero: true,
-                ticks: { font: { family: 'Inter' } }
-              },
-              y: {
-                ticks: { font: { family: 'Inter' } }
-              }
+              x: { beginAtZero: true, ticks: { font: { family: 'Inter' } } },
+              y: { ticks: { font: { family: 'Inter' } } }
             }
           }
         });
       }
-    });
+    }
+
+    function getStatusPill(cond) {
+      if (cond === 'Baik') {
+        return '<span class="badge-status badge-success">Baik</span>';
+      } else if (cond === 'Dalam Perawatan') {
+        return '<span class="badge-status badge-warning">Dalam Perawatan</span>';
+      } else {
+        return '<span class="badge-status badge-danger">Rusak</span>';
+      }
+    }
+
+    function renderMasterTableData() {
+      const assets = getStoredAssets();
+      const catVal = document.getElementById('masterFilterCat').value;
+      const locVal = document.getElementById('masterFilterLoc').value;
+      const condVal = document.getElementById('masterFilterCond').value;
+      const q = document.getElementById('masterSearchInput').value.toLowerCase().trim();
+
+      const filtered = assets.filter(item => {
+        const matchCat = catVal === 'ALL' || item.kategori === catVal;
+        const matchLoc = locVal === 'ALL' || item.lokasi.includes(locVal);
+        const matchCond = condVal === 'ALL' || item.kondisi === condVal;
+        const matchQ = !q || 
+          item.id.toLowerCase().includes(q) ||
+          item.nama.toLowerCase().includes(q) ||
+          item.lokasi.toLowerCase().includes(q);
+
+        return matchCat && matchLoc && matchCond && matchQ;
+      });
+
+      const tbody = document.getElementById('masterTableBodyRows');
+      if (!tbody) return;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align: center; padding: 40px; color: var(--color-text-muted);">
+              Tidak ada data aset yang cocok dengan filter pencarian.
+            </td>
+          </tr>
+        `;
+      } else {
+        tbody.innerHTML = filtered.map(item => `
+          <tr>
+            <td><input type="checkbox" class="master-row-cb" value="${item.id}"></td>
+            <td class="font-code font-bold">${item.id}</td>
+            <td style="font-weight: 500; color: var(--color-text-title);">${item.nama}</td>
+            <td>${item.kategori}</td>
+            <td>${item.lokasi}</td>
+            <td>${getStatusPill(item.kondisi)}</td>
+            <td>${item.tanggal}</td>
+            <td style="text-align: center;">
+              <div style="display: flex; gap: 6px; justify-content: center;">
+                <button type="button" class="action-icon-btn" onclick="openEditModalDialog('${item.id}')" title="Edit Aset">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
+                </button>
+                <button type="button" class="action-icon-btn delete-btn" onclick="openDeleteConfirmModal('${item.id}')" title="Hapus Aset">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('masterPaginationLabel').textContent = 
+        `Menampilkan 1 - ${Math.min(10, filtered.length)} dari ${assets.length} data`;
+    }
+
+    function filterTableMaster() {
+      renderMasterTableData();
+    }
+
+    function filterTableByCat(cat) {
+      document.getElementById('masterFilterCat').value = cat;
+      filterTableMaster();
+    }
+
+    function filterTableByLoc(loc) {
+      document.getElementById('masterFilterLoc').value = loc;
+      filterTableMaster();
+    }
+
+    function filterTableByCond(cond) {
+      document.getElementById('masterFilterCond').value = cond;
+      filterTableMaster();
+    }
+
+    function toggleSelectAllRows(master) {
+      document.querySelectorAll('.master-row-cb').forEach(cb => {
+        cb.checked = master.checked;
+      });
+    }
+
+    function renderLaporanTableData() {
+      const assets = getStoredAssets();
+      const tbody = document.getElementById('laporanTableBodyRows');
+      if (!tbody) return;
+
+      tbody.innerHTML = assets.map(item => `
+        <tr>
+          <td class="font-code font-bold">${item.id}</td>
+          <td style="font-weight: 500; color: var(--color-text-title);">${item.nama}</td>
+          <td>${item.kategori}</td>
+          <td>${item.lokasi}</td>
+          <td>${getStatusPill(item.kondisi)}</td>
+          <td>${item.tanggal}</td>
+        </tr>
+      `).join('');
+    }
+
+    function handlePhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        photoDataSelected = evt.target.result;
+        document.getElementById('photoPreviewImg').src = photoDataSelected;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function submitNewAsset(e) {
+      e.preventDefault();
+
+      const nama = document.getElementById('addNama').value.trim();
+      const kategori = document.getElementById('addKategori').value;
+      const id = document.getElementById('addKode').value.trim();
+      const lokasi = document.getElementById('addLokasi').value;
+      const kondisi = document.getElementById('addKondisi').value;
+      const rawDate = document.getElementById('addTanggal').value;
+      const supplier = document.getElementById('addSupplier').value;
+      const keterangan = document.getElementById('addKeterangan').value.trim();
+
+      const d = new Date(rawDate);
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+      const formattedDate = String(d.getDate()).padStart(2, '0') + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+
+      const newAsset = {
+        id: id,
+        nama: nama,
+        kategori: kategori,
+        lokasi: lokasi,
+        gedung: lokasi.split(' - ')[0] || 'Gedung A',
+        kondisi: kondisi,
+        tanggal: formattedDate,
+        rawDate: rawDate,
+        supplier: supplier,
+        nilai: 10000000,
+        keterangan: keterangan || 'Aset baru ditambahkan'
+      };
+
+      addAsset(newAsset);
+      alert('Berhasil! Aset [' + id + '] ' + nama + ' telah berhasil disimpan.');
+      
+      // Refresh views
+      renderMasterTableData();
+      renderLaporanTableData();
+      setupNewAssetCode();
+      navigateTo('master');
+    }
+
+    function openEditModalDialog(id) {
+      const item = getAssetById(id);
+      if (!item) return;
+
+      document.getElementById('editModalTargetId').value = item.id;
+      document.getElementById('editModalCodePreview').value = item.id;
+      document.getElementById('editModalName').value = item.nama;
+      document.getElementById('editModalCat').value = item.kategori;
+      document.getElementById('editModalLoc').value = item.lokasi;
+      document.getElementById('editModalCond').value = item.kondisi;
+
+      openModal('modalEditItem');
+    }
+
+    function saveEditedAssetItem(e) {
+      e.preventDefault();
+      const id = document.getElementById('editModalTargetId').value;
+      const nama = document.getElementById('editModalName').value.trim();
+      const kategori = document.getElementById('editModalCat').value;
+      const lokasi = document.getElementById('editModalLoc').value.trim();
+      const kondisi = document.getElementById('editModalCond').value;
+
+      updateAsset(id, { nama, kategori, lokasi, kondisi });
+      closeModal('modalEditItem');
+      renderMasterTableData();
+      renderLaporanTableData();
+    }
+
+    function openDeleteConfirmModal(id) {
+      const item = getAssetById(id);
+      if (!item) return;
+
+      pendingDelId = id;
+      document.getElementById('delItemNameDisp').textContent = item.nama;
+      document.getElementById('delItemCodeDisp').textContent = item.id;
+
+      document.getElementById('btnExecuteDeleteModal').onclick = function() {
+        if (pendingDelId) {
+          deleteAsset(pendingDelId);
+          pendingDelId = null;
+          closeModal('modalConfirmDelete');
+          renderMasterTableData();
+          renderLaporanTableData();
+        }
+      };
+
+      openModal('modalConfirmDelete');
+    }
+
+    function resetMasterTable() {
+      if (confirm('Reset seluruh data aset ke 10 item awal showcase?')) {
+        resetMockData();
+        renderMasterTableData();
+        renderLaporanTableData();
+      }
+    }
+
+    function exportDataToCSV() {
+      const assets = getStoredAssets();
+      let csv = 'No,Nama Aset,Kategori,Lokasi,Kondisi,Tgl Perolehan\n';
+      assets.forEach(a => {
+        csv += `"${a.id}","${a.nama.replace(/"/g, '""')}","${a.kategori}","${a.lokasi}","${a.kondisi}","${a.tanggal}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'SaranaPrasana_Data_Aset.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   </script>
 </body>
 </html>
