@@ -306,3 +306,16 @@ window.toggleAccordion = toggleAccordion;
 window.openModal = openModal;
 window.closeModal = closeModal;
 window.showToast = showToast;
+
+function toggleSidebarCollapse() {
+  if (window.innerWidth > 1024) {
+    document.body.classList.toggle('sidebar-collapsed');
+    const collapsedNow = document.body.classList.contains('sidebar-collapsed');
+    localStorage.setItem('sarpras_sidebar_collapsed', collapsedNow);
+    const toggleIcon = document.getElementById('sidebarToggleIcon');
+    if (toggleIcon) {
+      toggleIcon.style.transform = collapsedNow ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+  }
+}
+window.toggleSidebarCollapse = toggleSidebarCollapse;

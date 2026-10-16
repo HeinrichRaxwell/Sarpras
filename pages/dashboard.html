@@ -24,8 +24,6 @@
     }
     .welcome-date-pill {
       background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: var(--radius-full);
       padding: 6px 14px;
@@ -116,6 +114,11 @@
       color: var(--color-danger);
       border-color: var(--color-danger-border);
     }
+    .table-action-icon-btn.btn-success:hover {
+      background-color: var(--color-success-bg);
+      color: var(--color-success);
+      border-color: var(--color-success-border);
+    }
     .pagination-bar-row {
       display: flex;
       align-items: center;
@@ -197,14 +200,20 @@
   <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
 
   <div class="app-layout-wrapper">
-    <!-- 1. APP SIDEBAR -->
+    <!-- 1. APP SIDEBAR (With Integrated Talent Pool Style Collapse Button) -->
     <aside class="app-sidebar" id="appSidebar">
       <div class="sidebar-brand">
-        <div class="brand-icon-box">SP</div>
-        <div class="brand-title-wrap">
-          <span class="brand-title">SaranaPrasana</span>
-          <span class="brand-subtitle">Asset Management</span>
+        <div class="brand-left-wrap">
+          <div class="brand-icon-box" onclick="toggleSidebarCollapse()" title="SaranaPrasana">SP</div>
+          <div class="brand-title-wrap">
+            <span class="brand-title">SaranaPrasana</span>
+            <span class="brand-subtitle">Asset Management</span>
+          </div>
         </div>
+        <!-- Sidebar Collapse Button Inside Sidebar Header (Talent Pool Pattern) -->
+        <button type="button" class="sidebar-collapse-btn" id="sidebarToggleBtn" title="Perkecil / Perbesar Menu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sidebarToggleIcon"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
       </div>
 
       <nav class="sidebar-menu">
@@ -274,14 +283,9 @@
 
     <!-- 2. APP CONTENT WRAPPER -->
     <div class="app-content-wrapper">
-      <!-- Top Command Header -->
+      <!-- Top Command Header (Clean & Uncluttered) -->
       <header class="top-command-header">
         <div class="header-left-cluster">
-          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Toggle Sidebar">
-            <span id="sidebarToggleIcon" style="display: flex;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            </span>
-          </button>
           <nav class="breadcrumb-nav" id="breadcrumbArea">
             <span class="breadcrumb-item">SaranaPrasana</span>
             <span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
@@ -332,7 +336,7 @@
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Total Aset</span>
-                <div class="kpi-value" id="kpi-total-val">248</div>
+                <div class="kpi-value" id="kpi-total-val">10</div>
                 <div class="kpi-trend trend-up">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
                   <span>+ 12% dari bulan lalu</span>
@@ -346,7 +350,7 @@
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Aset Aktif</span>
-                <div class="kpi-value" id="kpi-active-val">230</div>
+                <div class="kpi-value" id="kpi-active-val">7</div>
                 <div class="kpi-trend trend-up">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
                   <span>+ 10% dari bulan lalu</span>
@@ -360,7 +364,7 @@
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Aset Rusak</span>
-                <div class="kpi-value" id="kpi-broken-val">8</div>
+                <div class="kpi-value" id="kpi-broken-val">1</div>
                 <div class="kpi-trend trend-down">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
                   <span>- 2% dari bulan lalu</span>
@@ -374,7 +378,7 @@
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Aset Dalam Perawatan</span>
-                <div class="kpi-value" id="kpi-maint-val">10</div>
+                <div class="kpi-value" id="kpi-maint-val">2</div>
                 <div class="kpi-trend trend-warning">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                   <span>+ 5% dari bulan lalu</span>
@@ -397,14 +401,14 @@
                 <div style="position: relative; width: 200px; height: 200px;">
                   <canvas id="donutConditionChart"></canvas>
                   <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-                    <span style="font-size: 22px; font-weight: 800; color: var(--color-text-title);" id="donutCenterCount">248</span>
+                    <span style="font-size: 22px; font-weight: 800; color: var(--color-text-title);" id="donutCenterCount">10</span>
                     <span style="font-size: 11px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase;">Total Aset</span>
                   </div>
                 </div>
                 <div style="display: flex; gap: 12px; margin-top: 20px; font-size: 12px; flex-wrap: wrap; justify-content: center;">
-                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #1F46E5;"></span> Baik (72%)</span>
-                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #F97316;"></span> Rusak (3%)</span>
-                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #8B5CF6;"></span> Perawatan (4%)</span>
+                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #1F46E5;"></span> Baik (70%)</span>
+                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #F97316;"></span> Rusak (10%)</span>
+                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #8B5CF6;"></span> Perawatan (20%)</span>
                 </div>
               </div>
             </div>
@@ -412,7 +416,7 @@
             <div class="card-panel" style="margin-bottom: 0;">
               <div class="card-header">
                 <h3 class="card-title">Aset per Kategori</h3>
-                <span style="font-size: 12px; color: var(--color-text-muted);">5 Kategori Terbanyak</span>
+                <span style="font-size: 12px; color: var(--color-text-muted);">Distribusi Unit Terdaftar</span>
               </div>
               <div style="padding: 24px; min-height: 280px; display: flex; align-items: center;">
                 <canvas id="barCategoryChart" style="max-height: 240px;"></canvas>
@@ -463,7 +467,7 @@
                 <div>
                   <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
                     <span>Gedung A</span>
-                    <span>98 unit</span>
+                    <span>4 unit</span>
                   </div>
                   <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
                     <div style="width: 40%; height: 100%; background: var(--color-primary); border-radius: 999px;"></div>
@@ -473,30 +477,30 @@
                 <div>
                   <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
                     <span>Gedung B</span>
-                    <span>76 unit</span>
+                    <span>4 unit</span>
                   </div>
                   <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
-                    <div style="width: 32%; height: 100%; background: var(--color-secondary); border-radius: 999px;"></div>
+                    <div style="width: 40%; height: 100%; background: var(--color-secondary); border-radius: 999px;"></div>
                   </div>
                 </div>
 
                 <div>
                   <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
                     <span>Gedung C</span>
-                    <span>42 unit</span>
+                    <span>1 unit</span>
                   </div>
                   <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
-                    <div style="width: 18%; height: 100%; background: var(--color-warning); border-radius: 999px;"></div>
+                    <div style="width: 10%; height: 100%; background: var(--color-warning); border-radius: 999px;"></div>
                   </div>
                 </div>
 
                 <div>
                   <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
                     <span>Luar Gedung</span>
-                    <span>32 unit</span>
+                    <span>1 unit</span>
                   </div>
                   <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
-                    <div style="width: 14%; height: 100%; background: #94A3B8; border-radius: 999px;"></div>
+                    <div style="width: 10%; height: 100%; background: #94A3B8; border-radius: 999px;"></div>
                   </div>
                 </div>
               </div>
@@ -516,9 +520,10 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                 Ekspor CSV
               </button>
+              <!-- Satu Simbol Plus Saja (Bebas Duplikasi Tanda +) -->
               <button type="button" class="btn btn-primary" onclick="openAddAssetModal()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-                + Tambah Aset
+                Tambah Aset
               </button>
             </div>
           </div>
@@ -526,21 +531,14 @@
           <section class="card-panel">
             <div class="filter-bar-row">
               <div class="filter-controls-group">
+                <!-- Dropdown Kategori Dinamis -->
                 <select class="filter-select" id="filterCategory" onchange="applyFilters()">
-                  <option value="ALL">Semua Kategori</option>
-                  <option value="Komputer">Komputer</option>
-                  <option value="Elektronik">Elektronik</option>
-                  <option value="Kendaraan">Kendaraan</option>
-                  <option value="Furniture">Furniture</option>
-                  <option value="Peralatan Kantor">Peralatan Kantor</option>
+                  <!-- Populated dynamically from SarprasStore -->
                 </select>
 
+                <!-- Dropdown Lokasi Dinamis -->
                 <select class="filter-select" id="filterLocation" onchange="applyFilters()">
-                  <option value="ALL">Semua Lokasi</option>
-                  <option value="Gedung A">Gedung A</option>
-                  <option value="Gedung B">Gedung B</option>
-                  <option value="Gedung C">Gedung C</option>
-                  <option value="Luar Gedung">Luar Gedung</option>
+                  <!-- Populated dynamically from SarprasStore -->
                 </select>
 
                 <select class="filter-select" id="filterCondition" onchange="applyFilters()">
@@ -573,7 +571,7 @@
                     <th>Lokasi</th>
                     <th>Kondisi</th>
                     <th>Tgl Perolehan</th>
-                    <th style="width: 110px; text-align: center;">Aksi</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody id="assetTableBody">
@@ -600,9 +598,10 @@
               <h1 class="page-title">Kategori Aset</h1>
               <p class="page-description">Kelompok inventaris sarana dan prasarana berdasarkan jenis dan fungsi.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="alert('Form kategori: gunakan kategori standar BMN yang terdaftar.')">
+            <!-- Satu Simbol Plus Saja -->
+            <button type="button" class="btn btn-primary" onclick="openModal('modalAddCategory')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-              + Tambah Kategori
+              Tambah Kategori
             </button>
           </div>
 
@@ -610,7 +609,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Total Kategori</span>
-                <div class="kpi-value" style="font-size: 24px;">5</div>
+                <div class="kpi-value" id="kpi-total-kategori">5</div>
                 <span style="font-size: 12px; color: var(--color-text-muted);">Klasifikasi Resmi BMN</span>
               </div>
               <div class="kpi-icon-wrapper icon-blue">
@@ -621,8 +620,8 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Unit Terbanyak</span>
-                <div class="kpi-value" style="font-size: 24px;">Komputer</div>
-                <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">60 Unit Terdata</span>
+                <div class="kpi-value" style="font-size: 24px;">Elektronik</div>
+                <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">4 Unit Terdata</span>
               </div>
               <div class="kpi-icon-wrapper icon-emerald">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
@@ -632,8 +631,8 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Nilai Terbesar</span>
-                <div class="kpi-value" style="font-size: 20px;">Rp 29,2 Jt</div>
-                <span style="font-size: 12px; color: var(--color-text-muted);">Sektor TIK &amp; PC</span>
+                <div class="kpi-value" style="font-size: 20px;">Rp 34,5 Jt</div>
+                <span style="font-size: 12px; color: var(--color-text-muted);">Sektor Komputer &amp; TIK</span>
               </div>
               <div class="kpi-icon-wrapper icon-amber">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -643,7 +642,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Status Kelayakan</span>
-                <div class="kpi-value" style="font-size: 24px;">92%</div>
+                <div class="kpi-value" style="font-size: 24px;">90%</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Kondisi Prima</span>
               </div>
               <div class="kpi-icon-wrapper icon-rose">
@@ -655,7 +654,7 @@
           <section class="card-panel">
             <div class="card-header">
               <h3 class="card-title">Daftar Kategori Terdaftar</h3>
-              <span style="font-size: 12px; color: var(--color-text-muted);">Sinkronisasi Database PostgreSQL 16</span>
+              <span style="font-size: 12px; color: var(--color-text-muted);">Tersimpan Dinamis di LocalStorage &amp; PostgreSQL</span>
             </div>
 
             <div class="table-responsive">
@@ -667,60 +666,11 @@
                     <th>Deskripsi Klasifikasi</th>
                     <th style="text-align: center;">Jumlah Item</th>
                     <th>Status</th>
-                    <th style="width: 110px; text-align: center;">Aksi</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-KOM</td>
-                    <td style="font-weight: 600;">Komputer</td>
-                    <td style="color: var(--color-text-muted);">Perangkat TIK, Laptop, PC Workstation, dan Server</td>
-                    <td style="text-align: center; font-weight: 700;">3 Unit</td>
-                    <td><span class="badge-status badge-success">Aktif</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Komputer')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-ELK</td>
-                    <td style="font-weight: 600;">Elektronik</td>
-                    <td style="color: var(--color-text-muted);">Peralatan elektronik, pendingin ruangan, dan proyektor</td>
-                    <td style="text-align: center; font-weight: 700;">4 Unit</td>
-                    <td><span class="badge-status badge-success">Aktif</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Elektronik')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-KND</td>
-                    <td style="font-weight: 600;">Kendaraan</td>
-                    <td style="color: var(--color-text-muted);">Kendaraan dinas operasional roda dua dan roda empat</td>
-                    <td style="text-align: center; font-weight: 700;">1 Unit</td>
-                    <td><span class="badge-status badge-success">Aktif</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Kendaraan')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-FUR</td>
-                    <td style="font-weight: 600;">Furniture</td>
-                    <td style="color: var(--color-text-muted);">Mebel, meja kerja, kursi kantor ergonomis, dan lemari arsip</td>
-                    <td style="text-align: center; font-weight: 700;">2 Unit</td>
-                    <td><span class="badge-status badge-success">Aktif</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Furniture')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">KAT-ALAT</td>
-                    <td style="font-weight: 600;">Peralatan Kantor</td>
-                    <td style="color: var(--color-text-muted);">Perlengkapan administrasi dan alat penunjang operasional</td>
-                    <td style="text-align: center; font-weight: 700;">0 Unit</td>
-                    <td><span class="badge-status badge-success">Aktif</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Peralatan Kantor')">Lihat Aset</button>
-                    </td>
-                  </tr>
+                <tbody id="kategoriTableBody">
+                  <!-- Rendered dynamically -->
                 </tbody>
               </table>
             </div>
@@ -734,9 +684,10 @@
               <h1 class="page-title">Lokasi Penempatan Aset</h1>
               <p class="page-description">Pemetaan ruang dan gedung inventarisasi sarana prasarana kampus.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="alert('Form lokasi: tambahkan master ruangan sesuai denah kampus.')">
+            <!-- Satu Simbol Plus Saja -->
+            <button type="button" class="btn btn-primary" onclick="openModal('modalAddLocation')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-              + Tambah Lokasi
+              Tambah Lokasi
             </button>
           </div>
 
@@ -755,7 +706,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Total Ruangan</span>
-                <div class="kpi-value" style="font-size: 24px;">9 Ruang</div>
+                <div class="kpi-value" id="kpi-total-ruangan" style="font-size: 24px;">9 Ruang</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Terverifikasi</span>
               </div>
               <div class="kpi-icon-wrapper icon-emerald">
@@ -767,7 +718,7 @@
               <div>
                 <span class="kpi-label">Aset Terbanyak</span>
                 <div class="kpi-value" style="font-size: 20px;">Gedung A</div>
-                <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">98 Unit Aset</span>
+                <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">4 Unit Aset</span>
               </div>
               <div class="kpi-icon-wrapper icon-amber">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -789,7 +740,7 @@
           <section class="card-panel">
             <div class="card-header">
               <h3 class="card-title">Daftar Gedung &amp; Ruangan Penempatan</h3>
-              <span style="font-size: 12px; color: var(--color-text-muted);">Database PostgreSQL 16</span>
+              <span style="font-size: 12px; color: var(--color-text-muted);">Database PostgreSQL 16 &amp; LocalStorage</span>
             </div>
 
             <div class="table-responsive">
@@ -801,86 +752,28 @@
                     <th>Nama Ruangan</th>
                     <th style="text-align: center;">Item Terdaftar</th>
                     <th>Penanggung Jawab</th>
-                    <th style="width: 110px; text-align: center;">Aksi</th>
+                    <th style="width: 120px; text-align: center;">Aksi</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">LOK-GEDA-101</td>
-                    <td style="font-weight: 600;">Gedung A</td>
-                    <td>Ruang 101 (Staf Akademik)</td>
-                    <td style="text-align: center; font-weight: 700;">2 Unit</td>
-                    <td style="color: var(--color-text-muted);">Budi Santoso, S.Kom</td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung A')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">LOK-GEDA-102</td>
-                    <td style="font-weight: 600;">Gedung A</td>
-                    <td>Ruang 102 (Ruang Dosen)</td>
-                    <td style="text-align: center; font-weight: 700;">1 Unit</td>
-                    <td style="color: var(--color-text-muted);">Dr. Hendra Gunawan</td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung A')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">LOK-GEDB-201</td>
-                    <td style="font-weight: 600;">Gedung B</td>
-                    <td>Ruang 201 (Tata Usaha)</td>
-                    <td style="text-align: center; font-weight: 700;">1 Unit</td>
-                    <td style="color: var(--color-text-muted);">Siti Rahmawati, A.Md</td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung B')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">LOK-GEDB-203</td>
-                    <td style="font-weight: 600;">Gedung B</td>
-                    <td>Ruang 203 (Ruang Seminar)</td>
-                    <td style="text-align: center; font-weight: 700;">1 Unit</td>
-                    <td style="color: var(--color-text-muted);">Wahyu Pratama, M.T</td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung B')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">LOK-GEDC-301</td>
-                    <td style="font-weight: 600;">Gedung C</td>
-                    <td>Ruang 301 (Ruang Rapat Utama)</td>
-                    <td style="text-align: center; font-weight: 700;">1 Unit</td>
-                    <td style="color: var(--color-text-muted);">Ir. Atang Susila</td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung C')">Lihat Aset</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">LOK-OUTDOOR</td>
-                    <td style="font-weight: 600;">Luar Gedung</td>
-                    <td>Area Parkir &amp; Garasi Dinas</td>
-                    <td style="text-align: center; font-weight: 700;">1 Unit</td>
-                    <td style="color: var(--color-text-muted);">Komandan Keamanan</td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Luar Gedung')">Lihat Aset</button>
-                    </td>
-                  </tr>
+                <tbody id="lokasiTableBody">
+                  <!-- Rendered dynamically -->
                 </tbody>
               </table>
             </div>
           </section>
         </div>
 
-        <!-- ================= VIEW 5: PEMELIHARAAN ================= -->
+        <!-- ================= VIEW 5: PEMELIHARAAN & SERVIS (JELAS, LENGKAP & IKON) ================= -->
         <div id="view-pemeliharaan" class="app-view hidden">
           <div class="page-header-block">
             <div>
               <h1 class="page-title">Pemeliharaan &amp; Servis Aset</h1>
-              <p class="page-description">Monitoring perbaikan, perawatan berkala, dan penanganan kendala inventaris.</p>
+              <p class="page-description">Kelola tiket perbaikan, teknisi rekanan, dan kembalikan aset ke kondisi baik setelah servis selesai.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="alert('Form penjadwalan servis baru.')">
+            <!-- Satu Simbol Plus Saja -->
+            <button type="button" class="btn btn-primary" onclick="openAddTicketModal()">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-              + Jadwalkan Servis
+              Jadwalkan Servis
             </button>
           </div>
 
@@ -888,8 +781,8 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Sedang Diservis</span>
-                <div class="kpi-value" style="font-size: 24px;">2 Unit</div>
-                <span style="font-size: 12px; color: var(--color-warning); font-weight: 600;">A-003 &amp; A-010</span>
+                <div class="kpi-value" id="kpi-tiket-rawat" style="font-size: 24px;">2 Unit</div>
+                <span style="font-size: 12px; color: var(--color-warning); font-weight: 600;">Perlu Penanganan</span>
               </div>
               <div class="kpi-icon-wrapper icon-rose">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
@@ -898,9 +791,9 @@
 
             <div class="kpi-card" style="padding: 18px;">
               <div>
-                <span class="kpi-label">Total Selesai Bulan Ini</span>
-                <div class="kpi-value" style="font-size: 24px;">6 Unit</div>
-                <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">100% Berhasil</span>
+                <span class="kpi-label">Total Selesai Servis</span>
+                <div class="kpi-value" id="kpi-tiket-selesai" style="font-size: 24px;">1 Unit</div>
+                <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Siap Operasional</span>
               </div>
               <div class="kpi-icon-wrapper icon-emerald">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
@@ -909,9 +802,9 @@
 
             <div class="kpi-card" style="padding: 18px;">
               <div>
-                <span class="kpi-label">Estimasi Biaya</span>
-                <div class="kpi-value" style="font-size: 20px;">Rp 1.450.000</div>
-                <span style="font-size: 12px; color: var(--color-text-muted);">Alokasi Anggaran Pemeliharaan</span>
+                <span class="kpi-label">Total Biaya Pemeliharaan</span>
+                <div class="kpi-value" id="kpi-tiket-biaya" style="font-size: 20px;">Rp 1.050.000</div>
+                <span style="font-size: 12px; color: var(--color-text-muted);">Alokasi Anggaran DIPA/Yayasan</span>
               </div>
               <div class="kpi-icon-wrapper icon-amber">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -920,9 +813,9 @@
 
             <div class="kpi-card" style="padding: 18px;">
               <div>
-                <span class="kpi-label">Vendor Rekanan</span>
-                <div class="kpi-value" style="font-size: 24px;">3 Mitra</div>
-                <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">Siaga</span>
+                <span class="kpi-label">Vendor Teknisi</span>
+                <div class="kpi-value" id="kpi-tiket-vendor" style="font-size: 24px;">3 Mitra</div>
+                <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">Status Siaga</span>
               </div>
               <div class="kpi-icon-wrapper icon-blue">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
@@ -932,61 +825,34 @@
 
           <section class="card-panel">
             <div class="card-header">
-              <h3 class="card-title">Daftar Tiket Perawatan &amp; Servis Aktif</h3>
-              <span style="font-size: 12px; color: var(--color-text-muted);">Pencatatan Riwayat Transaksi</span>
+              <div>
+                <h3 class="card-title">Daftar Tiket Perawatan &amp; Servis Aktif</h3>
+                <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">
+                  Klik ikon centang hijau untuk menandai servis selesai. Status kondisi aset akan otomatis kembali normal (Kondisi Baik).
+                </p>
+              </div>
+              <button type="button" class="btn btn-secondary" style="height: 30px; font-size: 12px; padding: 0 10px;" onclick="renderMaintenanceTable()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                Refresh
+              </button>
             </div>
 
             <div class="table-responsive">
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th style="width: 130px;">ID Tiket</th>
-                    <th style="width: 90px;">No. Aset</th>
-                    <th>Nama Aset</th>
-                    <th>Keluhan / Tindakan</th>
-                    <th>Vendor Teknisi</th>
+                    <th style="width: 120px;">No. Tiket</th>
+                    <th>Aset Terkendala</th>
+                    <th>Keluhan / Tindakan Servis</th>
+                    <th>Vendor / Teknisi</th>
                     <th>Tgl Masuk</th>
-                    <th>Status Servis</th>
-                    <th style="width: 120px; text-align: center;">Aksi</th>
+                    <th>Estimasi Biaya</th>
+                    <th>Status Tiket</th>
+                    <th style="width: 130px; text-align: center;">Aksi</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">TRX-MNT-001</td>
-                    <td class="font-code" style="font-weight: 700;">A-003</td>
-                    <td style="font-weight: 600;">Motor Honda Beat</td>
-                    <td>Servis rutin mesin dan ganti oli transmisi</td>
-                    <td>Dealer Honda Astra</td>
-                    <td>11 Okt 2025</td>
-                    <td><span class="badge-status badge-warning">Dalam Perawatan</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="showToast('Tiket TRX-MNT-001 sedang diproses oleh Dealer Honda Astra.')">Detail Tiket</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">TRX-MNT-002</td>
-                    <td class="font-code" style="font-weight: 700;">A-010</td>
-                    <td style="font-weight: 600;">Proyektor Epson</td>
-                    <td>Pembersihan lensa optik dan kalibrasi lampu</td>
-                    <td>PT Visual Media Partner</td>
-                    <td>09 Okt 2025</td>
-                    <td><span class="badge-status badge-warning">Dalam Perawatan</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="showToast('Tiket TRX-MNT-002 sedang menunggu sparepart lampu.')">Detail Tiket</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-code" style="font-weight: 700; color: var(--color-primary);">TRX-MNT-003</td>
-                    <td class="font-code" style="font-weight: 700;">A-004</td>
-                    <td style="font-weight: 600;">AC Split 1 PK</td>
-                    <td>Cuci filter evaporator dan isi freon R32</td>
-                    <td>Daikin Official Service</td>
-                    <td>04 Okt 2025</td>
-                    <td><span class="badge-status badge-success">Selesai Servis</span></td>
-                    <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="showToast('Tiket TRX-MNT-003 telah selesai dikerjakan.')">Riwayat</button>
-                    </td>
-                  </tr>
+                <tbody id="maintenanceTableBody">
+                  <!-- Rendered dynamically with clean icon action buttons! -->
                 </tbody>
               </table>
             </div>
@@ -1017,7 +883,7 @@
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Total Aset</span>
-                <div class="kpi-value" id="lap-total" style="font-size: 22px;">248</div>
+                <div class="kpi-value" id="lap-total" style="font-size: 22px;">10</div>
               </div>
               <div class="kpi-icon-wrapper icon-blue" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
@@ -1026,7 +892,7 @@
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Aset Aktif</span>
-                <div class="kpi-value" id="lap-active" style="font-size: 22px;">230</div>
+                <div class="kpi-value" id="lap-active" style="font-size: 22px;">7</div>
               </div>
               <div class="kpi-icon-wrapper icon-emerald" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
@@ -1035,7 +901,7 @@
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Aset Rusak</span>
-                <div class="kpi-value" id="lap-broken" style="font-size: 22px;">8</div>
+                <div class="kpi-value" id="lap-broken" style="font-size: 22px;">1</div>
               </div>
               <div class="kpi-icon-wrapper icon-amber" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
@@ -1044,7 +910,7 @@
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Dalam Perawatan</span>
-                <div class="kpi-value" id="lap-maint" style="font-size: 22px;">10</div>
+                <div class="kpi-value" id="lap-maint" style="font-size: 22px;">2</div>
               </div>
               <div class="kpi-icon-wrapper icon-rose" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
@@ -1115,12 +981,8 @@
             </div>
             <div class="form-group" style="margin-bottom: 0;">
               <label class="form-label">Kategori <span class="required">*</span></label>
+              <!-- Dinamis Tanpa Hardcode -->
               <select id="add_kategori" class="form-select" required>
-                <option value="Komputer">Komputer</option>
-                <option value="Elektronik">Elektronik</option>
-                <option value="Kendaraan">Kendaraan</option>
-                <option value="Furniture">Furniture</option>
-                <option value="Peralatan Kantor">Peralatan Kantor</option>
               </select>
             </div>
           </div>
@@ -1128,16 +990,8 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group" style="margin-bottom: 0;">
               <label class="form-label">Lokasi Penempatan <span class="required">*</span></label>
+              <!-- Dinamis Tanpa Hardcode -->
               <select id="add_lokasi" class="form-select" required>
-                <option value="Gedung A - Ruang 101">Gedung A - Ruang 101</option>
-                <option value="Gedung A - Ruang 102">Gedung A - Ruang 102</option>
-                <option value="Gedung A - Ruang 103">Gedung A - Ruang 103</option>
-                <option value="Gedung B - Ruang 201">Gedung B - Ruang 201</option>
-                <option value="Gedung B - Ruang 202">Gedung B - Ruang 202</option>
-                <option value="Gedung B - Ruang 203">Gedung B - Ruang 203</option>
-                <option value="Gedung B - Ruang 302">Gedung B - Ruang 302</option>
-                <option value="Gedung C - Ruang 301">Gedung C - Ruang 301</option>
-                <option value="Luar Gedung">Luar Gedung</option>
               </select>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
@@ -1196,12 +1050,8 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group" style="margin-bottom: 0;">
               <label class="form-label">Kategori</label>
+              <!-- Dinamis Tanpa Hardcode -->
               <select id="edit_kategori" class="form-select" required>
-                <option value="Komputer">Komputer</option>
-                <option value="Elektronik">Elektronik</option>
-                <option value="Kendaraan">Kendaraan</option>
-                <option value="Furniture">Furniture</option>
-                <option value="Peralatan Kantor">Peralatan Kantor</option>
               </select>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
@@ -1215,16 +1065,8 @@
           </div>
           <div class="form-group" style="margin-bottom: 0;">
             <label class="form-label">Lokasi</label>
+            <!-- Dinamis Tanpa Hardcode -->
             <select id="edit_lokasi" class="form-select" required>
-              <option value="Gedung A - Ruang 101">Gedung A - Ruang 101</option>
-              <option value="Gedung A - Ruang 102">Gedung A - Ruang 102</option>
-              <option value="Gedung A - Ruang 103">Gedung A - Ruang 103</option>
-              <option value="Gedung B - Ruang 201">Gedung B - Ruang 201</option>
-              <option value="Gedung B - Ruang 202">Gedung B - Ruang 202</option>
-              <option value="Gedung B - Ruang 203">Gedung B - Ruang 203</option>
-              <option value="Gedung B - Ruang 302">Gedung B - Ruang 302</option>
-              <option value="Gedung C - Ruang 301">Gedung C - Ruang 301</option>
-              <option value="Luar Gedung">Luar Gedung</option>
             </select>
           </div>
         </div>
@@ -1272,7 +1114,6 @@
         </button>
       </div>
       <div class="modal-body" id="detailModalBody">
-        <!-- Filled dynamically -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="closeModal('modalDetailAsset')">Tutup</button>
@@ -1284,7 +1125,140 @@
     </div>
   </div>
 
-  <!-- ================= MODAL 5: PENGATURAN SISTEM ================= -->
+  <!-- ================= MODAL 5: JADWALKAN SERVIS PEMELIHARAAN (BARU) ================= -->
+  <div id="modalAddTicket" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-warning); display: flex;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </span>
+          <h3 class="modal-title">Jadwalkan Servis &amp; Perawatan Aset</h3>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddTicket')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formAddTicket" onsubmit="handleSaveNewTicket(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Pilih Aset yang Diservis <span class="required">*</span></label>
+            <select id="ticket_id_aset" class="form-select" required>
+              <!-- Populated dynamically with assets -->
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Keluhan / Rincian Tindakan Servis <span class="required">*</span></label>
+            <input type="text" id="ticket_keluhan" class="form-input" placeholder="Contoh: Penggantian pasta thermal &amp; pembersihan kipas" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Vendor / Teknisi Rekanan <span class="required">*</span></label>
+              <input type="text" id="ticket_vendor" class="form-input" placeholder="Contoh: PT Servis Center Prima" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Estimasi Biaya (Rp) <span class="required">*</span></label>
+              <input type="number" id="ticket_biaya" class="form-input" placeholder="Contoh: 350000" min="0" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Tanggal Masuk Servis <span class="required">*</span></label>
+            <input type="text" id="ticket_tgl" class="form-input" value="14 Okt 2025" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddTicket')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Tiket Servis</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 6: DETAIL TIKET PEMELIHARAAN ================= -->
+  <div id="modalDetailTicket" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="ticketDetailTitle">Detail Tiket Servis</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalDetailTicket')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="ticketDetailBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalDetailTicket')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 7: TAMBAH KATEGORI DINAMIS ================= -->
+  <div id="modalAddCategory" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Tambah Kategori Baru</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddCategory')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form onsubmit="handleSaveNewCategory(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Kode Kategori <span class="required">*</span></label>
+            <input type="text" id="cat_kode" class="form-input font-code" placeholder="Contoh: KAT-MED" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Nama Kategori <span class="required">*</span></label>
+            <input type="text" id="cat_nama" class="form-input" placeholder="Contoh: Alat Medis &amp; Lab" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Deskripsi Klasifikasi</label>
+            <textarea id="cat_deskripsi" class="form-textarea" placeholder="Rincian peruntukan barang inventaris"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddCategory')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Kategori</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 8: TAMBAH LOKASI DINAMIS ================= -->
+  <div id="modalAddLocation" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Tambah Lokasi / Ruangan Baru</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddLocation')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form onsubmit="handleSaveNewLocation(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Nama Gedung / Zona <span class="required">*</span></label>
+            <input type="text" id="loc_gedung" class="form-input" placeholder="Contoh: Gedung D" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Nama Ruangan Lengkap <span class="required">*</span></label>
+            <input type="text" id="loc_ruangan" class="form-input" placeholder="Contoh: Gedung D - Ruang 401" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Penanggung Jawab Ruangan</label>
+            <input type="text" id="loc_pj" class="form-input" placeholder="Contoh: Suhendar, S.T">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddLocation')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Lokasi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 9: PENGATURAN SISTEM ================= -->
   <div id="modalSettings" class="modal-overlay">
     <div class="modal-dialog" style="max-width: 480px;">
       <div class="modal-header">
@@ -1304,7 +1278,7 @@
           <div style="color: var(--color-text-muted); margin-top: 2px;">Tugas UAS: Pemrograman Web 2</div>
         </div>
         <button type="button" class="btn btn-secondary" onclick="handleResetDefaultData()" style="width: 100%;">
-          Reset Data Aset ke Default (A-001 s/d A-010)
+          Reset Seluruh Data ke Setelan Awal
         </button>
       </div>
       <div class="modal-footer">
@@ -1331,7 +1305,11 @@
     let deleteTargetId = null;
 
     document.addEventListener('DOMContentLoaded', () => {
+      populateDynamicDropdowns();
       loadInitialAssets();
+      renderKategoriTable();
+      renderLokasiTable();
+      renderMaintenanceTable();
       initDashboardCharts();
       renderLaporanTable();
       updateLaporanKpi();
@@ -1342,16 +1320,76 @@
       const params = new URLSearchParams(window.location.search);
       if (params.get('add') === 'true') {
         switchRoute('master');
-        setTimeout(openAddAssetModal, 200);
+        setTimeout(openAddAssetModal, 150);
       }
     }
 
-    function loadInitialAssets() {
-      if (window.SarprasStore && typeof window.SarprasStore.getStoredAssets === 'function') {
-        currentAssets = window.SarprasStore.getStoredAssets();
-      } else {
-        currentAssets = [];
+    // --- 1. DYNAMIC DROPDOWNS POPULATION (ZERO HARDCODE) ---
+    function populateDynamicDropdowns() {
+      const categories = window.SarprasStore.getCategories();
+      const locations = window.SarprasStore.getLocations();
+
+      // Category filter dropdown
+      const filterCat = document.getElementById('filterCategory');
+      if (filterCat) {
+        let catOpts = '<option value="ALL">Semua Kategori</option>';
+        categories.forEach(c => {
+          catOpts += `<option value="${c.nama}">${c.nama}</option>`;
+        });
+        filterCat.innerHTML = catOpts;
       }
+
+      // Location filter dropdown
+      const filterLoc = document.getElementById('filterLocation');
+      if (filterLoc) {
+        let locOpts = '<option value="ALL">Semua Lokasi</option>';
+        const distinctGedung = [...new Set(locations.map(l => l.gedung))];
+        distinctGedung.forEach(g => {
+          locOpts += `<option value="${g}">${g}</option>`;
+        });
+        filterLoc.innerHTML = locOpts;
+      }
+
+      // Add/Edit Asset Category dropdown
+      const addCat = document.getElementById('add_kategori');
+      const editCat = document.getElementById('edit_kategori');
+      let editCatOpts = '';
+      categories.forEach(c => {
+        editCatOpts += `<option value="${c.nama}">${c.nama}</option>`;
+      });
+      if (addCat) addCat.innerHTML = editCatOpts;
+      if (editCat) editCat.innerHTML = editCatOpts;
+
+      // Add/Edit Asset Location dropdown
+      const addLoc = document.getElementById('add_lokasi');
+      const editLoc = document.getElementById('edit_lokasi');
+      let locFullOpts = '';
+      locations.forEach(l => {
+        locFullOpts += `<option value="${l.ruangan}">${l.ruangan}</option>`;
+      });
+      if (addLoc) addLoc.innerHTML = locFullOpts;
+      if (editLoc) editLoc.innerHTML = locFullOpts;
+
+      // Populate Ticket Asset Select
+      populateTicketAssetSelect();
+    }
+
+    function populateTicketAssetSelect() {
+      const ticketAssetSel = document.getElementById('ticket_id_aset');
+      if (!ticketAssetSel) return;
+      const allAssets = window.SarprasStore.getStoredAssets();
+      let opts = '<option value="">-- Pilih Aset --</option>';
+      allAssets.forEach(a => {
+        const isNeedsAttention = a.kondisi === 'Rusak' || a.kondisi === 'Dalam Perawatan';
+        const tag = isNeedsAttention ? ` [${a.kondisi}]` : '';
+        opts += `<option value="${a.id}">${a.id} - ${a.nama} (${a.lokasi})${tag}</option>`;
+      });
+      ticketAssetSel.innerHTML = opts;
+    }
+
+    // --- 2. ASSETS TABLE & FILTERS ---
+    function loadInitialAssets() {
+      currentAssets = window.SarprasStore.getStoredAssets();
       renderAssetTable(currentAssets);
       updateKpiCounters();
     }
@@ -1466,18 +1504,18 @@
       applyFilters();
     }
 
-    /* Modal Tambah Data (Satu Pintu CRUD) */
+    // --- 3. MODAL CRUD ASET ---
     function openAddAssetModal() {
       const all = window.SarprasStore.getStoredAssets();
       const nextNum = all.length + 1;
       const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
-      
+
       document.getElementById('add_id').value = 'A-' + padNum;
       document.getElementById('add_nama').value = '';
       document.getElementById('add_tgl').value = '14 Okt 2025';
       document.getElementById('add_supplier').value = '';
       document.getElementById('add_keterangan').value = '';
-      
+
       openModal('modalAddAsset');
     }
 
@@ -1490,7 +1528,7 @@
       const kondisi = document.getElementById('add_kondisi').value;
       const tgl = document.getElementById('add_tgl').value.trim();
       const supplier = document.getElementById('add_supplier').value.trim() || 'CV Mitra Mandiri';
-      const keterangan = document.getElementById('add_keterangan').value.trim() || 'Aset operasional instansi';
+      const keterangan = document.getElementById('add_keterangan').value.trim() || 'Aset inventaris BMN';
 
       const newAsset = { id, nama, kategori, lokasi, kondisi, tanggal: tgl, tgl, supplier, keterangan };
       window.SarprasStore.addAsset(newAsset);
@@ -1499,10 +1537,10 @@
       loadInitialAssets();
       renderLaporanTable();
       updateLaporanKpi();
+      populateTicketAssetSelect();
       showToast(`Aset ${nama} (${id}) berhasil ditambahkan!`);
     }
 
-    /* Modal Edit Data */
     function openEditModal(id) {
       const asset = window.SarprasStore.getAssetById(id);
       if (!asset) return;
@@ -1529,10 +1567,10 @@
       loadInitialAssets();
       renderLaporanTable();
       updateLaporanKpi();
+      populateTicketAssetSelect();
       showToast(`Data aset ${id} berhasil diperbarui!`);
     }
 
-    /* Modal Hapus Data */
     function promptDelete(id, nama) {
       deleteTargetId = id;
       document.getElementById('deleteTargetName').textContent = `"${nama} (${id})"`;
@@ -1546,12 +1584,12 @@
         loadInitialAssets();
         renderLaporanTable();
         updateLaporanKpi();
+        populateTicketAssetSelect();
         showToast(`Aset ${deleteTargetId} berhasil dihapus.`);
         deleteTargetId = null;
       }
     });
 
-    /* Modal Detail Aset */
     function openDetailModal(id) {
       const asset = window.SarprasStore.getAssetById(id);
       if (!asset) return;
@@ -1612,14 +1650,275 @@
       openModal('modalDetailAsset');
     }
 
-    function handleResetDefaultData() {
-      if (confirm('Apakah Anda yakin ingin mereset seluruh data kembali ke 10 aset bawaan (A-001 s/d A-010)?')) {
-        window.SarprasStore.resetMockData();
-        closeModal('modalSettings');
+    // --- 4. PEMELIHARAAN & SERVIS (JELAS, LENGKAP & IKON) ---
+    function renderMaintenanceTable() {
+      const tbody = document.getElementById('maintenanceTableBody');
+      if (!tbody) return;
+
+      const tickets = window.SarprasStore.getMaintenanceTickets();
+      const assets = window.SarprasStore.getStoredAssets();
+
+      // Update KPI
+      const rawatTickets = tickets.filter(t => t.status === 'Dalam Perawatan');
+      const selesaiTickets = tickets.filter(t => t.status === 'Selesai Servis');
+      const totalBiaya = tickets.reduce((acc, t) => acc + (t.biaya || 0), 0);
+      const vendors = [...new Set(tickets.map(t => t.vendor))];
+
+      document.getElementById('kpi-tiket-rawat').textContent = `${rawatTickets.length} Unit`;
+      document.getElementById('kpi-tiket-selesai').textContent = `${selesaiTickets.length} Unit`;
+      document.getElementById('kpi-tiket-biaya').textContent = window.SarprasStore.formatRupiah(totalBiaya);
+      document.getElementById('kpi-tiket-vendor').textContent = `${vendors.length} Mitra`;
+
+      if (tickets.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Belum ada tiket servis terdaftar.</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      tickets.forEach(ticket => {
+        const isOngoing = ticket.status === 'Dalam Perawatan';
+        const badgeClass = isOngoing ? 'badge-warning' : 'badge-success';
+
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${ticket.id}</td>
+            <td>
+              <div style="font-weight: 600; color: var(--color-text-title);">${ticket.nama_aset}</div>
+              <div class="font-code" style="font-size: 11.5px; color: var(--color-text-muted);">${ticket.id_aset}</div>
+            </td>
+            <td>${ticket.keluhan}</td>
+            <td style="color: var(--color-text-muted);">${ticket.vendor}</td>
+            <td style="color: var(--color-text-muted);">${ticket.tgl}</td>
+            <td class="font-code" style="font-weight: 600;">${window.SarprasStore.formatRupiah(ticket.biaya)}</td>
+            <td><span class="badge-status ${badgeClass}">${ticket.status}</span></td>
+            <td style="text-align: center;">
+              <div style="display: flex; gap: 6px; justify-content: center;">
+                <button type="button" class="table-action-icon-btn" onclick="openTicketDetailModal('${ticket.id}')" title="Lihat Rincian Tiket">
+                  ${window.SARPRAS_ICONS.eye}
+                </button>
+                ${isOngoing ? `
+                <button type="button" class="table-action-icon-btn btn-success" onclick="handleCompleteTicket('${ticket.id}')" title="Tandai Selesai Servis (Kembalikan Aset ke Kondisi Baik)">
+                  ${window.SARPRAS_ICONS.check_circle}
+                </button>
+                ` : ''}
+                <button type="button" class="table-action-icon-btn btn-delete" onclick="handleDeleteTicket('${ticket.id}')" title="Hapus Tiket Servis">
+                  ${window.SARPRAS_ICONS.trash}
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    function openAddTicketModal() {
+      populateTicketAssetSelect();
+      document.getElementById('ticket_keluhan').value = '';
+      document.getElementById('ticket_vendor').value = '';
+      document.getElementById('ticket_biaya').value = '';
+      document.getElementById('ticket_tgl').value = '14 Okt 2025';
+      openModal('modalAddTicket');
+    }
+
+    function handleSaveNewTicket(e) {
+      e.preventDefault();
+      const id_aset = document.getElementById('ticket_id_aset').value;
+      const keluhan = document.getElementById('ticket_keluhan').value.trim();
+      const vendor = document.getElementById('ticket_vendor').value.trim();
+      const biaya = parseInt(document.getElementById('ticket_biaya').value, 10) || 0;
+      const tgl = document.getElementById('ticket_tgl').value.trim();
+
+      const asset = window.SarprasStore.getAssetById(id_aset);
+      const nama_aset = asset ? asset.nama : 'Aset Inventaris';
+
+      const tickets = window.SarprasStore.getMaintenanceTickets();
+      const nextNum = tickets.length + 1;
+      const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+      const ticketId = 'TRX-MNT-' + padNum;
+
+      const newTicket = {
+        id: ticketId,
+        id_aset,
+        nama_aset,
+        keluhan,
+        vendor,
+        tgl,
+        biaya,
+        status: 'Dalam Perawatan'
+      };
+
+      window.SarprasStore.addMaintenanceTicket(newTicket);
+      closeModal('modalAddTicket');
+
+      renderMaintenanceTable();
+      loadInitialAssets();
+      renderLaporanTable();
+      updateLaporanKpi();
+      showToast(`Tiket ${ticketId} berhasil dibuat! Status aset ${id_aset} diset ke 'Dalam Perawatan'.`);
+    }
+
+    function handleCompleteTicket(ticketId) {
+      if (confirm(`Selesaikan tiket ${ticketId}?\nAset terkait akan otomatis dikembalikan ke kondisi 'Baik'.`)) {
+        const updated = window.SarprasStore.completeMaintenanceTicket(ticketId);
+        renderMaintenanceTable();
         loadInitialAssets();
         renderLaporanTable();
         updateLaporanKpi();
-        showToast('Data berhasil direset ke setelan awal.');
+        showToast(`Servis ${ticketId} selesai! Aset ${updated.id_aset} berhasil dikembalikan ke Kondisi Baik.`);
+      }
+    }
+
+    function handleDeleteTicket(ticketId) {
+      if (confirm(`Hapus tiket servis ${ticketId}?`)) {
+        window.SarprasStore.deleteMaintenanceTicket(ticketId);
+        renderMaintenanceTable();
+        showToast(`Tiket ${ticketId} berhasil dihapus.`);
+      }
+    }
+
+    function openTicketDetailModal(ticketId) {
+      const tickets = window.SarprasStore.getMaintenanceTickets();
+      const ticket = tickets.find(t => t.id === ticketId);
+      if (!ticket) return;
+
+      document.getElementById('ticketDetailTitle').textContent = `Detail Tiket #${ticket.id}`;
+      document.getElementById('ticketDetailBody').innerHTML = `
+        <div style="background: var(--color-surface-alt); padding: 14px; border-radius: var(--radius-md); margin-bottom: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 700; font-size: 15px; color: var(--color-text-title);">${ticket.nama_aset} (${ticket.id_aset})</div>
+            <span class="badge-status ${ticket.status === 'Dalam Perawatan' ? 'badge-warning' : 'badge-success'}">${ticket.status}</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+          <div>
+            <strong style="color: var(--color-text-muted);">Keluhan / Tindakan:</strong>
+            <div style="margin-top: 2px;">${ticket.keluhan}</div>
+          </div>
+          <div>
+            <strong style="color: var(--color-text-muted);">Vendor Rekanan:</strong>
+            <div style="margin-top: 2px;">${ticket.vendor}</div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+              <strong style="color: var(--color-text-muted);">Tanggal Masuk:</strong>
+              <div style="margin-top: 2px;">${ticket.tgl}</div>
+            </div>
+            <div>
+              <strong style="color: var(--color-text-muted);">Biaya Perbaikan:</strong>
+              <div class="font-code" style="font-weight: 700; color: var(--color-primary); margin-top: 2px;">
+                ${window.SarprasStore.formatRupiah(ticket.biaya)}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      openModal('modalDetailTicket');
+    }
+
+    // --- 5. KATEGORI & LOKASI TABLES ---
+    function renderKategoriTable() {
+      const tbody = document.getElementById('kategoriTableBody');
+      if (!tbody) return;
+      const categories = window.SarprasStore.getCategories();
+      const assets = window.SarprasStore.getStoredAssets();
+
+      document.getElementById('kpi-total-kategori').textContent = categories.length;
+
+      let html = '';
+      categories.forEach(c => {
+        const count = assets.filter(a => a.kategori === c.nama).length;
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${c.kode}</td>
+            <td style="font-weight: 600;">${c.nama}</td>
+            <td style="color: var(--color-text-muted);">${c.deskripsi || '-'}</td>
+            <td style="text-align: center; font-weight: 700;">${count} Unit</td>
+            <td><span class="badge-status badge-success">${c.status || 'Aktif'}</span></td>
+            <td style="text-align: center;">
+              <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('${c.nama}')">Lihat Aset</button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function handleSaveNewCategory(e) {
+      e.preventDefault();
+      const kode = document.getElementById('cat_kode').value.trim().toUpperCase();
+      const nama = document.getElementById('cat_nama').value.trim();
+      const deskripsi = document.getElementById('cat_deskripsi').value.trim();
+
+      window.SarprasStore.addCategory({ kode, nama, deskripsi, status: 'Aktif' });
+      closeModal('modalAddCategory');
+
+      populateDynamicDropdowns();
+      renderKategoriTable();
+      showToast(`Kategori ${nama} (${kode}) berhasil ditambahkan!`);
+    }
+
+    function renderLokasiTable() {
+      const tbody = document.getElementById('lokasiTableBody');
+      if (!tbody) return;
+      const locations = window.SarprasStore.getLocations();
+      const assets = window.SarprasStore.getStoredAssets();
+
+      document.getElementById('kpi-total-ruangan').textContent = `${locations.length} Ruang`;
+
+      let html = '';
+      locations.forEach(l => {
+        const count = assets.filter(a => a.lokasi === l.ruangan).length;
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${l.id}</td>
+            <td style="font-weight: 600;">${l.gedung}</td>
+            <td>${l.ruangan}</td>
+            <td style="text-align: center; font-weight: 700;">${count} Unit</td>
+            <td style="color: var(--color-text-muted);">${l.pj || '-'}</td>
+            <td style="text-align: center;">
+              <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('${l.ruangan}')">Lihat Aset</button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function handleSaveNewLocation(e) {
+      e.preventDefault();
+      const gedung = document.getElementById('loc_gedung').value.trim();
+      const ruangan = document.getElementById('loc_ruangan').value.trim();
+      const pj = document.getElementById('loc_pj').value.trim() || 'Staf Sarpras';
+
+      const locations = window.SarprasStore.getLocations();
+      const nextNum = locations.length + 1;
+      const padNum = nextNum < 10 ? '0' + nextNum : nextNum;
+      const locId = `LOK-${gedung.replace(/\s+/g, '').toUpperCase()}-${padNum}`;
+
+      window.SarprasStore.addLocation({ id: locId, gedung, ruangan, pj });
+      closeModal('modalAddLocation');
+
+      populateDynamicDropdowns();
+      renderLokasiTable();
+      showToast(`Lokasi ${ruangan} berhasil ditambahkan!`);
+    }
+
+    function handleResetDefaultData() {
+      if (confirm('Apakah Anda yakin ingin mereset seluruh data kembali ke setelan bawaan?')) {
+        window.SarprasStore.resetMockData();
+        closeModal('modalSettings');
+        populateDynamicDropdowns();
+        loadInitialAssets();
+        renderKategoriTable();
+        renderLokasiTable();
+        renderMaintenanceTable();
+        renderLaporanTable();
+        updateLaporanKpi();
+        showToast('Seluruh data berhasil direset ke setelan awal.');
       }
     }
 
@@ -1693,10 +1992,10 @@
         new Chart(donutCanvas, {
           type: 'doughnut',
           data: {
-            labels: ['Baik', 'Rusak', 'Dalam Perawatan', 'Hilang', 'Lainnya'],
+            labels: ['Baik', 'Rusak', 'Dalam Perawatan'],
             datasets: [{
-              data: [179, 8, 10, 2, 49],
-              backgroundColor: ['#1F46E5', '#F97316', '#8B5CF6', '#06B6D4', '#E2E8F0'],
+              data: [7, 1, 2],
+              backgroundColor: ['#1F46E5', '#EF4444', '#F59E0B'],
               borderWidth: 0,
               hoverOffset: 4
             }]
@@ -1715,11 +2014,11 @@
         new Chart(barCanvas, {
           type: 'bar',
           data: {
-            labels: ['Komputer', 'Kendaraan', 'Peralatan Kantor', 'Elektronik', 'Furniture'],
+            labels: ['Komputer', 'Elektronik', 'Kendaraan', 'Furniture'],
             datasets: [{
               label: 'Jumlah Unit',
-              data: [60, 45, 38, 32, 18],
-              backgroundColor: ['#1F46E5', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899'],
+              data: [3, 4, 1, 2],
+              backgroundColor: ['#1F46E5', '#10B981', '#F59E0B', '#8B5CF6'],
               borderRadius: 6
             }]
           },

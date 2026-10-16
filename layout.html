@@ -18,11 +18,16 @@
     <!-- 1. APP SIDEBAR -->
     <aside class="app-sidebar" id="appSidebar">
       <div class="sidebar-brand">
-        <div class="brand-icon-box">SP</div>
-        <div class="brand-title-wrap">
-          <span class="brand-title">SaranaPrasana</span>
-          <span class="brand-subtitle">Asset Management</span>
+        <div class="brand-left-wrap">
+          <div class="brand-icon-box" onclick="toggleSidebarCollapse()" title="SaranaPrasana">SP</div>
+          <div class="brand-title-wrap">
+            <span class="brand-title">SaranaPrasana</span>
+            <span class="brand-subtitle">Asset Management</span>
+          </div>
         </div>
+        <button type="button" class="sidebar-collapse-btn" id="sidebarToggleBtn" title="Perkecil / Perbesar Menu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sidebarToggleIcon"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
       </div>
 
       <nav class="sidebar-menu">
@@ -88,11 +93,6 @@
     <div class="app-content-wrapper">
       <header class="top-command-header">
         <div class="header-left-cluster">
-          <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Toggle Sidebar">
-            <span id="sidebarToggleIcon" style="display: flex;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            </span>
-          </button>
           <nav class="breadcrumb-nav">
             <span class="breadcrumb-item">SaranaPrasana</span>
             <span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
