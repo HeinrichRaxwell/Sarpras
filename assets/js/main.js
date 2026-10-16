@@ -51,6 +51,7 @@ function applyTheme(theme) {
 function initSidebarController() {
   const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
   const mobileBackdrop = document.getElementById('sidebarMobileBackdrop');
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const toggleIcon = document.getElementById('sidebarToggleIcon');
 
   const isCollapsed = localStorage.getItem('sarpras_sidebar_collapsed') === 'true';
@@ -59,8 +60,16 @@ function initSidebarController() {
     if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
   }
 
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.body.classList.toggle('sidebar-mobile-open');
+    });
+  }
+
   if (sidebarToggleBtn) {
-    sidebarToggleBtn.addEventListener('click', () => {
+    sidebarToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (window.innerWidth <= 1024) {
         document.body.classList.toggle('sidebar-mobile-open');
       } else {
