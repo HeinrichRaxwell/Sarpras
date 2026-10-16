@@ -1,6 +1,7 @@
 /**
  * SaranaPrasana Asset Management
- * Client-Side Core UI Controller & Clean Multi-Page Engine
+ * Master Client-Side Application Core Controller & Navigation Engine
+ * v2.2.0 (Zero-Reload Seamless Flow & Unified Modal Architecture)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSidebarController();
   initSearchKeyboardShortcut();
   initModalListeners();
+  initRouter();
 });
 
 /**
@@ -29,16 +31,16 @@ function initThemeEngine() {
 }
 
 function applyTheme(theme) {
-  const themeIconContainer = document.getElementById('themeToggleIconContainer');
+  const container = document.getElementById('themeToggleIconContainer');
   if (theme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
-    if (themeIconContainer) {
-      themeIconContainer.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+    if (container && window.SARPRAS_ICONS) {
+      container.innerHTML = window.SARPRAS_ICONS.sun;
     }
   } else {
     document.documentElement.removeAttribute('data-theme');
-    if (themeIconContainer) {
-      themeIconContainer.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+    if (container && window.SARPRAS_ICONS) {
+      container.innerHTML = window.SARPRAS_ICONS.moon;
     }
   }
 }
@@ -96,7 +98,127 @@ function toggleAccordion(id) {
 }
 
 /**
- * 4. GLOBAL SEARCH SHORTCUT (Ctrl + K)
+ * 4. ROUTER & SEAMLESS VIEW SWITCHER (0ms Reload, Zero Stuck State)
+ */
+const ROUTE_CONFIG = {
+  'dashboard': {
+    viewId: 'view-dashboard',
+    navId: 'nav-dashboard',
+    parentAccordId: null,
+    title: 'Dashboard',
+    breadcrumb: '<span class="breadcrumb-item">SaranaPrasana</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Dashboard</span>'
+  },
+  'master': {
+    viewId: 'view-master',
+    navId: 'sub-master',
+    parentAccordId: 'accordMaster',
+    title: 'Data Aset',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Aset</span>'
+  },
+  'kategori': {
+    viewId: 'view-kategori',
+    navId: 'sub-kategori',
+    parentAccordId: 'accordMaster',
+    title: 'Kategori Aset',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Kategori Aset</span>'
+  },
+  'lokasi': {
+    viewId: 'view-lokasi',
+    navId: 'sub-lokasi',
+    parentAccordId: 'accordMaster',
+    title: 'Lokasi Penempatan Aset',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Lokasi Aset</span>'
+  },
+  'pemeliharaan': {
+    viewId: 'view-pemeliharaan',
+    navId: 'sub-pemeliharaan',
+    parentAccordId: 'accordTrans',
+    title: 'Pemeliharaan & Servis Aset',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Transaksi</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Pemeliharaan</span>'
+  },
+  'laporan': {
+    viewId: 'view-laporan',
+    navId: 'nav-laporan',
+    parentAccordId: null,
+    title: 'Laporan Inventarisasi Aset (KIR)',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Laporan</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Laporan Aset</span>'
+  }
+};
+
+function initRouter() {
+  const hash = window.location.hash.replace('#', '') || 'dashboard';
+  switchRoute(hash);
+
+  window.addEventListener('hashchange', () => {
+    const newHash = window.location.hash.replace('#', '') || 'dashboard';
+    switchRoute(newHash);
+  });
+}
+
+function switchRoute(routeName) {
+  const target = ROUTE_CONFIG[routeName] || ROUTE_CONFIG['dashboard'];
+
+  // 1. Toggle Views (0ms Instant Switch)
+  Object.keys(ROUTE_CONFIG).forEach(k => {
+    const el = document.getElementById(ROUTE_CONFIG[k].viewId);
+    if (el) {
+      if (k === (ROUTE_CONFIG[routeName] ? routeName : 'dashboard')) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    }
+  });
+
+  // 2. Clear Active Indicators
+  document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.sidebar-sub-link').forEach(el => el.classList.remove('active'));
+
+  // 3. Highlight EXACT Active Link
+  const activeNav = document.getElementById(target.navId);
+  if (activeNav) {
+    activeNav.classList.add('active');
+  }
+
+  // 4. Accordion Open/Close (Single Active Rule)
+  const accordMaster = document.getElementById('accordMaster');
+  const accordTrans = document.getElementById('accordTrans');
+
+  if (target.parentAccordId === 'accordMaster') {
+    if (accordMaster) accordMaster.classList.add('open');
+    if (accordTrans) accordTrans.classList.remove('open');
+  } else if (target.parentAccordId === 'accordTrans') {
+    if (accordTrans) accordTrans.classList.add('open');
+    if (accordMaster) accordMaster.classList.remove('open');
+  } else {
+    // Top-level views
+    if (accordMaster) accordMaster.classList.remove('open');
+    if (accordTrans) accordTrans.classList.remove('open');
+  }
+
+  // 5. Update Breadcrumb
+  const breadcrumbEl = document.getElementById('breadcrumbArea');
+  if (breadcrumbEl) {
+    breadcrumbEl.innerHTML = target.breadcrumb;
+  }
+
+  // 6. Update Page Title
+  document.title = target.title + ' - SaranaPrasana';
+
+  // 7. Update Hash without hard page reload
+  if (window.location.hash !== '#' + (ROUTE_CONFIG[routeName] ? routeName : 'dashboard')) {
+    history.replaceState(null, '', '#' + (ROUTE_CONFIG[routeName] ? routeName : 'dashboard'));
+  }
+
+  // 8. Scroll to top
+  window.scrollTo(0, 0);
+
+  // 9. Close mobile drawer if open
+  document.body.classList.remove('sidebar-mobile-open');
+}
+
+/**
+ * 5. GLOBAL SEARCH SHORTCUT (Ctrl + K)
  */
 function initSearchKeyboardShortcut() {
   const searchInput = document.getElementById('globalSearchInput');
@@ -109,10 +231,26 @@ function initSearchKeyboardShortcut() {
       }
     }
   });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const filterSearchInput = document.getElementById('filterSearchInput');
+      if (filterSearchInput) {
+        filterSearchInput.value = q;
+        if (typeof window.applyFilters === 'function') {
+          window.applyFilters();
+        }
+      }
+      if (q && window.location.hash !== '#master') {
+        switchRoute('master');
+      }
+    });
+  }
 }
 
 /**
- * 5. MODAL DIALOGS
+ * 6. MODAL DIALOGS (Accessible, Focus-locked, Backdrop click & ESC dismiss)
  */
 function initModalListeners() {
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
@@ -125,9 +263,9 @@ function initModalListeners() {
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      const openModal = document.querySelector('.modal-overlay.open');
-      if (openModal) {
-        closeModal(openModal.id);
+      const openModalEl = document.querySelector('.modal-overlay.open');
+      if (openModalEl) {
+        closeModal(openModalEl.id);
       }
     }
   });
@@ -150,7 +288,7 @@ function closeModal(modalId) {
 }
 
 /**
- * 6. TOAST NOTIFICATIONS
+ * 7. TOAST NOTIFICATIONS
  */
 function showToast(msg) {
   const toast = document.getElementById('appToast');
@@ -158,12 +296,13 @@ function showToast(msg) {
   if (toast && msgEl) {
     msgEl.textContent = msg;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
+    setTimeout(() => toast.classList.remove('show'), 3200);
   }
 }
 
-// Expose globally
+// Expose handlers globally to window
+window.switchRoute = switchRoute;
+window.toggleAccordion = toggleAccordion;
 window.openModal = openModal;
 window.closeModal = closeModal;
-window.toggleAccordion = toggleAccordion;
 window.showToast = showToast;

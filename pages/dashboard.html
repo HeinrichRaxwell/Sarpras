@@ -177,7 +177,7 @@
       pointer-events: auto;
     }
     @media print {
-      .app-sidebar, .top-command-header, .page-header-block .btn, .app-footer {
+      .app-sidebar, .top-command-header, .page-header-block .btn, .app-footer, .filter-bar-row, .pagination-bar-row {
         display: none !important;
       }
       .app-content-wrapper {
@@ -211,48 +211,48 @@
         <div class="menu-category-label">MENU UTAMA</div>
 
         <!-- Dashboard Link -->
-        <a href="#dashboard" onclick="switchRoute('dashboard')" id="nav-dashboard" class="nav-link active">
+        <button type="button" class="nav-link active" id="nav-dashboard" onclick="switchRoute('dashboard')">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
           <span class="nav-label">Dashboard</span>
-        </a>
+        </button>
 
         <!-- Data Master Accordion -->
         <div class="sidebar-accordion-item" id="accordMaster">
-          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordMaster')">
+          <button type="button" class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordMaster')">
             <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
             <span class="nav-label">Data Master</span>
             <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
+          </button>
           <div class="sidebar-sub-menu">
-            <a href="#master" onclick="switchRoute('master')" id="sub-master" class="sidebar-sub-link">Aset</a>
-            <a href="#kategori" onclick="switchRoute('kategori')" id="sub-kategori" class="sidebar-sub-link">Kategori Aset</a>
-            <a href="#lokasi" onclick="switchRoute('lokasi')" id="sub-lokasi" class="sidebar-sub-link">Lokasi</a>
+            <button type="button" class="sidebar-sub-link" id="sub-master" onclick="switchRoute('master')">Aset</button>
+            <button type="button" class="sidebar-sub-link" id="sub-kategori" onclick="switchRoute('kategori')">Kategori Aset</button>
+            <button type="button" class="sidebar-sub-link" id="sub-lokasi" onclick="switchRoute('lokasi')">Lokasi</button>
           </div>
         </div>
 
         <!-- Transaksi Accordion -->
         <div class="sidebar-accordion-item" id="accordTrans">
-          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
+          <button type="button" class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
             <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-8"/><path d="M16 12h-8"/><path d="M16 16h-5"/></svg>
             <span class="nav-label">Transaksi</span>
             <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
+          </button>
           <div class="sidebar-sub-menu">
-            <a href="#pemeliharaan" onclick="switchRoute('pemeliharaan')" id="sub-pemeliharaan" class="sidebar-sub-link">Pemeliharaan</a>
+            <button type="button" class="sidebar-sub-link" id="sub-pemeliharaan" onclick="switchRoute('pemeliharaan')">Pemeliharaan</button>
           </div>
         </div>
 
         <!-- Laporan Link -->
-        <a href="#laporan" onclick="switchRoute('laporan')" id="nav-laporan" class="nav-link">
+        <button type="button" class="nav-link" id="nav-laporan" onclick="switchRoute('laporan')">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
           <span class="nav-label">Laporan</span>
-        </a>
+        </button>
 
         <!-- Pengaturan Link -->
-        <a href="javascript:void(0)" onclick="alert('Modul Pengaturan Sistem SaranaPrasana v2.0')" class="nav-link">
+        <button type="button" class="nav-link" id="nav-settings" onclick="openModal('modalSettings')">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="nav-label">Pengaturan</span>
-        </a>
+        </button>
 
         <div class="menu-category-label" style="margin-top: 14px;">AUTENTIKASI</div>
 
@@ -278,7 +278,9 @@
       <header class="top-command-header">
         <div class="header-left-cluster">
           <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Toggle Sidebar">
-            <span id="sidebarToggleIcon" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span>
+            <span id="sidebarToggleIcon" style="display: flex;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </span>
           </button>
           <nav class="breadcrumb-nav" id="breadcrumbArea">
             <span class="breadcrumb-item">SaranaPrasana</span>
@@ -289,17 +291,21 @@
 
         <div class="header-center-search">
           <div class="search-input-wrapper">
-            <span class="search-icon-prefix" style="display: flex;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
-            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari aset, lokasi, atau nomor inventaris...">
+            <span class="search-icon-prefix" style="display: flex;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
+            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari nama aset, kode, atau ruangan...">
             <span class="search-shortcut-badge">Ctrl K</span>
           </div>
         </div>
 
         <div class="header-right-cluster">
           <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Tema">
-            <span id="themeToggleIconContainer" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+            <span id="themeToggleIconContainer" style="display: flex;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </span>
           </button>
-          <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; cursor: pointer;" onclick="openModal('modalSettings')">
             <div class="user-avatar" style="width: 32px; height: 32px; font-size: 12px;">AD</div>
             <span style="font-size: 13.5px; font-weight: 600;">Admin</span>
           </div>
@@ -332,7 +338,9 @@
                   <span>+ 12% dari bulan lalu</span>
                 </div>
               </div>
-              <div class="kpi-icon-wrapper icon-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+              <div class="kpi-icon-wrapper icon-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card">
@@ -344,7 +352,9 @@
                   <span>+ 10% dari bulan lalu</span>
                 </div>
               </div>
-              <div class="kpi-icon-wrapper icon-emerald"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <div class="kpi-icon-wrapper icon-emerald">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card">
@@ -356,7 +366,9 @@
                   <span>- 2% dari bulan lalu</span>
                 </div>
               </div>
-              <div class="kpi-icon-wrapper icon-amber"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+              <div class="kpi-icon-wrapper icon-amber">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card">
@@ -364,11 +376,13 @@
                 <span class="kpi-label">Aset Dalam Perawatan</span>
                 <div class="kpi-value" id="kpi-maint-val">10</div>
                 <div class="kpi-trend trend-warning">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                   <span>+ 5% dari bulan lalu</span>
                 </div>
               </div>
-              <div class="kpi-icon-wrapper icon-rose"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div class="kpi-icon-wrapper icon-rose">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
             </div>
           </div>
 
@@ -443,7 +457,7 @@
             <div class="card-panel" style="margin-bottom: 0;">
               <div class="card-header">
                 <h3 class="card-title">Lokasi Aset</h3>
-                <span style="font-size: 12px; color: var(--color-text-muted); cursor: pointer;" onclick="switchRoute('lokasi')">Lihat Semua &gt;</span>
+                <button type="button" style="background:none;border:none;font-size:12px;color:var(--color-text-muted);cursor:pointer;" onclick="switchRoute('lokasi')">Lihat Semua &gt;</button>
               </div>
               <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 14px;">
                 <div>
@@ -559,7 +573,7 @@
                     <th>Lokasi</th>
                     <th>Kondisi</th>
                     <th>Tgl Perolehan</th>
-                    <th style="width: 90px; text-align: center;">Aksi</th>
+                    <th style="width: 110px; text-align: center;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody id="assetTableBody">
@@ -586,7 +600,7 @@
               <h1 class="page-title">Kategori Aset</h1>
               <p class="page-description">Kelompok inventaris sarana dan prasarana berdasarkan jenis dan fungsi.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="alert('Modal Tambah Kategori Baru')">
+            <button type="button" class="btn btn-primary" onclick="alert('Form kategori: gunakan kategori standar BMN yang terdaftar.')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               + Tambah Kategori
             </button>
@@ -599,7 +613,9 @@
                 <div class="kpi-value" style="font-size: 24px;">5</div>
                 <span style="font-size: 12px; color: var(--color-text-muted);">Klasifikasi Resmi BMN</span>
               </div>
-              <div class="kpi-icon-wrapper icon-blue"><svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></div>
+              <div class="kpi-icon-wrapper icon-blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -608,7 +624,9 @@
                 <div class="kpi-value" style="font-size: 24px;">Komputer</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">60 Unit Terdata</span>
               </div>
-              <div class="kpi-icon-wrapper icon-emerald"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+              <div class="kpi-icon-wrapper icon-emerald">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -617,7 +635,9 @@
                 <div class="kpi-value" style="font-size: 20px;">Rp 29,2 Jt</div>
                 <span style="font-size: 12px; color: var(--color-text-muted);">Sektor TIK &amp; PC</span>
               </div>
-              <div class="kpi-icon-wrapper icon-amber"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+              <div class="kpi-icon-wrapper icon-amber">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -626,7 +646,9 @@
                 <div class="kpi-value" style="font-size: 24px;">92%</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Kondisi Prima</span>
               </div>
-              <div class="kpi-icon-wrapper icon-rose"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <div class="kpi-icon-wrapper icon-rose">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
             </div>
           </div>
 
@@ -645,7 +667,7 @@
                     <th>Deskripsi Klasifikasi</th>
                     <th style="text-align: center;">Jumlah Item</th>
                     <th>Status</th>
-                    <th style="width: 100px; text-align: center;">Aksi</th>
+                    <th style="width: 110px; text-align: center;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -656,7 +678,7 @@
                     <td style="text-align: center; font-weight: 700;">3 Unit</td>
                     <td><span class="badge-status badge-success">Aktif</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByCategory('Komputer');">Lihat Aset</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Komputer')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -666,7 +688,7 @@
                     <td style="text-align: center; font-weight: 700;">4 Unit</td>
                     <td><span class="badge-status badge-success">Aktif</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByCategory('Elektronik');">Lihat Aset</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Elektronik')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -676,7 +698,7 @@
                     <td style="text-align: center; font-weight: 700;">1 Unit</td>
                     <td><span class="badge-status badge-success">Aktif</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByCategory('Kendaraan');">Lihat Aset</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Kendaraan')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -686,7 +708,7 @@
                     <td style="text-align: center; font-weight: 700;">2 Unit</td>
                     <td><span class="badge-status badge-success">Aktif</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByCategory('Furniture');">Lihat Aset</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Furniture')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -696,7 +718,7 @@
                     <td style="text-align: center; font-weight: 700;">0 Unit</td>
                     <td><span class="badge-status badge-success">Aktif</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByCategory('Peralatan Kantor');">Lihat Aset</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByCategory('Peralatan Kantor')">Lihat Aset</button>
                     </td>
                   </tr>
                 </tbody>
@@ -712,7 +734,7 @@
               <h1 class="page-title">Lokasi Penempatan Aset</h1>
               <p class="page-description">Pemetaan ruang dan gedung inventarisasi sarana prasarana kampus.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="alert('Modal Tambah Lokasi Baru')">
+            <button type="button" class="btn btn-primary" onclick="alert('Form lokasi: tambahkan master ruangan sesuai denah kampus.')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               + Tambah Lokasi
             </button>
@@ -725,7 +747,9 @@
                 <div class="kpi-value" style="font-size: 24px;">4 Zona</div>
                 <span style="font-size: 12px; color: var(--color-text-muted);">Gedung A, B, C &amp; Outdoor</span>
               </div>
-              <div class="kpi-icon-wrapper icon-blue"><svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></div>
+              <div class="kpi-icon-wrapper icon-blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -734,7 +758,9 @@
                 <div class="kpi-value" style="font-size: 24px;">9 Ruang</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Terverifikasi</span>
               </div>
-              <div class="kpi-icon-wrapper icon-emerald"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+              <div class="kpi-icon-wrapper icon-emerald">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -743,7 +769,9 @@
                 <div class="kpi-value" style="font-size: 20px;">Gedung A</div>
                 <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">98 Unit Aset</span>
               </div>
-              <div class="kpi-icon-wrapper icon-amber"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+              <div class="kpi-icon-wrapper icon-amber">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -752,7 +780,9 @@
                 <div class="kpi-value" style="font-size: 24px;">84%</div>
                 <span style="font-size: 12px; color: var(--color-warning); font-weight: 600;">Optimal</span>
               </div>
-              <div class="kpi-icon-wrapper icon-rose"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <div class="kpi-icon-wrapper icon-rose">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
             </div>
           </div>
 
@@ -771,7 +801,7 @@
                     <th>Nama Ruangan</th>
                     <th style="text-align: center;">Item Terdaftar</th>
                     <th>Penanggung Jawab</th>
-                    <th style="width: 100px; text-align: center;">Aksi</th>
+                    <th style="width: 110px; text-align: center;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -782,7 +812,7 @@
                     <td style="text-align: center; font-weight: 700;">2 Unit</td>
                     <td style="color: var(--color-text-muted);">Budi Santoso, S.Kom</td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByLocation('Gedung A');">Lihat</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung A')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -792,7 +822,7 @@
                     <td style="text-align: center; font-weight: 700;">1 Unit</td>
                     <td style="color: var(--color-text-muted);">Dr. Hendra Gunawan</td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByLocation('Gedung A');">Lihat</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung A')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -802,7 +832,7 @@
                     <td style="text-align: center; font-weight: 700;">1 Unit</td>
                     <td style="color: var(--color-text-muted);">Siti Rahmawati, A.Md</td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByLocation('Gedung B');">Lihat</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung B')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -812,7 +842,7 @@
                     <td style="text-align: center; font-weight: 700;">1 Unit</td>
                     <td style="color: var(--color-text-muted);">Wahyu Pratama, M.T</td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByLocation('Gedung B');">Lihat</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung B')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -822,7 +852,7 @@
                     <td style="text-align: center; font-weight: 700;">1 Unit</td>
                     <td style="color: var(--color-text-muted);">Ir. Atang Susila</td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByLocation('Gedung C');">Lihat</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Gedung C')">Lihat Aset</button>
                     </td>
                   </tr>
                   <tr>
@@ -832,7 +862,7 @@
                     <td style="text-align: center; font-weight: 700;">1 Unit</td>
                     <td style="color: var(--color-text-muted);">Komandan Keamanan</td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="switchRoute('master'); filterByLocation('Luar Gedung');">Lihat</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 10px;" onclick="filterByLocation('Luar Gedung')">Lihat Aset</button>
                     </td>
                   </tr>
                 </tbody>
@@ -848,7 +878,7 @@
               <h1 class="page-title">Pemeliharaan &amp; Servis Aset</h1>
               <p class="page-description">Monitoring perbaikan, perawatan berkala, dan penanganan kendala inventaris.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="alert('Modal Jadwalkan Servis Baru')">
+            <button type="button" class="btn btn-primary" onclick="alert('Form penjadwalan servis baru.')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               + Jadwalkan Servis
             </button>
@@ -861,7 +891,9 @@
                 <div class="kpi-value" style="font-size: 24px;">2 Unit</div>
                 <span style="font-size: 12px; color: var(--color-warning); font-weight: 600;">A-003 &amp; A-010</span>
               </div>
-              <div class="kpi-icon-wrapper icon-rose"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div class="kpi-icon-wrapper icon-rose">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -870,7 +902,9 @@
                 <div class="kpi-value" style="font-size: 24px;">6 Unit</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">100% Berhasil</span>
               </div>
-              <div class="kpi-icon-wrapper icon-emerald"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <div class="kpi-icon-wrapper icon-emerald">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -879,7 +913,9 @@
                 <div class="kpi-value" style="font-size: 20px;">Rp 1.450.000</div>
                 <span style="font-size: 12px; color: var(--color-text-muted);">Alokasi Anggaran Pemeliharaan</span>
               </div>
-              <div class="kpi-icon-wrapper icon-amber"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+              <div class="kpi-icon-wrapper icon-amber">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
             </div>
 
             <div class="kpi-card" style="padding: 18px;">
@@ -888,7 +924,9 @@
                 <div class="kpi-value" style="font-size: 24px;">3 Mitra</div>
                 <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">Siaga</span>
               </div>
-              <div class="kpi-icon-wrapper icon-blue"><svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></div>
+              <div class="kpi-icon-wrapper icon-blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+              </div>
             </div>
           </div>
 
@@ -922,7 +960,7 @@
                     <td>11 Okt 2025</td>
                     <td><span class="badge-status badge-warning">Dalam Perawatan</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="alert('Update status pengerjaan tiket TRX-MNT-001')">Detail Tiket</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="showToast('Tiket TRX-MNT-001 sedang diproses oleh Dealer Honda Astra.')">Detail Tiket</button>
                     </td>
                   </tr>
                   <tr>
@@ -934,7 +972,7 @@
                     <td>09 Okt 2025</td>
                     <td><span class="badge-status badge-warning">Dalam Perawatan</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="alert('Update status pengerjaan tiket TRX-MNT-002')">Detail Tiket</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="showToast('Tiket TRX-MNT-002 sedang menunggu sparepart lampu.')">Detail Tiket</button>
                     </td>
                   </tr>
                   <tr>
@@ -946,7 +984,7 @@
                     <td>04 Okt 2025</td>
                     <td><span class="badge-status badge-success">Selesai Servis</span></td>
                     <td style="text-align: center;">
-                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="alert('Riwayat tiket TRX-MNT-003 telah selesai.')">Riwayat</button>
+                      <button class="btn btn-secondary" style="height: 28px; font-size: 12px; padding: 0 8px;" onclick="showToast('Tiket TRX-MNT-003 telah selesai dikerjakan.')">Riwayat</button>
                     </td>
                   </tr>
                 </tbody>
@@ -981,28 +1019,36 @@
                 <span class="kpi-label">Total Aset</span>
                 <div class="kpi-value" id="lap-total" style="font-size: 22px;">248</div>
               </div>
-              <div class="kpi-icon-wrapper icon-blue" style="width: 36px; height: 36px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+              <div class="kpi-icon-wrapper icon-blue" style="width: 36px; height: 36px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+              </div>
             </div>
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Aset Aktif</span>
                 <div class="kpi-value" id="lap-active" style="font-size: 22px;">230</div>
               </div>
-              <div class="kpi-icon-wrapper icon-emerald" style="width: 36px; height: 36px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <div class="kpi-icon-wrapper icon-emerald" style="width: 36px; height: 36px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
             </div>
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Aset Rusak</span>
                 <div class="kpi-value" id="lap-broken" style="font-size: 22px;">8</div>
               </div>
-              <div class="kpi-icon-wrapper icon-amber" style="width: 36px; height: 36px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+              <div class="kpi-icon-wrapper icon-amber" style="width: 36px; height: 36px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+              </div>
             </div>
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Dalam Perawatan</span>
                 <div class="kpi-value" id="lap-maint" style="font-size: 22px;">10</div>
               </div>
-              <div class="kpi-icon-wrapper icon-rose" style="width: 36px; height: 36px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div class="kpi-icon-wrapper icon-rose" style="width: 36px; height: 36px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              </div>
             </div>
           </div>
 
@@ -1036,17 +1082,19 @@
       <!-- App Footer -->
       <footer class="app-footer">
         <span>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi. Sistem Manajemen Aset Kampus.</span>
-        <span>SaranaPrasana v2.0.0 (Clean Enterprise Edition)</span>
+        <span>SaranaPrasana v2.2.0 (Clean Enterprise Edition)</span>
       </footer>
     </div>
   </div>
 
-  <!-- ================= MODAL 1: TAMBAH DATA ASET BARU ================= -->
+  <!-- ================= MODAL 1: TAMBAH DATA ASET BARU (SATU PINTU) ================= -->
   <div id="modalAddAsset" class="modal-overlay">
     <div class="modal-dialog">
       <div class="modal-header">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="color: var(--color-primary); display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg></span>
+          <span style="color: var(--color-primary); display: flex;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+          </span>
           <h3 class="modal-title">Tambah Data Aset Baru</h3>
         </div>
         <button type="button" class="modal-close-btn" onclick="closeModal('modalAddAsset')">
@@ -1114,7 +1162,7 @@
           </div>
 
           <div class="form-group" style="margin-bottom: 0;">
-            <label class="form-label">Keterangan</label>
+            <label class="form-label">Keterangan Spesifikasi</label>
             <textarea id="add_keterangan" class="form-textarea" placeholder="Spesifikasi teknis singkat atau catatan garansi"></textarea>
           </div>
         </div>
@@ -1209,9 +1257,67 @@
     </div>
   </div>
 
+  <!-- ================= MODAL 4: DETAIL SPESIFIKASI ASET ================= -->
+  <div id="modalDetailAsset" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 580px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-primary); display: flex;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+          <h3 class="modal-title" id="detailModalTitle">Lembar Spesifikasi Aset</h3>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalDetailAsset')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="detailModalBody">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalDetailAsset')">Tutup</button>
+        <button type="button" class="btn btn-primary" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          Cetak Label BMN
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 5: PENGATURAN SISTEM ================= -->
+  <div id="modalSettings" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3 class="modal-title">Pengaturan Sistem</h3>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalSettings')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="background: var(--color-surface-alt); padding: 14px; border-radius: var(--radius-md); font-size: 13px;">
+          <div style="font-weight: 700; color: var(--color-text-title); margin-bottom: 4px;">SaranaPrasana Asset Management</div>
+          <div style="color: var(--color-text-muted);">Versi: 2.2.0 (Clean Enterprise Edition)</div>
+          <div style="color: var(--color-text-muted); margin-top: 2px;">Database Docker: PostgreSQL 16 (Port 5435)</div>
+          <div style="color: var(--color-text-muted); margin-top: 2px;">Tugas UAS: Pemrograman Web 2</div>
+        </div>
+        <button type="button" class="btn btn-secondary" onclick="handleResetDefaultData()" style="width: 100%;">
+          Reset Data Aset ke Default (A-001 s/d A-010)
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="closeModal('modalSettings')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="appToast" class="toast-notification">
-    <span style="color: var(--color-success); display: flex;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span>
+    <span style="color: var(--color-success); display: flex;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    </span>
     <span id="toastMessage">Aksi berhasil dilakukan</span>
   </div>
 
@@ -1225,118 +1331,20 @@
     let deleteTargetId = null;
 
     document.addEventListener('DOMContentLoaded', () => {
-      initRouter();
       loadInitialAssets();
       initDashboardCharts();
       renderLaporanTable();
       updateLaporanKpi();
+      checkUrlQueryActions();
     });
 
-    function initRouter() {
-      const hash = window.location.hash.replace('#', '') || 'dashboard';
-      switchRoute(hash);
-      window.addEventListener('hashchange', () => {
-        const newHash = window.location.hash.replace('#', '') || 'dashboard';
-        switchRoute(newHash);
-      });
-    }
-
-    
-function switchRoute(routeName) {
-  const routes = {
-    'dashboard': {
-      viewId: 'view-dashboard',
-      navId: 'nav-dashboard',
-      accordId: null,
-      breadcrumb: '<span class="breadcrumb-item">SaranaPrasana</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Dashboard</span>'
-    },
-    'master': {
-      viewId: 'view-master',
-      navId: 'sub-master',
-      accordId: 'accordMaster',
-      breadcrumb: '<a href="#dashboard" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item">Dashboard</a><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Aset</span>'
-    },
-    'kategori': {
-      viewId: 'view-kategori',
-      navId: 'sub-kategori',
-      accordId: 'accordMaster',
-      breadcrumb: '<a href="#dashboard" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item">Dashboard</a><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Kategori Aset</span>'
-    },
-    'lokasi': {
-      viewId: 'view-lokasi',
-      navId: 'sub-lokasi',
-      accordId: 'accordMaster',
-      breadcrumb: '<a href="#dashboard" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item">Dashboard</a><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Lokasi Aset</span>'
-    },
-    'pemeliharaan': {
-      viewId: 'view-pemeliharaan',
-      navId: 'sub-pemeliharaan',
-      accordId: 'accordTrans',
-      breadcrumb: '<a href="#dashboard" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item">Dashboard</a><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Transaksi</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Pemeliharaan</span>'
-    },
-    'laporan': {
-      viewId: 'view-laporan',
-      navId: 'nav-laporan',
-      accordId: null,
-      breadcrumb: '<a href="#dashboard" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item">Dashboard</a><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Laporan</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Laporan Aset</span>'
-    }
-  };
-
-  const target = routes[routeName] || routes['dashboard'];
-
-  // 1. Hide all views, show target view with zero reload
-  Object.keys(routes).forEach(k => {
-    const v = document.getElementById(routes[k].viewId);
-    if (v) {
-      if (k === (routes[routeName] ? routeName : 'dashboard')) {
-        v.classList.remove('hidden');
-      } else {
-        v.classList.add('hidden');
+    function checkUrlQueryActions() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('add') === 'true') {
+        switchRoute('master');
+        setTimeout(openAddAssetModal, 200);
       }
     }
-  });
-
-  // 2. Clear all active pills
-  document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.sidebar-sub-link').forEach(el => el.classList.remove('active'));
-
-  // 3. Set active pill on the exact clicked item
-  const activeNav = document.getElementById(target.navId);
-  if (activeNav) activeNav.classList.add('active');
-
-  // 4. Manage accordions
-  const accordMaster = document.getElementById('accordMaster');
-  const accordTrans = document.getElementById('accordTrans');
-
-  if (target.accordId === 'accordMaster') {
-    if (accordMaster) accordMaster.classList.add('open');
-    if (accordTrans) accordTrans.classList.remove('open');
-  } else if (target.accordId === 'accordTrans') {
-    if (accordTrans) accordTrans.classList.add('open');
-    if (accordMaster) accordMaster.classList.remove('open');
-  } else {
-    // Top-level views
-    if (accordMaster) accordMaster.classList.remove('open');
-    if (accordTrans) accordTrans.classList.remove('open');
-  }
-
-  // 5. Update breadcrumb
-  const breadcrumbEl = document.getElementById('breadcrumbArea');
-  if (breadcrumbEl) breadcrumbEl.innerHTML = target.breadcrumb;
-
-  // 6. Update URL hash without reload
-  const targetHash = '#' + (routes[routeName] ? routeName : 'dashboard');
-  if (window.location.hash !== targetHash) {
-    window.location.hash = targetHash;
-  }
-
-  // 7. Scroll main content to top
-  window.scrollTo(0, 0);
-
-  // 8. Close mobile drawer if open
-  document.body.classList.remove('sidebar-mobile-open');
-}
-
 
     function loadInitialAssets() {
       if (window.SarprasStore && typeof window.SarprasStore.getStoredAssets === 'function') {
@@ -1370,13 +1378,18 @@ function switchRoute(routeName) {
           <tr>
             <td style="text-align: center;"><input type="checkbox" class="row-checkbox" value="${item.id}"></td>
             <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${item.id}</td>
-            <td style="font-weight: 600; color: var(--color-text-title);">${item.nama}</td>
+            <td style="font-weight: 600; color: var(--color-text-title); cursor: pointer;" onclick="openDetailModal('${item.id}')">
+              <span style="border-bottom: 1px dotted var(--color-border);">${item.nama}</span>
+            </td>
             <td>${item.kategori}</td>
             <td style="color: var(--color-text-muted);">${item.lokasi}</td>
             <td><span class="badge-status ${badgeClass}">${item.kondisi}</span></td>
             <td style="color: var(--color-text-muted);">${displayDate}</td>
             <td style="text-align: center;">
               <div style="display: flex; gap: 6px; justify-content: center;">
+                <button type="button" class="table-action-icon-btn" onclick="openDetailModal('${item.id}')" title="Lihat Detail">
+                  ${window.SARPRAS_ICONS.eye}
+                </button>
                 <button type="button" class="table-action-icon-btn" onclick="openEditModal('${item.id}')" title="Edit Aset">
                   ${window.SARPRAS_ICONS.edit}
                 </button>
@@ -1436,19 +1449,24 @@ function switchRoute(routeName) {
       document.getElementById('filterLocation').value = 'ALL';
       document.getElementById('filterCondition').value = 'ALL';
       document.getElementById('filterSearchInput').value = '';
+      const globalInput = document.getElementById('globalSearchInput');
+      if (globalInput) globalInput.value = '';
       loadInitialAssets();
     }
 
     function filterByCategory(cat) {
+      switchRoute('master');
       document.getElementById('filterCategory').value = cat;
       applyFilters();
     }
 
     function filterByLocation(loc) {
+      switchRoute('master');
       document.getElementById('filterLocation').value = loc;
       applyFilters();
     }
 
+    /* Modal Tambah Data (Satu Pintu CRUD) */
     function openAddAssetModal() {
       const all = window.SarprasStore.getStoredAssets();
       const nextNum = all.length + 1;
@@ -1472,8 +1490,9 @@ function switchRoute(routeName) {
       const kondisi = document.getElementById('add_kondisi').value;
       const tgl = document.getElementById('add_tgl').value.trim();
       const supplier = document.getElementById('add_supplier').value.trim() || 'CV Mitra Mandiri';
+      const keterangan = document.getElementById('add_keterangan').value.trim() || 'Aset operasional instansi';
 
-      const newAsset = { id, nama, kategori, lokasi, kondisi, tanggal: tgl, tgl, supplier };
+      const newAsset = { id, nama, kategori, lokasi, kondisi, tanggal: tgl, tgl, supplier, keterangan };
       window.SarprasStore.addAsset(newAsset);
 
       closeModal('modalAddAsset');
@@ -1483,6 +1502,7 @@ function switchRoute(routeName) {
       showToast(`Aset ${nama} (${id}) berhasil ditambahkan!`);
     }
 
+    /* Modal Edit Data */
     function openEditModal(id) {
       const asset = window.SarprasStore.getAssetById(id);
       if (!asset) return;
@@ -1512,6 +1532,7 @@ function switchRoute(routeName) {
       showToast(`Data aset ${id} berhasil diperbarui!`);
     }
 
+    /* Modal Hapus Data */
     function promptDelete(id, nama) {
       deleteTargetId = id;
       document.getElementById('deleteTargetName').textContent = `"${nama} (${id})"`;
@@ -1529,6 +1550,78 @@ function switchRoute(routeName) {
         deleteTargetId = null;
       }
     });
+
+    /* Modal Detail Aset */
+    function openDetailModal(id) {
+      const asset = window.SarprasStore.getAssetById(id);
+      if (!asset) return;
+
+      let badgeClass = 'badge-success';
+      if (asset.kondisi === 'Dalam Perawatan') badgeClass = 'badge-warning';
+      else if (asset.kondisi === 'Rusak') badgeClass = 'badge-danger';
+
+      const dateStr = asset.tanggal || asset.tgl || '12 Jan 2023';
+      const supplierStr = asset.supplier || 'PT Mitra Mandiri';
+      const ketStr = asset.keterangan || 'Spesifikasi inventaris BMN resmi.';
+
+      document.getElementById('detailModalTitle').textContent = `Spesifikasi Aset #${asset.id}`;
+      document.getElementById('detailModalBody').innerHTML = `
+        <div style="background: var(--color-surface-alt); padding: 16px; border-radius: var(--radius-md); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--color-text-title);">${asset.nama}</div>
+            <div class="font-code" style="color: var(--color-primary); font-weight: 700; font-size: 13px; margin-top: 2px;">${asset.id}</div>
+          </div>
+          <span class="badge-status ${badgeClass}">${asset.kondisi}</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: 13px;">
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 11.5px; text-transform: uppercase; font-weight: 600;">Kategori:</span>
+            <div style="font-weight: 600; color: var(--color-text-title); margin-top: 2px;">${asset.kategori}</div>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 11.5px; text-transform: uppercase; font-weight: 600;">Lokasi Ruang:</span>
+            <div style="font-weight: 600; color: var(--color-text-title); margin-top: 2px;">${asset.lokasi}</div>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 11.5px; text-transform: uppercase; font-weight: 600;">Tanggal Beli:</span>
+            <div style="font-weight: 600; color: var(--color-text-title); margin-top: 2px;">${dateStr}</div>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 11.5px; text-transform: uppercase; font-weight: 600;">Supplier Rekanan:</span>
+            <div style="font-weight: 600; color: var(--color-text-title); margin-top: 2px;">${supplierStr}</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px; font-size: 13px;">
+          <span style="color: var(--color-text-muted); font-size: 11.5px; text-transform: uppercase; font-weight: 600;">Keterangan / Catatan:</span>
+          <div style="background: var(--color-bg-canvas); padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-top: 4px; color: var(--color-text-body);">
+            ${ketStr}
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; border-top: 1px dashed var(--color-border); padding-top: 14px; display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            ${window.SARPRAS_ICONS.qrcode}
+            <span class="font-code" style="font-size: 12px; color: var(--color-text-muted);">BMN-NUP-${asset.id}-2025</span>
+          </div>
+          <span style="font-size: 11px; color: var(--color-success); font-weight: 600;">Terverifikasi BMN</span>
+        </div>
+      `;
+
+      openModal('modalDetailAsset');
+    }
+
+    function handleResetDefaultData() {
+      if (confirm('Apakah Anda yakin ingin mereset seluruh data kembali ke 10 aset bawaan (A-001 s/d A-010)?')) {
+        window.SarprasStore.resetMockData();
+        closeModal('modalSettings');
+        loadInitialAssets();
+        renderLaporanTable();
+        updateLaporanKpi();
+        showToast('Data berhasil direset ke setelan awal.');
+      }
+    }
 
     function toggleSelectAll(master) {
       document.querySelectorAll('.row-checkbox').forEach(cb => cb.checked = master.checked);

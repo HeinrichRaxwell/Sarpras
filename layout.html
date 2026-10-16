@@ -16,7 +16,6 @@
 
   <div class="app-layout-wrapper">
     <!-- 1. APP SIDEBAR -->
-        <!-- 1. APP SIDEBAR -->
     <aside class="app-sidebar" id="appSidebar">
       <div class="sidebar-brand">
         <div class="brand-icon-box">SP</div>
@@ -29,49 +28,44 @@
       <nav class="sidebar-menu">
         <div class="menu-category-label">MENU UTAMA</div>
 
-        <!-- Dashboard Link -->
-        <a href="pages/dashboard.html" class="nav-link active">
+        <a href="pages/dashboard.html#dashboard" class="nav-link active">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
           <span class="nav-label">Dashboard</span>
         </a>
 
-        <!-- Data Master Accordion -->
-        <div class="sidebar-accordion-item" id="accordMaster">
-          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordMaster')">
+        <div class="sidebar-accordion-item open" id="accordMaster">
+          <button type="button" class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordMaster')">
             <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
             <span class="nav-label">Data Master</span>
             <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
+          </button>
           <div class="sidebar-sub-menu">
-            <a href="pages/data-master.html" class="sidebar-sub-link">Aset</a>
-            <a href="pages/kategori.html" class="sidebar-sub-link">Kategori Aset</a>
-            <a href="pages/lokasi.html" class="sidebar-sub-link">Lokasi</a>
+            <a href="pages/dashboard.html#master" class="sidebar-sub-link active">Aset</a>
+            <a href="pages/dashboard.html#kategori" class="sidebar-sub-link">Kategori Aset</a>
+            <a href="pages/dashboard.html#lokasi" class="sidebar-sub-link">Lokasi</a>
           </div>
         </div>
 
-        <!-- Transaksi Accordion -->
         <div class="sidebar-accordion-item" id="accordTrans">
-          <div class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
+          <button type="button" class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
             <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-8"/><path d="M16 12h-8"/><path d="M16 16h-5"/></svg>
             <span class="nav-label">Transaksi</span>
             <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
+          </button>
           <div class="sidebar-sub-menu">
-            <a href="pages/pemeliharaan.html" class="sidebar-sub-link">Pemeliharaan</a>
+            <a href="pages/dashboard.html#pemeliharaan" class="sidebar-sub-link">Pemeliharaan</a>
           </div>
         </div>
 
-        <!-- Laporan Link -->
-        <a href="pages/laporan.html" class="nav-link">
+        <a href="pages/dashboard.html#laporan" class="nav-link">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
           <span class="nav-label">Laporan</span>
         </a>
 
-        <!-- Pengaturan Link -->
-        <a href="javascript:void(0)" onclick="alert('Modul Pengaturan')" class="nav-link">
+        <button type="button" class="nav-link" onclick="alert('Modul Pengaturan')">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="nav-label">Pengaturan</span>
-        </a>
+        </button>
 
         <div class="menu-category-label" style="margin-top: 14px;">AUTENTIKASI</div>
 
@@ -95,7 +89,9 @@
       <header class="top-command-header">
         <div class="header-left-cluster">
           <button type="button" class="btn-sidebar-toggle" id="sidebarToggleBtn" title="Toggle Sidebar">
-            <span id="sidebarToggleIcon" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span>
+            <span id="sidebarToggleIcon" style="display: flex;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </span>
           </button>
           <nav class="breadcrumb-nav">
             <span class="breadcrumb-item">SaranaPrasana</span>
@@ -106,7 +102,9 @@
 
         <div class="header-center-search">
           <div class="search-input-wrapper">
-            <span class="search-icon-prefix" style="display: flex;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <span class="search-icon-prefix" style="display: flex;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
             <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Cari data di sistem...">
             <span class="search-shortcut-badge">Ctrl K</span>
           </div>
@@ -114,7 +112,9 @@
 
         <div class="header-right-cluster">
           <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Ganti Tema">
-            <span id="themeToggleIconContainer" style="display: flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+            <span id="themeToggleIconContainer" style="display: flex;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </span>
           </button>
           <div style="display: flex; align-items: center; gap: 8px;">
             <div class="user-avatar" style="width: 32px; height: 32px; font-size: 12px;">AD</div>
@@ -148,6 +148,7 @@
     </div>
   </div>
 
+  <script src="assets/js/icons.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
