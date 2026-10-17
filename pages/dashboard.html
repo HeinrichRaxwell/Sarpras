@@ -271,7 +271,7 @@
 
         <div class="menu-category-label" style="margin-top: 14px;">AUTENTIKASI</div>
 
-        <a href="../index.html" class="nav-link">
+        <a href="javascript:void(0)" class="nav-link" onclick="handleLogout()" style="color: var(--color-danger);">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
           <span class="nav-label">Keluar</span>
         </a>
@@ -812,9 +812,9 @@
               <p class="page-description">Lihat dan unduh laporan aset sesuai periode inventarisasi yang diinginkan.</p>
             </div>
             <div style="display: flex; gap: 10px;">
-              <button type="button" class="btn btn-secondary" onclick="window.print()">
+              <button type="button" class="btn btn-secondary" onclick="openKIRPrintPreview()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-                Cetak Laporan (KIR)
+                Pratinjau & Cetak KIR Resmi
               </button>
               <button type="button" class="btn btn-primary" onclick="exportDataToCSV()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
@@ -1279,35 +1279,346 @@
     </div>
   </div>
 
-  <!-- ================= MODAL 9: PENGATURAN SISTEM ================= -->
-  <div id="modalSettings" class="modal-overlay">
-    <div class="modal-dialog" style="max-width: 480px;">
+    <!-- ================= MODAL: PRATINJAU CETAK DOKUMEN KIR RESMI ================= -->
+  <div id="modalPreviewKIR" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 980px;">
       <div class="modal-header">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-          <h3 class="modal-title">Pengaturan Sistem</h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          <h3 class="modal-title">Pratinjau Dokumen Kartu Inventaris Ruangan (KIR) Resmi</h3>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalPreviewKIR')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="background: var(--color-bg-canvas); padding: 20px; max-height: 75vh; overflow-y: auto;">
+        <div id="kirPaperContent" class="kir-paper-sheet">
+          <!-- Populated by renderKIRDocumentHTML() -->
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <div style="font-size: 12px; color: var(--color-text-muted);">
+          Format standar: A4 Landscape • Bergaris tegas resmi BMN • Pengesahan tanda tangan 3 pihak
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalPreviewKIR')">Tutup</button>
+          <button type="button" class="btn btn-primary" onclick="executeOfficialPrint()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+            Cetak / Simpan PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: PENGATURAN SISTEM & USER MANAGEMENT (RBAC) ================= -->
+  <div id="modalSettings" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 820px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3 class="modal-title">Pusat Pengaturan Sistem & Hak Akses</h3>
         </div>
         <button type="button" class="modal-close-btn" onclick="closeModal('modalSettings')">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
         </button>
       </div>
-      <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
-        <div style="background: var(--color-surface-alt); padding: 14px; border-radius: var(--radius-md); font-size: 13px;">
-          <div style="font-weight: 700; color: var(--color-text-title); margin-bottom: 4px;">SaranaPrasana Asset Management</div>
-          <div style="color: var(--color-text-muted);">Versi: 2.3.0 (Clean Enterprise Edition)</div>
-          <div style="color: var(--color-text-muted); margin-top: 2px;">Database Docker: PostgreSQL 16 (Port 5435)</div>
-          <div style="color: var(--color-text-muted); margin-top: 2px;">Tugas UAS: Pemrograman Web 2</div>
+      <div class="modal-body" style="padding: 16px 24px; max-height: 75vh; overflow-y: auto;">
+        <!-- Settings Tabs -->
+        <div class="settings-nav-tabs">
+          <button type="button" class="settings-tab-btn active" id="btnTabSettingsProfil" onclick="switchSettingsTab('profil')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Profil Instansi & Kampus
+          </button>
+          <button type="button" class="settings-tab-btn" id="btnTabSettingsUsers" onclick="switchSettingsTab('users')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Manajemen Pengguna (RBAC)
+          </button>
+          <button type="button" class="settings-tab-btn" id="btnTabSettingsSystem" onclick="switchSettingsTab('system')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Sistem & Cadangan Data
+          </button>
         </div>
-        <button type="button" class="btn btn-secondary" onclick="promptResetDefaultData()" style="width: 100%;">
-          Reset Seluruh Data ke Setelan Awal
-        </button>
+
+        <!-- TAB 1: PROFIL INSTANSI -->
+        <div id="paneSettingsProfil" class="settings-pane">
+          <form id="formSettingsProfil" onsubmit="handleSaveSettingsProfil(event)" style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Nama Instansi / Universitas <span class="required">*</span></label>
+                <input type="text" id="set_instansi" class="form-input" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Biro / Fakultas / Unit Kerja <span class="required">*</span></label>
+                <input type="text" id="set_unit" class="form-input" required>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Alamat Lengkap Kampus <span class="required">*</span></label>
+              <input type="text" id="set_alamat" class="form-input" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Nomor Telepon Resmi</label>
+                <input type="text" id="set_telepon" class="form-input">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Surel (Email) Resmi Sarpras</label>
+                <input type="email" id="set_email" class="form-input">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Nama Pejabat Penanggung Jawab BMN <span class="required">*</span></label>
+                <input type="text" id="set_pj_nama" class="form-input" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">NIP Pejabat Penanggung Jawab <span class="required">*</span></label>
+                <input type="text" id="set_pj_nip" class="form-input font-code" required>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Jabatan Struktural Pejabat</label>
+                <input type="text" id="set_pj_jabatan" class="form-input">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Format Penomoran NUP / Kode BMN</label>
+                <input type="text" id="set_format_nup" class="form-input font-code">
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+              <button type="submit" class="btn btn-primary">Simpan Profil Instansi</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB 2: MANAJEMEN PENGGUNA (RBAC) -->
+        <div id="paneSettingsUsers" class="settings-pane" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <div>
+              <div style="font-weight: 700; color: var(--color-text-title); font-size: 14px;">Daftar Akun Pengguna & Hak Akses</div>
+              <div style="font-size: 12px; color: var(--color-text-muted);">Akun baru yang didaftarkan langsung aktif dan dapat digunakan login ke sistem.</div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="openAddUserModal()" style="height: 32px; font-size: 12px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+              Tambah Pengguna
+            </button>
+          </div>
+
+          <div class="table-responsive-wrapper" style="border: 1px solid var(--color-border); border-radius: var(--radius-md);">
+            <table class="data-table" style="font-size: 12.5px;">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama Lengkap</th>
+                  <th>Username</th>
+                  <th>Hak Akses (Role)</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th style="text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 3: SISTEM & DATABASE -->
+        <div id="paneSettingsSystem" class="settings-pane" style="display: none; display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: var(--color-surface-alt); padding: 14px 16px; border-radius: var(--radius-md); font-size: 13px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 700; color: var(--color-text-title);">Database PostgreSQL Docker (Port 5435)</div>
+                <div style="color: var(--color-text-muted); font-size: 12px; margin-top: 2px;">Container: <code>saranaprasana-postgres</code> (PostgreSQL 16)</div>
+              </div>
+              <span class="badge-status badge-success">Terhubung Aktif</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div style="border: 1px solid var(--color-border); padding: 14px; border-radius: var(--radius-md);">
+              <div style="font-weight: 700; color: var(--color-text-title); font-size: 13px; margin-bottom: 4px;">Cadangkan Data (Backup)</div>
+              <p style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 12px;">Ekspor seluruh inventaris, kategori, lokasi, tiket servis, dan akun ke format file JSON.</p>
+              <button type="button" class="btn btn-secondary" onclick="exportDataBackupJSON()" style="width: 100%; height: 34px; font-size: 12.5px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Unduh Cadangan JSON
+              </button>
+            </div>
+
+            <div style="border: 1px solid var(--color-border); padding: 14px; border-radius: var(--radius-md);">
+              <div style="font-weight: 700; color: var(--color-text-title); font-size: 13px; margin-bottom: 4px;">Pulihkan Data (Restore)</div>
+              <p style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 12px;">Impor file cadangan JSON untuk memulihkan seluruh basis data sarana prasarana.</p>
+              <input type="file" id="restoreFileInput" accept=".json" style="display: none;" onchange="handleRestoreJSON(event)">
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('restoreFileInput').click()" style="width: 100%; height: 34px; font-size: 12.5px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                Pilih File JSON & Pulihkan
+              </button>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid var(--color-border); padding-top: 14px; margin-top: 4px;">
+            <div style="font-weight: 700; color: var(--color-danger); font-size: 13px; margin-bottom: 4px;">Zona Berbahaya (Factory Reset)</div>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 10px;">Mengembalikan seluruh data aset, kategori, lokasi, tiket servis, dan user ke setelan awal pabrik.</p>
+            <button type="button" class="btn btn-danger" onclick="promptResetDefaultData()" style="height: 34px; font-size: 12.5px;">
+              Reset Seluruh Data ke Setelan Awal
+            </button>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="closeModal('modalSettings')">Tutup</button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalSettings')">Tutup</button>
       </div>
     </div>
   </div>
 
+  <!-- ================= MODAL: TAMBAH PENGGUNA BARU ================= -->
+  <div id="modalAddUser" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Tambah Pengguna Baru</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddUser')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formAddUser" onsubmit="handleSaveNewUser(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Nama Lengkap <span class="required">*</span></label>
+            <input type="text" id="user_nama" class="form-input" placeholder="Contoh: Budi Prasetyo" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Username <span class="required">*</span></label>
+              <input type="text" id="user_username" class="form-input font-code" placeholder="Contoh: budi" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Password <span class="required">*</span></label>
+              <input type="password" id="user_password" class="form-input font-code" placeholder="Minimal 6 karakter" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Email Resmi</label>
+            <input type="email" id="user_email" class="form-input" placeholder="Contoh: budi@unpam.ac.id">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Hak Akses (Role) <span class="required">*</span></label>
+              <select id="user_role" class="form-select" required>
+                <option value="Super Admin">Super Admin (Akses Penuh)</option>
+                <option value="Staf Sarpras" selected>Staf Sarpras (Operasional)</option>
+                <option value="Pimpinan">Pimpinan (Tinjauan & Cetak)</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Status Akun</label>
+              <select id="user_status" class="form-select">
+                <option value="Aktif" selected>Aktif</option>
+                <option value="Nonaktif">Nonaktif</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddUser')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Pengguna</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT PENGGUNA ================= -->
+  <div id="modalEditUser" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Akun Pengguna</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalEditUser')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formEditUser" onsubmit="handleSaveEditUser(event)">
+        <input type="hidden" id="edit_user_id">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Nama Lengkap <span class="required">*</span></label>
+            <input type="text" id="edit_user_nama" class="form-input" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Username <span class="required">*</span></label>
+              <input type="text" id="edit_user_username" class="form-input font-code" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Ganti Password (Kosongkan bila tidak diubah)</label>
+              <input type="password" id="edit_user_password" class="form-input font-code" placeholder="Password baru">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Email Resmi</label>
+            <input type="email" id="edit_user_email" class="form-input">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Hak Akses (Role) <span class="required">*</span></label>
+              <select id="edit_user_role" class="form-select" required>
+                <option value="Super Admin">Super Admin (Akses Penuh)</option>
+                <option value="Staf Sarpras">Staf Sarpras (Operasional)</option>
+                <option value="Pimpinan">Pimpinan (Tinjauan & Cetak)</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Status Akun</label>
+              <select id="edit_user_status" class="form-select">
+                <option value="Aktif">Aktif</option>
+                <option value="Nonaktif">Nonaktif</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalEditUser')">Batal</button>
+          <button type="submit" class="btn btn-primary">Perbarui Pengguna</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: HAPUS PENGGUNA ================= -->
+  <div id="modalDeleteUser" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: var(--color-danger);">Hapus Pengguna</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalDeleteUser')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 14px; line-height: 1.6; color: var(--color-text-body);">
+          Apakah Anda yakin ingin menghapus akun pengguna <strong id="deleteUserLabel" class="font-code" style="color: var(--color-danger);"></strong>? Pengguna ini tidak akan dapat login lagi.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalDeleteUser')">Batal</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteUserBtn">Hapus Akun</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container Khusus Dokumen KIR Resmi Saat window.print() -->
+  <div id="officialPrintDocument"></div>
   <!-- Toast Notification Container -->
   <div id="appToast" class="toast-notification">
     <span style="color: var(--color-success); display: flex;">
@@ -1328,6 +1639,7 @@
     window.barChartInstance = null;
 
     document.addEventListener('DOMContentLoaded', () => {
+      initCurrentUserAndRBAC();
       populateDynamicDropdowns();
       loadInitialAssets();
       renderKategoriTable();
@@ -1336,6 +1648,8 @@
       initDashboardCharts();
       updateAllDashboardWidgets();
       renderLaporanTable();
+      loadSettingsProfilIntoForm();
+      renderUserTable();
       checkUrlQueryActions();
     });
 
@@ -2243,6 +2557,450 @@
 
     function updateLaporanKpi() {
       updateAllDashboardWidgets();
+    }
+
+    
+    // --- 7. AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC) ---
+    function initCurrentUserAndRBAC() {
+      const user = window.SarprasStore.getCurrentUser();
+      if (!user) return;
+
+      const initials = user.nama ? user.nama.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'AD';
+
+      const elSideName = document.getElementById('sidebarUserName');
+      const elSideRole = document.getElementById('sidebarUserRole');
+      const elSideAvatar = document.getElementById('sidebarAvatar');
+
+      const elTopName = document.getElementById('topbarUserName');
+      const elTopRole = document.getElementById('topbarUserRole');
+      const elTopAvatar = document.getElementById('topbarAvatar');
+
+      const elWelcome = document.getElementById('welcomeGreeting');
+
+      if (elSideName) elSideName.textContent = user.nama;
+      if (elSideRole) elSideRole.textContent = user.role;
+      if (elSideAvatar) elSideAvatar.textContent = initials;
+
+      if (elTopName) elTopName.textContent = user.nama;
+      if (elTopRole) elTopRole.textContent = user.role;
+      if (elTopAvatar) elTopAvatar.textContent = initials;
+
+      if (elWelcome) elWelcome.textContent = `Selamat Datang, ${user.nama} 👋`;
+
+      // Apply RBAC UI Rules
+      const btnAddAsset = document.getElementById('openAddModalBtn');
+      const btnAddTicket = document.getElementById('openAddTicketBtn');
+      const tabUsersBtn = document.getElementById('btnTabSettingsUsers');
+
+      if (user.role === 'Pimpinan') {
+        if (btnAddAsset) btnAddAsset.style.display = 'none';
+        if (btnAddTicket) btnAddTicket.style.display = 'none';
+        if (tabUsersBtn) tabUsersBtn.style.display = 'none';
+      } else if (user.role === 'Staf Sarpras') {
+        if (btnAddAsset) btnAddAsset.style.display = 'flex';
+        if (btnAddTicket) btnAddTicket.style.display = 'flex';
+        if (tabUsersBtn) tabUsersBtn.style.display = 'none';
+      } else {
+        if (btnAddAsset) btnAddAsset.style.display = 'flex';
+        if (btnAddTicket) btnAddTicket.style.display = 'flex';
+        if (tabUsersBtn) tabUsersBtn.style.display = 'flex';
+      }
+    }
+
+    function handleLogout() {
+      window.SarprasStore.logout();
+    }
+
+    // --- 8. SETTINGS & USER MANAGEMENT ENGINE ---
+    function switchSettingsTab(tabName) {
+      document.getElementById('btnTabSettingsProfil').classList.toggle('active', tabName === 'profil');
+      document.getElementById('btnTabSettingsUsers').classList.toggle('active', tabName === 'users');
+      document.getElementById('btnTabSettingsSystem').classList.toggle('active', tabName === 'system');
+
+      document.getElementById('paneSettingsProfil').style.display = (tabName === 'profil') ? 'block' : 'none';
+      document.getElementById('paneSettingsUsers').style.display = (tabName === 'users') ? 'block' : 'none';
+      document.getElementById('paneSettingsSystem').style.display = (tabName === 'system') ? 'flex' : 'none';
+
+      if (tabName === 'users') {
+        renderUserTable();
+      } else if (tabName === 'profil') {
+        loadSettingsProfilIntoForm();
+      }
+    }
+
+    function loadSettingsProfilIntoForm() {
+      const s = window.SarprasStore.getSettings();
+      document.getElementById('set_instansi').value = s.instansi || '';
+      document.getElementById('set_unit').value = s.unit || '';
+      document.getElementById('set_alamat').value = s.alamat || '';
+      document.getElementById('set_telepon').value = s.telepon || '';
+      document.getElementById('set_email').value = s.email || '';
+      document.getElementById('set_pj_nama').value = s.pj_nama || '';
+      document.getElementById('set_pj_nip').value = s.pj_nip || '';
+      document.getElementById('set_pj_jabatan').value = s.pj_jabatan || '';
+      document.getElementById('set_format_nup').value = s.format_nup || '';
+    }
+
+    function handleSaveSettingsProfil(e) {
+      e.preventDefault();
+      const updated = {
+        instansi: document.getElementById('set_instansi').value.trim(),
+        unit: document.getElementById('set_unit').value.trim(),
+        alamat: document.getElementById('set_alamat').value.trim(),
+        telepon: document.getElementById('set_telepon').value.trim(),
+        email: document.getElementById('set_email').value.trim(),
+        pj_nama: document.getElementById('set_pj_nama').value.trim(),
+        pj_nip: document.getElementById('set_pj_nip').value.trim(),
+        pj_jabatan: document.getElementById('set_pj_jabatan').value.trim(),
+        format_nup: document.getElementById('set_format_nup').value.trim()
+      };
+      window.SarprasStore.saveSettings(updated);
+      showToast('Profil instansi berhasil diperbarui!');
+    }
+
+    function renderUserTable() {
+      const tbody = document.getElementById('userTableBody');
+      if (!tbody) return;
+      const users = window.SarprasStore.getUsers();
+
+      let html = '';
+      users.forEach(u => {
+        let badgeClass = 'badge-role-admin';
+        if (u.role === 'Staf Sarpras') badgeClass = 'badge-role-staff';
+        else if (u.role === 'Pimpinan') badgeClass = 'badge-role-pimpinan';
+
+        const isSuperAdmin = (u.id === 'USR-001');
+
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${u.id}</td>
+            <td style="font-weight: 600;">${u.nama}</td>
+            <td class="font-code" style="color: var(--color-text-muted);">${u.username}</td>
+            <td><span class="badge-role ${badgeClass}">${u.role}</span></td>
+            <td style="color: var(--color-text-muted);">${u.email || '-'}</td>
+            <td><span class="badge-status ${u.status === 'Aktif' ? 'badge-success' : 'badge-danger'}">${u.status}</span></td>
+            <td style="text-align: center;">
+              <div style="display: flex; gap: 6px; justify-content: center;">
+                <button type="button" class="table-action-icon-btn" onclick="openEditUserModal('${u.id}')" title="Edit Akun Pengguna">
+                  ${window.SARPRAS_ICONS.edit}
+                </button>
+                ${!isSuperAdmin ? `
+                <button type="button" class="table-action-icon-btn btn-delete" onclick="promptDeleteUser('${u.id}', '${u.username}')" title="Hapus Pengguna">
+                  ${window.SARPRAS_ICONS.trash}
+                </button>
+                ` : ''}
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function openAddUserModal() {
+      document.getElementById('user_nama').value = '';
+      document.getElementById('user_username').value = '';
+      document.getElementById('user_password').value = '';
+      document.getElementById('user_email').value = '';
+      document.getElementById('user_role').value = 'Staf Sarpras';
+      document.getElementById('user_status').value = 'Aktif';
+      openModal('modalAddUser');
+    }
+
+    function handleSaveNewUser(e) {
+      e.preventDefault();
+      const nama = document.getElementById('user_nama').value.trim();
+      const username = document.getElementById('user_username').value.trim().toLowerCase();
+      const password = document.getElementById('user_password').value.trim();
+      const email = document.getElementById('user_email').value.trim();
+      const role = document.getElementById('user_role').value;
+      const status = document.getElementById('user_status').value;
+
+      const users = window.SarprasStore.getUsers();
+      if (users.some(u => u.username.toLowerCase() === username)) {
+        showToast('Username sudah digunakan! Gunakan username lain.');
+        return;
+      }
+
+      const nextNum = users.length + 1;
+      const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+      const userId = 'USR-' + padNum;
+
+      const newUser = {
+        id: userId,
+        nama,
+        username,
+        password,
+        email: email || `${username}@unpam.ac.id`,
+        role,
+        status,
+        tgl_dibuat: new Date().toISOString().slice(0, 10)
+      };
+
+      window.SarprasStore.addUser(newUser);
+      closeModal('modalAddUser');
+      renderUserTable();
+      showToast(`Pengguna ${nama} (${username}) berhasil didaftarkan!`);
+    }
+
+    function openEditUserModal(userId) {
+      const u = window.SarprasStore.getUserById(userId);
+      if (!u) return;
+
+      document.getElementById('edit_user_id').value = u.id;
+      document.getElementById('edit_user_nama').value = u.nama;
+      document.getElementById('edit_user_username').value = u.username;
+      document.getElementById('edit_user_password').value = '';
+      document.getElementById('edit_user_email').value = u.email || '';
+      document.getElementById('edit_user_role').value = u.role;
+      document.getElementById('edit_user_status').value = u.status;
+
+      openModal('modalEditUser');
+    }
+
+    function handleSaveEditUser(e) {
+      e.preventDefault();
+      const id = document.getElementById('edit_user_id').value;
+      const nama = document.getElementById('edit_user_nama').value.trim();
+      const username = document.getElementById('edit_user_username').value.trim().toLowerCase();
+      const newPass = document.getElementById('edit_user_password').value.trim();
+      const email = document.getElementById('edit_user_email').value.trim();
+      const role = document.getElementById('edit_user_role').value;
+      const status = document.getElementById('edit_user_status').value;
+
+      const updatedFields = { nama, username, email, role, status };
+      if (newPass) {
+        updatedFields.password = newPass;
+      }
+
+      window.SarprasStore.updateUser(id, updatedFields);
+      closeModal('modalEditUser');
+      renderUserTable();
+
+      // If editing current logged in user, refresh profile header
+      const cur = window.SarprasStore.getCurrentUser();
+      if (cur && cur.id === id) {
+        window.SarprasStore.setCurrentUser({ ...cur, ...updatedFields });
+        initCurrentUserAndRBAC();
+      }
+
+      showToast(`Data pengguna ${username} berhasil diperbarui!`);
+    }
+
+    let deleteTargetUserId = null;
+    function promptDeleteUser(userId, username) {
+      if (userId === 'USR-001') {
+        showToast('Akun Super Administrator utama tidak dapat dihapus!');
+        return;
+      }
+      deleteTargetUserId = userId;
+      document.getElementById('deleteUserLabel').textContent = `${username} (${userId})`;
+      openModal('modalDeleteUser');
+    }
+
+    document.getElementById('confirmDeleteUserBtn').addEventListener('click', () => {
+      if (deleteTargetUserId) {
+        window.SarprasStore.deleteUser(deleteTargetUserId);
+        closeModal('modalDeleteUser');
+        renderUserTable();
+        showToast(`Akun pengguna ${deleteTargetUserId} berhasil dihapus.`);
+        deleteTargetUserId = null;
+      }
+    });
+
+    // --- 9. BACKUP & RESTORE ENGINE ---
+    function exportDataBackupJSON() {
+      const data = {
+        app: 'SaranaPrasana Asset Management',
+        version: '2.4.0',
+        exportedAt: new Date().toISOString(),
+        assets: window.SarprasStore.getStoredAssets(),
+        categories: window.SarprasStore.getCategories(),
+        locations: window.SarprasStore.getLocations(),
+        tickets: window.SarprasStore.getMaintenanceTickets(),
+        users: window.SarprasStore.getUsers(),
+        settings: window.SarprasStore.getSettings()
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `backup_sarpras_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('File cadangan data JSON berhasil diunduh!');
+    }
+
+    function handleRestoreJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed.assets) window.SarprasStore.saveAssets(parsed.assets);
+          if (parsed.categories) window.SarprasStore.saveCategories(parsed.categories);
+          if (parsed.locations) window.SarprasStore.saveLocations(parsed.locations);
+          if (parsed.tickets) window.SarprasStore.saveMaintenanceTickets(parsed.tickets);
+          if (parsed.users) window.SarprasStore.saveUsers(parsed.users);
+          if (parsed.settings) window.SarprasStore.saveSettings(parsed.settings);
+
+          populateDynamicDropdowns();
+          loadInitialAssets();
+          renderKategoriTable();
+          renderLokasiTable();
+          renderMaintenanceTable();
+          renderLaporanTable();
+          updateAllDashboardWidgets();
+          renderUserTable();
+          loadSettingsProfilIntoForm();
+
+          showToast('Data sistem berhasil dipulihkan dari file JSON!');
+        } catch (err) {
+          showToast('Format file JSON tidak valid!');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // --- 10. OFFICIAL PROFESSIONAL KIR PRINT DOCUMENT ENGINE ---
+    function renderKIRDocumentHTML() {
+      const settings = window.SarprasStore.getSettings();
+      const assets = window.SarprasStore.getStoredAssets();
+      const currentUser = window.SarprasStore.getCurrentUser();
+
+      const totalNilai = assets.reduce((acc, a) => acc + (a.nilai || 0), 0);
+      const baikCount = assets.filter(a => a.kondisi === 'Baik').length;
+      const rusakCount = assets.filter(a => a.kondisi === 'Rusak').length;
+      const rawatCount = assets.filter(a => a.kondisi === 'Dalam Perawatan').length;
+
+      const todayStr = new Intl.DateTimeFormat('id-ID', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }).format(new Date());
+
+      let rowsHtml = '';
+      assets.forEach((a, idx) => {
+        rowsHtml += `
+          <tr>
+            <td style="text-align: center;">${idx + 1}</td>
+            <td style="text-align: center; font-family: monospace; font-weight: bold;">BMN-${a.id}</td>
+            <td style="font-weight: 600;">${a.nama}</td>
+            <td>${a.kategori}</td>
+            <td>${a.gedung || ''} - ${a.lokasi}</td>
+            <td style="text-align: center;">${formatDisplayDate(a.tanggal || a.tgl)}</td>
+            <td style="text-align: center;">${a.kondisi}</td>
+            <td style="text-align: right; font-family: monospace;">${window.SarprasStore.formatRupiah(a.nilai || 0)}</td>
+            <td style="font-size: 10px;">${a.supplier || '-'}</td>
+          </tr>
+        `;
+      });
+
+      return `
+        <div class="kir-kop-wrapper">
+          <div class="kir-kop-title-1">KEMENTERIAN PENDIDIKAN TINGGI, SAINS, DAN TEKNOLOGI</div>
+          <div class="kir-kop-title-2">${settings.instansi.toUpperCase()}</div>
+          <div class="kir-kop-title-3">${settings.unit.toUpperCase()}</div>
+          <div class="kir-kop-sub">
+            ${settings.alamat}<br>
+            Telepon: ${settings.telepon} | Surel: ${settings.email} | NUP Resmi: ${settings.format_nup}
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 14px;">
+          <h3 style="font-size: 13.5px; font-weight: 800; text-transform: uppercase; text-decoration: underline; margin: 0 0 4px 0;">
+            KARTU INVENTARIS RUANGAN (KIR) DAN REKAPITULASI BMN
+          </h3>
+          <div style="font-size: 11px; color: #333333;">
+            Nomor Dokumen: BAST-BMN/2026/X/042 • Tanggal Penerbitan: ${todayStr}
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; font-size: 10.5px; text-align: center;">
+          <div style="border: 1px solid #000; padding: 4px;">
+            <strong>Total Inventaris</strong><br>${assets.length} Unit
+          </div>
+          <div style="border: 1px solid #000; padding: 4px;">
+            <strong>Total Nilai Perolehan</strong><br>${window.SarprasStore.formatRupiah(totalNilai)}
+          </div>
+          <div style="border: 1px solid #000; padding: 4px;">
+            <strong>Kondisi Baik</strong><br>${baikCount} Unit (${Math.round((baikCount/assets.length)*100)}%)
+          </div>
+          <div style="border: 1px solid #000; padding: 4px;">
+            <strong>Perawatan / Rusak</strong><br>${rawatCount + rusakCount} Unit (${Math.round(((rawatCount+rusakCount)/assets.length)*100)}%)
+          </div>
+        </div>
+
+        <table class="kir-formal-table">
+          <thead>
+            <tr>
+              <th style="width: 30px;">No</th>
+              <th style="width: 85px;">Kode BMN</th>
+              <th>Nama Barang / Aset</th>
+              <th style="width: 85px;">Kategori</th>
+              <th style="width: 140px;">Lokasi Penempatan</th>
+              <th style="width: 85px;">Tgl Perolehan</th>
+              <th style="width: 80px;">Kondisi</th>
+              <th style="width: 105px;">Nilai Aset (Rp)</th>
+              <th style="width: 110px;">Supplier / Rekanan</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+          </tbody>
+          <tfoot>
+            <tr style="font-weight: bold; background-color: #F1F5F9;">
+              <td colspan="7" style="text-align: right; padding-right: 10px;">TOTAL NILAI PEROLEHAN SELURUH ASET:</td>
+              <td style="text-align: right; font-family: monospace;">${window.SarprasStore.formatRupiah(totalNilai)}</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="kir-sign-grid">
+          <div>
+            Mengetahui,<br>
+            <strong>Wakil Rektor II Bidang Sarpras</strong>
+            <div class="kir-sign-space"></div>
+            <div class="kir-sign-name">${settings.pj_nama}</div>
+            <div>NIP. ${settings.pj_nip}</div>
+          </div>
+          <div>
+            Petugas Verifikator,<br>
+            <strong>Penanggung Jawab Sarana Ruangan</strong>
+            <div class="kir-sign-space"></div>
+            <div class="kir-sign-name">Ahmad Subarjo, S.Kom.</div>
+            <div>NIP. 19820412 201001 1 015</div>
+          </div>
+          <div>
+            Tangerang Selatan, ${todayStr}<br>
+            <strong>Petugas Pengelola Inventaris (BMN)</strong>
+            <div class="kir-sign-space"></div>
+            <div class="kir-sign-name">${currentUser.nama}</div>
+            <div>Jabatan: ${currentUser.role}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openKIRPrintPreview() {
+      const docHtml = renderKIRDocumentHTML();
+      document.getElementById('kirPaperContent').innerHTML = docHtml;
+      document.getElementById('officialPrintDocument').innerHTML = docHtml;
+      openModal('modalPreviewKIR');
+    }
+
+    function executeOfficialPrint() {
+      const docHtml = renderKIRDocumentHTML();
+      document.getElementById('officialPrintDocument').innerHTML = docHtml;
+      closeModal('modalPreviewKIR');
+      setTimeout(() => {
+        window.print();
+      }, 200);
     }
 
     function initDashboardCharts() {
