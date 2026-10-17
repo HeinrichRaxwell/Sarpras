@@ -17,11 +17,30 @@ if %errorlevel% equ 0 (
 )
 echo.
 
-echo [2/3] Membuka peramban browser ke http://localhost:5055...
+echo [2/3] Memeriksa port server 5055...
+netstat -ano | findstr ":5055" | findstr "LISTENING" >nul
+if %errorlevel% equ 0 (
+    echo       [OK] Server SaranaPrasana sudah aktif berjalan di port 5055.
+    echo.
+    echo [3/3] Membuka peramban browser ke http://localhost:5055...
+    start http://localhost:5055/index.html
+    echo.
+    echo =====================================================================
+    echo  URL Aplikasi    : http://localhost:5055/index.html
+    echo  Kredensial Demo : admin / admin123
+    echo =====================================================================
+    echo  Aplikasi sudah aktif dan tab browser telah dibuka.
+    echo =====================================================================
+    echo.
+    pause
+    exit /b
+)
+
+echo [3/3] Membuka peramban browser ke http://localhost:5055...
 start http://localhost:5055/index.html
 echo.
 
-echo [3/3] Menjalankan server aplikasi SaranaPrasana di port 5055...
+echo Menjalankan server aplikasi SaranaPrasana di port 5055...
 echo =====================================================================
 echo  URL Aplikasi    : http://localhost:5055/index.html
 echo  Kredensial Demo : admin / admin123

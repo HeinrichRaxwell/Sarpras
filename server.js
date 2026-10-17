@@ -24,13 +24,24 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  // CORS & Security headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('X-Content-Type-Options', 'nosniff');
 
   let cleanUrl = req.url.split('?')[0].split('#')[0];
   if (cleanUrl === '/' || cleanUrl === '') {
     cleanUrl = '/index.html';
+  }
+
+  // Handle Favicon explicitly
+  if (cleanUrl === '/favicon.ico') {
+    const icoPath = path.join(ROOT_DIR, 'favicon.ico');
+    if (fs.existsSync(icoPath)) {
+      res.writeHead(200, { 'Content-Type': 'image/x-icon' });
+      return fs.createReadStream(icoPath).pipe(res);
+    } else {
+      res.writeHead(204);
+      return res.end();
+    }
   }
 
   const filePath = path.join(ROOT_DIR, cleanUrl);
@@ -59,6 +70,19 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': contentType });
     fs.createReadStream(filePath).pipe(res);
   });
+});
+
+// Graceful Error Handling for EADDRINUSE
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log('================================================================');
+    console.log(`[INFO] Server SaranaPrasana di port ${PORT} sudah aktif berjalan.`);
+    console.log(`Silakan buka peramban di: http://localhost:${PORT}/index.html`);
+    console.log('================================================================');
+    process.exit(0);
+  } else {
+    console.error('Server error:', err);
+  }
 });
 
 server.listen(PORT, '127.0.0.1', () => {
