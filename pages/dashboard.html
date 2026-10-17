@@ -521,14 +521,13 @@
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th style="width: 40px; text-align: center;"><input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)"></th>
-                    <th style="width: 80px;">No.</th>
-                    <th>Nama Aset</th>
-                    <th>Kategori</th>
-                    <th>Lokasi</th>
-                    <th>Kondisi</th>
-                    <th>Tgl Perolehan</th>
-                    <th style="width: 120px; text-align: center;">Aksi</th>
+                    <th style="width: 90px;">ID User</th>
+                    <th>Nama Pengguna</th>
+                    <th>Username</th>
+                    <th>Email Resmi</th>
+                    <th>Hak Akses (Role)</th>
+                    <th>Status</th>
+                    <th style="text-align: center; width: 100px;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody id="assetTableBody">
@@ -946,25 +945,30 @@
             </div>
           </div>
 
-          <!-- Table Container -->
-          <section class="table-card-container">
-            <div class="table-header-control-row">
-              <div class="table-search-box">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="text" id="userSearchInput" class="table-search-input" placeholder="Cari nama, username, atau email pengguna..." oninput="handleUserSearch()">
-              </div>
-
-              <div style="display: flex; gap: 10px;">
-                <select id="userRoleFilter" class="form-select filter-select" style="width: 170px;" onchange="handleUserSearch()">
+          <!-- Table Container (Canonical Card Panel & Filter Bar) -->
+          <section class="card-panel">
+            <div class="filter-bar-row">
+              <div class="filter-controls-group">
+                <select id="userRoleFilter" class="filter-select" style="width: 170px;" onchange="handleUserSearch()">
                   <option value="ALL">Semua Peran</option>
                   <option value="Super Admin">Super Admin</option>
                   <option value="Staf Sarpras">Staf Sarpras</option>
                   <option value="Pimpinan">Pimpinan</option>
                 </select>
               </div>
+
+              <div style="display: flex; gap: 8px;">
+                <div class="filter-search-box" style="width: 320px;">
+                  <span class="search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+                  <input type="text" id="userSearchInput" placeholder="Cari nama, username, atau email..." oninput="handleUserSearch()">
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="resetUserFilters()" title="Reset Filter" style="padding: 0 10px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                </button>
+              </div>
             </div>
 
-            <div class="table-responsive-wrapper">
+            <div class="table-responsive">
               <table class="data-table">
                 <thead>
                   <tr>
@@ -972,7 +976,6 @@
                     <th>Nama Pengguna</th>
                     <th>Username</th>
                     <th>Email Resmi</th>
-                    <th>Kata Sandi</th>
                     <th>Hak Akses (Role)</th>
                     <th>Status</th>
                     <th style="text-align: center; width: 100px;">Aksi</th>
@@ -1039,10 +1042,7 @@
 
                 <form id="formChangePassword" onsubmit="handleChangePassword(event)" style="display: flex; flex-direction: column; gap: 12px;">
                   <div class="form-group" style="margin-bottom: 0;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <label class="form-label">Kata Sandi Saat Ini <span class="required">*</span></label>
-                      <span style="font-size: 11px; color: var(--color-text-muted);">Kata sandi aktif: <code id="myCurrentPassIndicator" style="color: var(--color-primary); font-weight: 700;"></code></span>
-                    </div>
+                    <label class="form-label">Kata Sandi Saat Ini <span class="required">*</span></label>
                     <input type="password" id="pass_current" class="form-input font-code" placeholder="Masukkan kata sandi lama Anda" required>
                   </div>
                   <div class="form-group" style="margin-bottom: 0;">
@@ -1649,11 +1649,8 @@
               <input type="text" id="edit_user_username" class="form-input font-code" required>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <label class="form-label">Kata Sandi Baru</label>
-                <span style="font-size: 11px; color: var(--color-text-muted);">Sandi saat ini: <code id="editUserCurrentPassLabel" style="color: var(--color-primary); font-weight: 700;"></code></span>
-              </div>
-              <input type="text" id="edit_user_password" class="form-input font-code" placeholder="Ketik kata sandi baru (kosongkan bila tetap)">
+              <label class="form-label">Kata Sandi Baru (Opsional)</label>
+              <input type="password" id="edit_user_password" class="form-input font-code" placeholder="Kosongkan jika tidak ingin mengubah kata sandi">
             </div>
           </div>
 
@@ -2703,8 +2700,7 @@
       if (elInputEmail) elInputEmail.value = user.email || `${user.username}@unpam.ac.id`;
       if (elInputUser) elInputUser.value = user.username;
 
-      const elPassInd = document.getElementById('myCurrentPassIndicator');
-      if (elPassInd) elPassInd.textContent = user.password || 'admin123';
+      
 
       // Apply RBAC UI Rules
       const navUsers = document.getElementById('nav-users');
@@ -2877,9 +2873,6 @@
             <td style="font-weight: 600; color: var(--color-text-title);">${u.nama}</td>
             <td class="font-code" style="color: var(--color-primary); font-weight: 700;">${u.username}</td>
             <td style="color: var(--color-text-muted);">${u.email || '-'}</td>
-            <td>
-              <span class="font-code" style="background: var(--color-surface-alt); padding: 3px 8px; border-radius: var(--radius-sm); font-size: 11.5px; border: 1px solid var(--color-border); color: var(--color-text-title); font-weight: 600;">${u.password}</span>
-            </td>
             <td><span class="badge-role ${badgeClass}">${u.role}</span></td>
             <td><span class="badge-status ${u.status === 'Aktif' ? 'badge-success' : 'badge-danger'}">${u.status}</span></td>
             <td style="text-align: center;">
@@ -2902,6 +2895,14 @@
         `;
       });
       tbody.innerHTML = html;
+    }
+
+    function resetUserFilters() {
+      const search = document.getElementById('userSearchInput');
+      const role = document.getElementById('userRoleFilter');
+      if (search) search.value = '';
+      if (role) role.value = 'ALL';
+      renderUserMainTable();
     }
 
     function handleUserSearch() {
@@ -2962,8 +2963,7 @@
       document.getElementById('edit_user_nama').value = u.nama;
       document.getElementById('edit_user_username').value = u.username;
       document.getElementById('edit_user_password').value = '';
-      const passHint = document.getElementById('editUserCurrentPassLabel');
-      if (passHint) passHint.textContent = u.password;
+      
       document.getElementById('edit_user_email').value = u.email || '';
       document.getElementById('edit_user_role').value = u.role;
       document.getElementById('edit_user_status').value = u.status;
