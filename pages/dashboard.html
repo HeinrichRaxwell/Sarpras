@@ -263,8 +263,16 @@
           <span class="nav-label">Laporan Aset (KIR)</span>
         </button>
 
-        <!-- 7. Pengaturan -->
-        <button type="button" class="nav-link" id="nav-settings" onclick="openModal('modalSettings')">
+        <div class="menu-category-label" id="labelSistemNav">MANAJEMEN SISTEM</div>
+
+        <!-- 7. Manajemen Pengguna -->
+        <button type="button" class="nav-link" id="nav-users" onclick="switchRoute('users')">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="nav-label">Manajemen Pengguna</span>
+        </button>
+
+        <!-- 8. Pengaturan -->
+        <button type="button" class="nav-link" id="nav-settings" onclick="switchRoute('settings')">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="nav-label">Pengaturan</span>
         </button>
@@ -887,6 +895,252 @@
             </div>
           </section>
         </div>
+
+        <!-- ================= VIEW 7: MANAJEMEN PENGGUNA (RBAC) ================= -->
+        <div id="view-users" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Manajemen Pengguna & Hak Akses</h1>
+              <p class="page-description">Kelola data akun pengguna, penetapan peran (Role-Based Access Control), dan kredensial login sistem.</p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="openAddUserModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                Tambah Pengguna Baru
+              </button>
+            </div>
+          </div>
+
+          <!-- 3 KPI Cards: Total Users, Active Users, Roles -->
+          <div class="kpi-grid" style="margin-bottom: 24px; grid-template-columns: repeat(3, 1fr);">
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Total Pengguna</span>
+                <div class="kpi-value" id="kpi-user-total" style="font-size: 24px;">0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-blue" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+            </div>
+
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Pengguna Aktif</span>
+                <div class="kpi-value" id="kpi-user-active" style="font-size: 24px;">0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-emerald" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+            </div>
+
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Distribusi Peran</span>
+                <div class="kpi-value" id="kpi-user-roles" style="font-size: 13.5px; font-weight: 600; margin-top: 4px; color: var(--color-primary);">
+                  3 Peran Terdaftar
+                </div>
+              </div>
+              <div class="kpi-icon-wrapper icon-amber" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Container -->
+          <section class="table-card-container">
+            <div class="table-header-control-row">
+              <div class="table-search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="userSearchInput" class="table-search-input" placeholder="Cari nama, username, atau email pengguna..." oninput="handleUserSearch()">
+              </div>
+
+              <div style="display: flex; gap: 10px;">
+                <select id="userRoleFilter" class="form-select filter-select" style="width: 170px;" onchange="handleUserSearch()">
+                  <option value="ALL">Semua Peran</option>
+                  <option value="Super Admin">Super Admin</option>
+                  <option value="Staf Sarpras">Staf Sarpras</option>
+                  <option value="Pimpinan">Pimpinan</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 90px;">ID User</th>
+                    <th>Nama Pengguna</th>
+                    <th>Username</th>
+                    <th>Hak Akses (Role)</th>
+                    <th>Email Resmi</th>
+                    <th>Status</th>
+                    <th>Terdaftar Sejak</th>
+                    <th style="text-align: center; width: 110px;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="userMainTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= VIEW 8: PENGATURAN AKUN & SISTEM ================= -->
+        <div id="view-settings" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Pengaturan Akun & Sistem</h1>
+              <p class="page-description">Kelola profil pribadi, perbarui kata sandi akun, profil instansi kampus, dan cadangan data.</p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <!-- KOLOM KIRI: AKUN & KEAMANAN -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <!-- Kartu 1: Profil Saya -->
+              <div class="kpi-card" style="padding: 20px; flex-direction: column; align-items: stretch;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-bottom: 1px solid var(--color-border); padding-bottom: 14px;">
+                  <div class="user-avatar" id="myProfileAvatar" style="width: 48px; height: 48px; font-size: 18px;">AD</div>
+                  <div>
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--color-text-title);" id="myProfileNameLabel">Nama Pengguna</h3>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+                      <span class="badge-role badge-role-admin" id="myProfileRoleBadge">Role</span>
+                      <span class="font-code" style="font-size: 12px; color: var(--color-text-muted);" id="myProfileUsernameLabel">@username</span>
+                    </div>
+                  </div>
+                </div>
+
+                <form id="formMyProfile" onsubmit="handleSaveMyProfile(event)" style="display: flex; flex-direction: column; gap: 12px;">
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" id="my_profile_nama" class="form-input" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Email Resmi</label>
+                    <input type="email" id="my_profile_email" class="form-input" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Username (ID Login)</label>
+                    <input type="text" id="my_profile_username" class="form-input font-code" disabled style="opacity: 0.7; cursor: not-allowed;">
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; margin-top: 6px;">
+                    <button type="submit" class="btn btn-primary">Simpan Profil Saya</button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Kartu 2: Ganti Kata Sandi -->
+              <div class="kpi-card" style="padding: 20px; flex-direction: column; align-items: stretch;">
+                <div style="margin-bottom: 14px; border-bottom: 1px solid var(--color-border); padding-bottom: 12px;">
+                  <h3 style="font-size: 15px; font-weight: 700; color: var(--color-text-title);">Keamanan & Ganti Kata Sandi</h3>
+                  <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Perbarui kata sandi akun untuk menjaga keamanan akses sistem inventaris.</p>
+                </div>
+
+                <form id="formChangePassword" onsubmit="handleChangePassword(event)" style="display: flex; flex-direction: column; gap: 12px;">
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Kata Sandi Saat Ini <span class="required">*</span></label>
+                    <input type="password" id="pass_current" class="form-input font-code" placeholder="Masukkan kata sandi lama" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Kata Sandi Baru <span class="required">*</span></label>
+                    <input type="password" id="pass_new" class="form-input font-code" placeholder="Minimal 6 karakter" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Konfirmasi Kata Sandi Baru <span class="required">*</span></label>
+                    <input type="password" id="pass_confirm" class="form-input font-code" placeholder="Ulangi kata sandi baru" required>
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; margin-top: 6px;">
+                    <button type="submit" class="btn btn-primary">Perbarui Kata Sandi</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- KOLOM KANAN: PROFIL INSTANSI & DATABASE -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <!-- Kartu 3: Profil Instansi Kampus & BMN -->
+              <div class="kpi-card" style="padding: 20px; flex-direction: column; align-items: stretch;">
+                <div style="margin-bottom: 14px; border-bottom: 1px solid var(--color-border); padding-bottom: 12px;">
+                  <h3 style="font-size: 15px; font-weight: 700; color: var(--color-text-title);">Profil Instansi Kampus & Kop Surat BMN</h3>
+                  <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Data ini digunakan pada Kop Surat resmi dan pengesahan Kartu Inventaris Ruangan (KIR).</p>
+                </div>
+
+                <form id="formSettingsProfilView" onsubmit="handleSaveSettingsProfil(event)" style="display: flex; flex-direction: column; gap: 12px;">
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Nama Instansi / Universitas <span class="required">*</span></label>
+                    <input type="text" id="view_set_instansi" class="form-input" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Biro / Fakultas / Unit Kerja <span class="required">*</span></label>
+                    <input type="text" id="view_set_unit" class="form-input" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Alamat Lengkap Kampus <span class="required">*</span></label>
+                    <input type="text" id="view_set_alamat" class="form-input" required>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">No. Telepon</label>
+                      <input type="text" id="view_set_telepon" class="form-input">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Surel (Email) Resmi</label>
+                      <input type="email" id="view_set_email" class="form-input">
+                    </div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Pejabat PJ BMN <span class="required">*</span></label>
+                      <input type="text" id="view_set_pj_nama" class="form-input" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">NIP Pejabat PJ <span class="required">*</span></label>
+                      <input type="text" id="view_set_pj_nip" class="form-input font-code" required>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; margin-top: 6px;">
+                    <button type="submit" class="btn btn-primary">Simpan Profil Instansi</button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Kartu 4: Sistem & Cadangan Data -->
+              <div class="kpi-card" style="padding: 20px; flex-direction: column; align-items: stretch;">
+                <div style="margin-bottom: 14px; border-bottom: 1px solid var(--color-border); padding-bottom: 12px;">
+                  <h3 style="font-size: 15px; font-weight: 700; color: var(--color-text-title);">Cadangan & Pemulihan Basis Data</h3>
+                  <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Kelola salinan data inventaris dan status Docker PostgreSQL port 5435.</p>
+                </div>
+
+                <div style="background: var(--color-surface-alt); padding: 12px 14px; border-radius: var(--radius-md); font-size: 12.5px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <div>
+                    <strong style="color: var(--color-text-title);">Database PostgreSQL Docker (Port 5435)</strong>
+                    <div style="color: var(--color-text-muted); font-size: 11.5px;">Container: <code>saranaprasana-postgres</code> (PostgreSQL 16)</div>
+                  </div>
+                  <span class="badge-status badge-success">Terhubung Aktif</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+                  <button type="button" class="btn btn-secondary" onclick="exportDataBackupJSON()" style="height: 36px; font-size: 12px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    Unduh Cadangan JSON
+                  </button>
+                  <button type="button" class="btn btn-secondary" onclick="document.getElementById('restoreFileInput').click()" style="height: 36px; font-size: 12px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                    Pulihkan File JSON
+                  </button>
+                </div>
+
+                <div style="border-top: 1px solid var(--color-border); padding-top: 12px;">
+                  <button type="button" class="btn btn-danger" onclick="promptResetDefaultData()" style="height: 34px; font-size: 12px; width: 100%;">
+                    Reset Seluruh Data ke Setelan Pabrik (10 Data Standar BMN)
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </main>
 
       <!-- App Footer -->
@@ -1311,174 +1565,6 @@
     </div>
   </div>
 
-  <!-- ================= MODAL: PENGATURAN SISTEM & USER MANAGEMENT (RBAC) ================= -->
-  <div id="modalSettings" class="modal-overlay">
-    <div class="modal-dialog" style="max-width: 820px;">
-      <div class="modal-header">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-          <h3 class="modal-title">Pusat Pengaturan Sistem & Hak Akses</h3>
-        </div>
-        <button type="button" class="modal-close-btn" onclick="closeModal('modalSettings')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
-        </button>
-      </div>
-      <div class="modal-body" style="padding: 16px 24px; max-height: 75vh; overflow-y: auto;">
-        <!-- Settings Tabs -->
-        <div class="settings-nav-tabs">
-          <button type="button" class="settings-tab-btn active" id="btnTabSettingsProfil" onclick="switchSettingsTab('profil')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Profil Instansi & Kampus
-          </button>
-          <button type="button" class="settings-tab-btn" id="btnTabSettingsUsers" onclick="switchSettingsTab('users')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Manajemen Pengguna (RBAC)
-          </button>
-          <button type="button" class="settings-tab-btn" id="btnTabSettingsSystem" onclick="switchSettingsTab('system')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Sistem & Cadangan Data
-          </button>
-        </div>
-
-        <!-- TAB 1: PROFIL INSTANSI -->
-        <div id="paneSettingsProfil" class="settings-pane">
-          <form id="formSettingsProfil" onsubmit="handleSaveSettingsProfil(event)" style="display: flex; flex-direction: column; gap: 14px;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">Nama Instansi / Universitas <span class="required">*</span></label>
-                <input type="text" id="set_instansi" class="form-input" required>
-              </div>
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">Biro / Fakultas / Unit Kerja <span class="required">*</span></label>
-                <input type="text" id="set_unit" class="form-input" required>
-              </div>
-            </div>
-
-            <div class="form-group" style="margin-bottom: 0;">
-              <label class="form-label">Alamat Lengkap Kampus <span class="required">*</span></label>
-              <input type="text" id="set_alamat" class="form-input" required>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">Nomor Telepon Resmi</label>
-                <input type="text" id="set_telepon" class="form-input">
-              </div>
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">Surel (Email) Resmi Sarpras</label>
-                <input type="email" id="set_email" class="form-input">
-              </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">Nama Pejabat Penanggung Jawab BMN <span class="required">*</span></label>
-                <input type="text" id="set_pj_nama" class="form-input" required>
-              </div>
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">NIP Pejabat Penanggung Jawab <span class="required">*</span></label>
-                <input type="text" id="set_pj_nip" class="form-input font-code" required>
-              </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">Jabatan Struktural Pejabat</label>
-                <input type="text" id="set_pj_jabatan" class="form-input">
-              </div>
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">Format Penomoran NUP / Kode BMN</label>
-                <input type="text" id="set_format_nup" class="form-input font-code">
-              </div>
-            </div>
-
-            <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
-              <button type="submit" class="btn btn-primary">Simpan Profil Instansi</button>
-            </div>
-          </form>
-        </div>
-
-        <!-- TAB 2: MANAJEMEN PENGGUNA (RBAC) -->
-        <div id="paneSettingsUsers" class="settings-pane" style="display: none;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-            <div>
-              <div style="font-weight: 700; color: var(--color-text-title); font-size: 14px;">Daftar Akun Pengguna & Hak Akses</div>
-              <div style="font-size: 12px; color: var(--color-text-muted);">Akun baru yang didaftarkan langsung aktif dan dapat digunakan login ke sistem.</div>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="openAddUserModal()" style="height: 32px; font-size: 12px;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-              Tambah Pengguna
-            </button>
-          </div>
-
-          <div class="table-responsive-wrapper" style="border: 1px solid var(--color-border); border-radius: var(--radius-md);">
-            <table class="data-table" style="font-size: 12.5px;">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nama Lengkap</th>
-                  <th>Username</th>
-                  <th>Hak Akses (Role)</th>
-                  <th>Email</th>
-                  <th>Status</th>
-                  <th style="text-align: center;">Aksi</th>
-                </tr>
-              </thead>
-              <tbody id="userTableBody">
-                <!-- Rendered dynamically -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- TAB 3: SISTEM & DATABASE -->
-        <div id="paneSettingsSystem" class="settings-pane" style="display: none; display: flex; flex-direction: column; gap: 14px;">
-          <div style="background: var(--color-surface-alt); padding: 14px 16px; border-radius: var(--radius-md); font-size: 13px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <div>
-                <div style="font-weight: 700; color: var(--color-text-title);">Database PostgreSQL Docker (Port 5435)</div>
-                <div style="color: var(--color-text-muted); font-size: 12px; margin-top: 2px;">Container: <code>saranaprasana-postgres</code> (PostgreSQL 16)</div>
-              </div>
-              <span class="badge-status badge-success">Terhubung Aktif</span>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <div style="border: 1px solid var(--color-border); padding: 14px; border-radius: var(--radius-md);">
-              <div style="font-weight: 700; color: var(--color-text-title); font-size: 13px; margin-bottom: 4px;">Cadangkan Data (Backup)</div>
-              <p style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 12px;">Ekspor seluruh inventaris, kategori, lokasi, tiket servis, dan akun ke format file JSON.</p>
-              <button type="button" class="btn btn-secondary" onclick="exportDataBackupJSON()" style="width: 100%; height: 34px; font-size: 12.5px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                Unduh Cadangan JSON
-              </button>
-            </div>
-
-            <div style="border: 1px solid var(--color-border); padding: 14px; border-radius: var(--radius-md);">
-              <div style="font-weight: 700; color: var(--color-text-title); font-size: 13px; margin-bottom: 4px;">Pulihkan Data (Restore)</div>
-              <p style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 12px;">Impor file cadangan JSON untuk memulihkan seluruh basis data sarana prasarana.</p>
-              <input type="file" id="restoreFileInput" accept=".json" style="display: none;" onchange="handleRestoreJSON(event)">
-              <button type="button" class="btn btn-secondary" onclick="document.getElementById('restoreFileInput').click()" style="width: 100%; height: 34px; font-size: 12.5px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
-                Pilih File JSON & Pulihkan
-              </button>
-            </div>
-          </div>
-
-          <div style="border-top: 1px solid var(--color-border); padding-top: 14px; margin-top: 4px;">
-            <div style="font-weight: 700; color: var(--color-danger); font-size: 13px; margin-bottom: 4px;">Zona Berbahaya (Factory Reset)</div>
-            <p style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 10px;">Mengembalikan seluruh data aset, kategori, lokasi, tiket servis, dan user ke setelan awal pabrik.</p>
-            <button type="button" class="btn btn-danger" onclick="promptResetDefaultData()" style="height: 34px; font-size: 12.5px;">
-              Reset Seluruh Data ke Setelan Awal
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="closeModal('modalSettings')">Tutup</button>
-      </div>
-    </div>
-  </div>
-
   <!-- ================= MODAL: TAMBAH PENGGUNA BARU ================= -->
   <div id="modalAddUser" class="modal-overlay">
     <div class="modal-dialog" style="max-width: 480px;">
@@ -1649,7 +1735,7 @@
       updateAllDashboardWidgets();
       renderLaporanTable();
       loadSettingsProfilIntoForm();
-      renderUserTable();
+      renderUserMainTable();
       checkUrlQueryActions();
     });
 
@@ -2560,6 +2646,7 @@
     }
 
     
+    
     // --- 7. AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC) ---
     function initCurrentUserAndRBAC() {
       const user = window.SarprasStore.getCurrentUser();
@@ -2567,14 +2654,17 @@
 
       const initials = user.nama ? user.nama.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'AD';
 
+      // Sidebar User Card
       const elSideName = document.getElementById('sidebarUserName');
       const elSideRole = document.getElementById('sidebarUserRole');
       const elSideAvatar = document.getElementById('sidebarAvatar');
 
+      // Topbar User
       const elTopName = document.getElementById('topbarUserName');
       const elTopRole = document.getElementById('topbarUserRole');
       const elTopAvatar = document.getElementById('topbarAvatar');
 
+      // Dashboard Greeting
       const elWelcome = document.getElementById('welcomeGreeting');
 
       if (elSideName) elSideName.textContent = user.nama;
@@ -2587,23 +2677,47 @@
 
       if (elWelcome) elWelcome.textContent = `Selamat Datang, ${user.nama} 👋`;
 
+      // Profile View Widgets
+      const elProfAvatar = document.getElementById('myProfileAvatar');
+      const elProfName = document.getElementById('myProfileNameLabel');
+      const elProfRole = document.getElementById('myProfileRoleBadge');
+      const elProfUser = document.getElementById('myProfileUsernameLabel');
+      const elInputNama = document.getElementById('my_profile_nama');
+      const elInputEmail = document.getElementById('my_profile_email');
+      const elInputUser = document.getElementById('my_profile_username');
+
+      if (elProfAvatar) elProfAvatar.textContent = initials;
+      if (elProfName) elProfName.textContent = user.nama;
+      if (elProfRole) {
+        elProfRole.textContent = user.role;
+        elProfRole.className = 'badge-role ' + (user.role === 'Super Admin' ? 'badge-role-admin' : (user.role === 'Staf Sarpras' ? 'badge-role-staff' : 'badge-role-pimpinan'));
+      }
+      if (elProfUser) elProfUser.textContent = '@' + user.username;
+      if (elInputNama) elInputNama.value = user.nama;
+      if (elInputEmail) elInputEmail.value = user.email || `${user.username}@unpam.ac.id`;
+      if (elInputUser) elInputUser.value = user.username;
+
       // Apply RBAC UI Rules
+      const navUsers = document.getElementById('nav-users');
+      const labelSistem = document.getElementById('labelSistemNav');
       const btnAddAsset = document.getElementById('openAddModalBtn');
       const btnAddTicket = document.getElementById('openAddTicketBtn');
-      const tabUsersBtn = document.getElementById('btnTabSettingsUsers');
 
-      if (user.role === 'Pimpinan') {
+      if (user.role === 'Super Admin') {
+        if (navUsers) navUsers.style.display = 'flex';
+        if (labelSistem) labelSistem.style.display = 'block';
+        if (btnAddAsset) btnAddAsset.style.display = 'flex';
+        if (btnAddTicket) btnAddTicket.style.display = 'flex';
+      } else if (user.role === 'Staf Sarpras') {
+        // Staff can operate assets and maintenance, but cannot manage users
+        if (navUsers) navUsers.style.display = 'none';
+        if (btnAddAsset) btnAddAsset.style.display = 'flex';
+        if (btnAddTicket) btnAddTicket.style.display = 'flex';
+      } else if (user.role === 'Pimpinan') {
+        // Pimpinan is read-only auditor
+        if (navUsers) navUsers.style.display = 'none';
         if (btnAddAsset) btnAddAsset.style.display = 'none';
         if (btnAddTicket) btnAddTicket.style.display = 'none';
-        if (tabUsersBtn) tabUsersBtn.style.display = 'none';
-      } else if (user.role === 'Staf Sarpras') {
-        if (btnAddAsset) btnAddAsset.style.display = 'flex';
-        if (btnAddTicket) btnAddTicket.style.display = 'flex';
-        if (tabUsersBtn) tabUsersBtn.style.display = 'none';
-      } else {
-        if (btnAddAsset) btnAddAsset.style.display = 'flex';
-        if (btnAddTicket) btnAddTicket.style.display = 'flex';
-        if (tabUsersBtn) tabUsersBtn.style.display = 'flex';
       }
     }
 
@@ -2611,90 +2725,176 @@
       window.SarprasStore.logout();
     }
 
-    // --- 8. SETTINGS & USER MANAGEMENT ENGINE ---
-    function switchSettingsTab(tabName) {
-      document.getElementById('btnTabSettingsProfil').classList.toggle('active', tabName === 'profil');
-      document.getElementById('btnTabSettingsUsers').classList.toggle('active', tabName === 'users');
-      document.getElementById('btnTabSettingsSystem').classList.toggle('active', tabName === 'system');
+    // --- 8. PROFIL SAYA & GANTI KATA SANDI (VIEW SETTINGS) ---
+    function handleSaveMyProfile(e) {
+      e.preventDefault();
+      const user = window.SarprasStore.getCurrentUser();
+      if (!user) return;
 
-      document.getElementById('paneSettingsProfil').style.display = (tabName === 'profil') ? 'block' : 'none';
-      document.getElementById('paneSettingsUsers').style.display = (tabName === 'users') ? 'block' : 'none';
-      document.getElementById('paneSettingsSystem').style.display = (tabName === 'system') ? 'flex' : 'none';
+      const nama = document.getElementById('my_profile_nama').value.trim();
+      const email = document.getElementById('my_profile_email').value.trim();
 
-      if (tabName === 'users') {
-        renderUserTable();
-      } else if (tabName === 'profil') {
-        loadSettingsProfilIntoForm();
+      window.SarprasStore.updateUser(user.id, { nama, email });
+      user.nama = nama;
+      user.email = email;
+      window.SarprasStore.setCurrentUser(user);
+
+      initCurrentUserAndRBAC();
+      renderUserMainTable();
+      showToast('Profil Anda berhasil diperbarui!');
+    }
+
+    function handleChangePassword(e) {
+      e.preventDefault();
+      const user = window.SarprasStore.getCurrentUser();
+      if (!user) return;
+
+      const curPass = document.getElementById('pass_current').value;
+      const newPass = document.getElementById('pass_new').value;
+      const confirmPass = document.getElementById('pass_confirm').value;
+
+      if (user.password !== curPass) {
+        showToast('Kata sandi saat ini tidak sesuai!');
+        return;
       }
+
+      if (newPass.length < 6) {
+        showToast('Kata sandi baru minimal 6 karakter!');
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        showToast('Konfirmasi kata sandi baru tidak cocok!');
+        return;
+      }
+
+      window.SarprasStore.updateUser(user.id, { password: newPass });
+      user.password = newPass;
+      window.SarprasStore.setCurrentUser(user);
+
+      document.getElementById('pass_current').value = '';
+      document.getElementById('pass_new').value = '';
+      document.getElementById('pass_confirm').value = '';
+
+      showToast('Kata sandi berhasil diperbarui! Silakan gunakan kata sandi baru saat login berikutnya.');
     }
 
     function loadSettingsProfilIntoForm() {
       const s = window.SarprasStore.getSettings();
-      document.getElementById('set_instansi').value = s.instansi || '';
-      document.getElementById('set_unit').value = s.unit || '';
-      document.getElementById('set_alamat').value = s.alamat || '';
-      document.getElementById('set_telepon').value = s.telepon || '';
-      document.getElementById('set_email').value = s.email || '';
-      document.getElementById('set_pj_nama').value = s.pj_nama || '';
-      document.getElementById('set_pj_nip').value = s.pj_nip || '';
-      document.getElementById('set_pj_jabatan').value = s.pj_jabatan || '';
-      document.getElementById('set_format_nup').value = s.format_nup || '';
+      const elInstansi = document.getElementById('view_set_instansi');
+      const elUnit = document.getElementById('view_set_unit');
+      const elAlamat = document.getElementById('view_set_alamat');
+      const elTelepon = document.getElementById('view_set_telepon');
+      const elEmail = document.getElementById('view_set_email');
+      const elPjNama = document.getElementById('view_set_pj_nama');
+      const elPjNip = document.getElementById('view_set_pj_nip');
+
+      if (elInstansi) elInstansi.value = s.instansi || '';
+      if (elUnit) elUnit.value = s.unit || '';
+      if (elAlamat) elAlamat.value = s.alamat || '';
+      if (elTelepon) elTelepon.value = s.telepon || '';
+      if (elEmail) elEmail.value = s.email || '';
+      if (elPjNama) elPjNama.value = s.pj_nama || '';
+      if (elPjNip) elPjNip.value = s.pj_nip || '';
     }
 
     function handleSaveSettingsProfil(e) {
       e.preventDefault();
       const updated = {
-        instansi: document.getElementById('set_instansi').value.trim(),
-        unit: document.getElementById('set_unit').value.trim(),
-        alamat: document.getElementById('set_alamat').value.trim(),
-        telepon: document.getElementById('set_telepon').value.trim(),
-        email: document.getElementById('set_email').value.trim(),
-        pj_nama: document.getElementById('set_pj_nama').value.trim(),
-        pj_nip: document.getElementById('set_pj_nip').value.trim(),
-        pj_jabatan: document.getElementById('set_pj_jabatan').value.trim(),
-        format_nup: document.getElementById('set_format_nup').value.trim()
+        instansi: document.getElementById('view_set_instansi').value.trim(),
+        unit: document.getElementById('view_set_unit').value.trim(),
+        alamat: document.getElementById('view_set_alamat').value.trim(),
+        telepon: document.getElementById('view_set_telepon').value.trim(),
+        email: document.getElementById('view_set_email').value.trim(),
+        pj_nama: document.getElementById('view_set_pj_nama').value.trim(),
+        pj_nip: document.getElementById('view_set_pj_nip').value.trim(),
+        pj_jabatan: 'Kepala Biro Sarana & Prasarana',
+        format_nup: 'BMN-UNPAM-2026'
       };
       window.SarprasStore.saveSettings(updated);
-      showToast('Profil instansi berhasil diperbarui!');
+      showToast('Profil instansi kampus berhasil diperbarui!');
     }
 
-    function renderUserTable() {
-      const tbody = document.getElementById('userTableBody');
+    // --- 9. MANAJEMEN PENGGUNA (VIEW USERS & RBAC) ---
+    function renderUserMainTable() {
+      const tbody = document.getElementById('userMainTableBody');
       if (!tbody) return;
+
       const users = window.SarprasStore.getUsers();
+      const query = (document.getElementById('userSearchInput')?.value || '').toLowerCase().trim();
+      const roleFilter = document.getElementById('userRoleFilter')?.value || 'ALL';
+
+      // Update KPI
+      const totalUsers = users.length;
+      const activeUsers = users.filter(u => u.status === 'Aktif').length;
+      const adminCount = users.filter(u => u.role === 'Super Admin').length;
+      const staffCount = users.filter(u => u.role === 'Staf Sarpras').length;
+      const pimpinanCount = users.filter(u => u.role === 'Pimpinan').length;
+
+      const kpiTotal = document.getElementById('kpi-user-total');
+      const kpiActive = document.getElementById('kpi-user-active');
+      const kpiRoles = document.getElementById('kpi-user-roles');
+
+      if (kpiTotal) kpiTotal.textContent = `${totalUsers} Akun`;
+      if (kpiActive) kpiActive.textContent = `${activeUsers} Aktif`;
+      if (kpiRoles) kpiRoles.textContent = `${adminCount} Admin • ${staffCount} Staf • ${pimpinanCount} Pimpinan`;
+
+      // Filter
+      const filtered = users.filter(u => {
+        const matchesQuery = !query ||
+          u.nama.toLowerCase().includes(query) ||
+          u.username.toLowerCase().includes(query) ||
+          (u.email && u.email.toLowerCase().includes(query));
+        const matchesRole = (roleFilter === 'ALL') || (u.role === roleFilter);
+        return matchesQuery && matchesRole;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Tidak ada akun pengguna yang sesuai dengan filter.</td></tr>`;
+        return;
+      }
 
       let html = '';
-      users.forEach(u => {
+      filtered.forEach(u => {
         let badgeClass = 'badge-role-admin';
         if (u.role === 'Staf Sarpras') badgeClass = 'badge-role-staff';
         else if (u.role === 'Pimpinan') badgeClass = 'badge-role-pimpinan';
 
-        const isSuperAdmin = (u.id === 'USR-001');
+        const isSuperAdminPrimary = (u.id === 'USR-001');
 
         html += `
           <tr>
             <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${u.id}</td>
-            <td style="font-weight: 600;">${u.nama}</td>
+            <td style="font-weight: 600; color: var(--color-text-title);">${u.nama}</td>
             <td class="font-code" style="color: var(--color-text-muted);">${u.username}</td>
             <td><span class="badge-role ${badgeClass}">${u.role}</span></td>
             <td style="color: var(--color-text-muted);">${u.email || '-'}</td>
             <td><span class="badge-status ${u.status === 'Aktif' ? 'badge-success' : 'badge-danger'}">${u.status}</span></td>
+            <td style="color: var(--color-text-muted); font-size: 12px;">${formatDisplayDate(u.tgl_dibuat || '2026-01-10')}</td>
             <td style="text-align: center;">
               <div style="display: flex; gap: 6px; justify-content: center;">
                 <button type="button" class="table-action-icon-btn" onclick="openEditUserModal('${u.id}')" title="Edit Akun Pengguna">
                   ${window.SARPRAS_ICONS.edit}
                 </button>
-                ${!isSuperAdmin ? `
+                ${!isSuperAdminPrimary ? `
                 <button type="button" class="table-action-icon-btn btn-delete" onclick="promptDeleteUser('${u.id}', '${u.username}')" title="Hapus Pengguna">
                   ${window.SARPRAS_ICONS.trash}
                 </button>
-                ` : ''}
+                ` : `
+                <button type="button" class="table-action-icon-btn" style="opacity: 0.3; cursor: not-allowed;" title="Super Admin utama tidak dapat dihapus">
+                  ${window.SARPRAS_ICONS.trash}
+                </button>
+                `}
               </div>
             </td>
           </tr>
         `;
       });
       tbody.innerHTML = html;
+    }
+
+    function handleUserSearch() {
+      renderUserMainTable();
     }
 
     function openAddUserModal() {
@@ -2718,7 +2918,7 @@
 
       const users = window.SarprasStore.getUsers();
       if (users.some(u => u.username.toLowerCase() === username)) {
-        showToast('Username sudah digunakan! Gunakan username lain.');
+        showToast('Username sudah digunakan! Pilih username lain.');
         return;
       }
 
@@ -2739,7 +2939,7 @@
 
       window.SarprasStore.addUser(newUser);
       closeModal('modalAddUser');
-      renderUserTable();
+      renderUserMainTable();
       showToast(`Pengguna ${nama} (${username}) berhasil didaftarkan!`);
     }
 
@@ -2775,9 +2975,9 @@
 
       window.SarprasStore.updateUser(id, updatedFields);
       closeModal('modalEditUser');
-      renderUserTable();
+      renderUserMainTable();
 
-      // If editing current logged in user, refresh profile header
+      // If currently logged in user is updated, refresh profile badge
       const cur = window.SarprasStore.getCurrentUser();
       if (cur && cur.id === id) {
         window.SarprasStore.setCurrentUser({ ...cur, ...updatedFields });
@@ -2802,13 +3002,13 @@
       if (deleteTargetUserId) {
         window.SarprasStore.deleteUser(deleteTargetUserId);
         closeModal('modalDeleteUser');
-        renderUserTable();
+        renderUserMainTable();
         showToast(`Akun pengguna ${deleteTargetUserId} berhasil dihapus.`);
         deleteTargetUserId = null;
       }
     });
 
-    // --- 9. BACKUP & RESTORE ENGINE ---
+    // --- 10. BACKUP & RESTORE ENGINE ---
     function exportDataBackupJSON() {
       const data = {
         app: 'SaranaPrasana Asset Management',
@@ -2854,7 +3054,7 @@
           renderMaintenanceTable();
           renderLaporanTable();
           updateAllDashboardWidgets();
-          renderUserTable();
+          renderUserMainTable();
           loadSettingsProfilIntoForm();
 
           showToast('Data sistem berhasil dipulihkan dari file JSON!');
@@ -2865,7 +3065,7 @@
       reader.readAsText(file);
     }
 
-    // --- 10. OFFICIAL PROFESSIONAL KIR PRINT DOCUMENT ENGINE ---
+    // --- 11. OFFICIAL PROFESSIONAL KIR PRINT DOCUMENT ENGINE ---
     function renderKIRDocumentHTML() {
       const settings = window.SarprasStore.getSettings();
       const assets = window.SarprasStore.getStoredAssets();
@@ -2887,15 +3087,15 @@
       assets.forEach((a, idx) => {
         rowsHtml += `
           <tr>
-            <td style="text-align: center;">${idx + 1}</td>
-            <td style="text-align: center; font-family: monospace; font-weight: bold;">BMN-${a.id}</td>
+            <td style="text-align: center; width: 26px;">${idx + 1}</td>
+            <td style="text-align: center; font-family: monospace; font-weight: bold; width: 75px;">BMN-${a.id}</td>
             <td style="font-weight: 600;">${a.nama}</td>
-            <td>${a.kategori}</td>
-            <td>${a.gedung || ''} - ${a.lokasi}</td>
-            <td style="text-align: center;">${formatDisplayDate(a.tanggal || a.tgl)}</td>
-            <td style="text-align: center;">${a.kondisi}</td>
-            <td style="text-align: right; font-family: monospace;">${window.SarprasStore.formatRupiah(a.nilai || 0)}</td>
-            <td style="font-size: 10px;">${a.supplier || '-'}</td>
+            <td style="width: 80px;">${a.kategori}</td>
+            <td style="width: 130px;">${a.gedung || ''} - ${a.lokasi}</td>
+            <td style="text-align: center; width: 80px;">${formatDisplayDate(a.tanggal || a.tgl)}</td>
+            <td style="text-align: center; width: 75px;">${a.kondisi}</td>
+            <td style="text-align: right; font-family: monospace; width: 95px;">${window.SarprasStore.formatRupiah(a.nilai || 0)}</td>
+            <td style="font-size: 8pt; width: 100px;">${a.supplier || '-'}</td>
           </tr>
         `;
       });
@@ -2911,26 +3111,26 @@
           </div>
         </div>
 
-        <div style="text-align: center; margin-bottom: 14px;">
-          <h3 style="font-size: 13.5px; font-weight: 800; text-transform: uppercase; text-decoration: underline; margin: 0 0 4px 0;">
+        <div style="text-align: center; margin-bottom: 10px;">
+          <h3 style="font-size: 11.5pt; font-weight: 800; text-transform: uppercase; text-decoration: underline; margin: 0 0 3px 0;">
             KARTU INVENTARIS RUANGAN (KIR) DAN REKAPITULASI BMN
           </h3>
-          <div style="font-size: 11px; color: #333333;">
+          <div style="font-size: 8.5pt; color: #333333;">
             Nomor Dokumen: BAST-BMN/2026/X/042 • Tanggal Penerbitan: ${todayStr}
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; font-size: 10.5px; text-align: center;">
-          <div style="border: 1px solid #000; padding: 4px;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; font-size: 8.5pt; text-align: center;">
+          <div style="border: 1px solid #000; padding: 3px;">
             <strong>Total Inventaris</strong><br>${assets.length} Unit
           </div>
-          <div style="border: 1px solid #000; padding: 4px;">
+          <div style="border: 1px solid #000; padding: 3px;">
             <strong>Total Nilai Perolehan</strong><br>${window.SarprasStore.formatRupiah(totalNilai)}
           </div>
-          <div style="border: 1px solid #000; padding: 4px;">
+          <div style="border: 1px solid #000; padding: 3px;">
             <strong>Kondisi Baik</strong><br>${baikCount} Unit (${Math.round((baikCount/assets.length)*100)}%)
           </div>
-          <div style="border: 1px solid #000; padding: 4px;">
+          <div style="border: 1px solid #000; padding: 3px;">
             <strong>Perawatan / Rusak</strong><br>${rawatCount + rusakCount} Unit (${Math.round(((rawatCount+rusakCount)/assets.length)*100)}%)
           </div>
         </div>
@@ -2938,15 +3138,15 @@
         <table class="kir-formal-table">
           <thead>
             <tr>
-              <th style="width: 30px;">No</th>
-              <th style="width: 85px;">Kode BMN</th>
+              <th>No</th>
+              <th>Kode BMN</th>
               <th>Nama Barang / Aset</th>
-              <th style="width: 85px;">Kategori</th>
-              <th style="width: 140px;">Lokasi Penempatan</th>
-              <th style="width: 85px;">Tgl Perolehan</th>
-              <th style="width: 80px;">Kondisi</th>
-              <th style="width: 105px;">Nilai Aset (Rp)</th>
-              <th style="width: 110px;">Supplier / Rekanan</th>
+              <th>Kategori</th>
+              <th>Lokasi Penempatan</th>
+              <th>Tgl Perolehan</th>
+              <th>Kondisi</th>
+              <th>Nilai Aset (Rp)</th>
+              <th>Supplier / Rekanan</th>
             </tr>
           </thead>
           <tbody>
@@ -2996,8 +3196,122 @@
 
     function executeOfficialPrint() {
       const docHtml = renderKIRDocumentHTML();
-      document.getElementById('officialPrintDocument').innerHTML = docHtml;
       closeModal('modalPreviewKIR');
+
+      // 1. Primary Method: Dedicated Isolated Print Window (0 Blank Pages Guaranteed)
+      const printWin = window.open('', '_blank', 'width=1100,height=850');
+      if (printWin) {
+        printWin.document.write(`
+          <!DOCTYPE html>
+          <html lang="id">
+          <head>
+            <meta charset="UTF-8">
+            <title>Laporan Inventarisasi Aset (KIR) - SaranaPrasana</title>
+            <style>
+              @page {
+                size: A4 portrait;
+                margin: 8mm 10mm;
+              }
+              * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+              }
+              body {
+                background: #FFFFFF;
+                color: #000000;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 9pt;
+                line-height: 1.35;
+                padding: 4mm 6mm;
+              }
+              .kir-kop-wrapper {
+                text-align: center;
+                border-bottom: 3px double #000000;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+              }
+              .kir-kop-title-1 {
+                font-size: 10.5pt;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin: 0;
+              }
+              .kir-kop-title-2 {
+                font-size: 12.5pt;
+                font-weight: 800;
+                text-transform: uppercase;
+                margin: 2px 0;
+              }
+              .kir-kop-title-3 {
+                font-size: 9.5pt;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin: 0;
+              }
+              .kir-kop-sub {
+                font-size: 8pt;
+                color: #222222;
+                margin-top: 3px;
+              }
+              .kir-formal-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 8px;
+                font-size: 8pt;
+              }
+              .kir-formal-table th,
+              .kir-formal-table td {
+                border: 1px solid #000000;
+                padding: 3px 5px !important;
+                vertical-align: middle;
+              }
+              .kir-formal-table th {
+                background-color: #E2E8F0 !important;
+                font-weight: bold;
+                text-align: center;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+              }
+              table.kir-formal-table tfoot {
+                display: table-row-group !important;
+              }
+              .kir-formal-table tr {
+                page-break-inside: avoid;
+              }
+              .kir-sign-grid {
+                margin-top: 18px !important;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                text-align: center;
+                font-size: 8.5pt;
+                page-break-inside: avoid !important;
+              }
+              .kir-sign-space {
+                height: 40px !important;
+              }
+              .kir-sign-name {
+                font-weight: bold;
+                text-decoration: underline;
+              }
+            </style>
+          </head>
+          <body>
+            ${docHtml}
+          </body>
+          </html>
+        `);
+        printWin.document.close();
+        printWin.focus();
+        setTimeout(() => {
+          printWin.print();
+          printWin.close();
+        }, 300);
+        return;
+      }
+
+      // 2. Fallback: Inline print using updated @media print
+      document.getElementById('officialPrintDocument').innerHTML = docHtml;
       setTimeout(() => {
         window.print();
       }, 200);

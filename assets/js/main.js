@@ -124,6 +124,18 @@ const ROUTE_CONFIG = {
     navId: 'nav-laporan',
     title: 'Laporan Inventarisasi Aset (KIR)',
     breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Rekapitulasi</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Laporan Aset</span>'
+  },
+  'users': {
+    viewId: 'view-users',
+    navId: 'nav-users',
+    title: 'Manajemen Pengguna & Hak Akses',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Sistem</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Manajemen Pengguna</span>'
+  },
+  'settings': {
+    viewId: 'view-settings',
+    navId: 'nav-settings',
+    title: 'Pengaturan Akun & Sistem',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Sistem</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Pengaturan</span>'
   }
 };
 

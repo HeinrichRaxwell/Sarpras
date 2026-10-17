@@ -1308,40 +1308,28 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 
 @media print {
   @page {
-    size: A4 landscape;
-    margin: 10mm 12mm;
+    size: A4 portrait;
+    margin: 8mm 10mm;
   }
 
   html, body {
+    height: auto !important;
+    min-height: 0 !important;
     background: #FFFFFF !important;
     color: #000000 !important;
-    font-size: 10pt !important;
-    font-family: 'Times New Roman', Times, serif, system-ui !important;
+    font-size: 9pt !important;
+    font-family: 'Times New Roman', Times, serif !important;
     margin: 0 !important;
     padding: 0 !important;
+    overflow: visible !important;
   }
 
-  /* Hide all screen interface elements */
-  .app-sidebar,
-  .app-topbar,
-  .app-footer,
-  .sidebar-mobile-backdrop,
-  .toast-notification,
-  .modal-overlay,
-  .btn,
-  .btn-primary,
-  .btn-secondary,
-  .table-action-icon-btn,
-  .app-view,
-  .kpi-grid,
-  .filter-cluster,
-  .pagination-container,
-  .header-actions,
-  #appToast {
+  /* Completely isolate print: hide all body direct children except official print document */
+  body > *:not(#officialPrintDocument) {
     display: none !important;
   }
 
-  /* Show only the official print document */
+  /* Show only the official print document starting at coordinate (0, 0) */
   #officialPrintDocument {
     display: block !important;
     visibility: visible !important;
@@ -1358,13 +1346,86 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     color: #000000 !important;
   }
 
+  .kir-kop-wrapper {
+    text-align: center;
+    border-bottom: 3px double #000000;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  .kir-kop-title-1 {
+    font-size: 10.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .kir-kop-title-2 {
+    font-size: 12.5pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 2px 0;
+  }
+
+  .kir-kop-title-3 {
+    font-size: 9.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .kir-kop-sub {
+    font-size: 8pt;
+    color: #222222;
+    margin-top: 3px;
+  }
+
+  .kir-formal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 8pt;
+  }
+
+  .kir-formal-table th,
+  .kir-formal-table td {
+    border: 1px solid #000000;
+    padding: 3px 5px !important;
+    vertical-align: middle;
+  }
+
   .kir-formal-table th {
     background-color: #E2E8F0 !important;
+    font-weight: bold;
+    text-align: center;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  .kir-sign-grid {
+  /* PREVENT TFOOT DUPLICATION ON MULTIPLE PAGES */
+  table.kir-formal-table tfoot {
+    display: table-row-group !important;
+  }
+
+  .kir-formal-table tr {
     page-break-inside: avoid;
+  }
+
+  .kir-sign-grid {
+    margin-top: 18px !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    font-size: 8.5pt;
+    page-break-inside: avoid !important;
+  }
+
+  .kir-sign-space {
+    height: 40px !important;
+  }
+
+  .kir-sign-name {
+    font-weight: bold;
+    text-decoration: underline;
   }
 }
