@@ -1,8 +1,15 @@
 /**
  * SaranaPrasana Asset Management
- * Enterprise Dynamic Reactive Store Engine
- * Multi-Entity Reactive Architecture: Assets, Categories, Locations, Maintenance Tickets, Users, Roles & Settings
- * v2.4.0 (Full RBAC & Document Engine)
+ * Enterprise Dynamic Reactive Store Engine v3.0.0
+ * Comprehensive Lifecycle:
+ * 1. Pre-Inventory & Gudang Transit (QC & BAST)
+ * 2. Active Assets & Straight-Line Depreciation Engine
+ * 3. Peminjaman & Pengembalian Aset (Check-in/Check-out)
+ * 4. Mutasi Aset Antar-Ruang (Location Transfers)
+ * 5. Pemeliharaan Preventif (Schedules & Reminders)
+ * 6. Pemeliharaan Kuratif / Servis Tiket
+ * 7. Penghapusan & Pelepasan Aset (Disposal & Auctions)
+ * 8. User Management (RBAC) & System Settings
  */
 
 (function () {
@@ -16,6 +23,11 @@
   const STORAGE_KEY_USERS = 'sarpras_users_v2';
   const STORAGE_KEY_CURRENT_USER = 'sarpras_current_user_v2';
   const STORAGE_KEY_SETTINGS = 'sarpras_settings_v2';
+  const STORAGE_KEY_TRANSIT = 'sarpras_transit_v2';
+  const STORAGE_KEY_LOANS = 'sarpras_loans_v2';
+  const STORAGE_KEY_MUTATIONS = 'sarpras_mutations_v2';
+  const STORAGE_KEY_DISPOSALS = 'sarpras_disposals_v2';
+  const STORAGE_KEY_PREVENTIVE = 'sarpras_preventive_v2';
 
   // 2. INITIAL SEED ASSETS (Sync with PostgreSQL Docker 127.0.0.1:5435)
   const INITIAL_ASSETS = [
@@ -26,9 +38,12 @@
       lokasi: "Ruang 101",
       gedung: "Gedung A",
       kondisi: "Baik",
+      status_operasional: "Aktif",
       tanggal: "2023-01-12",
       tgl: "2023-01-12",
       nilai: 14500000,
+      masa_manfaat: 4,
+      nilai_residu: 1450000,
       supplier: "PT Lenovo Indonesia",
       keterangan: "Laptop riset mahasiswa dan dosen"
     },
@@ -39,9 +54,12 @@
       lokasi: "Ruang Admin",
       gedung: "Gedung A",
       kondisi: "Baik",
+      status_operasional: "Aktif",
       tanggal: "2023-02-15",
       tgl: "2023-02-15",
       nilai: 4800000,
+      masa_manfaat: 5,
+      nilai_residu: 480000,
       supplier: "PT Hewlett Packard Mitra",
       keterangan: "Printer laser hitam putih operasional"
     },
@@ -52,9 +70,12 @@
       lokasi: "Area Parkir",
       gedung: "Luar Gedung",
       kondisi: "Dalam Perawatan",
+      status_operasional: "Aktif",
       tanggal: "2023-03-20",
       tgl: "2023-03-20",
       nilai: 18500000,
+      masa_manfaat: 8,
+      nilai_residu: 1850000,
       supplier: "Dealer Honda Astra Motor",
       keterangan: "Operasional kurir antar fakultas"
     },
@@ -65,9 +86,12 @@
       lokasi: "Lab Komputer 1",
       gedung: "Gedung B",
       kondisi: "Baik",
+      status_operasional: "Aktif",
       tanggal: "2023-04-10",
       tgl: "2023-04-10",
       nilai: 5200000,
+      masa_manfaat: 5,
+      nilai_residu: 520000,
       supplier: "PT Daikin Aircon Pratama",
       keterangan: "Pendingin ruang lab komputer utama"
     },
@@ -78,9 +102,12 @@
       lokasi: "Ruang Dosen",
       gedung: "Gedung A",
       kondisi: "Baik",
+      status_operasional: "Aktif",
       tanggal: "2023-05-05",
       tgl: "2023-05-05",
       nilai: 2100000,
+      masa_manfaat: 8,
+      nilai_residu: 210000,
       supplier: "CV Kayu Jati Perkasa",
       keterangan: "Meja kayu solid sekat kaca"
     },
@@ -91,9 +118,12 @@
       lokasi: "Lab Jaringan",
       gedung: "Gedung B",
       kondisi: "Rusak",
-      tanggal: "2023-06-18",
-      tgl: "2023-06-18",
+      status_operasional: "Aktif",
+      tanggal: "2021-06-18",
+      tgl: "2021-06-18",
       nilai: 8500000,
+      masa_manfaat: 4,
+      nilai_residu: 850000,
       supplier: "PT Dell Megatama",
       keterangan: "Motherboard konslet butuh ganti part"
     },
@@ -104,9 +134,12 @@
       lokasi: "Ruang Tata Usaha",
       gedung: "Gedung A",
       kondisi: "Baik",
+      status_operasional: "Aktif",
       tanggal: "2023-07-22",
       tgl: "2023-07-22",
       nilai: 3200000,
+      masa_manfaat: 5,
+      nilai_residu: 320000,
       supplier: "PT Samafitro Canon",
       keterangan: "Printer warna dokumen legalisir"
     },
@@ -117,9 +150,12 @@
       lokasi: "Ruang Server",
       gedung: "Gedung C",
       kondisi: "Baik",
+      status_operasional: "Aktif",
       tanggal: "2023-08-14",
       tgl: "2023-08-14",
       nilai: 11500000,
+      masa_manfaat: 4,
+      nilai_residu: 1150000,
       supplier: "PT Asusindo Megah",
       keterangan: "Terminal remote monitor server"
     },
@@ -130,9 +166,12 @@
       lokasi: "Ruang Rapat",
       gedung: "Gedung B",
       kondisi: "Baik",
-      tanggal: "2023-09-01",
-      tgl: "2023-09-01",
+      status_operasional: "Aktif",
+      tanggal: "2020-09-01",
+      tgl: "2020-09-01",
       nilai: 1400000,
+      masa_manfaat: 8,
+      nilai_residu: 140000,
       supplier: "CV Ergonomis Indo",
       keterangan: "Kursi putar hidrolik rapat senat"
     },
@@ -143,9 +182,12 @@
       lokasi: "Auditorium Utama",
       gedung: "Gedung B",
       kondisi: "Dalam Perawatan",
+      status_operasional: "Aktif",
       tanggal: "2023-10-08",
       tgl: "2023-10-08",
       nilai: 7800000,
+      masa_manfaat: 5,
+      nilai_residu: 780000,
       supplier: "PT Visual Media Partner",
       keterangan: "Servis lensa optik dan pembersihan filter"
     }
@@ -153,11 +195,11 @@
 
   // 3. INITIAL CATEGORIES
   const INITIAL_CATEGORIES = [
-    { kode: "KOMP", nama: "Komputer", deskripsi: "Perangkat pemrosesan data, server, dan PC kerja", status: "Aktif" },
-    { kode: "ELK", nama: "Elektronik", deskripsi: "Peralatan audio visual, pendingin, dan proyektor", status: "Aktif" },
-    { kode: "KDR", nama: "Kendaraan", deskripsi: "Kendaraan dinas roda dua dan operasional kampus", status: "Aktif" },
-    { kode: "FUR", nama: "Furniture", deskripsi: "Meja kerja, kursi ergonomis, lemari berkas, rak arsip", status: "Aktif" },
-    { kode: "SAR", nama: "Sarana Umum", deskripsi: "Alat pemadam api ringan, genset, instalasi air", status: "Aktif" }
+    { kode: "KOMP", nama: "Komputer", deskripsi: "Perangkat pemrosesan data, server, dan PC kerja", default_umur: 4, status: "Aktif" },
+    { kode: "ELK", nama: "Elektronik", deskripsi: "Peralatan audio visual, pendingin, dan proyektor", default_umur: 5, status: "Aktif" },
+    { kode: "KDR", nama: "Kendaraan", deskripsi: "Kendaraan dinas roda dua dan operasional kampus", default_umur: 8, status: "Aktif" },
+    { kode: "FUR", nama: "Furniture", deskripsi: "Meja kerja, kursi ergonomis, lemari berkas, rak arsip", default_umur: 8, status: "Aktif" },
+    { kode: "SAR", nama: "Sarana Umum", deskripsi: "Alat pemadam api ringan, genset, instalasi air", default_umur: 10, status: "Aktif" }
   ];
 
   // 4. INITIAL LOCATIONS
@@ -174,7 +216,112 @@
     { id: "LOK-OUT-01", gedung: "Luar Gedung", ruangan: "Area Parkir", pj: "Koordinator Keamanan" }
   ];
 
-  // 5. INITIAL MAINTENANCE TICKETS
+  // 5. INITIAL GUDANG TRANSIT (PRE-INVENTORY)
+  const INITIAL_TRANSIT = [
+    {
+      id: "TRN-001",
+      nama_barang: "Monitor LED Dell 24 Inci",
+      kategori: "Elektronik",
+      supplier: "PT Dell Megatama",
+      nomor_surat_jalan: "SJ-DELL-2026-081",
+      tgl_terima: "2026-10-15",
+      jumlah_unit: 5,
+      harga_satuan: 2350000,
+      status_qc: "Lolos QC",
+      catatan_qc: "Kemasan segel pabrik utuh, uji nyala panel tajam tanpa dead pixel."
+    },
+    {
+      id: "TRN-002",
+      nama_barang: "Router Cisco Gigabit Switch",
+      kategori: "Komputer",
+      supplier: "PT Mitra Jaringan Nusantara",
+      nomor_surat_jalan: "SJ-CISCO-8821",
+      tgl_terima: "2026-10-16",
+      jumlah_unit: 2,
+      harga_satuan: 6400000,
+      status_qc: "Perlu Pengecekan",
+      catatan_qc: "Menunggu teknisi lab jaringan untuk pengujian throughput bandwidth."
+    }
+  ];
+
+  // 6. INITIAL PEMINJAMAN ASET (LOANS)
+  const INITIAL_LOANS = [
+    {
+      id: "PINJAM-001",
+      id_aset: "A-008",
+      nama_aset: "Laptop Asus",
+      nama_peminjam: "Rian Hidayat, M.Kom.",
+      identitas_peminjam: "NIDN 0418098901",
+      unit_peminjam: "Program Studi Teknik Informatika",
+      tgl_pinjam: "2026-10-14",
+      tgl_kembali_rencana: "2026-10-21",
+      tgl_kembali_realisasi: null,
+      keperluan: "Kegiatan Akreditasi Program Studi di Gedung Rektorat",
+      status: "Dipinjam"
+    }
+  ];
+
+  // 7. INITIAL MUTASI ASET (TRANSFERS)
+  const INITIAL_MUTATIONS = [
+    {
+      id: "MUT-001",
+      id_aset: "A-004",
+      nama_aset: "AC Split 1 PK",
+      lokasi_asal: "Ruang Tata Usaha",
+      lokasi_tujuan: "Lab Komputer 1",
+      pj_asal: "Dewi Lestari",
+      pj_tujuan: "Hendra Wijaya",
+      tgl_mutasi: "2025-08-10",
+      alasan_mutasi: "Optimalisasi pendingin perangkat komputer riset mahasiswa"
+    }
+  ];
+
+  // 8. INITIAL PREVENTIVE MAINTENANCE SCHEDULES
+  const INITIAL_PREVENTIVE = [
+    {
+      id: "PM-001",
+      id_aset: "A-004",
+      nama_aset: "AC Split 1 PK",
+      lokasi: "Lab Komputer 1",
+      kegiatan: "Pembersihan filter, cuci evaporator, dan cek tekanan freon",
+      frekuensi_hari: 90,
+      tgl_terakhir: "2026-08-15",
+      tgl_jatuh_tempo: "2026-11-15",
+      vendor: "PT Daikin Aircon Pratama",
+      status: "Jadwal Aktif"
+    },
+    {
+      id: "PM-002",
+      id_aset: "A-003",
+      nama_aset: "Motor Honda Beat",
+      lokasi: "Area Parkir",
+      kegiatan: "Ganti oli mesin, oli gardan, dan servis rem",
+      frekuensi_hari: 90,
+      tgl_terakhir: "2026-07-20",
+      tgl_jatuh_tempo: "2026-10-20",
+      vendor: "Dealer Honda Astra Motor",
+      status: "Mendekati Jatuh Tempo"
+    }
+  ];
+
+  // 9. INITIAL DISPOSALS / PENGHAPUSAN ASET
+  const INITIAL_DISPOSALS = [
+    {
+      id: "DSP-001",
+      id_aset: "A-000-HIST",
+      nama_aset: "Komputer Pentium 4 Dual Core",
+      kategori: "Komputer",
+      nilai_perolehan_awal: 6500000,
+      nilai_buku_akhir: 0,
+      metode_penghapusan: "Lelang Umum",
+      nomor_sk: "SK-REKTOR/BMN/2025/119",
+      tgl_penghapusan: "2025-11-10",
+      nilai_lelang: 350000,
+      keterangan: "Usia ekonomis habis (susut 100%), part rusak dan tidak dapat diupgrade."
+    }
+  ];
+
+  // 10. INITIAL MAINTENANCE TICKETS
   const INITIAL_TICKETS = [
     {
       id: "TRX-MNT-001",
@@ -208,7 +355,7 @@
     }
   ];
 
-  // 6. INITIAL USERS & ROLE MANAGEMENT
+  // 11. INITIAL USERS
   const INITIAL_USERS = [
     {
       id: "USR-001",
@@ -242,7 +389,7 @@
     }
   ];
 
-  // 7. INITIAL INSTITUTION SETTINGS
+  // 12. INITIAL SETTINGS
   const INITIAL_SETTINGS = {
     instansi: "Universitas Pamulang - Fakultas Ilmu Komputer",
     unit: "Biro Administrasi Umum dan Sarana Prasarana",
@@ -255,27 +402,39 @@
     format_nup: "BMN-UNPAM-2026"
   };
 
-  // --- ASSETS REPOSITORY ---
-  function getStoredAssets() {
-    const data = localStorage.getItem(STORAGE_KEY_ASSETS);
+  // Helper safe get
+  function getCollection(key, initialData) {
+    const data = localStorage.getItem(key);
     if (!data) {
-      localStorage.setItem(STORAGE_KEY_ASSETS, JSON.stringify(INITIAL_ASSETS));
-      return [...INITIAL_ASSETS];
+      localStorage.setItem(key, JSON.stringify(initialData));
+      return JSON.parse(JSON.stringify(initialData));
     }
     try {
       return JSON.parse(data);
     } catch (e) {
-      localStorage.setItem(STORAGE_KEY_ASSETS, JSON.stringify(INITIAL_ASSETS));
-      return [...INITIAL_ASSETS];
+      localStorage.setItem(key, JSON.stringify(initialData));
+      return JSON.parse(JSON.stringify(initialData));
     }
   }
 
+  function saveCollection(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  // --- 1. ASSET CRUD & DEPRECIATION CALCULATOR ---
+  function getStoredAssets() {
+    return getCollection(STORAGE_KEY_ASSETS, INITIAL_ASSETS);
+  }
+
   function saveAssets(assets) {
-    localStorage.setItem(STORAGE_KEY_ASSETS, JSON.stringify(assets));
+    saveCollection(STORAGE_KEY_ASSETS, assets);
   }
 
   function addAsset(newAsset) {
     const assets = getStoredAssets();
+    if (!newAsset.masa_manfaat) newAsset.masa_manfaat = 5;
+    if (!newAsset.nilai_residu) newAsset.nilai_residu = Math.round((newAsset.nilai || 0) * 0.1);
+    if (!newAsset.status_operasional) newAsset.status_operasional = "Aktif";
     assets.unshift(newAsset);
     saveAssets(assets);
     return newAsset;
@@ -304,237 +463,362 @@
     return assets.find(a => a.id === id) || null;
   }
 
-  // --- CATEGORIES REPOSITORY ---
-  function getCategories() {
-    const data = localStorage.getItem(STORAGE_KEY_CATEGORIES);
-    if (!data) {
-      localStorage.setItem(STORAGE_KEY_CATEGORIES, JSON.stringify(INITIAL_CATEGORIES));
-      return [...INITIAL_CATEGORIES];
+  function parseSafeDate(dateStr) {
+    if (!dateStr) return new Date(2023, 0, 1);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+      return new Date(dateStr);
     }
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      localStorage.setItem(STORAGE_KEY_CATEGORIES, JSON.stringify(INITIAL_CATEGORIES));
-      return [...INITIAL_CATEGORIES];
+    const parts = dateStr.trim().split(/\s+/);
+    if (parts.length === 3) {
+      const day = parseInt(parts[0], 10) || 1;
+      const monthNames = {
+        'jan': 0, 'feb': 1, 'mar': 2, 'apr': 3, 'mei': 4, 'may': 4, 'jun': 5,
+        'jul': 6, 'agu': 7, 'aug': 7, 'sep': 8, 'okt': 9, 'oct': 9, 'nov': 10, 'des': 11, 'dec': 11
+      };
+      const mKey = parts[1].toLowerCase().slice(0, 3);
+      const month = monthNames[mKey] !== undefined ? monthNames[mKey] : 0;
+      const year = parseInt(parts[2], 10) || 2023;
+      return new Date(year, month, day);
     }
+    const d = new Date(dateStr);
+    return isNaN(d.getTime()) ? new Date(2023, 0, 1) : d;
   }
 
-  function saveCategories(categories) {
-    localStorage.setItem(STORAGE_KEY_CATEGORIES, JSON.stringify(categories));
+  /**
+   * Straight-Line Depreciation Engine (PSAK 16 & SAP Standar Akuntansi Pemerintah)
+   */
+  function calculateAssetDepreciation(asset) {
+    const hargaPerolehan = parseFloat(asset.nilai || 0);
+    const masaManfaatTahun = parseInt(asset.masa_manfaat || 5, 10);
+    const nilaiResidu = parseFloat(asset.nilai_residu || Math.round(hargaPerolehan * 0.1));
+
+    const tglBeliStr = asset.tanggal || asset.tgl || "2023-01-01";
+    const tglBeli = parseSafeDate(tglBeliStr);
+    const tglSekarang = new Date();
+
+    // Hitung selisih hari
+    const diffTime = Math.max(0, tglSekarang - tglBeli);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const usiaTahunBerjalan = +(diffDays / 365.25).toFixed(2);
+
+    // Penyusutan Garis Lurus
+    const bebanPenyusutanTahunan = (hargaPerolehan - nilaiResidu) / masaManfaatTahun;
+    const bebanPenyusutanHarian = bebanPenyusutanTahunan / 365.25;
+
+    let akumulasiPenyusutan = bebanPenyusutanHarian * diffDays;
+    const maxPenyusutan = hargaPerolehan - nilaiResidu;
+
+    if (akumulasiPenyusutan > maxPenyusutan) {
+      akumulasiPenyusutan = maxPenyusutan;
+    }
+
+    let nilaiBuku = hargaPerolehan - akumulasiPenyusutan;
+    if (nilaiBuku < nilaiResidu) {
+      nilaiBuku = nilaiResidu;
+    }
+
+    const sisaMasaTahun = Math.max(0, +(masaManfaatTahun - usiaTahunBerjalan).toFixed(1));
+    const persenNilaiBuku = Math.max(0, Math.min(100, Math.round((nilaiBuku / (hargaPerolehan || 1)) * 100)));
+
+    // Constraint Bisnis: Boleh dijual/lelang jika sisa nilai buku <= 10% ATAU kondisi Rusak Total
+    const isHabisMasa = (persenNilaiBuku <= 10) || (usiaTahunBerjalan >= masaManfaatTahun);
+    const isAfkir = (asset.kondisi === "Rusak Total (Afkir)" || asset.kondisi === "Rusak");
+    const bolehDihapuskan = isHabisMasa || isAfkir;
+
+    return {
+      hargaPerolehan,
+      masaManfaatTahun,
+      nilaiResidu,
+      usiaTahunBerjalan,
+      sisaMasaTahun,
+      penyusutanTahunan: Math.round(bebanPenyusutanTahunan),
+      akumulasiPenyusutan: Math.round(akumulasiPenyusutan),
+      nilaiBuku: Math.round(nilaiBuku),
+      persenNilaiBuku,
+      isHabisMasa,
+      bolehDihapuskan,
+      statusKelayakan: isHabisMasa ? "Siap Dihapuskan (Susut 100%)" : "Dalam Masa Manfaat Aktif"
+    };
   }
 
-  function addCategory(cat) {
-    const categories = getCategories();
-    categories.push(cat);
-    saveCategories(categories);
-    return cat;
+  // --- 2. GUDANG TRANSIT (PRE-INVENTORY) ---
+  function getTransitItems() {
+    return getCollection(STORAGE_KEY_TRANSIT, INITIAL_TRANSIT);
   }
 
-  function deleteCategory(kode) {
-    const categories = getCategories();
-    const filtered = categories.filter(c => c.kode !== kode);
-    saveCategories(filtered);
+  function saveTransitItems(items) {
+    saveCollection(STORAGE_KEY_TRANSIT, items);
+  }
+
+  function addTransitItem(item) {
+    const items = getTransitItems();
+    items.unshift(item);
+    saveTransitItems(items);
+    return item;
+  }
+
+  function deleteTransitItem(id) {
+    const items = getTransitItems();
+    const filtered = items.filter(i => i.id !== id);
+    saveTransitItems(filtered);
     return true;
   }
 
-  // --- LOCATIONS REPOSITORY ---
+  // Placement BAST: Convert transit item into Active Asset
+  function placeTransitItemToRoom(transitId, placementData) {
+    const items = getTransitItems();
+    const item = items.find(i => i.id === transitId);
+    if (!item) return null;
+
+    const assets = getStoredAssets();
+    const nextNum = assets.length + 1;
+    const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+    const assetId = 'A-' + padNum;
+
+    const newAsset = {
+      id: assetId,
+      nama: item.nama_barang,
+      kategori: item.kategori,
+      lokasi: placementData.ruangan,
+      gedung: placementData.gedung,
+      kondisi: "Baik",
+      status_operasional: "Aktif",
+      tanggal: new Date().toISOString().slice(0, 10),
+      tgl: new Date().toISOString().slice(0, 10),
+      nilai: item.harga_satuan,
+      masa_manfaat: placementData.masa_manfaat || 5,
+      nilai_residu: Math.round(item.harga_satuan * 0.1),
+      supplier: item.supplier,
+      keterangan: `Penempatan dari Gudang Transit via BAST No: ${placementData.nomor_bast}. Diserahkan kepada PJ: ${placementData.pj}`
+    };
+
+    addAsset(newAsset);
+    deleteTransitItem(transitId);
+    return newAsset;
+  }
+
+  // --- 3. PEMINJAMAN ASET (LOANS) ---
+  function getLoans() {
+    return getCollection(STORAGE_KEY_LOANS, INITIAL_LOANS);
+  }
+
+  function saveLoans(loans) {
+    saveCollection(STORAGE_KEY_LOANS, loans);
+  }
+
+  function addLoan(loan) {
+    const loans = getLoans();
+    loans.unshift(loan);
+    saveLoans(loans);
+    // Update asset status
+    updateAsset(loan.id_aset, { status_operasional: "Dipinjam" });
+    return loan;
+  }
+
+  function returnLoan(loanId) {
+    const loans = getLoans();
+    const loan = loans.find(l => l.id === loanId);
+    if (loan) {
+      loan.status = "Sudah Kembali";
+      loan.tgl_kembali_realisasi = new Date().toISOString().slice(0, 10);
+      saveLoans(loans);
+      // Restore asset status
+      updateAsset(loan.id_aset, { status_operasional: "Aktif" });
+      return loan;
+    }
+    return null;
+  }
+
+  // --- 4. MUTASI ASET (TRANSFERS) ---
+  function getMutations() {
+    return getCollection(STORAGE_KEY_MUTATIONS, INITIAL_MUTATIONS);
+  }
+
+  function saveMutations(mutations) {
+    saveCollection(STORAGE_KEY_MUTATIONS, mutations);
+  }
+
+  function addMutation(mutation) {
+    const mutations = getMutations();
+    mutations.unshift(mutation);
+    saveMutations(mutations);
+    // Update asset location in master
+    updateAsset(mutation.id_aset, {
+      lokasi: mutation.lokasi_tujuan,
+      gedung: mutation.gedung_tujuan || "Gedung Utama"
+    });
+    return mutation;
+  }
+
+  // --- 5. PEMELIHARAAN PREVENTIF (SCHEDULES) ---
+  function getPreventiveSchedules() {
+    return getCollection(STORAGE_KEY_PREVENTIVE, INITIAL_PREVENTIVE);
+  }
+
+  function savePreventiveSchedules(schedules) {
+    saveCollection(STORAGE_KEY_PREVENTIVE, schedules);
+  }
+
+  function addPreventiveSchedule(schedule) {
+    const schedules = getPreventiveSchedules();
+    schedules.unshift(schedule);
+    savePreventiveSchedules(schedules);
+    return schedule;
+  }
+
+  // --- 6. PENGHAPUSAN ASET (DISPOSAL) ---
+  function getDisposals() {
+    return getCollection(STORAGE_KEY_DISPOSALS, INITIAL_DISPOSALS);
+  }
+
+  function saveDisposals(disposals) {
+    saveCollection(STORAGE_KEY_DISPOSALS, disposals);
+  }
+
+  function addDisposal(disposal) {
+    const disposals = getDisposals();
+    disposals.unshift(disposal);
+    saveDisposals(disposals);
+    // Mark asset as Dihapuskan or remove from active inventory
+    updateAsset(disposal.id_aset, {
+      status_operasional: "Dihapuskan",
+      kondisi: "Dihapuskan"
+    });
+    return disposal;
+  }
+
+  // --- 7. CATEGORIES & LOCATIONS ---
+  function getCategories() {
+    return getCollection(STORAGE_KEY_CATEGORIES, INITIAL_CATEGORIES);
+  }
+  function saveCategories(c) { saveCollection(STORAGE_KEY_CATEGORIES, c); }
+  function addCategory(cat) {
+    const c = getCategories();
+    c.push(cat);
+    saveCategories(c);
+    return cat;
+  }
+  function deleteCategory(kode) {
+    const c = getCategories().filter(item => item.kode !== kode);
+    saveCategories(c);
+    return true;
+  }
+
   function getLocations() {
-    const data = localStorage.getItem(STORAGE_KEY_LOCATIONS);
-    if (!data) {
-      localStorage.setItem(STORAGE_KEY_LOCATIONS, JSON.stringify(INITIAL_LOCATIONS));
-      return [...INITIAL_LOCATIONS];
-    }
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      localStorage.setItem(STORAGE_KEY_LOCATIONS, JSON.stringify(INITIAL_LOCATIONS));
-      return [...INITIAL_LOCATIONS];
-    }
+    return getCollection(STORAGE_KEY_LOCATIONS, INITIAL_LOCATIONS);
   }
-
-  function saveLocations(locations) {
-    localStorage.setItem(STORAGE_KEY_LOCATIONS, JSON.stringify(locations));
-  }
-
+  function saveLocations(l) { saveCollection(STORAGE_KEY_LOCATIONS, l); }
   function addLocation(loc) {
-    const locations = getLocations();
-    locations.push(loc);
-    saveLocations(locations);
+    const l = getLocations();
+    l.push(loc);
+    saveLocations(l);
     return loc;
   }
 
-  // --- MAINTENANCE TICKETS REPOSITORY ---
+  // --- 8. TIKET SERVIS ---
   function getMaintenanceTickets() {
-    const data = localStorage.getItem(STORAGE_KEY_TICKETS);
-    if (!data) {
-      localStorage.setItem(STORAGE_KEY_TICKETS, JSON.stringify(INITIAL_TICKETS));
-      return [...INITIAL_TICKETS];
-    }
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      localStorage.setItem(STORAGE_KEY_TICKETS, JSON.stringify(INITIAL_TICKETS));
-      return [...INITIAL_TICKETS];
-    }
+    return getCollection(STORAGE_KEY_TICKETS, INITIAL_TICKETS);
   }
-
-  function saveMaintenanceTickets(tickets) {
-    localStorage.setItem(STORAGE_KEY_TICKETS, JSON.stringify(tickets));
-  }
-
+  function saveMaintenanceTickets(t) { saveCollection(STORAGE_KEY_TICKETS, t); }
   function addMaintenanceTicket(ticket) {
-    const tickets = getMaintenanceTickets();
-    tickets.unshift(ticket);
-    saveMaintenanceTickets(tickets);
-
-    if (ticket.id_aset) {
-      updateAsset(ticket.id_aset, { kondisi: 'Dalam Perawatan' });
-    }
+    const t = getMaintenanceTickets();
+    t.unshift(ticket);
+    saveMaintenanceTickets(t);
+    if (ticket.id_aset) updateAsset(ticket.id_aset, { kondisi: "Dalam Perawatan" });
     return ticket;
   }
-
   function completeMaintenanceTicket(ticketId) {
-    const tickets = getMaintenanceTickets();
-    const ticket = tickets.find(t => t.id === ticketId);
+    const t = getMaintenanceTickets();
+    const ticket = t.find(item => item.id === ticketId);
     if (ticket) {
-      ticket.status = 'Selesai Servis';
-      saveMaintenanceTickets(tickets);
-
-      if (ticket.id_aset) {
-        updateAsset(ticket.id_aset, { kondisi: 'Baik' });
-      }
+      ticket.status = "Selesai Servis";
+      saveMaintenanceTickets(t);
+      if (ticket.id_aset) updateAsset(ticket.id_aset, { kondisi: "Baik" });
       return ticket;
     }
     return null;
   }
-
   function deleteMaintenanceTicket(ticketId) {
-    const tickets = getMaintenanceTickets();
-    const filtered = tickets.filter(t => t.id !== ticketId);
-    saveMaintenanceTickets(filtered);
+    const t = getMaintenanceTickets().filter(item => item.id !== ticketId);
+    saveMaintenanceTickets(t);
     return true;
   }
 
-  // --- USERS & AUTHENTICATION REPOSITORY ---
+  // --- 9. USERS & RBAC ---
   function getUsers() {
-    const data = localStorage.getItem(STORAGE_KEY_USERS);
-    if (!data) {
-      localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(INITIAL_USERS));
-      return [...INITIAL_USERS];
-    }
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(INITIAL_USERS));
-      return [...INITIAL_USERS];
-    }
+    return getCollection(STORAGE_KEY_USERS, INITIAL_USERS);
   }
-
-  function saveUsers(users) {
-    localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-  }
-
+  function saveUsers(u) { saveCollection(STORAGE_KEY_USERS, u); }
   function addUser(user) {
-    const users = getUsers();
-    users.push(user);
-    saveUsers(users);
+    const u = getUsers();
+    u.push(user);
+    saveUsers(u);
     return user;
   }
-
   function updateUser(id, fields) {
-    const users = getUsers();
-    const idx = users.findIndex(u => u.id === id);
+    const u = getUsers();
+    const idx = u.findIndex(item => item.id === id);
     if (idx !== -1) {
-      users[idx] = { ...users[idx], ...fields };
-      saveUsers(users);
-      return users[idx];
+      u[idx] = { ...u[idx], ...fields };
+      saveUsers(u);
+      return u[idx];
     }
     return null;
   }
-
   function deleteUser(id) {
-    const users = getUsers();
-    // Prevent deleting primary super admin
     if (id === 'USR-001') return false;
-    const filtered = users.filter(u => u.id !== id);
-    saveUsers(filtered);
+    const u = getUsers().filter(item => item.id !== id);
+    saveUsers(u);
     return true;
   }
-
   function getUserById(id) {
-    const users = getUsers();
-    return users.find(u => u.id === id) || null;
+    return getUsers().find(u => u.id === id) || null;
   }
-
   function getUserByIdentifier(identifier) {
     if (!identifier) return null;
-    const users = getUsers();
     const query = identifier.trim().toLowerCase();
-    return users.find(u => 
+    return getUsers().find(u =>
       (u.username && u.username.toLowerCase() === query) ||
       (u.email && u.email.toLowerCase() === query)
     ) || null;
   }
-
   function authenticate(identifier, password) {
     if (!identifier || !password) return null;
-    const users = getUsers();
     const query = identifier.trim().toLowerCase();
-    const found = users.find(u => {
-      const matchUsername = u.username && u.username.toLowerCase() === query;
-      const matchEmail = u.email && u.email.toLowerCase() === query;
-      return (matchUsername || matchEmail) && u.password === password;
-    });
-    if (found && found.status === 'Aktif') {
-      return found;
-    }
-    return null;
+    return getUsers().find(u =>
+      ((u.username && u.username.toLowerCase() === query) ||
+       (u.email && u.email.toLowerCase() === query)) &&
+      u.password === password &&
+      u.status === "Aktif"
+    ) || null;
   }
-
   function getCurrentUser() {
     const data = localStorage.getItem(STORAGE_KEY_CURRENT_USER);
     if (data) {
-      try {
-        return JSON.parse(data);
-      } catch (e) {
-        // fallback
-      }
+      try { return JSON.parse(data); } catch (e) {}
     }
-    const defaultUser = INITIAL_USERS[0];
-    localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(defaultUser));
-    return defaultUser;
+    const def = INITIAL_USERS[0];
+    localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(def));
+    return def;
   }
-
   function setCurrentUser(user) {
     localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(user));
   }
-
   function logout() {
     localStorage.removeItem(STORAGE_KEY_CURRENT_USER);
     window.location.href = '../index.html';
   }
 
-  // --- SETTINGS REPOSITORY ---
+  // --- 10. SETTINGS ---
   function getSettings() {
-    const data = localStorage.getItem(STORAGE_KEY_SETTINGS);
-    if (!data) {
-      localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(INITIAL_SETTINGS));
-      return { ...INITIAL_SETTINGS };
-    }
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(INITIAL_SETTINGS));
-      return { ...INITIAL_SETTINGS };
-    }
+    return getCollection(STORAGE_KEY_SETTINGS, INITIAL_SETTINGS);
+  }
+  function saveSettings(s) {
+    saveCollection(STORAGE_KEY_SETTINGS, s);
+    return s;
   }
 
-  function saveSettings(settings) {
-    localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(settings));
-    return settings;
-  }
-
-  // --- RESET ALL DATA TO SEED ---
+  // --- 11. RESET ALL DATA TO SEED ---
   function resetMockData() {
     localStorage.setItem(STORAGE_KEY_ASSETS, JSON.stringify(INITIAL_ASSETS));
     localStorage.setItem(STORAGE_KEY_CATEGORIES, JSON.stringify(INITIAL_CATEGORIES));
@@ -542,14 +826,12 @@
     localStorage.setItem(STORAGE_KEY_TICKETS, JSON.stringify(INITIAL_TICKETS));
     localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(INITIAL_USERS));
     localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(INITIAL_SETTINGS));
-    return {
-      assets: [...INITIAL_ASSETS],
-      categories: [...INITIAL_CATEGORIES],
-      locations: [...INITIAL_LOCATIONS],
-      tickets: [...INITIAL_TICKETS],
-      users: [...INITIAL_USERS],
-      settings: { ...INITIAL_SETTINGS }
-    };
+    localStorage.setItem(STORAGE_KEY_TRANSIT, JSON.stringify(INITIAL_TRANSIT));
+    localStorage.setItem(STORAGE_KEY_LOANS, JSON.stringify(INITIAL_LOANS));
+    localStorage.setItem(STORAGE_KEY_MUTATIONS, JSON.stringify(INITIAL_MUTATIONS));
+    localStorage.setItem(STORAGE_KEY_PREVENTIVE, JSON.stringify(INITIAL_PREVENTIVE));
+    localStorage.setItem(STORAGE_KEY_DISPOSALS, JSON.stringify(INITIAL_DISPOSALS));
+    return true;
   }
 
   function formatRupiah(number) {
@@ -569,6 +851,25 @@
     updateAsset,
     deleteAsset,
     getAssetById,
+    calculateAssetDepreciation,
+    getTransitItems,
+    saveTransitItems,
+    addTransitItem,
+    deleteTransitItem,
+    placeTransitItemToRoom,
+    getLoans,
+    saveLoans,
+    addLoan,
+    returnLoan,
+    getMutations,
+    saveMutations,
+    addMutation,
+    getPreventiveSchedules,
+    savePreventiveSchedules,
+    addPreventiveSchedule,
+    getDisposals,
+    saveDisposals,
+    addDisposal,
     getCategories,
     saveCategories,
     addCategory,

@@ -101,6 +101,30 @@ const ROUTE_CONFIG = {
     title: 'Data Aset',
     breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Data Aset</span>'
   },
+  'transit': {
+    viewId: 'view-transit',
+    navId: 'nav-transit',
+    title: 'Gudang Transit (Pre-Inventory)',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Gudang Transit</span>'
+  },
+  'depresiasi': {
+    viewId: 'view-depresiasi',
+    navId: 'nav-depresiasi',
+    title: 'Penyusutan Nilai Aset (Depresiasi)',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Keuangan Aset</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Penyusutan Aset</span>'
+  },
+  'peminjaman': {
+    viewId: 'view-peminjaman',
+    navId: 'nav-peminjaman',
+    title: 'Peminjaman & Pengembalian Aset',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Operasional</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Peminjaman Aset</span>'
+  },
+  'mutasi': {
+    viewId: 'view-mutasi',
+    navId: 'nav-mutasi',
+    title: 'Mutasi Aset Antar-Ruang',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Operasional</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Mutasi Aset</span>'
+  },
   'kategori': {
     viewId: 'view-kategori',
     navId: 'nav-kategori',
@@ -116,8 +140,20 @@ const ROUTE_CONFIG = {
   'pemeliharaan': {
     viewId: 'view-pemeliharaan',
     navId: 'nav-pemeliharaan',
-    title: 'Pemeliharaan & Servis Aset',
-    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Operasional</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Pemeliharaan</span>'
+    title: 'Pemeliharaan Kuratif / Servis',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Operasional</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Servis Kuratif</span>'
+  },
+  'preventif': {
+    viewId: 'view-preventif',
+    navId: 'nav-preventif',
+    title: 'Pemeliharaan Preventif Berkala',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Operasional</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Jadwal Preventif</span>'
+  },
+  'penghapusan': {
+    viewId: 'view-penghapusan',
+    navId: 'nav-penghapusan',
+    title: 'Penghapusan & Lelang Aset BMN',
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Hilir & Pelepasan</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Penghapusan Aset</span>'
   },
   'laporan': {
     viewId: 'view-laporan',

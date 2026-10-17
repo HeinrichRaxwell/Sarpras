@@ -218,12 +218,12 @@
         </button>
       </div>
 
-      <nav class="sidebar-menu">
+            <nav class="sidebar-menu">
         <div class="menu-category-label">MENU UTAMA</div>
 
         <!-- 1. Dashboard -->
         <button type="button" class="nav-link active" id="nav-dashboard" onclick="switchRoute('dashboard')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
           <span class="nav-label">Dashboard</span>
         </button>
 
@@ -231,56 +231,92 @@
 
         <!-- 2. Data Aset -->
         <button type="button" class="nav-link" id="nav-master" onclick="switchRoute('master')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
           <span class="nav-label">Data Aset</span>
         </button>
 
-        <!-- 3. Kategori Aset -->
+        <!-- 3. Gudang Transit (Pre-Inventory) -->
+        <button type="button" class="nav-link" id="nav-transit" onclick="switchRoute('transit')">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="4" height="6" x="10" y="10"/></svg>
+          <span class="nav-label">Gudang Transit (QC)</span>
+        </button>
+
+        <!-- 4. Kategori Aset -->
         <button type="button" class="nav-link" id="nav-kategori" onclick="switchRoute('kategori')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
           <span class="nav-label">Kategori Aset</span>
         </button>
 
-        <!-- 4. Lokasi Penempatan -->
+        <!-- 5. Lokasi Penempatan -->
         <button type="button" class="nav-link" id="nav-lokasi" onclick="switchRoute('lokasi')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
           <span class="nav-label">Lokasi Aset</span>
+        </button>
+
+        <div class="menu-category-label">KEUANGAN ASET</div>
+
+        <!-- 6. Penyusutan Nilai Aset -->
+        <button type="button" class="nav-link" id="nav-depresiasi" onclick="switchRoute('depresiasi')">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><polyline points="20 18 16 22 12 18"/></svg>
+          <span class="nav-label">Penyusutan Nilai</span>
         </button>
 
         <div class="menu-category-label">OPERASIONAL</div>
 
-        <!-- 5. Pemeliharaan & Servis -->
-        <button type="button" class="nav-link" id="nav-pemeliharaan" onclick="switchRoute('pemeliharaan')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          <span class="nav-label">Pemeliharaan &amp; Servis</span>
+        <!-- 7. Peminjaman Aset -->
+        <button type="button" class="nav-link" id="nav-peminjaman" onclick="switchRoute('peminjaman')">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+          <span class="nav-label">Peminjaman Aset</span>
         </button>
 
-        <div class="menu-category-label">REKAPITULASI</div>
+        <!-- 8. Mutasi Aset Antar-Ruang -->
+        <button type="button" class="nav-link" id="nav-mutasi" onclick="switchRoute('mutasi')">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+          <span class="nav-label">Mutasi Antar-Ruang</span>
+        </button>
 
-        <!-- 6. Laporan Aset -->
+        <!-- 9. Servis Kuratif -->
+        <button type="button" class="nav-link" id="nav-pemeliharaan" onclick="switchRoute('pemeliharaan')">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span class="nav-label">Servis Kuratif</span>
+        </button>
+
+        <!-- 10. Servis Preventif -->
+        <button type="button" class="nav-link" id="nav-preventif" onclick="switchRoute('preventif')">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+          <span class="nav-label">Servis Preventif</span>
+        </button>
+
+        <div class="menu-category-label">HILIR & REKAP</div>
+
+        <!-- 11. Penghapusan & Lelang BMN -->
+        <button type="button" class="nav-link" id="nav-penghapusan" onclick="switchRoute('penghapusan')">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 20 20"/><path d="M5 5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M9 5h6"/><path d="M10 2h4"/></svg>
+          <span class="nav-label">Penghapusan & Lelang</span>
+        </button>
+
+        <!-- 12. Laporan Aset KIR -->
         <button type="button" class="nav-link" id="nav-laporan" onclick="switchRoute('laporan')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
           <span class="nav-label">Laporan Aset (KIR)</span>
         </button>
 
         <div class="menu-category-label" id="labelSistemNav">MANAJEMEN SISTEM</div>
 
-        <!-- 7. Manajemen Pengguna -->
+        <!-- 13. Manajemen Pengguna -->
         <button type="button" class="nav-link" id="nav-users" onclick="switchRoute('users')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span class="nav-label">Manajemen Pengguna</span>
         </button>
 
-        <!-- 8. Pengaturan -->
+        <!-- 14. Pengaturan -->
         <button type="button" class="nav-link" id="nav-settings" onclick="switchRoute('settings')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="nav-label">Pengaturan</span>
         </button>
 
-        <div class="menu-category-label" >AUTENTIKASI</div>
-
-        <a href="javascript:void(0)" class="nav-link" onclick="handleLogout()" style="color: var(--color-danger);">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        <a href="javascript:void(0)" class="nav-link" onclick="handleLogout()" style="color: var(--color-danger); margin-top: 4px;">
+          <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
           <span class="nav-label">Keluar</span>
         </a>
       </nav>
@@ -892,6 +928,380 @@
                   </tr>
                 </thead>
                 <tbody id="laporanTableBody">
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        
+        <!-- ================= VIEW: GUDANG TRANSIT (PRE-INVENTORY & QC) ================= -->
+        <div id="view-transit" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Gudang Transit & Penerimaan Barang</h1>
+              <p class="page-description">Kelola barang baru dari rekanan/vendor, inspeksi kualitas (QC), dan penempatan resmi ke ruangan via BAST.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary" onclick="openAddTransitModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                Terima Barang Vendor
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 KPI Transit -->
+          <div class="kpi-grid" style="margin-bottom: 24px;">
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Total Item Transit</span>
+                <div class="kpi-value" id="kpi-transit-total" style="font-size: 24px;">0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-blue" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="4" height="6" x="10" y="10"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Lolos Inspeksi QC</span>
+                <div class="kpi-value" id="kpi-transit-qc-pass" style="font-size: 24px;">0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-emerald" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Menunggu Pengujian</span>
+                <div class="kpi-value" id="kpi-transit-qc-wait" style="font-size: 24px;">0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-amber" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Total Nilai Barang Masuk</span>
+                <div class="kpi-value" id="kpi-transit-nilai" style="font-size: 18px; margin-top: 4px;">Rp 0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-purple" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transit Table -->
+          <section class="card-panel">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 85px;">Kode</th>
+                    <th>Nama Barang</th>
+                    <th>Kategori</th>
+                    <th>Supplier Rekanan</th>
+                    <th>No. Surat Jalan</th>
+                    <th>Tgl Terima</th>
+                    <th style="text-align: center;">Qty</th>
+                    <th>Harga Satuan</th>
+                    <th>Status QC</th>
+                    <th style="text-align: center; width: 140px;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="transitTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= VIEW: PENYUSUTAN NILAI ASET (DEPRESIASI) ================= -->
+        <div id="view-depresiasi" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Penyusutan Nilai Aset (Depresiasi Garis Lurus)</h1>
+              <p class="page-description">Kalkulasi nilai buku real-time, masa manfaat ekonomis (PSAK 16 & BMN), dan batas kelayakan pelepasan aset.</p>
+            </div>
+          </div>
+
+          <!-- 4 KPI Finansial -->
+          <div class="kpi-grid" style="margin-bottom: 24px;">
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Total Harga Perolehan</span>
+                <div class="kpi-value" id="kpi-dep-perolehan" style="font-size: 18px; margin-top: 4px;">Rp 0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-blue" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Akumulasi Penyusutan</span>
+                <div class="kpi-value" id="kpi-dep-akumulasi" style="font-size: 18px; margin-top: 4px; color: var(--color-danger);">Rp 0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-amber" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Nilai Buku Saat Ini (Net)</span>
+                <div class="kpi-value" id="kpi-dep-buku" style="font-size: 18px; margin-top: 4px; color: var(--color-success);">Rp 0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-emerald" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Siap Dihapuskan (Susut 100%)</span>
+                <div class="kpi-value" id="kpi-dep-siap-lelang" style="font-size: 24px;">0 Unit</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-purple" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 20 20"/><path d="M5 5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M9 5h6"/><path d="M10 2h4"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Depreciation Table -->
+          <section class="card-panel">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 85px;">Kode</th>
+                    <th>Nama Barang / Aset</th>
+                    <th>Tgl Beli</th>
+                    <th>Harga Awal</th>
+                    <th style="text-align: center;">Masa Manfaat</th>
+                    <th style="text-align: center;">Usia Pakai</th>
+                    <th>Akumulasi Susut</th>
+                    <th>Nilai Buku</th>
+                    <th style="width: 140px;">Sisa Nilai (%)</th>
+                    <th>Kelayakan Pelepasan</th>
+                  </tr>
+                </thead>
+                <tbody id="depresiasiTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= VIEW: PEMINJAMAN & PENGEMBALIAN ASET ================= -->
+        <div id="view-peminjaman" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Peminjaman & Pengembalian Aset</h1>
+              <p class="page-description">Lacak sirkulasi peminjaman sementara barang inventaris kampus, jadwal pengembalian, dan riwayat peminjam.</p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="openAddLoanModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                Catat Peminjaman Baru
+              </button>
+            </div>
+          </div>
+
+          <div class="kpi-grid" style="margin-bottom: 24px; grid-template-columns: repeat(3, 1fr);">
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Sedang Dipinjam</span>
+                <div class="kpi-value" id="kpi-loan-active" style="font-size: 24px; color: var(--color-warning);">0 Unit</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-amber" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Sudah Dikembalikan</span>
+                <div class="kpi-value" id="kpi-loan-returned" style="font-size: 24px; color: var(--color-success);">0 Transaksi</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-emerald" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Total Transaksi Sirkulasi</span>
+                <div class="kpi-value" id="kpi-loan-total" style="font-size: 24px;">0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-blue" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <section class="card-panel">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 95px;">ID Pinjam</th>
+                    <th>Aset Dipinjam</th>
+                    <th>Nama Peminjam</th>
+                    <th>NIM / NIP</th>
+                    <th>Unit / Prodi</th>
+                    <th>Tgl Pinjam</th>
+                    <th>Batas Kembali</th>
+                    <th>Status</th>
+                    <th style="text-align: center; width: 110px;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="peminjamanTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= VIEW: MUTASI ASET ANTAR-RUANG ================= -->
+        <div id="view-mutasi" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Mutasi Aset Antar-Ruang</h1>
+              <p class="page-description">Dokumentasikan riwayat perpindahan lokasi fisik inventaris antar-gedung dan serah terima penanggung jawab.</p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="openAddMutationModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                Mutasikan Aset
+              </button>
+            </div>
+          </div>
+
+          <section class="card-panel">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 90px;">No. Mutasi</th>
+                    <th>Aset</th>
+                    <th>Lokasi Asal</th>
+                    <th>Lokasi Tujuan Baru</th>
+                    <th>PJ Penyerah</th>
+                    <th>PJ Penerima Baru</th>
+                    <th>Tanggal Mutasi</th>
+                    <th>Alasan Perpindahan</th>
+                  </tr>
+                </thead>
+                <tbody id="mutasiTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= VIEW: PEMELIHARAAN PREVENTIF ================= -->
+        <div id="view-preventif" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Pemeliharaan Preventif Berkala</h1>
+              <p class="page-description">Jadwalkan pemeliharaan preventif rutin (cuci AC, ganti oli, kalibrasi alat) sebelum terjadi kerusakan fisik.</p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="openAddPreventiveModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                Jadwalkan Servis Rutin
+              </button>
+            </div>
+          </div>
+
+          <section class="card-panel">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 85px;">ID Jadwal</th>
+                    <th>Aset</th>
+                    <th>Lokasi</th>
+                    <th>Kegiatan Pemeliharaan</th>
+                    <th style="text-align: center;">Interval</th>
+                    <th>Servis Terakhir</th>
+                    <th>Jatuh Tempo</th>
+                    <th>Mitra Vendor</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="preventifTableBody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= VIEW: PENGHAPUSAN & LELANG ASET ================= -->
+        <div id="view-penghapusan" class="app-view hidden">
+          <div class="page-header-block">
+            <div>
+              <h1 class="page-title">Penghapusan & Pelepasan Aset BMN</h1>
+              <p class="page-description">Buku arsip pelepasan inventaris resmi kampus melalui mekanisme Lelang Umum, Hibah, atau Pemusnahan Fisik.</p>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" onclick="openAddDisposalModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 20 20"/><path d="M5 5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M9 5h6"/><path d="M10 2h4"/></svg>
+                Ajukan Penghapusan Aset
+              </button>
+            </div>
+          </div>
+
+          <div class="kpi-grid" style="margin-bottom: 24px; grid-template-columns: repeat(3, 1fr);">
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Total Aset Dihapuskan</span>
+                <div class="kpi-value" id="kpi-disp-count" style="font-size: 24px;">0 Unit</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-amber" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Total Hasil Lelang (Kas)</span>
+                <div class="kpi-value" id="kpi-disp-lelang" style="font-size: 18px; margin-top: 4px; color: var(--color-success);">Rp 0</div>
+              </div>
+              <div class="kpi-icon-wrapper icon-emerald" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+            </div>
+            <div class="kpi-card" style="padding: 16px;">
+              <div>
+                <span class="kpi-label">Dasar Aturan Penghapusan</span>
+                <div class="kpi-value" style="font-size: 13px; font-weight: 600; margin-top: 4px; color: var(--color-primary);">
+                  Wajib Susut 100% / Kondisi Rusak Total
+                </div>
+              </div>
+              <div class="kpi-icon-wrapper icon-blue" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <section class="card-panel">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 90px;">No. Arsip</th>
+                    <th>Kode Aset</th>
+                    <th>Nama Aset</th>
+                    <th>Harga Beli Awal</th>
+                    <th>Nilai Buku Akhir</th>
+                    <th>Metode Pelepasan</th>
+                    <th>Nomor SK Penghapusan</th>
+                    <th>Tanggal SK</th>
+                    <th>Nilai Lelang (Kas)</th>
+                  </tr>
+                </thead>
+                <tbody id="penghapusanTableBody">
+                  <!-- Rendered dynamically -->
                 </tbody>
               </table>
             </div>
@@ -1709,6 +2119,433 @@
     </div>
   </div>
 
+  
+  <!-- ================= MODAL: TERIMA BARANG GUDANG TRANSIT ================= -->
+  <div id="modalAddTransit" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Penerimaan Barang Rekanan (Gudang Transit)</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddTransit')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formAddTransit" onsubmit="handleSaveTransit(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Nama Barang / Perangkat <span class="required">*</span></label>
+            <input type="text" id="trn_nama" class="form-input" placeholder="Contoh: Monitor LED Dell 24 Inci" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Kategori <span class="required">*</span></label>
+              <select id="trn_kategori" class="form-select" required></select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Supplier Rekanan <span class="required">*</span></label>
+              <input type="text" id="trn_supplier" class="form-input" placeholder="Contoh: PT Dell Megatama" required>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Nomor Surat Jalan / PO</label>
+              <input type="text" id="trn_surat_jalan" class="form-input font-code" placeholder="SJ-2026-X01">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Tanggal Masuk Transit <span class="required">*</span></label>
+              <input type="date" id="trn_tgl" class="form-input" required>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Jumlah Unit <span class="required">*</span></label>
+              <input type="number" id="trn_qty" class="form-input font-code" min="1" value="1" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Harga Satuan (Rp) <span class="required">*</span></label>
+              <input type="text" id="trn_harga" class="form-input font-code" placeholder="2500000" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Status Uji Kelayakan (QC)</label>
+            <select id="trn_status_qc" class="form-select">
+              <option value="Lolos QC" selected>Lolos QC (Segel Utuh & Berfungsi Normal)</option>
+              <option value="Perlu Pengecekan">Perlu Pengecekan / Uji Lab Lebih Lanjut</option>
+              <option value="Retur">Cacat Fisik (Siap Retur ke Vendor)</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Catatan Hasil Pemeriksaan QC</label>
+            <textarea id="trn_catatan_qc" class="form-textarea" rows="2" placeholder="Catatan kondisi fisik kemasan dan hasil pengetesan awal..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddTransit')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan ke Gudang Transit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: BAST PENEMPATAN ASET KE RUANGAN ================= -->
+  <div id="modalPlaceTransit" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Penempatan Aset & Berita Acara (BAST)</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalPlaceTransit')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formPlaceTransit" onsubmit="handleExecutePlacement(event)">
+        <input type="hidden" id="place_transit_id">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="background: var(--color-surface-alt); padding: 12px; border-radius: var(--radius-md);">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700;">Barang Transit:</div>
+            <div id="placeItemNameLabel" style="font-weight: 700; color: var(--color-text-title); font-size: 14px; margin-top: 2px;"></div>
+            <div id="placeItemPriceLabel" class="font-code" style="color: var(--color-primary); font-size: 13px; font-weight: 700; margin-top: 2px;"></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Nomor Registrasi BAST <span class="required">*</span></label>
+              <input type="text" id="place_bast_no" class="form-input font-code" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Lokasi Penempatan <span class="required">*</span></label>
+              <select id="place_lokasi" class="form-select" required onchange="handlePlaceLocationChange()"></select>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Gedung Kampus</label>
+              <input type="text" id="place_gedung" class="form-input" readonly style="opacity: 0.8;">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Penanggung Jawab Ruang</label>
+              <input type="text" id="place_pj" class="form-input" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Masa Manfaat Ekonomis (Tahun)</label>
+            <input type="number" id="place_masa_manfaat" class="form-input font-code" min="1" max="20" value="5" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalPlaceTransit')">Batal</button>
+          <button type="submit" class="btn btn-primary">Terbitkan BAST & Masukkan ke Master Aset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: CATAT PEMINJAMAN ASET ================= -->
+  <div id="modalAddLoan" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Formulir Peminjaman Aset Kampus</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddLoan')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formAddLoan" onsubmit="handleSaveLoan(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Pilih Aset yang Tersedia <span class="required">*</span></label>
+            <select id="loan_id_aset" class="form-select" required></select>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Nama Lengkap Peminjam <span class="required">*</span></label>
+              <input type="text" id="loan_nama" class="form-input" placeholder="Nama Dosen / Mahasiswa" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">NIM / NIDN / NIP <span class="required">*</span></label>
+              <input type="text" id="loan_identitas" class="form-input font-code" placeholder="NIM / NIP resmi" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Program Studi / Unit Pemohon <span class="required">*</span></label>
+            <input type="text" id="loan_unit" class="form-input" placeholder="Contoh: Prodi Teknik Informatika" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Tanggal Peminjaman <span class="required">*</span></label>
+              <input type="date" id="loan_tgl_pinjam" class="form-input" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Rencana Pengembalian <span class="required">*</span></label>
+              <input type="date" id="loan_tgl_kembali" class="form-input" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Keperluan Peminjaman <span class="required">*</span></label>
+            <textarea id="loan_keperluan" class="form-textarea" rows="2" placeholder="Uraikan kegiatan akademik / operasional peminjaman..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddLoan')">Batal</button>
+          <button type="submit" class="btn btn-primary">Konfirmasi Peminjaman</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: PENGEMBALIAN ASET ================= -->
+  <div id="modalReturnLoan" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: var(--color-success);">Konfirmasi Pengembalian Aset</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalReturnLoan')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 14px; line-height: 1.6; color: var(--color-text-body);">
+          Konfirmasi penerimaan kembali aset dari peminjaman <strong id="returnLoanIdLabel" class="font-code" style="color: var(--color-primary);"></strong>?
+        </p>
+        <div style="background: var(--color-success-bg); border: 1px solid var(--color-success-border); color: var(--color-success-text); padding: 10px 12px; border-radius: var(--radius-md); font-size: 12.5px; margin-top: 12px;">
+          Status aset akan otomatis dikembalikan menjadi <strong>Aktif</strong> dan siap dipinjamkan kembali.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalReturnLoan')">Batal</button>
+        <button type="button" class="btn btn-primary" id="confirmReturnLoanBtn">Terima Pengembalian</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: MUTASI ASET ANTAR-RUANG ================= -->
+  <div id="modalAddMutation" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Formulir Mutasi Aset Antar-Ruang</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddMutation')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formAddMutation" onsubmit="handleSaveMutation(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Pilih Aset yang Dimutasikan <span class="required">*</span></label>
+            <select id="mut_id_aset" class="form-select" required onchange="handleMutationAssetChange()"></select>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Lokasi Asal (Saat Ini)</label>
+              <input type="text" id="mut_lokasi_asal" class="form-input" readonly style="opacity: 0.8;">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">PJ Ruang Asal</label>
+              <input type="text" id="mut_pj_asal" class="form-input" readonly style="opacity: 0.8;">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Lokasi Tujuan Baru <span class="required">*</span></label>
+              <select id="mut_lokasi_tujuan" class="form-select" required onchange="handleMutationTargetChange()"></select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">PJ Ruang Baru</label>
+              <input type="text" id="mut_pj_tujuan" class="form-input" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Tanggal Pelaksanaan Mutasi <span class="required">*</span></label>
+            <input type="date" id="mut_tgl" class="form-input" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Alasan Pemindahan / Mutasi <span class="required">*</span></label>
+            <textarea id="mut_alasan" class="form-textarea" rows="2" placeholder="Uraikan urgensi pemindahan fisik barang..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddMutation')">Batal</button>
+          <button type="submit" class="btn btn-primary">Eksekusi Mutasi Lokasi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: SERVIS PREVENTIF BERKALA ================= -->
+  <div id="modalAddPreventive" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Jadwalkan Servis Preventif Rutin</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddPreventive')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formAddPreventive" onsubmit="handleSavePreventive(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Pilih Aset untuk Servis Berkala <span class="required">*</span></label>
+            <select id="pm_id_aset" class="form-select" required></select>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Uraian Pekerjaan Pemeliharaan Rutin <span class="required">*</span></label>
+            <input type="text" id="pm_kegiatan" class="form-input" placeholder="Contoh: Pembersihan filter udara dan ganti freon" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Interval Servis (Hari) <span class="required">*</span></label>
+              <select id="pm_interval" class="form-select" onchange="calculatePreventiveDueDate()">
+                <option value="30">Setiap 1 Bulan (30 Hari)</option>
+                <option value="90" selected>Setiap 3 Bulan (90 Hari)</option>
+                <option value="180">Setiap 6 Bulan (180 Hari)</option>
+                <option value="365">Setiap 1 Tahun (365 Hari)</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Tanggal Servis Terakhir <span class="required">*</span></label>
+              <input type="date" id="pm_tgl_terakhir" class="form-input" required onchange="calculatePreventiveDueDate()">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Estimasi Jatuh Tempo</label>
+              <input type="date" id="pm_tgl_tempo" class="form-input font-code" readonly style="opacity: 0.85;">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Vendor / Teknisi Rekanan</label>
+              <input type="text" id="pm_vendor" class="form-input" placeholder="CV Sejuk Abadi" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddPreventive')">Batal</button>
+          <button type="submit" class="btn btn-primary">Daftarkan Jadwal Preventif</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: USULAN PENGHAPUSAN / LELANG ASET ================= -->
+  <div id="modalAddDisposal" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: var(--color-danger);">Formulir Penghapusan & Pelepasan Aset BMN</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalAddDisposal')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="formAddDisposal" onsubmit="handleSaveDisposal(event)">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Pilih Aset yang Akan Dihapuskan <span class="required">*</span></label>
+            <select id="disp_id_aset" class="form-select" required onchange="handleDisposalAssetChange()"></select>
+          </div>
+
+          <!-- Financial Compliance Badge -->
+          <div id="disposalAuditBadge" style="background: var(--color-surface-alt); padding: 12px; border-radius: var(--radius-md); font-size: 12.5px; border: 1px solid var(--color-border);">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--color-text-muted);">Sisa Nilai Buku:</span>
+              <strong id="dispBookValueLabel" class="font-code">Rp 0 (0%)</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 4px;">
+              <span style="color: var(--color-text-muted);">Status Audit Regulasi:</span>
+              <span id="dispAuditStatusLabel" class="badge-status badge-success">Memenuhi Syarat</span>
+            </div>
+            <div id="dispWarningNotice" style="display: none; color: var(--color-danger); font-size: 11.5px; margin-top: 8px; line-height: 1.4;">
+              Peringatan Regulasi: Aset ini belum mencapai akhir masa manfaat (nilai buku di atas 10%). Sesuai aturan BMN, pelepasan hanya diizinkan apabila disertai Berita Acara Kerusakan Total (Afkir) atau Kehilangan Resmi.
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Metode Pelepasan <span class="required">*</span></label>
+              <select id="disp_metode" class="form-select" required>
+                <option value="Lelang Umum" selected>Lelang Umum (Kas Kampus)</option>
+                <option value="Hibah Sosial">Hibah Sosial / Yayasan Binaan</option>
+                <option value="Kanibalisasi Suku Cadang">Kanibalisasi Suku Cadang</option>
+                <option value="Pemusnahan Fisik (Scrap)">Pemusnahan Fisik (Scrap/Destroy)</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Nilai Taksiran / Hasil Lelang (Rp)</label>
+              <input type="text" id="disp_nilai_lelang" class="form-input font-code" placeholder="0" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Nomor SK Penghapusan Rektor <span class="required">*</span></label>
+              <input type="text" id="disp_sk" class="form-input font-code" placeholder="SK-REKTOR/BMN/2026/089" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Tanggal Penetapan SK <span class="required">*</span></label>
+              <input type="date" id="disp_tgl" class="form-input" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Catatan Hasil Kajian Teknis BMN</label>
+            <textarea id="disp_keterangan" class="form-textarea" rows="2" placeholder="Uraikan kondisi fisik dan dasar persetujuan pelepasan aset..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddDisposal')">Batal</button>
+          <button type="submit" class="btn btn-danger" id="submitDisposalBtn">Hapus Aset dari Inventaris Aktif</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: GENERATOR CETAK STIKER LABEL QR CODE BMN ================= -->
+  <div id="modalPrintQRLabel" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Stiker Label Inventaris Resmi BMN</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalPrintQRLabel')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="background: var(--color-bg-canvas); padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <!-- Sticker Label Sheet (8cm x 4cm Aspect Ratio) -->
+        <div id="stickerLabelContainer" style="width: 440px; background: #FFFFFF; border: 2px solid #0F172A; border-radius: 6px; padding: 14px 16px; color: #0F172A; box-shadow: 0 4px 14px rgba(0,0,0,0.12); font-family: system-ui, sans-serif;">
+          <!-- Header Bar -->
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #0F172A; padding-bottom: 8px; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="background: #1F46E5; color: #FFFFFF; font-weight: 800; font-size: 13px; padding: 3px 6px; border-radius: 4px;">SP</div>
+              <div>
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">UNIVERSITAS PAMULANG</div>
+                <div style="font-size: 9px; color: #475569; font-weight: 600;">SISTEM MANAJEMEN SARANA PRASARANA</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 8.5px; background: #E2E8F0; padding: 2px 6px; border-radius: 3px; font-weight: 700;">BMN RESMI</span>
+            </div>
+          </div>
+          <!-- Body Content -->
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <div id="stickerQRCodeBox" style="background: #FFFFFF; border: 1px solid #CBD5E1; padding: 6px; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+              <!-- QR Code SVG -->
+            </div>
+            <div style="flex: 1; font-size: 11.5px; line-height: 1.45;">
+              <div style="font-size: 10px; color: #64748B; text-transform: uppercase; font-weight: 700;">Nomor Kode Aset:</div>
+              <div id="stickerAssetCode" style="font-size: 15px; font-weight: 800; color: #1F46E5; font-family: monospace;">A-001</div>
+              <div id="stickerAssetName" style="font-weight: 700; color: #0F172A; font-size: 12.5px; margin-top: 2px;">Laptop Lenovo ThinkPad</div>
+              <div style="font-size: 10.5px; color: #334155; margin-top: 3px;">
+                Lokasi: <strong id="stickerAssetLocation">Gedung A - Ruang 101</strong><br>
+                Registrasi: <span id="stickerAssetDate">12 Jan 2023</span>
+              </div>
+            </div>
+          </div>
+          <!-- Footer Warning -->
+          <div style="margin-top: 10px; border-top: 1px dashed #94A3B8; padding-top: 6px; display: flex; justify-content: space-between; font-size: 9px; color: #64748B;">
+            <span>Dilarang merusak / memindahkan stiker ini</span>
+            <span class="font-code" id="stickerNupCode">BMN-UNPAM-2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <span style="font-size: 12px; color: var(--color-text-muted);">Ukuran cetak standar label stiker thermal / barcode BMN</span>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modalPrintQRLabel')">Tutup</button>
+          <button type="button" class="btn btn-primary" onclick="executePrintSticker()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+            Cetak Stiker Label
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Container Khusus Dokumen KIR Resmi Saat window.print() -->
   <div id="officialPrintDocument"></div>
   <!-- Toast Notification Container -->
@@ -1740,6 +2577,12 @@
       initDashboardCharts();
       updateAllDashboardWidgets();
       renderLaporanTable();
+      renderTransitTable();
+      renderDepresiasiTable();
+      renderPeminjamanTable();
+      renderMutasiTable();
+      renderPreventifTable();
+      renderPenghapusanTable();
       loadSettingsProfilIntoForm();
       renderUserMainTable();
       checkUrlQueryActions();
@@ -2089,6 +2932,9 @@
             <td style="color: var(--color-text-muted);">${displayDate}</td>
             <td style="text-align: center;">
               <div style="display: flex; gap: 6px; justify-content: center;">
+                <button type="button" class="table-action-icon-btn" onclick="openQRLabelModal('${item.id}')" title="Cetak Stiker Label Barcode / QR Code">
+                  ${window.SARPRAS_ICONS.qrcode}
+                </button>
                 <button type="button" class="table-action-icon-btn" onclick="openDetailModal('${item.id}')" title="Lihat Detail">
                   ${window.SARPRAS_ICONS.eye}
                 </button>
@@ -3366,6 +4212,716 @@
       setTimeout(() => {
         window.print();
       }, 200);
+    }
+
+    
+    // --- 12. GUDANG TRANSIT (PRE-INVENTORY & BAST) ---
+    function renderTransitTable() {
+      const tbody = document.getElementById('transitTableBody');
+      if (!tbody) return;
+
+      const items = window.SarprasStore.getTransitItems();
+      const totalUnits = items.reduce((acc, i) => acc + (i.jumlah_unit || 1), 0);
+      const passQC = items.filter(i => i.status_qc === 'Lolos QC').length;
+      const waitQC = items.filter(i => i.status_qc === 'Perlu Pengecekan').length;
+      const totalNilai = items.reduce((acc, i) => acc + ((i.harga_satuan || 0) * (i.jumlah_unit || 1)), 0);
+
+      const elTot = document.getElementById('kpi-transit-total');
+      const elPass = document.getElementById('kpi-transit-qc-pass');
+      const elWait = document.getElementById('kpi-transit-qc-wait');
+      const elNilai = document.getElementById('kpi-transit-nilai');
+
+      if (elTot) elTot.textContent = `${items.length} Item (${totalUnits} Unit)`;
+      if (elPass) elPass.textContent = `${passQC} Item`;
+      if (elWait) elWait.textContent = `${waitQC} Item`;
+      if (elNilai) elNilai.textContent = window.SarprasStore.formatRupiah(totalNilai);
+
+      if (items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Gudang transit kosong. Semua barang telah ditempatkan ke ruangan.</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      items.forEach(item => {
+        let qcBadge = 'badge-success';
+        if (item.status_qc === 'Perlu Pengecekan') qcBadge = 'badge-warning';
+        else if (item.status_qc === 'Retur') qcBadge = 'badge-danger';
+
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${item.id}</td>
+            <td style="font-weight: 600; color: var(--color-text-title);">${item.nama_barang}</td>
+            <td>${item.kategori}</td>
+            <td style="color: var(--color-text-muted);">${item.supplier}</td>
+            <td class="font-code" style="font-size: 11.5px;">${item.nomor_surat_jalan || '-'}</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(item.tgl_terima)}</td>
+            <td style="text-align: center; font-weight: 700;">${item.jumlah_unit}</td>
+            <td class="font-code">${window.SarprasStore.formatRupiah(item.harga_satuan)}</td>
+            <td><span class="badge-status ${qcBadge}">${item.status_qc}</span></td>
+            <td style="text-align: center;">
+              <button type="button" class="btn btn-primary" style="height: 28px; font-size: 11.5px; padding: 0 8px;" onclick="openPlaceTransitModal('${item.id}')">
+                Tempatkan (BAST)
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function openAddTransitModal() {
+      const cats = window.SarprasStore.getCategories();
+      const selCat = document.getElementById('trn_kategori');
+      if (selCat) {
+        selCat.innerHTML = cats.map(c => `<option value="${c.nama}">${c.nama}</option>`).join('');
+      }
+      document.getElementById('trn_nama').value = '';
+      document.getElementById('trn_supplier').value = '';
+      document.getElementById('trn_surat_jalan').value = '';
+      document.getElementById('trn_tgl').value = new Date().toISOString().slice(0, 10);
+      document.getElementById('trn_qty').value = '1';
+      document.getElementById('trn_harga').value = '';
+      document.getElementById('trn_catatan_qc').value = '';
+      openModal('modalAddTransit');
+    }
+
+    function handleSaveTransit(e) {
+      e.preventDefault();
+      const items = window.SarprasStore.getTransitItems();
+      const nextNum = items.length + 1;
+      const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+      const transitId = 'TRN-' + padNum;
+
+      const newItem = {
+        id: transitId,
+        nama_barang: document.getElementById('trn_nama').value.trim(),
+        kategori: document.getElementById('trn_kategori').value,
+        supplier: document.getElementById('trn_supplier').value.trim(),
+        nomor_surat_jalan: document.getElementById('trn_surat_jalan').value.trim() || `SJ-${new Date().getFullYear()}-${padNum}`,
+        tgl_terima: document.getElementById('trn_tgl').value,
+        jumlah_unit: parseInt(document.getElementById('trn_qty').value, 10) || 1,
+        harga_satuan: parseInt(document.getElementById('trn_harga').value, 10) || 0,
+        status_qc: document.getElementById('trn_status_qc').value,
+        catatan_qc: document.getElementById('trn_catatan_qc').value.trim()
+      };
+
+      window.SarprasStore.addTransitItem(newItem);
+      closeModal('modalAddTransit');
+      renderTransitTable();
+      showToast(`Barang ${newItem.nama_barang} berhasil dicatat di Gudang Transit!`);
+    }
+
+    function openPlaceTransitModal(transitId) {
+      const items = window.SarprasStore.getTransitItems();
+      const item = items.find(i => i.id === transitId);
+      if (!item) return;
+
+      document.getElementById('place_transit_id').value = item.id;
+      document.getElementById('placeItemNameLabel').textContent = `${item.nama_barang} (${item.kategori})`;
+      document.getElementById('placeItemPriceLabel').textContent = `${window.SarprasStore.formatRupiah(item.harga_satuan)} / unit`;
+
+      const today = new Date();
+      document.getElementById('place_bast_no').value = `BAST-BMN/${today.getFullYear()}/${today.getMonth() + 1}/${item.id}`;
+
+      const locs = window.SarprasStore.getLocations();
+      const selLoc = document.getElementById('place_lokasi');
+      if (selLoc) {
+        selLoc.innerHTML = locs.map(l => `<option value="${l.ruangan}" data-gedung="${l.gedung}" data-pj="${l.pj}">${l.gedung} - ${l.ruangan}</option>`).join('');
+      }
+      handlePlaceLocationChange();
+      openModal('modalPlaceTransit');
+    }
+
+    function handlePlaceLocationChange() {
+      const sel = document.getElementById('place_lokasi');
+      const opt = sel.options[sel.selectedIndex];
+      if (opt) {
+        document.getElementById('place_gedung').value = opt.getAttribute('data-gedung') || 'Gedung A';
+        document.getElementById('place_pj').value = opt.getAttribute('data-pj') || 'Penanggung Jawab Ruang';
+      }
+    }
+
+    function handleExecutePlacement(e) {
+      e.preventDefault();
+      const transitId = document.getElementById('place_transit_id').value;
+      const bastNo = document.getElementById('place_bast_no').value.trim();
+      const ruangan = document.getElementById('place_lokasi').value;
+      const gedung = document.getElementById('place_gedung').value;
+      const pj = document.getElementById('place_pj').value.trim();
+      const masaManfaat = parseInt(document.getElementById('place_masa_manfaat').value, 10) || 5;
+
+      const newAsset = window.SarprasStore.placeTransitItemToRoom(transitId, {
+        nomor_bast: bastNo,
+        ruangan,
+        gedung,
+        pj,
+        masa_manfaat: masaManfaat
+      });
+
+      closeModal('modalPlaceTransit');
+      renderTransitTable();
+      loadInitialAssets();
+      renderDepresiasiTable();
+      renderLaporanTable();
+      updateAllDashboardWidgets();
+      showToast(`BAST diterbitkan! Aset ${newAsset.nama} (${newAsset.id}) resmi terdaftar di ${ruangan}.`);
+    }
+
+    // --- 13. PENYUSUTAN NILAI ASET (DEPRESIASI ENGINE) ---
+    function renderDepresiasiTable() {
+      const tbody = document.getElementById('depresiasiTableBody');
+      if (!tbody) return;
+
+      const assets = window.SarprasStore.getStoredAssets();
+      let totalPerolehan = 0;
+      let totalAkumulasi = 0;
+      let totalNilaiBuku = 0;
+      let siapLelangCount = 0;
+
+      let html = '';
+      assets.forEach(asset => {
+        const dep = window.SarprasStore.calculateAssetDepreciation(asset);
+        totalPerolehan += dep.hargaPerolehan;
+        totalAkumulasi += dep.akumulasiPenyusutan;
+        totalNilaiBuku += dep.nilaiBuku;
+        if (dep.bolehDihapuskan) siapLelangCount++;
+
+        let badgeClass = 'badge-success';
+        if (dep.isHabisMasa) badgeClass = 'badge-danger';
+        else if (dep.persenNilaiBuku <= 30) badgeClass = 'badge-warning';
+
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${asset.id}</td>
+            <td style="font-weight: 600; color: var(--color-text-title);">${asset.nama}</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(asset.tanggal || asset.tgl)}</td>
+            <td class="font-code">${window.SarprasStore.formatRupiah(dep.hargaPerolehan)}</td>
+            <td style="text-align: center;">${dep.masaManfaatTahun} Thn</td>
+            <td style="text-align: center; color: var(--color-text-muted);">${dep.usiaTahunBerjalan} Thn</td>
+            <td class="font-code" style="color: var(--color-danger);">${window.SarprasStore.formatRupiah(dep.akumulasiPenyusutan)}</td>
+            <td class="font-code" style="font-weight: 700; color: var(--color-success);">${window.SarprasStore.formatRupiah(dep.nilaiBuku)}</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="flex: 1; height: 6px; background: var(--color-border); border-radius: 3px; overflow: hidden;">
+                  <div style="width: ${dep.persenNilaiBuku}%; height: 100%; background: ${dep.persenNilaiBuku <= 20 ? 'var(--color-danger)' : 'var(--color-primary)'};"></div>
+                </div>
+                <span class="font-code" style="font-size: 11px; font-weight: 700;">${dep.persenNilaiBuku}%</span>
+              </div>
+            </td>
+            <td>
+              <span class="badge-status ${badgeClass}">${dep.statusKelayakan}</span>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html;
+
+      const elPerolehan = document.getElementById('kpi-dep-perolehan');
+      const elAkumulasi = document.getElementById('kpi-dep-akumulasi');
+      const elBuku = document.getElementById('kpi-dep-buku');
+      const elSiap = document.getElementById('kpi-dep-siap-lelang');
+
+      if (elPerolehan) elPerolehan.textContent = window.SarprasStore.formatRupiah(totalPerolehan);
+      if (elAkumulasi) elAkumulasi.textContent = window.SarprasStore.formatRupiah(totalAkumulasi);
+      if (elBuku) elBuku.textContent = window.SarprasStore.formatRupiah(totalNilaiBuku);
+      if (elSiap) elSiap.textContent = `${siapLelangCount} Unit`;
+    }
+
+    // --- 14. PEMINJAMAN ASET ---
+    function renderPeminjamanTable() {
+      const tbody = document.getElementById('peminjamanTableBody');
+      if (!tbody) return;
+
+      const loans = window.SarprasStore.getLoans();
+      const activeLoans = loans.filter(l => l.status === 'Dipinjam');
+      const returnedLoans = loans.filter(l => l.status === 'Sudah Kembali');
+
+      const elAct = document.getElementById('kpi-loan-active');
+      const elRet = document.getElementById('kpi-loan-returned');
+      const elTot = document.getElementById('kpi-loan-total');
+
+      if (elAct) elAct.textContent = `${activeLoans.length} Unit`;
+      if (elRet) elRet.textContent = `${returnedLoans.length} Transaksi`;
+      if (elTot) elTot.textContent = `${loans.length} Transaksi`;
+
+      if (loans.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Belum ada catatan peminjaman aset.</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      loans.forEach(loan => {
+        const isBorrowed = loan.status === 'Dipinjam';
+        const badgeClass = isBorrowed ? 'badge-warning' : 'badge-success';
+
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${loan.id}</td>
+            <td>
+              <div style="font-weight: 600; color: var(--color-text-title);">${loan.nama_aset}</div>
+              <div class="font-code" style="font-size: 11px; color: var(--color-text-muted);">${loan.id_aset}</div>
+            </td>
+            <td style="font-weight: 600;">${loan.nama_peminjam}</td>
+            <td class="font-code">${loan.identitas_peminjam}</td>
+            <td style="color: var(--color-text-muted);">${loan.unit_peminjam}</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(loan.tgl_pinjam)}</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(loan.tgl_kembali_rencana)}</td>
+            <td><span class="badge-status ${badgeClass}">${loan.status}</span></td>
+            <td style="text-align: center;">
+              ${isBorrowed ? `
+              <button type="button" class="btn btn-secondary" style="height: 28px; font-size: 11.5px; padding: 0 8px;" onclick="promptReturnLoan('${loan.id}')">
+                Kembalikan
+              </button>
+              ` : `
+              <span style="font-size: 11.5px; color: var(--color-success); font-weight: 600;">Selesai</span>
+              `}
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function openAddLoanModal() {
+      const assets = window.SarprasStore.getStoredAssets().filter(a => a.kondisi === 'Baik' && a.status_operasional !== 'Dipinjam');
+      const selAset = document.getElementById('loan_id_aset');
+      if (selAset) {
+        selAset.innerHTML = assets.map(a => `<option value="${a.id}">${a.id} - ${a.nama} (${a.lokasi})</option>`).join('');
+      }
+
+      document.getElementById('loan_nama').value = '';
+      document.getElementById('loan_identitas').value = '';
+      document.getElementById('loan_unit').value = '';
+      document.getElementById('loan_tgl_pinjam').value = new Date().toISOString().slice(0, 10);
+
+      const nextWeek = new Date();
+      nextWeek.setDate(nextWeek.getDate() + 7);
+      document.getElementById('loan_tgl_kembali').value = nextWeek.toISOString().slice(0, 10);
+      document.getElementById('loan_keperluan').value = '';
+
+      openModal('modalAddLoan');
+    }
+
+    function handleSaveLoan(e) {
+      e.preventDefault();
+      const idAset = document.getElementById('loan_id_aset').value;
+      const asset = window.SarprasStore.getAssetById(idAset);
+      if (!asset) return;
+
+      const loans = window.SarprasStore.getLoans();
+      const nextNum = loans.length + 1;
+      const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+      const loanId = 'PINJAM-' + padNum;
+
+      const newLoan = {
+        id: loanId,
+        id_aset: idAset,
+        nama_aset: asset.nama,
+        nama_peminjam: document.getElementById('loan_nama').value.trim(),
+        identitas_peminjam: document.getElementById('loan_identitas').value.trim(),
+        unit_peminjam: document.getElementById('loan_unit').value.trim(),
+        tgl_pinjam: document.getElementById('loan_tgl_pinjam').value,
+        tgl_kembali_rencana: document.getElementById('loan_tgl_kembali').value,
+        tgl_kembali_realisasi: null,
+        keperluan: document.getElementById('loan_keperluan').value.trim(),
+        status: 'Dipinjam'
+      };
+
+      window.SarprasStore.addLoan(newLoan);
+      closeModal('modalAddLoan');
+      renderPeminjamanTable();
+      loadInitialAssets();
+      updateAllDashboardWidgets();
+      showToast(`Peminjaman aset ${asset.nama} (${idAset}) berhasil dicatat!`);
+    }
+
+    let returnTargetLoanId = null;
+    function promptReturnLoan(loanId) {
+      returnTargetLoanId = loanId;
+      document.getElementById('returnLoanIdLabel').textContent = loanId;
+      openModal('modalReturnLoan');
+    }
+
+    document.getElementById('confirmReturnLoanBtn').addEventListener('click', () => {
+      if (returnTargetLoanId) {
+        window.SarprasStore.returnLoan(returnTargetLoanId);
+        closeModal('modalReturnLoan');
+        renderPeminjamanTable();
+        loadInitialAssets();
+        updateAllDashboardWidgets();
+        showToast(`Aset dari peminjaman ${returnTargetLoanId} berhasil dikembalikan!`);
+        returnTargetLoanId = null;
+      }
+    });
+
+    // --- 15. MUTASI ASET ANTAR-RUANG ---
+    function renderMutasiTable() {
+      const tbody = document.getElementById('mutasiTableBody');
+      if (!tbody) return;
+
+      const mutations = window.SarprasStore.getMutations();
+      if (mutations.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Belum ada riwayat mutasi aset antar-ruangan.</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      mutations.forEach(m => {
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${m.id}</td>
+            <td>
+              <div style="font-weight: 600; color: var(--color-text-title);">${m.nama_aset}</div>
+              <div class="font-code" style="font-size: 11px; color: var(--color-text-muted);">${m.id_aset}</div>
+            </td>
+            <td style="color: var(--color-text-muted);">${m.lokasi_asal}</td>
+            <td style="font-weight: 600; color: var(--color-primary);">${m.lokasi_tujuan}</td>
+            <td style="color: var(--color-text-muted);">${m.pj_asal}</td>
+            <td style="font-weight: 600;">${m.pj_tujuan}</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(m.tgl_mutasi)}</td>
+            <td style="font-size: 12px; color: var(--color-text-body);">${m.alasan_mutasi}</td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function openAddMutationModal() {
+      const assets = window.SarprasStore.getStoredAssets();
+      const selAset = document.getElementById('mut_id_aset');
+      if (selAset) {
+        selAset.innerHTML = assets.map(a => `<option value="${a.id}" data-lokasi="${a.lokasi}" data-gedung="${a.gedung || ''}">${a.id} - ${a.nama} (${a.lokasi})</option>`).join('');
+      }
+
+      const locs = window.SarprasStore.getLocations();
+      const selTarget = document.getElementById('mut_lokasi_tujuan');
+      if (selTarget) {
+        selTarget.innerHTML = locs.map(l => `<option value="${l.ruangan}" data-gedung="${l.gedung}" data-pj="${l.pj}">${l.gedung} - ${l.ruangan}</option>`).join('');
+      }
+
+      handleMutationAssetChange();
+      handleMutationTargetChange();
+      document.getElementById('mut_tgl').value = new Date().toISOString().slice(0, 10);
+      document.getElementById('mut_alasan').value = '';
+
+      openModal('modalAddMutation');
+    }
+
+    function handleMutationAssetChange() {
+      const sel = document.getElementById('mut_id_aset');
+      const opt = sel.options[sel.selectedIndex];
+      if (opt) {
+        document.getElementById('mut_lokasi_asal').value = opt.getAttribute('data-lokasi') || '-';
+        document.getElementById('mut_pj_asal').value = 'Penanggung Jawab Asal';
+      }
+    }
+
+    function handleMutationTargetChange() {
+      const sel = document.getElementById('mut_lokasi_tujuan');
+      const opt = sel.options[sel.selectedIndex];
+      if (opt) {
+        document.getElementById('mut_pj_tujuan').value = opt.getAttribute('data-pj') || 'Penanggung Jawab Baru';
+      }
+    }
+
+    function handleSaveMutation(e) {
+      e.preventDefault();
+      const idAset = document.getElementById('mut_id_aset').value;
+      const asset = window.SarprasStore.getAssetById(idAset);
+      if (!asset) return;
+
+      const mutations = window.SarprasStore.getMutations();
+      const nextNum = mutations.length + 1;
+      const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+      const mutId = 'MUT-' + padNum;
+
+      const selTarget = document.getElementById('mut_lokasi_tujuan');
+      const optTarget = selTarget.options[selTarget.selectedIndex];
+      const gedungTujuan = optTarget ? optTarget.getAttribute('data-gedung') : 'Gedung A';
+
+      const newMut = {
+        id: mutId,
+        id_aset: idAset,
+        nama_aset: asset.nama,
+        lokasi_asal: document.getElementById('mut_lokasi_asal').value,
+        lokasi_tujuan: document.getElementById('mut_lokasi_tujuan').value,
+        gedung_tujuan: gedungTujuan,
+        pj_asal: document.getElementById('mut_pj_asal').value,
+        pj_tujuan: document.getElementById('mut_pj_tujuan').value,
+        tgl_mutasi: document.getElementById('mut_tgl').value,
+        alasan_mutasi: document.getElementById('mut_alasan').value.trim()
+      };
+
+      window.SarprasStore.addMutation(newMut);
+      closeModal('modalAddMutation');
+      renderMutasiTable();
+      loadInitialAssets();
+      renderLokasiTable();
+      renderLaporanTable();
+      updateAllDashboardWidgets();
+      showToast(`Aset ${asset.nama} (${idAset}) berhasil dimutasikan ke ${newMut.lokasi_tujuan}!`);
+    }
+
+    // --- 16. PEMELIHARAAN PREVENTIF BERKALA ---
+    function renderPreventifTable() {
+      const tbody = document.getElementById('preventifTableBody');
+      if (!tbody) return;
+
+      const schedules = window.SarprasStore.getPreventiveSchedules();
+      if (schedules.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Belum ada jadwal pemeliharaan preventif.</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      schedules.forEach(s => {
+        let badgeClass = 'badge-success';
+        if (s.status === 'Mendekati Jatuh Tempo') badgeClass = 'badge-warning';
+
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${s.id}</td>
+            <td>
+              <div style="font-weight: 600; color: var(--color-text-title);">${s.nama_aset}</div>
+              <div class="font-code" style="font-size: 11px; color: var(--color-text-muted);">${s.id_aset}</div>
+            </td>
+            <td style="color: var(--color-text-muted);">${s.lokasi}</td>
+            <td>${s.kegiatan}</td>
+            <td style="text-align: center; font-weight: 600;">Per ${s.frekuensi_hari} Hari</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(s.tgl_terakhir)}</td>
+            <td style="font-weight: 600; color: var(--color-primary);">${formatDisplayDate(s.tgl_jatuh_tempo)}</td>
+            <td style="color: var(--color-text-muted);">${s.vendor}</td>
+            <td><span class="badge-status ${badgeClass}">${s.status}</span></td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function openAddPreventiveModal() {
+      const assets = window.SarprasStore.getStoredAssets();
+      const selAset = document.getElementById('pm_id_aset');
+      if (selAset) {
+        selAset.innerHTML = assets.map(a => `<option value="${a.id}">${a.id} - ${a.nama} (${a.lokasi})</option>`).join('');
+      }
+
+      document.getElementById('pm_kegiatan').value = '';
+      document.getElementById('pm_interval').value = '90';
+      document.getElementById('pm_tgl_terakhir').value = new Date().toISOString().slice(0, 10);
+      document.getElementById('pm_vendor').value = 'PT Mitra Servis Mandiri';
+      calculatePreventiveDueDate();
+
+      openModal('modalAddPreventive');
+    }
+
+    function calculatePreventiveDueDate() {
+      const lastStr = document.getElementById('pm_tgl_terakhir').value;
+      const intervalDays = parseInt(document.getElementById('pm_interval').value, 10) || 90;
+      if (lastStr) {
+        const lastDate = new Date(lastStr);
+        lastDate.setDate(lastDate.getDate() + intervalDays);
+        document.getElementById('pm_tgl_tempo').value = lastDate.toISOString().slice(0, 10);
+      }
+    }
+
+    function handleSavePreventive(e) {
+      e.preventDefault();
+      const idAset = document.getElementById('pm_id_aset').value;
+      const asset = window.SarprasStore.getAssetById(idAset);
+      if (!asset) return;
+
+      const schedules = window.SarprasStore.getPreventiveSchedules();
+      const nextNum = schedules.length + 1;
+      const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+      const pmId = 'PM-' + padNum;
+
+      const newSched = {
+        id: pmId,
+        id_aset: idAset,
+        nama_aset: asset.nama,
+        lokasi: asset.lokasi,
+        kegiatan: document.getElementById('pm_kegiatan').value.trim(),
+        frekuensi_hari: parseInt(document.getElementById('pm_interval').value, 10),
+        tgl_terakhir: document.getElementById('pm_tgl_terakhir').value,
+        tgl_jatuh_tempo: document.getElementById('pm_tgl_tempo').value,
+        vendor: document.getElementById('pm_vendor').value.trim(),
+        status: 'Jadwal Aktif'
+      };
+
+      window.SarprasStore.addPreventiveSchedule(newSched);
+      closeModal('modalAddPreventive');
+      renderPreventifTable();
+      showToast(`Jadwal servis preventif ${asset.nama} berhasil didaftarkan!`);
+    }
+
+    // --- 17. PENGHAPUSAN & PELEPASAN ASET (DISPOSAL) ---
+    function renderPenghapusanTable() {
+      const tbody = document.getElementById('penghapusanTableBody');
+      if (!tbody) return;
+
+      const disposals = window.SarprasStore.getDisposals();
+      const totalLelang = disposals.reduce((acc, d) => acc + (d.nilai_lelang || 0), 0);
+
+      const elCount = document.getElementById('kpi-disp-count');
+      const elLelang = document.getElementById('kpi-disp-lelang');
+
+      if (elCount) elCount.textContent = `${disposals.length} Unit`;
+      if (elLelang) elLelang.textContent = window.SarprasStore.formatRupiah(totalLelang);
+
+      if (disposals.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Belum ada arsip penghapusan aset.</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      disposals.forEach(d => {
+        html += `
+          <tr>
+            <td class="font-code" style="font-weight: 700; color: var(--color-danger);">${d.id}</td>
+            <td class="font-code" style="font-weight: 700;">${d.id_aset}</td>
+            <td style="font-weight: 600; color: var(--color-text-title);">${d.nama_aset}</td>
+            <td class="font-code">${window.SarprasStore.formatRupiah(d.nilai_perolehan_awal)}</td>
+            <td class="font-code" style="color: var(--color-text-muted);">${window.SarprasStore.formatRupiah(d.nilai_buku_akhir)}</td>
+            <td><span class="badge-status badge-warning">${d.metode_penghapusan}</span></td>
+            <td class="font-code" style="font-size: 11.5px;">${d.nomor_sk}</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(d.tgl_penghapusan)}</td>
+            <td class="font-code" style="font-weight: 700; color: var(--color-success);">${window.SarprasStore.formatRupiah(d.nilai_lelang || 0)}</td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function openAddDisposalModal() {
+      const assets = window.SarprasStore.getStoredAssets().filter(a => a.status_operasional !== 'Dihapuskan');
+      const selAset = document.getElementById('disp_id_aset');
+      if (selAset) {
+        selAset.innerHTML = assets.map(a => `<option value="${a.id}">${a.id} - ${a.nama} (${a.kondisi})</option>`).join('');
+      }
+
+      document.getElementById('disp_nilai_lelang').value = '0';
+      document.getElementById('disp_sk').value = `SK-REKTOR/BMN/${new Date().getFullYear()}/` + Math.floor(100 + Math.random() * 900);
+      document.getElementById('disp_tgl').value = new Date().toISOString().slice(0, 10);
+      document.getElementById('disp_keterangan').value = '';
+
+      handleDisposalAssetChange();
+      openModal('modalAddDisposal');
+    }
+
+    function handleDisposalAssetChange() {
+      const idAset = document.getElementById('disp_id_aset').value;
+      const asset = window.SarprasStore.getAssetById(idAset);
+      if (!asset) return;
+
+      const dep = window.SarprasStore.calculateAssetDepreciation(asset);
+      const elLabel = document.getElementById('dispBookValueLabel');
+      const elAudit = document.getElementById('dispAuditStatusLabel');
+      const elNotice = document.getElementById('dispWarningNotice');
+      const btnSubmit = document.getElementById('submitDisposalBtn');
+
+      if (elLabel) elLabel.textContent = `${window.SarprasStore.formatRupiah(dep.nilaiBuku)} (${dep.persenNilaiBuku}% sisa nilai)`;
+
+      if (dep.bolehDihapuskan) {
+        if (elAudit) {
+          elAudit.textContent = 'Memenuhi Syarat Pelepasan';
+          elAudit.className = 'badge-status badge-success';
+        }
+        if (elNotice) elNotice.style.display = 'none';
+        if (btnSubmit) btnSubmit.removeAttribute('disabled');
+      } else {
+        if (elAudit) {
+          elAudit.textContent = 'Terkunci Regulasi BMN';
+          elAudit.className = 'badge-status badge-danger';
+        }
+        if (elNotice) elNotice.style.display = 'block';
+        // Still allow submit if special justification entered, but require alert confirmation
+      }
+    }
+
+    function handleSaveDisposal(e) {
+      e.preventDefault();
+      const idAset = document.getElementById('disp_id_aset').value;
+      const asset = window.SarprasStore.getAssetById(idAset);
+      if (!asset) return;
+
+      const dep = window.SarprasStore.calculateAssetDepreciation(asset);
+      const disposals = window.SarprasStore.getDisposals();
+      const nextNum = disposals.length + 1;
+      const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
+      const dispId = 'DSP-' + padNum;
+
+      const newDisp = {
+        id: dispId,
+        id_aset: idAset,
+        nama_aset: asset.nama,
+        nilai_perolehan_awal: dep.hargaPerolehan,
+        nilai_buku_akhir: dep.nilaiBuku,
+        metode_penghapusan: document.getElementById('disp_metode').value,
+        nomor_sk: document.getElementById('disp_sk').value.trim(),
+        tgl_penghapusan: document.getElementById('disp_tgl').value,
+        nilai_lelang: parseInt(document.getElementById('disp_nilai_lelang').value, 10) || 0,
+        keterangan: document.getElementById('disp_keterangan').value.trim()
+      };
+
+      window.SarprasStore.addDisposal(newDisp);
+      closeModal('modalAddDisposal');
+      renderPenghapusanTable();
+      loadInitialAssets();
+      renderDepresiasiTable();
+      renderLaporanTable();
+      updateAllDashboardWidgets();
+      showToast(`SK Penghapusan ${newDisp.nomor_sk} diterbitkan. Aset ${asset.nama} resmi dilepaskan!`);
+    }
+
+    // --- 18. GENERATOR STIKER LABEL BARCODE & QR CODE BMN ---
+    function openQRLabelModal(assetId) {
+      const asset = window.SarprasStore.getAssetById(assetId);
+      if (!asset) return;
+
+      document.getElementById('stickerAssetCode').textContent = asset.id;
+      document.getElementById('stickerAssetName').textContent = asset.nama;
+      document.getElementById('stickerAssetLocation').textContent = `${asset.gedung || ''} - ${asset.lokasi}`;
+      document.getElementById('stickerAssetDate').textContent = formatDisplayDate(asset.tanggal || asset.tgl);
+      document.getElementById('stickerNupCode').textContent = `BMN-UNPAM-${asset.id}-2026`;
+
+      const qrBox = document.getElementById('stickerQRCodeBox');
+      if (qrBox) {
+        qrBox.innerHTML = window.SARPRAS_ICONS.qrcode;
+      }
+
+      openModal('modalPrintQRLabel');
+    }
+
+    function executePrintSticker() {
+      const labelContent = document.getElementById('stickerLabelContainer').outerHTML;
+      closeModal('modalPrintQRLabel');
+
+      const printWin = window.open('', '_blank', 'width=600,height=400');
+      if (printWin) {
+        printWin.document.write(`
+          <!DOCTYPE html>
+          <html lang="id">
+          <head>
+            <meta charset="UTF-8">
+            <title>Cetak Label Stiker BMN</title>
+            <style>
+              @page { size: 100mm 50mm; margin: 2mm; }
+              body { margin: 0; padding: 2mm; display: flex; align-items: center; justify-content: center; background: #fff; font-family: system-ui, sans-serif; }
+            </style>
+          </head>
+          <body>
+            ${labelContent}
+          </body>
+          </html>
+        `);
+        printWin.document.close();
+        printWin.focus();
+        setTimeout(() => {
+          printWin.print();
+          printWin.close();
+        }, 300);
+      }
     }
 
     function initDashboardCharts() {
