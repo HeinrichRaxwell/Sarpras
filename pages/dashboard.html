@@ -277,7 +277,7 @@
           <span class="nav-label">Pengaturan</span>
         </button>
 
-        <div class="menu-category-label" style="margin-top: 14px;">AUTENTIKASI</div>
+        <div class="menu-category-label" >AUTENTIKASI</div>
 
         <a href="javascript:void(0)" class="nav-link" onclick="handleLogout()" style="color: var(--color-danger);">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
@@ -480,7 +480,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                 Ekspor CSV
               </button>
-              <button type="button" class="btn btn-primary" onclick="openAddAssetModal()">
+              <button type="button" class="btn btn-primary" id="openAddModalBtn" onclick="openAddAssetModal()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
                 Tambah Aset
               </button>
@@ -517,17 +517,20 @@
               </div>
             </div>
 
-            <div class="table-responsive">
+<div class="table-responsive">
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th style="width: 90px;">ID User</th>
-                    <th>Nama Pengguna</th>
-                    <th>Username</th>
-                    <th>Email Resmi</th>
-                    <th>Hak Akses (Role)</th>
-                    <th>Status</th>
-                    <th style="text-align: center; width: 100px;">Aksi</th>
+                    <th style="width: 44px; text-align: center;">
+                      <input type="checkbox" id="selectAllMaster" onchange="toggleSelectAll(this)">
+                    </th>
+                    <th style="width: 95px;">Kode Aset</th>
+                    <th>Nama Barang / Aset</th>
+                    <th style="width: 120px;">Kategori</th>
+                    <th style="width: 170px;">Lokasi Penempatan</th>
+                    <th style="width: 130px;">Kondisi Fisik</th>
+                    <th style="width: 120px;">Tanggal Beli</th>
+                    <th style="text-align: center; width: 110px;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody id="assetTableBody">
@@ -553,7 +556,7 @@
               <h1 class="page-title">Kategori Aset</h1>
               <p class="page-description">Kelompok inventaris sarana dan prasarana berdasarkan jenis dan fungsi.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="openModal('modalAddCategory')">
+            <button type="button" class="btn btn-primary" id="openAddCategoryBtn" onclick="openModal('modalAddCategory')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               Tambah Kategori
             </button>
@@ -638,7 +641,7 @@
               <h1 class="page-title">Lokasi Penempatan Aset</h1>
               <p class="page-description">Pemetaan ruang dan gedung inventarisasi sarana prasarana kampus.</p>
             </div>
-            <button type="button" class="btn btn-primary" onclick="openModal('modalAddLocation')">
+            <button type="button" class="btn btn-primary" id="openAddLocationBtn" onclick="openModal('modalAddLocation')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               Tambah Lokasi
             </button>
@@ -1819,6 +1822,9 @@
       const categories = window.SarprasStore.getCategories();
       const locations = window.SarprasStore.getLocations();
       const tickets = window.SarprasStore.getMaintenanceTickets();
+      const currentUser = window.SarprasStore.getCurrentUser() || { role: 'Super Admin' };
+      const canOperate = (currentUser.role === 'Super Admin' || currentUser.role === 'Staf Sarpras');
+      const canDeleteTicket = (currentUser.role === 'Super Admin');
 
       const total = assets.length;
       const baik = assets.filter(a => a.kondisi === 'Baik').length;
@@ -2048,9 +2054,13 @@
       return dateVal;
     }
 
-    function renderAssetTable(assets) {
+        function renderAssetTable(assets) {
       const tbody = document.getElementById('assetTableBody');
       if (!tbody) return;
+
+      const currentUser = window.SarprasStore.getCurrentUser() || { role: 'Super Admin' };
+      const canEdit = (currentUser.role === 'Super Admin' || currentUser.role === 'Staf Sarpras');
+      const canDelete = (currentUser.role === 'Super Admin');
 
       if (assets.length === 0) {
         tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 32px; color: var(--color-text-muted);">Tidak ada data aset yang cocok dengan filter pencarian.</td></tr>`;
@@ -2082,12 +2092,16 @@
                 <button type="button" class="table-action-icon-btn" onclick="openDetailModal('${item.id}')" title="Lihat Detail">
                   ${window.SARPRAS_ICONS.eye}
                 </button>
+                ${canEdit ? `
                 <button type="button" class="table-action-icon-btn" onclick="openEditModal('${item.id}')" title="Edit Aset">
                   ${window.SARPRAS_ICONS.edit}
                 </button>
+                ` : ''}
+                ${canDelete ? `
                 <button type="button" class="table-action-icon-btn btn-delete" onclick="promptDelete('${item.id}', '${item.nama.replace(/'/g, "\\'")}')" title="Hapus Aset">
                   ${window.SARPRAS_ICONS.trash}
                 </button>
+                ` : ''}
               </div>
             </td>
           </tr>
@@ -2305,6 +2319,9 @@
       if (!tbody) return;
 
       const tickets = window.SarprasStore.getMaintenanceTickets();
+      const currentUser = window.SarprasStore.getCurrentUser() || { role: 'Super Admin' };
+      const canOperate = (currentUser.role === 'Super Admin' || currentUser.role === 'Staf Sarpras');
+      const canDeleteTicket = (currentUser.role === 'Super Admin');
 
       // Update KPI
       const rawatTickets = tickets.filter(t => t.status === 'Dalam Perawatan');
@@ -2344,14 +2361,16 @@
                 <button type="button" class="table-action-icon-btn" onclick="openTicketDetailModal('${ticket.id}')" title="Lihat Rincian Tiket">
                   ${window.SARPRAS_ICONS.eye}
                 </button>
-                ${isOngoing ? `
+                ${(isOngoing && canOperate) ? `
                 <button type="button" class="table-action-icon-btn btn-success" onclick="promptCompleteTicket('${ticket.id}')" title="Tandai Selesai Servis (Kembalikan Aset ke Kondisi Baik)">
                   ${window.SARPRAS_ICONS.check_circle}
                 </button>
                 ` : ''}
+                ${canDeleteTicket ? `
                 <button type="button" class="table-action-icon-btn btn-delete" onclick="promptDeleteTicket('${ticket.id}')" title="Hapus Tiket Servis">
                   ${window.SARPRAS_ICONS.trash}
                 </button>
+                ` : ''}
               </div>
             </td>
           </tr>
@@ -2382,6 +2401,9 @@
       const nama_aset = asset ? asset.nama : 'Aset Inventaris';
 
       const tickets = window.SarprasStore.getMaintenanceTickets();
+      const currentUser = window.SarprasStore.getCurrentUser() || { role: 'Super Admin' };
+      const canOperate = (currentUser.role === 'Super Admin' || currentUser.role === 'Staf Sarpras');
+      const canDeleteTicket = (currentUser.role === 'Super Admin');
       const nextNum = tickets.length + 1;
       const padNum = nextNum < 10 ? '00' + nextNum : (nextNum < 100 ? '0' + nextNum : nextNum);
       const ticketId = 'TRX-MNT-' + padNum;
@@ -2413,6 +2435,9 @@
     function promptCompleteTicket(ticketId) {
       completeTargetTicketId = ticketId;
       const tickets = window.SarprasStore.getMaintenanceTickets();
+      const currentUser = window.SarprasStore.getCurrentUser() || { role: 'Super Admin' };
+      const canOperate = (currentUser.role === 'Super Admin' || currentUser.role === 'Staf Sarpras');
+      const canDeleteTicket = (currentUser.role === 'Super Admin');
       const ticket = tickets.find(t => t.id === ticketId);
       const name = ticket ? ticket.nama_aset : 'Aset';
       document.getElementById('completeTicketIdLabel').textContent = ticketId;
@@ -2452,6 +2477,9 @@
 
     function openTicketDetailModal(ticketId) {
       const tickets = window.SarprasStore.getMaintenanceTickets();
+      const currentUser = window.SarprasStore.getCurrentUser() || { role: 'Super Admin' };
+      const canOperate = (currentUser.role === 'Super Admin' || currentUser.role === 'Staf Sarpras');
+      const canDeleteTicket = (currentUser.role === 'Super Admin');
       const ticket = tickets.find(t => t.id === ticketId);
       if (!ticket) return;
 
@@ -2707,22 +2735,32 @@
       const labelSistem = document.getElementById('labelSistemNav');
       const btnAddAsset = document.getElementById('openAddModalBtn');
       const btnAddTicket = document.getElementById('openAddTicketBtn');
+      const btnAddCategory = document.getElementById('openAddCategoryBtn');
+      const btnAddLocation = document.getElementById('openAddLocationBtn');
 
       if (user.role === 'Super Admin') {
         if (navUsers) navUsers.style.display = 'flex';
         if (labelSistem) labelSistem.style.display = 'block';
         if (btnAddAsset) btnAddAsset.style.display = 'flex';
         if (btnAddTicket) btnAddTicket.style.display = 'flex';
+        if (btnAddCategory) btnAddCategory.style.display = 'flex';
+        if (btnAddLocation) btnAddLocation.style.display = 'flex';
       } else if (user.role === 'Staf Sarpras') {
         // Staff can operate assets and maintenance, but cannot manage users
         if (navUsers) navUsers.style.display = 'none';
+        if (labelSistem) labelSistem.style.display = 'block';
         if (btnAddAsset) btnAddAsset.style.display = 'flex';
         if (btnAddTicket) btnAddTicket.style.display = 'flex';
+        if (btnAddCategory) btnAddCategory.style.display = 'flex';
+        if (btnAddLocation) btnAddLocation.style.display = 'flex';
       } else if (user.role === 'Pimpinan') {
-        // Pimpinan is read-only auditor
+        // Pimpinan is executive auditor: read-only monitoring and signing reports
         if (navUsers) navUsers.style.display = 'none';
+        if (labelSistem) labelSistem.style.display = 'block';
         if (btnAddAsset) btnAddAsset.style.display = 'none';
         if (btnAddTicket) btnAddTicket.style.display = 'none';
+        if (btnAddCategory) btnAddCategory.style.display = 'none';
+        if (btnAddLocation) btnAddLocation.style.display = 'none';
       }
     }
 
