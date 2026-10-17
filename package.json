@@ -4,6 +4,7 @@
   "description": "Sistem Informasi Manajemen Sarana dan Prasarana Kampus (Tugas UAS Pemrograman Web 2)",
   "main": "index.html",
   "scripts": {
+    "start": "node server.js",
     "test-db": "node database/test-db.js"
   },
   "dependencies": {

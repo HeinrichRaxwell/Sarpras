@@ -341,7 +341,7 @@
             </div>
             <div class="welcome-date-pill">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-              <span>Sen, 13 Okt 2025</span>
+              <span id="currentDatePill">Sen, 13 Okt 2025</span>
             </div>
           </div>
 
@@ -675,7 +675,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Kapasitas Ruang</span>
-                <div class="kpi-value" style="font-size: 24px;">84%</div>
+                <div class="kpi-value" id="kpi-kapasitas-ruang" style="font-size: 24px;">0%</div>
                 <span style="font-size: 12px; color: var(--color-warning); font-weight: 600;">Optimal</span>
               </div>
               <div class="kpi-icon-wrapper icon-rose">
@@ -1527,6 +1527,22 @@
       if (elLapAct) elLapAct.textContent = baik;
       if (elLapBrk) elLapBrk.textContent = rusak;
       if (elLapMnt) elLapMnt.textContent = rawat;
+
+      // Dynamic Live Date Pill
+      const elDatePill = document.getElementById('currentDatePill');
+      if (elDatePill) {
+        const today = new Date();
+        const opts = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+        elDatePill.textContent = today.toLocaleDateString('id-ID', opts);
+      }
+
+      // Kapasitas Ruangan on Lokasi View
+      const elKapasitas = document.getElementById('kpi-kapasitas-ruang');
+      if (elKapasitas) {
+        const occRooms = [...new Set(assets.map(a => a.lokasi))].length;
+        const pctKapasitas = locations.length > 0 ? Math.round((occRooms / locations.length) * 100) : 0;
+        elKapasitas.textContent = `${pctKapasitas}%`;
+      }
     }
     window.updateAllDashboardWidgets = updateAllDashboardWidgets;
 
