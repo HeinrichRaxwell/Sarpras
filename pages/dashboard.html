@@ -968,14 +968,14 @@
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th style="width: 90px;">ID User</th>
+                    <th style="width: 85px;">ID User</th>
                     <th>Nama Pengguna</th>
                     <th>Username</th>
-                    <th>Hak Akses (Role)</th>
                     <th>Email Resmi</th>
+                    <th>Kata Sandi</th>
+                    <th>Hak Akses (Role)</th>
                     <th>Status</th>
-                    <th>Terdaftar Sejak</th>
-                    <th style="text-align: center; width: 110px;">Aksi</th>
+                    <th style="text-align: center; width: 100px;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody id="userMainTableBody">
@@ -1039,8 +1039,11 @@
 
                 <form id="formChangePassword" onsubmit="handleChangePassword(event)" style="display: flex; flex-direction: column; gap: 12px;">
                   <div class="form-group" style="margin-bottom: 0;">
-                    <label class="form-label">Kata Sandi Saat Ini <span class="required">*</span></label>
-                    <input type="password" id="pass_current" class="form-input font-code" placeholder="Masukkan kata sandi lama" required>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <label class="form-label">Kata Sandi Saat Ini <span class="required">*</span></label>
+                      <span style="font-size: 11px; color: var(--color-text-muted);">Kata sandi aktif: <code id="myCurrentPassIndicator" style="color: var(--color-primary); font-weight: 700;"></code></span>
+                    </div>
+                    <input type="password" id="pass_current" class="form-input font-code" placeholder="Masukkan kata sandi lama Anda" required>
                   </div>
                   <div class="form-group" style="margin-bottom: 0;">
                     <label class="form-label">Kata Sandi Baru <span class="required">*</span></label>
@@ -1646,8 +1649,11 @@
               <input type="text" id="edit_user_username" class="form-input font-code" required>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label class="form-label">Ganti Password (Kosongkan bila tidak diubah)</label>
-              <input type="password" id="edit_user_password" class="form-input font-code" placeholder="Password baru">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label class="form-label">Kata Sandi Baru</label>
+                <span style="font-size: 11px; color: var(--color-text-muted);">Sandi saat ini: <code id="editUserCurrentPassLabel" style="color: var(--color-primary); font-weight: 700;"></code></span>
+              </div>
+              <input type="text" id="edit_user_password" class="form-input font-code" placeholder="Ketik kata sandi baru (kosongkan bila tetap)">
             </div>
           </div>
 
@@ -2697,6 +2703,9 @@
       if (elInputEmail) elInputEmail.value = user.email || `${user.username}@unpam.ac.id`;
       if (elInputUser) elInputUser.value = user.username;
 
+      const elPassInd = document.getElementById('myCurrentPassIndicator');
+      if (elPassInd) elPassInd.textContent = user.password || 'admin123';
+
       // Apply RBAC UI Rules
       const navUsers = document.getElementById('nav-users');
       const labelSistem = document.getElementById('labelSistemNav');
@@ -2866,11 +2875,13 @@
           <tr>
             <td class="font-code" style="font-weight: 700; color: var(--color-primary);">${u.id}</td>
             <td style="font-weight: 600; color: var(--color-text-title);">${u.nama}</td>
-            <td class="font-code" style="color: var(--color-text-muted);">${u.username}</td>
-            <td><span class="badge-role ${badgeClass}">${u.role}</span></td>
+            <td class="font-code" style="color: var(--color-primary); font-weight: 700;">${u.username}</td>
             <td style="color: var(--color-text-muted);">${u.email || '-'}</td>
+            <td>
+              <span class="font-code" style="background: var(--color-surface-alt); padding: 3px 8px; border-radius: var(--radius-sm); font-size: 11.5px; border: 1px solid var(--color-border); color: var(--color-text-title); font-weight: 600;">${u.password}</span>
+            </td>
+            <td><span class="badge-role ${badgeClass}">${u.role}</span></td>
             <td><span class="badge-status ${u.status === 'Aktif' ? 'badge-success' : 'badge-danger'}">${u.status}</span></td>
-            <td style="color: var(--color-text-muted); font-size: 12px;">${formatDisplayDate(u.tgl_dibuat || '2026-01-10')}</td>
             <td style="text-align: center;">
               <div style="display: flex; gap: 6px; justify-content: center;">
                 <button type="button" class="table-action-icon-btn" onclick="openEditUserModal('${u.id}')" title="Edit Akun Pengguna">
@@ -2951,6 +2962,8 @@
       document.getElementById('edit_user_nama').value = u.nama;
       document.getElementById('edit_user_username').value = u.username;
       document.getElementById('edit_user_password').value = '';
+      const passHint = document.getElementById('editUserCurrentPassLabel');
+      if (passHint) passHint.textContent = u.password;
       document.getElementById('edit_user_email').value = u.email || '';
       document.getElementById('edit_user_role').value = u.role;
       document.getElementById('edit_user_status').value = u.status;

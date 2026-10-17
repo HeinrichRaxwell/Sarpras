@@ -254,10 +254,10 @@
           <div id="loginAlertBox" style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 13px; margin-bottom: 16px;"></div>
 
           <div class="form-group">
-            <label class="form-label" for="loginUser">Username</label>
+            <label class="form-label" for="loginUser">Username atau Email</label>
             <div class="input-field-with-icon">
               <span class="icon-prefix-left"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-              <input type="text" id="loginUser" placeholder="Masukkan username" required>
+              <input type="text" id="loginUser" placeholder="Masukkan username atau email" required>
             </div>
           </div>
 
@@ -301,21 +301,27 @@
           Login dengan SSO
         </button>
 
-        <div class="demo-credential-chip" style="flex-direction: column; align-items: stretch; gap: 8px;">
+        <div class="demo-credential-chip" style="flex-direction: column; align-items: stretch; gap: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="font-weight: 700; color: var(--color-text-title); font-size: 12.5px;">Akun Demo Berdasarkan Role:</div>
-            <span style="font-size: 11px; color: var(--color-text-muted);">Klik untuk autofill</span>
+            <div style="font-weight: 700; color: var(--color-text-title); font-size: 12.5px;">Pilih Akun Demo (Berdasarkan Peran):</div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Klik untuk isi otomatis</span>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
-            <button type="button" class="btn btn-secondary" style="height: 30px; font-size: 11px; padding: 0 4px;" onclick="autoFillRole('admin', 'admin123')">
+            <button type="button" class="btn btn-secondary" style="height: 32px; font-size: 11px; padding: 0 4px; font-weight: 600;" onclick="autoFillRole('admin', 'admin123')">
               Super Admin
             </button>
-            <button type="button" class="btn btn-secondary" style="height: 30px; font-size: 11px; padding: 0 4px;" onclick="autoFillRole('petugas', 'petugas123')">
+            <button type="button" class="btn btn-secondary" style="height: 32px; font-size: 11px; padding: 0 4px; font-weight: 600;" onclick="autoFillRole('petugas', 'petugas123')">
               Staf Sarpras
             </button>
-            <button type="button" class="btn btn-secondary" style="height: 30px; font-size: 11px; padding: 0 4px;" onclick="autoFillRole('pimpinan', 'pimpinan123')">
+            <button type="button" class="btn btn-secondary" style="height: 32px; font-size: 11px; padding: 0 4px; font-weight: 600;" onclick="autoFillRole('pimpinan', 'pimpinan123')">
               Pimpinan
             </button>
+          </div>
+          <div style="background: var(--color-surface-card); border: 1px dashed var(--color-border); border-radius: var(--radius-sm); padding: 8px 10px; font-size: 11px; color: var(--color-text-muted); line-height: 1.5;">
+            <div><strong>Info Kredensial Awal:</strong></div>
+            <div>• <strong>Admin:</strong> <code>admin</code> atau <code>admin@unpam.ac.id</code> (Sandi: <code>admin123</code>)</div>
+            <div>• <strong>Staf:</strong> <code>petugas</code> atau <code>haidar@unpam.ac.id</code> (Sandi: <code>petugas123</code>)</div>
+            <div>• <strong>Pimpinan:</strong> <code>pimpinan</code> atau <code>atang@unpam.ac.id</code> (Sandi: <code>pimpinan123</code>)</div>
           </div>
         </div>
       </div>
@@ -336,9 +342,22 @@
     }
 
     function autoFillRole(u, p) {
-      userField.value = u;
-      passField.value = p;
-      showLoginMessage(`Akun ${u} dipilih. Klik Login untuk masuk.`, 'info');
+      let finalUser = u;
+      let finalPass = p;
+      let roleLabel = u;
+
+      if (window.SarprasStore && typeof window.SarprasStore.getUserByIdentifier === 'function') {
+        const liveUser = window.SarprasStore.getUserByIdentifier(u);
+        if (liveUser) {
+          finalUser = liveUser.username;
+          finalPass = liveUser.password;
+          roleLabel = `${liveUser.nama} (${liveUser.role})`;
+        }
+      }
+
+      userField.value = finalUser;
+      passField.value = finalPass;
+      showLoginMessage(`Akun ${roleLabel} dipilih. Kata sandi aktif: "${finalPass}". Klik Login untuk masuk.`, 'info');
     }
 
     function autoFillDemo() {
@@ -349,7 +368,7 @@
       autoFillDemo();
       setTimeout(() => {
         if (window.SarprasStore) {
-          const user = window.SarprasStore.authenticate('admin', 'admin123');
+          const user = window.SarprasStore.authenticate(userField.value, passField.value);
           if (user) window.SarprasStore.setCurrentUser(user);
         }
         window.location.href = 'pages/dashboard.html';
@@ -378,11 +397,11 @@
 
     function handleLoginSubmit(e) {
       e.preventDefault();
-      const u = userField.value.trim();
-      const p = passField.value.trim();
+      const identifier = userField.value.trim();
+      const password = passField.value.trim();
 
       if (window.SarprasStore && typeof window.SarprasStore.authenticate === 'function') {
-        const user = window.SarprasStore.authenticate(u, p);
+        const user = window.SarprasStore.authenticate(identifier, password);
         if (user) {
           window.SarprasStore.setCurrentUser(user);
           showLoginMessage(`Login berhasil sebagai ${user.nama} (${user.role}). Mengalihkan...`, 'success');
@@ -391,12 +410,9 @@
           }, 300);
           return;
         }
-      } else if (u === 'admin' && p === 'admin123') {
-        window.location.href = 'pages/dashboard.html';
-        return;
       }
 
-      showLoginMessage('Autentikasi gagal! Periksa username dan password Anda.', 'error');
+      showLoginMessage('Autentikasi gagal! Username/email atau password salah. Periksa kembali huruf besar/kecil.', 'error');
     }
   </script>
 </body>

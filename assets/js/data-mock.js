@@ -466,9 +466,25 @@
     return users.find(u => u.id === id) || null;
   }
 
-  function authenticate(username, password) {
+  function getUserByIdentifier(identifier) {
+    if (!identifier) return null;
     const users = getUsers();
-    const found = users.find(u => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+    const query = identifier.trim().toLowerCase();
+    return users.find(u => 
+      (u.username && u.username.toLowerCase() === query) ||
+      (u.email && u.email.toLowerCase() === query)
+    ) || null;
+  }
+
+  function authenticate(identifier, password) {
+    if (!identifier || !password) return null;
+    const users = getUsers();
+    const query = identifier.trim().toLowerCase();
+    const found = users.find(u => {
+      const matchUsername = u.username && u.username.toLowerCase() === query;
+      const matchEmail = u.email && u.email.toLowerCase() === query;
+      return (matchUsername || matchEmail) && u.password === password;
+    });
     if (found && found.status === 'Aktif') {
       return found;
     }
@@ -571,6 +587,7 @@
     updateUser,
     deleteUser,
     getUserById,
+    getUserByIdentifier,
     authenticate,
     getCurrentUser,
     setCurrentUser,
