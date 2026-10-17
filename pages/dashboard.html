@@ -202,7 +202,7 @@
   <div class="sidebar-mobile-backdrop" id="sidebarMobileBackdrop"></div>
 
   <div class="app-layout-wrapper">
-    <!-- 1. APP SIDEBAR (With Integrated Talent Pool Style Collapse Button) -->
+    <!-- 1. APP SIDEBAR (Talent Pool Pattern - Flat, Reliable, 100% Clickable) -->
     <aside class="app-sidebar" id="appSidebar">
       <div class="sidebar-brand">
         <div class="brand-left-wrap">
@@ -212,8 +212,8 @@
             <span class="brand-subtitle">Asset Management</span>
           </div>
         </div>
-        <!-- Sidebar Collapse Button Inside Sidebar Header (Talent Pool Pattern) -->
-        <button type="button" class="sidebar-collapse-btn" id="sidebarToggleBtn" title="Perkecil / Perbesar Menu">
+        <!-- Integrated Sidebar Collapse Button -->
+        <button type="button" class="sidebar-collapse-btn" id="sidebarToggleBtn" title="Perkecil / Perbesar Menu" onclick="toggleSidebarCollapse()">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sidebarToggleIcon"><path d="m15 18-6-6 6-6"/></svg>
         </button>
       </div>
@@ -221,45 +221,49 @@
       <nav class="sidebar-menu">
         <div class="menu-category-label">MENU UTAMA</div>
 
-        <!-- Dashboard Link -->
+        <!-- 1. Dashboard -->
         <button type="button" class="nav-link active" id="nav-dashboard" onclick="switchRoute('dashboard')">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
           <span class="nav-label">Dashboard</span>
         </button>
 
-        <!-- Data Master Accordion -->
-        <div class="sidebar-accordion-item" id="accordMaster">
-          <button type="button" class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordMaster')">
-            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
-            <span class="nav-label">Data Master</span>
-            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="sidebar-sub-menu">
-            <button type="button" class="sidebar-sub-link" id="sub-master" onclick="switchRoute('master')">Aset</button>
-            <button type="button" class="sidebar-sub-link" id="sub-kategori" onclick="switchRoute('kategori')">Kategori Aset</button>
-            <button type="button" class="sidebar-sub-link" id="sub-lokasi" onclick="switchRoute('lokasi')">Lokasi</button>
-          </div>
-        </div>
+        <div class="menu-category-label">DATA MASTER</div>
 
-        <!-- Transaksi Accordion -->
-        <div class="sidebar-accordion-item" id="accordTrans">
-          <button type="button" class="nav-link accordion-toggle-btn" onclick="toggleAccordion('accordTrans')">
-            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-8"/><path d="M16 12h-8"/><path d="M16 16h-5"/></svg>
-            <span class="nav-label">Transaksi</span>
-            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="sidebar-sub-menu">
-            <button type="button" class="sidebar-sub-link" id="sub-pemeliharaan" onclick="switchRoute('pemeliharaan')">Pemeliharaan</button>
-          </div>
-        </div>
-
-        <!-- Laporan Link -->
-        <button type="button" class="nav-link" id="nav-laporan" onclick="switchRoute('laporan')">
-          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-          <span class="nav-label">Laporan</span>
+        <!-- 2. Data Aset -->
+        <button type="button" class="nav-link" id="nav-master" onclick="switchRoute('master')">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          <span class="nav-label">Data Aset</span>
         </button>
 
-        <!-- Pengaturan Link -->
+        <!-- 3. Kategori Aset -->
+        <button type="button" class="nav-link" id="nav-kategori" onclick="switchRoute('kategori')">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+          <span class="nav-label">Kategori Aset</span>
+        </button>
+
+        <!-- 4. Lokasi Penempatan -->
+        <button type="button" class="nav-link" id="nav-lokasi" onclick="switchRoute('lokasi')">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="nav-label">Lokasi Aset</span>
+        </button>
+
+        <div class="menu-category-label">OPERASIONAL</div>
+
+        <!-- 5. Pemeliharaan & Servis -->
+        <button type="button" class="nav-link" id="nav-pemeliharaan" onclick="switchRoute('pemeliharaan')">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span class="nav-label">Pemeliharaan &amp; Servis</span>
+        </button>
+
+        <div class="menu-category-label">REKAPITULASI</div>
+
+        <!-- 6. Laporan Aset -->
+        <button type="button" class="nav-link" id="nav-laporan" onclick="switchRoute('laporan')">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+          <span class="nav-label">Laporan Aset (KIR)</span>
+        </button>
+
+        <!-- 7. Pengaturan -->
         <button type="button" class="nav-link" id="nav-settings" onclick="openModal('modalSettings')">
           <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           <span class="nav-label">Pengaturan</span>
@@ -285,11 +289,11 @@
 
     <!-- 2. APP CONTENT WRAPPER -->
     <div class="app-content-wrapper">
-      <!-- Top Command Header (Clean & Uncluttered with Mobile Hamburger Button) -->
+      <!-- Top Command Header -->
       <header class="top-command-header">
         <div class="header-left-cluster">
-          <!-- Mobile Hamburger Menu Button (Visible on mobile <= 1024px) -->
-          <button type="button" class="btn-mobile-menu" id="mobileMenuBtn" title="Buka Menu Navigasi" onclick="document.body.classList.toggle('sidebar-mobile-open')">
+          <!-- Mobile Hamburger Menu Button -->
+          <button type="button" class="btn-mobile-menu" id="mobileMenuBtn" title="Buka Menu Navigasi" onclick="toggleSidebarCollapse()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -341,15 +345,15 @@
             </div>
           </div>
 
-          <!-- 4 KPI Cards -->
+          <!-- 4 KPI Cards (100% Dynamic) -->
           <div class="kpi-grid">
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Total Aset</span>
-                <div class="kpi-value" id="kpi-total-val">10</div>
+                <div class="kpi-value" id="kpi-total-val">0</div>
                 <div class="kpi-trend trend-up">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-                  <span>+ 12% dari bulan lalu</span>
+                  <span>Inventaris Terdata</span>
                 </div>
               </div>
               <div class="kpi-icon-wrapper icon-blue">
@@ -360,10 +364,10 @@
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Aset Aktif</span>
-                <div class="kpi-value" id="kpi-active-val">7</div>
+                <div class="kpi-value" id="kpi-active-val">0</div>
                 <div class="kpi-trend trend-up">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-                  <span>+ 10% dari bulan lalu</span>
+                  <span>Kondisi Baik</span>
                 </div>
               </div>
               <div class="kpi-icon-wrapper icon-emerald">
@@ -374,10 +378,10 @@
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Aset Rusak</span>
-                <div class="kpi-value" id="kpi-broken-val">1</div>
+                <div class="kpi-value" id="kpi-broken-val">0</div>
                 <div class="kpi-trend trend-down">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
-                  <span>- 2% dari bulan lalu</span>
+                  <span>Kendala Fisik</span>
                 </div>
               </div>
               <div class="kpi-icon-wrapper icon-amber">
@@ -388,10 +392,10 @@
             <div class="kpi-card">
               <div>
                 <span class="kpi-label">Aset Dalam Perawatan</span>
-                <div class="kpi-value" id="kpi-maint-val">2</div>
+                <div class="kpi-value" id="kpi-maint-val">0</div>
                 <div class="kpi-trend trend-warning">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                  <span>+ 5% dari bulan lalu</span>
+                  <span>Proses Servis</span>
                 </div>
               </div>
               <div class="kpi-icon-wrapper icon-rose">
@@ -400,7 +404,7 @@
             </div>
           </div>
 
-          <!-- Analytics Charts -->
+          <!-- Analytics Charts (100% Dynamic) -->
           <div class="chart-container-grid">
             <div class="card-panel" style="margin-bottom: 0;">
               <div class="card-header">
@@ -411,14 +415,12 @@
                 <div style="position: relative; width: 200px; height: 200px;">
                   <canvas id="donutConditionChart"></canvas>
                   <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-                    <span style="font-size: 22px; font-weight: 800; color: var(--color-text-title);" id="donutCenterCount">10</span>
+                    <span style="font-size: 22px; font-weight: 800; color: var(--color-text-title);" id="donutCenterCount">0</span>
                     <span style="font-size: 11px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase;">Total Aset</span>
                   </div>
                 </div>
-                <div style="display: flex; gap: 12px; margin-top: 20px; font-size: 12px; flex-wrap: wrap; justify-content: center;">
-                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #1F46E5;"></span> Baik (70%)</span>
-                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #F97316;"></span> Rusak (10%)</span>
-                  <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #8B5CF6;"></span> Perawatan (20%)</span>
+                <!-- Legend Dinamis -->
+                <div id="donutLegendList" style="display: flex; gap: 12px; margin-top: 20px; font-size: 12px; flex-wrap: wrap; justify-content: center;">
                 </div>
               </div>
             </div>
@@ -434,37 +436,15 @@
             </div>
           </div>
 
-          <!-- Bottom Widgets (Aktivitas Terbaru & Lokasi) -->
+          <!-- Bottom Widgets (100% Dynamic Aktivitas Terbaru & Lokasi) -->
           <div class="bottom-widget-grid" style="margin-top: 24px;">
             <div class="card-panel" style="margin-bottom: 0;">
               <div class="card-header">
                 <h3 class="card-title">Aktivitas Terbaru</h3>
-                <button type="button" class="btn btn-secondary" style="height: 30px; font-size: 12px; padding: 0 10px;" onclick="switchRoute('master')">Lihat Semua</button>
+                <button type="button" class="btn btn-secondary" style="height: 30px; font-size: 12px; padding: 0 10px;" onclick="switchRoute('pemeliharaan')">Lihat Semua</button>
               </div>
-              <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 14px;">
-                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-subtle);">
-                  <div>
-                    <h5 style="font-size: 13.5px; font-weight: 600; color: var(--color-text-title);">Pengadaan Laptop Lenovo ThinkPad</h5>
-                    <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Admin • 12 Okt 2025, 14:32</p>
-                  </div>
-                  <span class="badge-status badge-success">Pengadaan</span>
-                </div>
-
-                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-subtle);">
-                  <div>
-                    <h5 style="font-size: 13.5px; font-weight: 600; color: var(--color-text-title);">Pemeliharaan AC Ruang Rapat</h5>
-                    <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Admin • 11 Okt 2025, 11:20</p>
-                  </div>
-                  <span class="badge-status badge-warning">Pemeliharaan</span>
-                </div>
-
-                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
-                  <div>
-                    <h5 style="font-size: 13.5px; font-weight: 600; color: var(--color-text-title);">Aset Printer HP dipindahkan ke Lokasi B</h5>
-                    <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Admin • 10 Okt 2025, 09:15</p>
-                  </div>
-                  <span class="badge-status badge-neutral">Mutasi</span>
-                </div>
+              <!-- Aktivitas Terdata Dinamis -->
+              <div id="dashboardActivityList" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 14px;">
               </div>
             </div>
 
@@ -473,46 +453,8 @@
                 <h3 class="card-title">Lokasi Aset</h3>
                 <button type="button" style="background:none;border:none;font-size:12px;color:var(--color-text-muted);cursor:pointer;" onclick="switchRoute('lokasi')">Lihat Semua &gt;</button>
               </div>
-              <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 14px;">
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
-                    <span>Gedung A</span>
-                    <span>4 unit</span>
-                  </div>
-                  <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
-                    <div style="width: 40%; height: 100%; background: var(--color-primary); border-radius: 999px;"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
-                    <span>Gedung B</span>
-                    <span>4 unit</span>
-                  </div>
-                  <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
-                    <div style="width: 40%; height: 100%; background: var(--color-secondary); border-radius: 999px;"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
-                    <span>Gedung C</span>
-                    <span>1 unit</span>
-                  </div>
-                  <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
-                    <div style="width: 10%; height: 100%; background: var(--color-warning); border-radius: 999px;"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
-                    <span>Luar Gedung</span>
-                    <span>1 unit</span>
-                  </div>
-                  <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
-                    <div style="width: 10%; height: 100%; background: #94A3B8; border-radius: 999px;"></div>
-                  </div>
-                </div>
+              <!-- Distribusi Lokasi Dinamis -->
+              <div id="dashboardLocationList" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 14px;">
               </div>
             </div>
           </div>
@@ -530,7 +472,6 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                 Ekspor CSV
               </button>
-              <!-- Satu Simbol Plus Saja (Bebas Duplikasi Tanda +) -->
               <button type="button" class="btn btn-primary" onclick="openAddAssetModal()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
                 Tambah Aset
@@ -543,12 +484,10 @@
               <div class="filter-controls-group">
                 <!-- Dropdown Kategori Dinamis -->
                 <select class="filter-select" id="filterCategory" onchange="applyFilters()">
-                  <!-- Populated dynamically from SarprasStore -->
                 </select>
 
                 <!-- Dropdown Lokasi Dinamis -->
                 <select class="filter-select" id="filterLocation" onchange="applyFilters()">
-                  <!-- Populated dynamically from SarprasStore -->
                 </select>
 
                 <select class="filter-select" id="filterCondition" onchange="applyFilters()">
@@ -585,7 +524,6 @@
                   </tr>
                 </thead>
                 <tbody id="assetTableBody">
-                  <!-- Rendered dynamically by JavaScript -->
                 </tbody>
               </table>
             </div>
@@ -608,18 +546,18 @@
               <h1 class="page-title">Kategori Aset</h1>
               <p class="page-description">Kelompok inventaris sarana dan prasarana berdasarkan jenis dan fungsi.</p>
             </div>
-            <!-- Satu Simbol Plus Saja -->
             <button type="button" class="btn btn-primary" onclick="openModal('modalAddCategory')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               Tambah Kategori
             </button>
           </div>
 
+          <!-- 4 KPI Kategori (100% Dynamic) -->
           <div class="kpi-grid" style="margin-bottom: 24px;">
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Total Kategori</span>
-                <div class="kpi-value" id="kpi-total-kategori">5</div>
+                <div class="kpi-value" id="kpi-total-kategori">0</div>
                 <span style="font-size: 12px; color: var(--color-text-muted);">Klasifikasi Resmi BMN</span>
               </div>
               <div class="kpi-icon-wrapper icon-blue">
@@ -630,8 +568,8 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Unit Terbanyak</span>
-                <div class="kpi-value" style="font-size: 24px;">Elektronik</div>
-                <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">4 Unit Terdata</span>
+                <div class="kpi-value" id="kpi-cat-unit-terbanyak">-</div>
+                <span style="font-size: 12px; color: var(--color-success); font-weight: 600;" id="kpi-cat-unit-terbanyak-sub">- Unit Terdata</span>
               </div>
               <div class="kpi-icon-wrapper icon-emerald">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
@@ -641,8 +579,8 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Nilai Terbesar</span>
-                <div class="kpi-value" style="font-size: 20px;">Rp 34,5 Jt</div>
-                <span style="font-size: 12px; color: var(--color-text-muted);">Sektor Komputer &amp; TIK</span>
+                <div class="kpi-value" id="kpi-cat-nilai-terbesar">Rp 0</div>
+                <span style="font-size: 12px; color: var(--color-text-muted);" id="kpi-cat-nilai-terbesar-sub">-</span>
               </div>
               <div class="kpi-icon-wrapper icon-amber">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -652,7 +590,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Status Kelayakan</span>
-                <div class="kpi-value" style="font-size: 24px;">90%</div>
+                <div class="kpi-value" id="kpi-cat-status-kelayakan">0%</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Kondisi Prima</span>
               </div>
               <div class="kpi-icon-wrapper icon-rose">
@@ -680,7 +618,6 @@
                   </tr>
                 </thead>
                 <tbody id="kategoriTableBody">
-                  <!-- Rendered dynamically -->
                 </tbody>
               </table>
             </div>
@@ -694,19 +631,19 @@
               <h1 class="page-title">Lokasi Penempatan Aset</h1>
               <p class="page-description">Pemetaan ruang dan gedung inventarisasi sarana prasarana kampus.</p>
             </div>
-            <!-- Satu Simbol Plus Saja -->
             <button type="button" class="btn btn-primary" onclick="openModal('modalAddLocation')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               Tambah Lokasi
             </button>
           </div>
 
+          <!-- 4 KPI Lokasi (100% Dynamic) -->
           <div class="kpi-grid" style="margin-bottom: 24px;">
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Total Gedung</span>
-                <div class="kpi-value" style="font-size: 24px;">4 Zona</div>
-                <span style="font-size: 12px; color: var(--color-text-muted);">Gedung A, B, C &amp; Outdoor</span>
+                <div class="kpi-value" id="kpi-total-gedung">0 Zona</div>
+                <span style="font-size: 12px; color: var(--color-text-muted);">Area Kampus</span>
               </div>
               <div class="kpi-icon-wrapper icon-blue">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
@@ -716,7 +653,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Total Ruangan</span>
-                <div class="kpi-value" id="kpi-total-ruangan" style="font-size: 24px;">9 Ruang</div>
+                <div class="kpi-value" id="kpi-total-ruangan">0 Ruang</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Terverifikasi</span>
               </div>
               <div class="kpi-icon-wrapper icon-emerald">
@@ -727,8 +664,8 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Aset Terbanyak</span>
-                <div class="kpi-value" style="font-size: 20px;">Gedung A</div>
-                <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">4 Unit Aset</span>
+                <div class="kpi-value" id="kpi-lokasi-terbanyak">-</div>
+                <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;" id="kpi-lokasi-terbanyak-sub">- Unit Aset</span>
               </div>
               <div class="kpi-icon-wrapper icon-amber">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -766,32 +703,31 @@
                   </tr>
                 </thead>
                 <tbody id="lokasiTableBody">
-                  <!-- Rendered dynamically -->
                 </tbody>
               </table>
             </div>
           </section>
         </div>
 
-        <!-- ================= VIEW 5: PEMELIHARAAN & SERVIS (JELAS, LENGKAP & IKON) ================= -->
+        <!-- ================= VIEW 5: PEMELIHARAAN & SERVIS (100% Dynamic) ================= -->
         <div id="view-pemeliharaan" class="app-view hidden">
           <div class="page-header-block">
             <div>
               <h1 class="page-title">Pemeliharaan &amp; Servis Aset</h1>
               <p class="page-description">Kelola tiket perbaikan, teknisi rekanan, dan kembalikan aset ke kondisi baik setelah servis selesai.</p>
             </div>
-            <!-- Satu Simbol Plus Saja -->
             <button type="button" class="btn btn-primary" onclick="openAddTicketModal()">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
               Jadwalkan Servis
             </button>
           </div>
 
+          <!-- 4 KPI Pemeliharaan (100% Dynamic) -->
           <div class="kpi-grid" style="margin-bottom: 24px;">
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Sedang Diservis</span>
-                <div class="kpi-value" id="kpi-tiket-rawat" style="font-size: 24px;">2 Unit</div>
+                <div class="kpi-value" id="kpi-tiket-rawat" style="font-size: 24px;">0 Unit</div>
                 <span style="font-size: 12px; color: var(--color-warning); font-weight: 600;">Perlu Penanganan</span>
               </div>
               <div class="kpi-icon-wrapper icon-rose">
@@ -802,7 +738,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Total Selesai Servis</span>
-                <div class="kpi-value" id="kpi-tiket-selesai" style="font-size: 24px;">1 Unit</div>
+                <div class="kpi-value" id="kpi-tiket-selesai" style="font-size: 24px;">0 Unit</div>
                 <span style="font-size: 12px; color: var(--color-success); font-weight: 600;">Siap Operasional</span>
               </div>
               <div class="kpi-icon-wrapper icon-emerald">
@@ -813,7 +749,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Total Biaya Pemeliharaan</span>
-                <div class="kpi-value" id="kpi-tiket-biaya" style="font-size: 20px;">Rp 1.050.000</div>
+                <div class="kpi-value" id="kpi-tiket-biaya" style="font-size: 20px;">Rp 0</div>
                 <span style="font-size: 12px; color: var(--color-text-muted);">Alokasi Anggaran DIPA/Yayasan</span>
               </div>
               <div class="kpi-icon-wrapper icon-amber">
@@ -824,7 +760,7 @@
             <div class="kpi-card" style="padding: 18px;">
               <div>
                 <span class="kpi-label">Vendor Teknisi</span>
-                <div class="kpi-value" id="kpi-tiket-vendor" style="font-size: 24px;">3 Mitra</div>
+                <div class="kpi-value" id="kpi-tiket-vendor" style="font-size: 24px;">0 Mitra</div>
                 <span style="font-size: 12px; color: var(--color-primary); font-weight: 600;">Status Siaga</span>
               </div>
               <div class="kpi-icon-wrapper icon-blue">
@@ -862,14 +798,13 @@
                   </tr>
                 </thead>
                 <tbody id="maintenanceTableBody">
-                  <!-- Rendered dynamically with clean icon action buttons! -->
                 </tbody>
               </table>
             </div>
           </section>
         </div>
 
-        <!-- ================= VIEW 6: LAPORAN ================= -->
+        <!-- ================= VIEW 6: LAPORAN (100% Dynamic) ================= -->
         <div id="view-laporan" class="app-view hidden">
           <div class="page-header-block">
             <div>
@@ -888,12 +823,12 @@
             </div>
           </div>
 
-          <!-- Mini KPI Row -->
+          <!-- Mini KPI Row (Dynamic) -->
           <div class="kpi-grid" style="margin-bottom: 24px;">
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Total Aset</span>
-                <div class="kpi-value" id="lap-total" style="font-size: 22px;">10</div>
+                <div class="kpi-value" id="lap-total" style="font-size: 22px;">0</div>
               </div>
               <div class="kpi-icon-wrapper icon-blue" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
@@ -902,7 +837,7 @@
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Aset Aktif</span>
-                <div class="kpi-value" id="lap-active" style="font-size: 22px;">7</div>
+                <div class="kpi-value" id="lap-active" style="font-size: 22px;">0</div>
               </div>
               <div class="kpi-icon-wrapper icon-emerald" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
@@ -911,7 +846,7 @@
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Aset Rusak</span>
-                <div class="kpi-value" id="lap-broken" style="font-size: 22px;">1</div>
+                <div class="kpi-value" id="lap-broken" style="font-size: 22px;">0</div>
               </div>
               <div class="kpi-icon-wrapper icon-amber" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
@@ -920,7 +855,7 @@
             <div class="kpi-card" style="padding: 16px;">
               <div>
                 <span class="kpi-label">Dalam Perawatan</span>
-                <div class="kpi-value" id="lap-maint" style="font-size: 22px;">2</div>
+                <div class="kpi-value" id="lap-maint" style="font-size: 22px;">0</div>
               </div>
               <div class="kpi-icon-wrapper icon-rose" style="width: 36px; height: 36px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
@@ -947,7 +882,6 @@
                   </tr>
                 </thead>
                 <tbody id="laporanTableBody">
-                  <!-- Filled dynamically by JavaScript -->
                 </tbody>
               </table>
             </div>
@@ -958,7 +892,7 @@
       <!-- App Footer -->
       <footer class="app-footer">
         <span>&copy; 2025 SaranaPrasana. Hak Cipta Dilindungi. Sistem Manajemen Aset Kampus.</span>
-        <span>SaranaPrasana v2.2.0 (Clean Enterprise Edition)</span>
+        <span>SaranaPrasana v2.3.0 (Clean Enterprise Edition)</span>
       </footer>
     </div>
   </div>
@@ -991,7 +925,6 @@
             </div>
             <div class="form-group" style="margin-bottom: 0;">
               <label class="form-label">Kategori <span class="required">*</span></label>
-              <!-- Dinamis Tanpa Hardcode -->
               <select id="add_kategori" class="form-select" required>
               </select>
             </div>
@@ -1000,7 +933,6 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group" style="margin-bottom: 0;">
               <label class="form-label">Lokasi Penempatan <span class="required">*</span></label>
-              <!-- Dinamis Tanpa Hardcode -->
               <select id="add_lokasi" class="form-select" required>
               </select>
             </div>
@@ -1060,7 +992,6 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group" style="margin-bottom: 0;">
               <label class="form-label">Kategori</label>
-              <!-- Dinamis Tanpa Hardcode -->
               <select id="edit_kategori" class="form-select" required>
               </select>
             </div>
@@ -1075,7 +1006,6 @@
           </div>
           <div class="form-group" style="margin-bottom: 0;">
             <label class="form-label">Lokasi</label>
-            <!-- Dinamis Tanpa Hardcode -->
             <select id="edit_lokasi" class="form-select" required>
             </select>
           </div>
@@ -1135,7 +1065,7 @@
     </div>
   </div>
 
-  <!-- ================= MODAL 5: JADWALKAN SERVIS PEMELIHARAAN (BARU) ================= -->
+  <!-- ================= MODAL 5: JADWALKAN SERVIS PEMELIHARAAN ================= -->
   <div id="modalAddTicket" class="modal-overlay">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -1154,7 +1084,6 @@
           <div class="form-group" style="margin-bottom: 0;">
             <label class="form-label">Pilih Aset yang Diservis <span class="required">*</span></label>
             <select id="ticket_id_aset" class="form-select" required>
-              <!-- Populated dynamically with assets -->
             </select>
           </div>
 
@@ -1283,7 +1212,7 @@
       <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
         <div style="background: var(--color-surface-alt); padding: 14px; border-radius: var(--radius-md); font-size: 13px;">
           <div style="font-weight: 700; color: var(--color-text-title); margin-bottom: 4px;">SaranaPrasana Asset Management</div>
-          <div style="color: var(--color-text-muted);">Versi: 2.2.0 (Clean Enterprise Edition)</div>
+          <div style="color: var(--color-text-muted);">Versi: 2.3.0 (Clean Enterprise Edition)</div>
           <div style="color: var(--color-text-muted); margin-top: 2px;">Database Docker: PostgreSQL 16 (Port 5435)</div>
           <div style="color: var(--color-text-muted); margin-top: 2px;">Tugas UAS: Pemrograman Web 2</div>
         </div>
@@ -1313,6 +1242,8 @@
   <script>
     let currentAssets = [];
     let deleteTargetId = null;
+    window.donutChartInstance = null;
+    window.barChartInstance = null;
 
     document.addEventListener('DOMContentLoaded', () => {
       populateDynamicDropdowns();
@@ -1321,8 +1252,8 @@
       renderLokasiTable();
       renderMaintenanceTable();
       initDashboardCharts();
+      updateAllDashboardWidgets();
       renderLaporanTable();
-      updateLaporanKpi();
       checkUrlQueryActions();
     });
 
@@ -1397,11 +1328,213 @@
       ticketAssetSel.innerHTML = opts;
     }
 
-    // --- 2. ASSETS TABLE & FILTERS ---
+    // --- 2. 100% DYNAMIC DASHBOARD ENGINE (ZERO HARDCODED METRICS) ---
+    function updateAllDashboardWidgets() {
+      const assets = window.SarprasStore.getStoredAssets();
+      const categories = window.SarprasStore.getCategories();
+      const locations = window.SarprasStore.getLocations();
+      const tickets = window.SarprasStore.getMaintenanceTickets();
+
+      const total = assets.length;
+      const baik = assets.filter(a => a.kondisi === 'Baik').length;
+      const rusak = assets.filter(a => a.kondisi === 'Rusak').length;
+      const rawat = assets.filter(a => a.kondisi === 'Dalam Perawatan').length;
+
+      // KPI Counters
+      const elTot = document.getElementById('kpi-total-val');
+      const elAct = document.getElementById('kpi-active-val');
+      const elBrk = document.getElementById('kpi-broken-val');
+      const elMnt = document.getElementById('kpi-maint-val');
+      const elDonutCenter = document.getElementById('donutCenterCount');
+
+      if (elTot) elTot.textContent = total;
+      if (elAct) elAct.textContent = baik;
+      if (elBrk) elBrk.textContent = rusak;
+      if (elMnt) elMnt.textContent = rawat;
+      if (elDonutCenter) elDonutCenter.textContent = total;
+
+      // Donut percentages
+      const pctBaik = total > 0 ? Math.round((baik / total) * 100) : 0;
+      const pctRusak = total > 0 ? Math.round((rusak / total) * 100) : 0;
+      const pctRawat = total > 0 ? Math.round((rawat / total) * 100) : 0;
+
+      const donutLegend = document.getElementById('donutLegendList');
+      if (donutLegend) {
+        donutLegend.innerHTML = `
+          <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #1F46E5;"></span> Baik (${pctBaik}%)</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #EF4444;"></span> Rusak (${pctRusak}%)</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #F59E0B;"></span> Perawatan (${pctRawat}%)</span>
+        `;
+      }
+
+      if (window.donutChartInstance) {
+        window.donutChartInstance.data.datasets[0].data = [baik, rusak, rawat];
+        window.donutChartInstance.update();
+      }
+
+      // Bar Chart by Category
+      const catMap = {};
+      categories.forEach(c => { catMap[c.nama] = 0; });
+      assets.forEach(a => {
+        catMap[a.kategori] = (catMap[a.kategori] || 0) + 1;
+      });
+      const catLabels = Object.keys(catMap);
+      const catCounts = Object.values(catMap);
+
+      if (window.barChartInstance) {
+        window.barChartInstance.data.labels = catLabels;
+        window.barChartInstance.data.datasets[0].data = catCounts;
+        window.barChartInstance.update();
+      }
+
+      // Lokasi Aset List on Dashboard
+      const gedungMap = {};
+      locations.forEach(l => { gedungMap[l.gedung] = 0; });
+      assets.forEach(a => {
+        const g = a.gedung || (a.lokasi.includes('Gedung A') ? 'Gedung A' : (a.lokasi.includes('Gedung B') ? 'Gedung B' : (a.lokasi.includes('Gedung C') ? 'Gedung C' : 'Luar Gedung')));
+        gedungMap[g] = (gedungMap[g] || 0) + 1;
+      });
+
+      const lokContainer = document.getElementById('dashboardLocationList');
+      if (lokContainer) {
+        let lokHtml = '';
+        const colors = ['#1F46E5', '#06B6D4', '#F59E0B', '#94A3B8', '#8B5CF6'];
+        let cIdx = 0;
+        for (const [gName, gCount] of Object.entries(gedungMap)) {
+          const pct = total > 0 ? Math.round((gCount / total) * 100) : 0;
+          const barColor = colors[cIdx % colors.length];
+          cIdx++;
+          lokHtml += `
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+                <span>${gName}</span>
+                <span>${gCount} unit</span>
+              </div>
+              <div style="height: 6px; background: var(--color-surface-alt); border-radius: 999px; overflow: hidden;">
+                <div style="width: ${pct}%; height: 100%; background: ${barColor}; border-radius: 999px; transition: width 0.3s ease;"></div>
+              </div>
+            </div>
+          `;
+        }
+        lokContainer.innerHTML = lokHtml;
+      }
+
+      // Aktivitas Terbaru on Dashboard
+      const actContainer = document.getElementById('dashboardActivityList');
+      if (actContainer) {
+        let actHtml = '';
+        tickets.slice(0, 2).forEach(t => {
+          actHtml += `
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-subtle);">
+              <div>
+                <h5 style="font-size: 13.5px; font-weight: 600; color: var(--color-text-title);">${t.keluhan} (${t.nama_aset})</h5>
+                <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Teknisi: ${t.vendor} • ${t.tgl}</p>
+              </div>
+              <span class="badge-status ${t.status === 'Dalam Perawatan' ? 'badge-warning' : 'badge-success'}">${t.status}</span>
+            </div>
+          `;
+        });
+
+        if (assets.length > 0) {
+          const first = assets[0];
+          actHtml += `
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+              <div>
+                <h5 style="font-size: 13.5px; font-weight: 600; color: var(--color-text-title);">Registrasi Aset: ${first.nama}</h5>
+                <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 2px;">Admin • ${first.tanggal || first.tgl || '12 Jan 2023'} • ${first.lokasi}</p>
+              </div>
+              <span class="badge-status badge-success">Pengadaan</span>
+            </div>
+          `;
+        }
+        actContainer.innerHTML = actHtml;
+      }
+
+      // Kategori Page KPIs
+      const elCatTotal = document.getElementById('kpi-total-kategori');
+      const elCatUnit = document.getElementById('kpi-cat-unit-terbanyak');
+      const elCatVal = document.getElementById('kpi-cat-nilai-terbesar');
+      const elCatStatus = document.getElementById('kpi-cat-status-kelayakan');
+
+      if (elCatTotal) elCatTotal.textContent = categories.length;
+
+      if (elCatUnit) {
+        let topCatName = '-';
+        let topCatCount = 0;
+        for (const [cN, cC] of Object.entries(catMap)) {
+          if (cC > topCatCount) {
+            topCatCount = cC;
+            topCatName = cN;
+          }
+        }
+        elCatUnit.textContent = topCatName;
+        const subLabel = document.getElementById('kpi-cat-unit-terbanyak-sub');
+        if (subLabel) subLabel.textContent = `${topCatCount} Unit Terdata`;
+      }
+
+      if (elCatVal) {
+        const valMap = {};
+        assets.forEach(a => {
+          valMap[a.kategori] = (valMap[a.kategori] || 0) + (a.nilai || 0);
+        });
+        let topValCat = '-';
+        let maxVal = 0;
+        for (const [cN, v] of Object.entries(valMap)) {
+          if (v > maxVal) {
+            maxVal = v;
+            topValCat = cN;
+          }
+        }
+        elCatVal.textContent = window.SarprasStore.formatRupiah(maxVal);
+        const subLabel = document.getElementById('kpi-cat-nilai-terbesar-sub');
+        if (subLabel) subLabel.textContent = `Sektor ${topValCat}`;
+      }
+
+      if (elCatStatus) {
+        elCatStatus.textContent = `${pctBaik}%`;
+      }
+
+      // Lokasi Page KPIs
+      const distinctGedung = [...new Set(locations.map(l => l.gedung))];
+      const elGedungTotal = document.getElementById('kpi-total-gedung');
+      const elRuanganTotal = document.getElementById('kpi-total-ruangan');
+      const elLokTerbanyak = document.getElementById('kpi-lokasi-terbanyak');
+
+      if (elGedungTotal) elGedungTotal.textContent = `${distinctGedung.length} Zona`;
+      if (elRuanganTotal) elRuanganTotal.textContent = `${locations.length} Ruang`;
+
+      if (elLokTerbanyak) {
+        let topGedName = '-';
+        let topGedCount = 0;
+        for (const [gN, gC] of Object.entries(gedungMap)) {
+          if (gC > topGedCount) {
+            topGedCount = gC;
+            topGedName = gN;
+          }
+        }
+        elLokTerbanyak.textContent = topGedName;
+        const subLabel = document.getElementById('kpi-lokasi-terbanyak-sub');
+        if (subLabel) subLabel.textContent = `${topGedCount} Unit Aset`;
+      }
+
+      // Laporan Page KPIs
+      const elLapTot = document.getElementById('lap-total');
+      const elLapAct = document.getElementById('lap-active');
+      const elLapBrk = document.getElementById('lap-broken');
+      const elLapMnt = document.getElementById('lap-maint');
+
+      if (elLapTot) elLapTot.textContent = total;
+      if (elLapAct) elLapAct.textContent = baik;
+      if (elLapBrk) elLapBrk.textContent = rusak;
+      if (elLapMnt) elLapMnt.textContent = rawat;
+    }
+    window.updateAllDashboardWidgets = updateAllDashboardWidgets;
+
+    // --- 3. ASSETS TABLE & FILTERS ---
     function loadInitialAssets() {
       currentAssets = window.SarprasStore.getStoredAssets();
       renderAssetTable(currentAssets);
-      updateKpiCounters();
+      updateAllDashboardWidgets();
     }
 
     function renderAssetTable(assets) {
@@ -1454,26 +1587,6 @@
       document.getElementById('paginationInfoLabel').textContent = `Menampilkan 1 - ${assets.length} dari ${assets.length} data`;
     }
 
-    function updateKpiCounters() {
-      const all = window.SarprasStore.getStoredAssets();
-      const total = all.length;
-      const baik = all.filter(a => a.kondisi === 'Baik').length;
-      const rusak = all.filter(a => a.kondisi === 'Rusak').length;
-      const rawat = all.filter(a => a.kondisi === 'Dalam Perawatan').length;
-
-      const totalEl = document.getElementById('kpi-total-val');
-      const activeEl = document.getElementById('kpi-active-val');
-      const brokenEl = document.getElementById('kpi-broken-val');
-      const maintEl = document.getElementById('kpi-maint-val');
-      const donutCenter = document.getElementById('donutCenterCount');
-
-      if (totalEl) totalEl.textContent = total;
-      if (activeEl) activeEl.textContent = baik;
-      if (brokenEl) brokenEl.textContent = rusak;
-      if (maintEl) maintEl.textContent = rawat;
-      if (donutCenter) donutCenter.textContent = total;
-    }
-
     function applyFilters() {
       const cat = document.getElementById('filterCategory').value;
       const loc = document.getElementById('filterLocation').value;
@@ -1514,7 +1627,7 @@
       applyFilters();
     }
 
-    // --- 3. MODAL CRUD ASET ---
+    // --- 4. MODAL CRUD ASET ---
     function openAddAssetModal() {
       const all = window.SarprasStore.getStoredAssets();
       const nextNum = all.length + 1;
@@ -1540,13 +1653,15 @@
       const supplier = document.getElementById('add_supplier').value.trim() || 'CV Mitra Mandiri';
       const keterangan = document.getElementById('add_keterangan').value.trim() || 'Aset inventaris BMN';
 
-      const newAsset = { id, nama, kategori, lokasi, kondisi, tanggal: tgl, tgl, supplier, keterangan };
+      const newAsset = { id, nama, kategori, lokasi, kondisi, tanggal: tgl, tgl, supplier, keterangan, nilai: 5000000 };
       window.SarprasStore.addAsset(newAsset);
 
       closeModal('modalAddAsset');
       loadInitialAssets();
+      renderKategoriTable();
+      renderLokasiTable();
       renderLaporanTable();
-      updateLaporanKpi();
+      updateAllDashboardWidgets();
       populateTicketAssetSelect();
       showToast(`Aset ${nama} (${id}) berhasil ditambahkan!`);
     }
@@ -1575,8 +1690,10 @@
       window.SarprasStore.updateAsset(id, { nama, kategori, lokasi, kondisi });
       closeModal('modalEditAsset');
       loadInitialAssets();
+      renderKategoriTable();
+      renderLokasiTable();
       renderLaporanTable();
-      updateLaporanKpi();
+      updateAllDashboardWidgets();
       populateTicketAssetSelect();
       showToast(`Data aset ${id} berhasil diperbarui!`);
     }
@@ -1592,8 +1709,10 @@
         window.SarprasStore.deleteAsset(deleteTargetId);
         closeModal('modalDeleteAsset');
         loadInitialAssets();
+        renderKategoriTable();
+        renderLokasiTable();
         renderLaporanTable();
-        updateLaporanKpi();
+        updateAllDashboardWidgets();
         populateTicketAssetSelect();
         showToast(`Aset ${deleteTargetId} berhasil dihapus.`);
         deleteTargetId = null;
@@ -1660,13 +1779,12 @@
       openModal('modalDetailAsset');
     }
 
-    // --- 4. PEMELIHARAAN & SERVIS (JELAS, LENGKAP & IKON) ---
+    // --- 5. PEMELIHARAAN & SERVIS (100% Dynamic Lifecycle) ---
     function renderMaintenanceTable() {
       const tbody = document.getElementById('maintenanceTableBody');
       if (!tbody) return;
 
       const tickets = window.SarprasStore.getMaintenanceTickets();
-      const assets = window.SarprasStore.getStoredAssets();
 
       // Update KPI
       const rawatTickets = tickets.filter(t => t.status === 'Dalam Perawatan');
@@ -1765,7 +1883,7 @@
       renderMaintenanceTable();
       loadInitialAssets();
       renderLaporanTable();
-      updateLaporanKpi();
+      updateAllDashboardWidgets();
       showToast(`Tiket ${ticketId} berhasil dibuat! Status aset ${id_aset} diset ke 'Dalam Perawatan'.`);
     }
 
@@ -1775,7 +1893,7 @@
         renderMaintenanceTable();
         loadInitialAssets();
         renderLaporanTable();
-        updateLaporanKpi();
+        updateAllDashboardWidgets();
         showToast(`Servis ${ticketId} selesai! Aset ${updated.id_aset} berhasil dikembalikan ke Kondisi Baik.`);
       }
     }
@@ -1784,6 +1902,7 @@
       if (confirm(`Hapus tiket servis ${ticketId}?`)) {
         window.SarprasStore.deleteMaintenanceTicket(ticketId);
         renderMaintenanceTable();
+        updateAllDashboardWidgets();
         showToast(`Tiket ${ticketId} berhasil dihapus.`);
       }
     }
@@ -1829,14 +1948,12 @@
       openModal('modalDetailTicket');
     }
 
-    // --- 5. KATEGORI & LOKASI TABLES ---
+    // --- 6. KATEGORI & LOKASI TABLES ---
     function renderKategoriTable() {
       const tbody = document.getElementById('kategoriTableBody');
       if (!tbody) return;
       const categories = window.SarprasStore.getCategories();
       const assets = window.SarprasStore.getStoredAssets();
-
-      document.getElementById('kpi-total-kategori').textContent = categories.length;
 
       let html = '';
       categories.forEach(c => {
@@ -1868,6 +1985,7 @@
 
       populateDynamicDropdowns();
       renderKategoriTable();
+      updateAllDashboardWidgets();
       showToast(`Kategori ${nama} (${kode}) berhasil ditambahkan!`);
     }
 
@@ -1876,8 +1994,6 @@
       if (!tbody) return;
       const locations = window.SarprasStore.getLocations();
       const assets = window.SarprasStore.getStoredAssets();
-
-      document.getElementById('kpi-total-ruangan').textContent = `${locations.length} Ruang`;
 
       let html = '';
       locations.forEach(l => {
@@ -1914,6 +2030,7 @@
 
       populateDynamicDropdowns();
       renderLokasiTable();
+      updateAllDashboardWidgets();
       showToast(`Lokasi ${ruangan} berhasil ditambahkan!`);
     }
 
@@ -1927,7 +2044,7 @@
         renderLokasiTable();
         renderMaintenanceTable();
         renderLaporanTable();
-        updateLaporanKpi();
+        updateAllDashboardWidgets();
         showToast('Seluruh data berhasil direset ke setelan awal.');
       }
     }
@@ -1982,24 +2099,15 @@
     }
 
     function updateLaporanKpi() {
-      const all = window.SarprasStore.getStoredAssets();
-      const elTot = document.getElementById('lap-total');
-      const elAct = document.getElementById('lap-active');
-      const elBrk = document.getElementById('lap-broken');
-      const elMnt = document.getElementById('lap-maint');
-
-      if (elTot) elTot.textContent = all.length;
-      if (elAct) elAct.textContent = all.filter(a => a.kondisi === 'Baik').length;
-      if (elBrk) elBrk.textContent = all.filter(a => a.kondisi === 'Rusak').length;
-      if (elMnt) elMnt.textContent = all.filter(a => a.kondisi === 'Dalam Perawatan').length;
+      updateAllDashboardWidgets();
     }
 
     function initDashboardCharts() {
       if (typeof Chart === 'undefined') return;
 
       const donutCanvas = document.getElementById('donutConditionChart');
-      if (donutCanvas) {
-        new Chart(donutCanvas, {
+      if (donutCanvas && !window.donutChartInstance) {
+        window.donutChartInstance = new Chart(donutCanvas, {
           type: 'doughnut',
           data: {
             labels: ['Baik', 'Rusak', 'Dalam Perawatan'],
@@ -2020,8 +2128,8 @@
       }
 
       const barCanvas = document.getElementById('barCategoryChart');
-      if (barCanvas) {
-        new Chart(barCanvas, {
+      if (barCanvas && !window.barChartInstance) {
+        window.barChartInstance = new Chart(barCanvas, {
           type: 'bar',
           data: {
             labels: ['Komputer', 'Elektronik', 'Kendaraan', 'Furniture'],
@@ -2037,7 +2145,7 @@
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-              y: { beginAtZero: true, grid: { color: '#F1F5F9' } },
+              y: { beginAtZero: true, grid: { color: 'rgba(226, 232, 240, 0.5)' } },
               x: { grid: { display: false } }
             }
           }

@@ -1,7 +1,7 @@
 /**
  * SaranaPrasana Asset Management
  * Master Client-Side Application Core Controller & Navigation Engine
- * v2.2.0 (Zero-Reload Seamless Flow & Unified Modal Architecture)
+ * v2.3.0 (Talent Pool Flat Navigation & 100% Dynamic Telemetry)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -46,41 +46,16 @@ function applyTheme(theme) {
 }
 
 /**
- * 2. SIDEBAR CONTROLLER (Desktop Rail & Mobile Drawer)
+ * 2. SIDEBAR CONTROLLER (Talent Pool Pattern - Rail on Desktop, Drawer on Mobile)
  */
 function initSidebarController() {
-  const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
   const mobileBackdrop = document.getElementById('sidebarMobileBackdrop');
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const toggleIcon = document.getElementById('sidebarToggleIcon');
 
   const isCollapsed = localStorage.getItem('sarpras_sidebar_collapsed') === 'true';
   if (window.innerWidth > 1024 && isCollapsed) {
     document.body.classList.add('sidebar-collapsed');
     if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
-  }
-
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      document.body.classList.toggle('sidebar-mobile-open');
-    });
-  }
-
-  if (sidebarToggleBtn) {
-    sidebarToggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (window.innerWidth <= 1024) {
-        document.body.classList.toggle('sidebar-mobile-open');
-      } else {
-        document.body.classList.toggle('sidebar-collapsed');
-        const collapsedNow = document.body.classList.contains('sidebar-collapsed');
-        localStorage.setItem('sarpras_sidebar_collapsed', collapsedNow);
-        if (toggleIcon) {
-          toggleIcon.style.transform = collapsedNow ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
-      }
-    });
   }
 
   if (mobileBackdrop) {
@@ -96,61 +71,59 @@ function initSidebarController() {
   });
 }
 
-/**
- * 3. ACCORDION MENUS
- */
-function toggleAccordion(id) {
-  const item = document.getElementById(id);
-  if (item) {
-    item.classList.toggle('open');
+function toggleSidebarCollapse() {
+  if (window.innerWidth <= 1024) {
+    document.body.classList.toggle('sidebar-mobile-open');
+  } else {
+    document.body.classList.toggle('sidebar-collapsed');
+    const collapsedNow = document.body.classList.contains('sidebar-collapsed');
+    localStorage.setItem('sarpras_sidebar_collapsed', collapsedNow);
+    const toggleIcon = document.getElementById('sidebarToggleIcon');
+    if (toggleIcon) {
+      toggleIcon.style.transform = collapsedNow ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
   }
 }
 
 /**
- * 4. ROUTER & SEAMLESS VIEW SWITCHER (0ms Reload, Zero Stuck State)
+ * 3. ROUTER & SEAMLESS VIEW SWITCHER (0ms Reload, 100% Reliable Flat Links)
  */
 const ROUTE_CONFIG = {
   'dashboard': {
     viewId: 'view-dashboard',
     navId: 'nav-dashboard',
-    parentAccordId: null,
     title: 'Dashboard',
     breadcrumb: '<span class="breadcrumb-item">SaranaPrasana</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Dashboard</span>'
   },
   'master': {
     viewId: 'view-master',
-    navId: 'sub-master',
-    parentAccordId: 'accordMaster',
+    navId: 'nav-master',
     title: 'Data Aset',
-    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Aset</span>'
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Data Aset</span>'
   },
   'kategori': {
     viewId: 'view-kategori',
-    navId: 'sub-kategori',
-    parentAccordId: 'accordMaster',
+    navId: 'nav-kategori',
     title: 'Kategori Aset',
     breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Kategori Aset</span>'
   },
   'lokasi': {
     viewId: 'view-lokasi',
-    navId: 'sub-lokasi',
-    parentAccordId: 'accordMaster',
+    navId: 'nav-lokasi',
     title: 'Lokasi Penempatan Aset',
     breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Data Master</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Lokasi Aset</span>'
   },
   'pemeliharaan': {
     viewId: 'view-pemeliharaan',
-    navId: 'sub-pemeliharaan',
-    parentAccordId: 'accordTrans',
+    navId: 'nav-pemeliharaan',
     title: 'Pemeliharaan & Servis Aset',
-    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Transaksi</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Pemeliharaan</span>'
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Operasional</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Pemeliharaan</span>'
   },
   'laporan': {
     viewId: 'view-laporan',
     navId: 'nav-laporan',
-    parentAccordId: null,
     title: 'Laporan Inventarisasi Aset (KIR)',
-    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Laporan</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Laporan Aset</span>'
+    breadcrumb: '<button type="button" onclick="switchRoute(\'dashboard\')" class="breadcrumb-item" style="background:none;border:none;cursor:pointer;padding:0;">Dashboard</button><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item">Rekapitulasi</span><span class="breadcrumb-separator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span><span class="breadcrumb-item active">Laporan Aset</span>'
   }
 };
 
@@ -181,7 +154,6 @@ function switchRoute(routeName) {
 
   // 2. Clear Active Indicators
   document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.sidebar-sub-link').forEach(el => el.classList.remove('active'));
 
   // 3. Highlight EXACT Active Link
   const activeNav = document.getElementById(target.navId);
@@ -189,45 +161,34 @@ function switchRoute(routeName) {
     activeNav.classList.add('active');
   }
 
-  // 4. Accordion Open/Close (Single Active Rule)
-  const accordMaster = document.getElementById('accordMaster');
-  const accordTrans = document.getElementById('accordTrans');
-
-  if (target.parentAccordId === 'accordMaster') {
-    if (accordMaster) accordMaster.classList.add('open');
-    if (accordTrans) accordTrans.classList.remove('open');
-  } else if (target.parentAccordId === 'accordTrans') {
-    if (accordTrans) accordTrans.classList.add('open');
-    if (accordMaster) accordMaster.classList.remove('open');
-  } else {
-    // Top-level views
-    if (accordMaster) accordMaster.classList.remove('open');
-    if (accordTrans) accordTrans.classList.remove('open');
-  }
-
-  // 5. Update Breadcrumb
+  // 4. Update Breadcrumb
   const breadcrumbEl = document.getElementById('breadcrumbArea');
   if (breadcrumbEl) {
     breadcrumbEl.innerHTML = target.breadcrumb;
   }
 
-  // 6. Update Page Title
+  // 5. Update Page Title
   document.title = target.title + ' - SaranaPrasana';
 
-  // 7. Update Hash without hard page reload
+  // 6. Update Hash without hard page reload
   if (window.location.hash !== '#' + (ROUTE_CONFIG[routeName] ? routeName : 'dashboard')) {
     history.replaceState(null, '', '#' + (ROUTE_CONFIG[routeName] ? routeName : 'dashboard'));
   }
 
-  // 8. Scroll to top
+  // 7. Scroll to top
   window.scrollTo(0, 0);
 
-  // 9. Close mobile drawer if open
+  // 8. Close mobile drawer if open
   document.body.classList.remove('sidebar-mobile-open');
+
+  // 9. Re-render charts / widgets if switching to dashboard
+  if (routeName === 'dashboard' && typeof window.updateAllDashboardWidgets === 'function') {
+    window.updateAllDashboardWidgets();
+  }
 }
 
 /**
- * 5. GLOBAL SEARCH SHORTCUT (Ctrl + K)
+ * 4. GLOBAL SEARCH SHORTCUT (Ctrl + K)
  */
 function initSearchKeyboardShortcut() {
   const searchInput = document.getElementById('globalSearchInput');
@@ -259,7 +220,7 @@ function initSearchKeyboardShortcut() {
 }
 
 /**
- * 6. MODAL DIALOGS (Accessible, Focus-locked, Backdrop click & ESC dismiss)
+ * 5. MODAL DIALOGS (Accessible, Focus-locked, Backdrop click & ESC dismiss)
  */
 function initModalListeners() {
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
@@ -297,7 +258,7 @@ function closeModal(modalId) {
 }
 
 /**
- * 7. TOAST NOTIFICATIONS
+ * 6. TOAST NOTIFICATIONS
  */
 function showToast(msg) {
   const toast = document.getElementById('appToast');
@@ -311,20 +272,7 @@ function showToast(msg) {
 
 // Expose handlers globally to window
 window.switchRoute = switchRoute;
-window.toggleAccordion = toggleAccordion;
+window.toggleSidebarCollapse = toggleSidebarCollapse;
 window.openModal = openModal;
 window.closeModal = closeModal;
 window.showToast = showToast;
-
-function toggleSidebarCollapse() {
-  if (window.innerWidth > 1024) {
-    document.body.classList.toggle('sidebar-collapsed');
-    const collapsedNow = document.body.classList.contains('sidebar-collapsed');
-    localStorage.setItem('sarpras_sidebar_collapsed', collapsedNow);
-    const toggleIcon = document.getElementById('sidebarToggleIcon');
-    if (toggleIcon) {
-      toggleIcon.style.transform = collapsedNow ? 'rotate(180deg)' : 'rotate(0deg)';
-    }
-  }
-}
-window.toggleSidebarCollapse = toggleSidebarCollapse;
