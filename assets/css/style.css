@@ -916,6 +916,25 @@ body.sidebar-collapsed .nav-link {
   height: 40px;
 }
 
+input[type="date"] {
+  color-scheme: light;
+  cursor: pointer;
+}
+
+[data-theme="dark"] input[type="date"] {
+  color-scheme: dark;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
 .form-select {
   height: 40px;
   cursor: pointer;

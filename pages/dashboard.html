@@ -949,12 +949,17 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="form-group" style="margin-bottom: 0;">
               <label class="form-label">Tanggal Perolehan <span class="required">*</span></label>
-              <input type="text" id="add_tgl" class="form-input" placeholder="Contoh: 14 Okt 2025" required>
+              <input type="date" id="add_tgl" class="form-input" required>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label class="form-label">Supplier Rekanan</label>
-              <input type="text" id="add_supplier" class="form-input" placeholder="Contoh: PT Lenovo Indonesia">
+              <label class="form-label">Harga / Nilai (Rp) <span class="required">*</span></label>
+              <input type="text" id="add_nilai" class="form-input font-code" placeholder="Contoh: 14500000" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
             </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Supplier Rekanan</label>
+            <input type="text" id="add_supplier" class="form-input" placeholder="Contoh: PT Lenovo Indonesia">
           </div>
 
           <div class="form-group" style="margin-bottom: 0;">
@@ -1004,10 +1009,16 @@
               </select>
             </div>
           </div>
-          <div class="form-group" style="margin-bottom: 0;">
-            <label class="form-label">Lokasi</label>
-            <select id="edit_lokasi" class="form-select" required>
-            </select>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Lokasi</label>
+              <select id="edit_lokasi" class="form-select" required>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Harga / Nilai (Rp)</label>
+              <input type="text" id="edit_nilai" class="form-input font-code" placeholder="Contoh: 14500000" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -1098,14 +1109,14 @@
               <input type="text" id="ticket_vendor" class="form-input" placeholder="Contoh: PT Servis Center Prima" required>
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label class="form-label">Estimasi Biaya (Rp) <span class="required">*</span></label>
-              <input type="number" id="ticket_biaya" class="form-input" placeholder="Contoh: 350000" min="0" required>
+              <label class="form-label">Estimasi Biaya Servis (Rp) <span class="required">*</span></label>
+              <input type="text" id="ticket_biaya" class="form-input font-code" placeholder="Contoh: 350000" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
             </div>
           </div>
 
           <div class="form-group" style="margin-bottom: 0;">
             <label class="form-label">Tanggal Masuk Servis <span class="required">*</span></label>
-            <input type="text" id="ticket_tgl" class="form-input" value="14 Okt 2025" required>
+            <input type="date" id="ticket_tgl" class="form-input" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -1197,6 +1208,77 @@
     </div>
   </div>
 
+    <!-- ================= MODAL: KONFIRMASI SELESAIKAN SERVIS ================= -->
+  <div id="modalCompleteTicket" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-success); display: flex;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <h3 class="modal-title">Selesaikan Tiket Servis</h3>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalCompleteTicket')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 14px; line-height: 1.6; color: var(--color-text-body);">
+          Apakah Anda yakin ingin menyelesaikan tiket <strong id="completeTicketIdLabel" class="font-code" style="color: var(--color-primary);"></strong> untuk aset <strong id="completeTicketAssetName"></strong>?
+        </p>
+        <div style="background: var(--color-success-bg); border: 1px solid var(--color-success-border); color: var(--color-success-text); padding: 12px 14px; border-radius: var(--radius-md); font-size: 12.5px; margin-top: 14px;">
+          Aset terkait akan otomatis dikembalikan ke status <strong>Kondisi Baik</strong> dan siap digunakan kembali.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalCompleteTicket')">Batal</button>
+        <button type="button" class="btn btn-primary" id="confirmCompleteTicketBtn">Selesaikan Servis</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: KONFIRMASI HAPUS TIKET SERVIS ================= -->
+  <div id="modalDeleteTicket" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: var(--color-danger);">Konfirmasi Hapus Tiket</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalDeleteTicket')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 14px; line-height: 1.6; color: var(--color-text-body);">
+          Apakah Anda yakin ingin menghapus tiket servis <strong id="deleteTicketIdLabel" class="font-code" style="color: var(--color-danger);"></strong>? Tindakan ini bersifat permanen.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalDeleteTicket')">Batal</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteTicketBtn">Hapus Permanen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: KONFIRMASI RESET DATA ================= -->
+  <div id="modalResetConfirm" class="modal-overlay">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: var(--color-warning);">Konfirmasi Reset Data</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('modalResetConfirm')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 14px; line-height: 1.6; color: var(--color-text-body);">
+          Apakah Anda yakin ingin mereset seluruh data kembali ke setelan bawaan (10 data standar awal BMN)?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalResetConfirm')">Batal</button>
+        <button type="button" class="btn btn-danger" id="confirmResetBtn">Reset ke Setelan Awal</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= MODAL 9: PENGATURAN SISTEM ================= -->
   <div id="modalSettings" class="modal-overlay">
     <div class="modal-dialog" style="max-width: 480px;">
@@ -1216,7 +1298,7 @@
           <div style="color: var(--color-text-muted); margin-top: 2px;">Database Docker: PostgreSQL 16 (Port 5435)</div>
           <div style="color: var(--color-text-muted); margin-top: 2px;">Tugas UAS: Pemrograman Web 2</div>
         </div>
-        <button type="button" class="btn btn-secondary" onclick="handleResetDefaultData()" style="width: 100%;">
+        <button type="button" class="btn btn-secondary" onclick="promptResetDefaultData()" style="width: 100%;">
           Reset Seluruh Data ke Setelan Awal
         </button>
       </div>
@@ -1553,6 +1635,16 @@
       updateAllDashboardWidgets();
     }
 
+        function formatDisplayDate(dateVal) {
+      if (!dateVal) return '-';
+      if (/^\d{4}-\d{2}-\d{2}$/.test(dateVal)) {
+        const parts = dateVal.split('-');
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        return `${parseInt(parts[2], 10)} ${months[parseInt(parts[1], 10) - 1]} ${parts[0]}`;
+      }
+      return dateVal;
+    }
+
     function renderAssetTable(assets) {
       const tbody = document.getElementById('assetTableBody');
       if (!tbody) return;
@@ -1569,7 +1661,7 @@
         if (item.kondisi === 'Dalam Perawatan') badgeClass = 'badge-warning';
         else if (item.kondisi === 'Rusak') badgeClass = 'badge-danger';
 
-        const displayDate = item.tanggal || item.tgl || item.tgl_perolehan || '12 Jan 2023';
+        const displayDate = formatDisplayDate(item.tanggal || item.tgl || item.tgl_perolehan || '2025-10-14');
 
         html += `
           <tr>
@@ -1651,7 +1743,8 @@
 
       document.getElementById('add_id').value = 'A-' + padNum;
       document.getElementById('add_nama').value = '';
-      document.getElementById('add_tgl').value = '14 Okt 2025';
+      document.getElementById('add_tgl').value = new Date().toISOString().slice(0, 10);
+      document.getElementById('add_nilai').value = '';
       document.getElementById('add_supplier').value = '';
       document.getElementById('add_keterangan').value = '';
 
@@ -1666,10 +1759,11 @@
       const lokasi = document.getElementById('add_lokasi').value;
       const kondisi = document.getElementById('add_kondisi').value;
       const tgl = document.getElementById('add_tgl').value.trim();
+      const nilai = parseInt(document.getElementById('add_nilai').value, 10) || 0;
       const supplier = document.getElementById('add_supplier').value.trim() || 'CV Mitra Mandiri';
       const keterangan = document.getElementById('add_keterangan').value.trim() || 'Aset inventaris BMN';
 
-      const newAsset = { id, nama, kategori, lokasi, kondisi, tanggal: tgl, tgl, supplier, keterangan, nilai: 5000000 };
+      const newAsset = { id, nama, kategori, lokasi, kondisi, tanggal: tgl, tgl, supplier, keterangan, nilai };
       window.SarprasStore.addAsset(newAsset);
 
       closeModal('modalAddAsset');
@@ -1691,6 +1785,7 @@
       document.getElementById('edit_kategori').value = asset.kategori;
       document.getElementById('edit_lokasi').value = asset.lokasi;
       document.getElementById('edit_kondisi').value = asset.kondisi;
+      document.getElementById('edit_nilai').value = asset.nilai || '';
 
       openModal('modalEditAsset');
     }
@@ -1702,8 +1797,9 @@
       const kategori = document.getElementById('edit_kategori').value;
       const lokasi = document.getElementById('edit_lokasi').value;
       const kondisi = document.getElementById('edit_kondisi').value;
+      const nilai = parseInt(document.getElementById('edit_nilai').value, 10) || 0;
 
-      window.SarprasStore.updateAsset(id, { nama, kategori, lokasi, kondisi });
+      window.SarprasStore.updateAsset(id, { nama, kategori, lokasi, kondisi, nilai });
       closeModal('modalEditAsset');
       loadInitialAssets();
       renderKategoriTable();
@@ -1743,9 +1839,10 @@
       if (asset.kondisi === 'Dalam Perawatan') badgeClass = 'badge-warning';
       else if (asset.kondisi === 'Rusak') badgeClass = 'badge-danger';
 
-      const dateStr = asset.tanggal || asset.tgl || '12 Jan 2023';
+      const dateStr = formatDisplayDate(asset.tanggal || asset.tgl || '2025-10-14');
       const supplierStr = asset.supplier || 'PT Mitra Mandiri';
       const ketStr = asset.keterangan || 'Spesifikasi inventaris BMN resmi.';
+      const nilaiStr = asset.nilai ? window.SarprasStore.formatRupiah(asset.nilai) : 'Rp 0';
 
       document.getElementById('detailModalTitle').textContent = `Spesifikasi Aset #${asset.id}`;
       document.getElementById('detailModalBody').innerHTML = `
@@ -1773,6 +1870,10 @@
           <div>
             <span style="color: var(--color-text-muted); font-size: 11.5px; text-transform: uppercase; font-weight: 600;">Supplier Rekanan:</span>
             <div style="font-weight: 600; color: var(--color-text-title); margin-top: 2px;">${supplierStr}</div>
+          </div>
+          <div style="grid-column: span 2;">
+            <span style="color: var(--color-text-muted); font-size: 11.5px; text-transform: uppercase; font-weight: 600;">Nilai / Harga Perolehan:</span>
+            <div class="font-code" style="font-weight: 700; color: var(--color-primary); font-size: 14px; margin-top: 2px;">${nilaiStr}</div>
           </div>
         </div>
 
@@ -1832,7 +1933,7 @@
             </td>
             <td>${ticket.keluhan}</td>
             <td style="color: var(--color-text-muted);">${ticket.vendor}</td>
-            <td style="color: var(--color-text-muted);">${ticket.tgl}</td>
+            <td style="color: var(--color-text-muted);">${formatDisplayDate(ticket.tgl)}</td>
             <td class="font-code" style="font-weight: 600;">${window.SarprasStore.formatRupiah(ticket.biaya)}</td>
             <td><span class="badge-status ${badgeClass}">${ticket.status}</span></td>
             <td style="text-align: center;">
@@ -1841,11 +1942,11 @@
                   ${window.SARPRAS_ICONS.eye}
                 </button>
                 ${isOngoing ? `
-                <button type="button" class="table-action-icon-btn btn-success" onclick="handleCompleteTicket('${ticket.id}')" title="Tandai Selesai Servis (Kembalikan Aset ke Kondisi Baik)">
+                <button type="button" class="table-action-icon-btn btn-success" onclick="promptCompleteTicket('${ticket.id}')" title="Tandai Selesai Servis (Kembalikan Aset ke Kondisi Baik)">
                   ${window.SARPRAS_ICONS.check_circle}
                 </button>
                 ` : ''}
-                <button type="button" class="table-action-icon-btn btn-delete" onclick="handleDeleteTicket('${ticket.id}')" title="Hapus Tiket Servis">
+                <button type="button" class="table-action-icon-btn btn-delete" onclick="promptDeleteTicket('${ticket.id}')" title="Hapus Tiket Servis">
                   ${window.SARPRAS_ICONS.trash}
                 </button>
               </div>
@@ -1862,7 +1963,7 @@
       document.getElementById('ticket_keluhan').value = '';
       document.getElementById('ticket_vendor').value = '';
       document.getElementById('ticket_biaya').value = '';
-      document.getElementById('ticket_tgl').value = '14 Okt 2025';
+      document.getElementById('ticket_tgl').value = new Date().toISOString().slice(0, 10);
       openModal('modalAddTicket');
     }
 
@@ -1903,25 +2004,48 @@
       showToast(`Tiket ${ticketId} berhasil dibuat! Status aset ${id_aset} diset ke 'Dalam Perawatan'.`);
     }
 
-    function handleCompleteTicket(ticketId) {
-      if (confirm(`Selesaikan tiket ${ticketId}?\nAset terkait akan otomatis dikembalikan ke kondisi 'Baik'.`)) {
-        const updated = window.SarprasStore.completeMaintenanceTicket(ticketId);
+    let completeTargetTicketId = null;
+    let deleteTargetTicketId = null;
+
+    function promptCompleteTicket(ticketId) {
+      completeTargetTicketId = ticketId;
+      const tickets = window.SarprasStore.getMaintenanceTickets();
+      const ticket = tickets.find(t => t.id === ticketId);
+      const name = ticket ? ticket.nama_aset : 'Aset';
+      document.getElementById('completeTicketIdLabel').textContent = ticketId;
+      document.getElementById('completeTicketAssetName').textContent = `${name} (${ticket ? ticket.id_aset : ''})`;
+      openModal('modalCompleteTicket');
+    }
+
+    document.getElementById('confirmCompleteTicketBtn').addEventListener('click', () => {
+      if (completeTargetTicketId) {
+        const updated = window.SarprasStore.completeMaintenanceTicket(completeTargetTicketId);
+        closeModal('modalCompleteTicket');
         renderMaintenanceTable();
         loadInitialAssets();
         renderLaporanTable();
         updateAllDashboardWidgets();
-        showToast(`Servis ${ticketId} selesai! Aset ${updated.id_aset} berhasil dikembalikan ke Kondisi Baik.`);
+        showToast(`Servis ${completeTargetTicketId} selesai! Aset ${updated ? updated.id_aset : ''} kembali ke Kondisi Baik.`);
+        completeTargetTicketId = null;
       }
+    });
+
+    function promptDeleteTicket(ticketId) {
+      deleteTargetTicketId = ticketId;
+      document.getElementById('deleteTicketIdLabel').textContent = ticketId;
+      openModal('modalDeleteTicket');
     }
 
-    function handleDeleteTicket(ticketId) {
-      if (confirm(`Hapus tiket servis ${ticketId}?`)) {
-        window.SarprasStore.deleteMaintenanceTicket(ticketId);
+    document.getElementById('confirmDeleteTicketBtn').addEventListener('click', () => {
+      if (deleteTargetTicketId) {
+        window.SarprasStore.deleteMaintenanceTicket(deleteTargetTicketId);
+        closeModal('modalDeleteTicket');
         renderMaintenanceTable();
         updateAllDashboardWidgets();
-        showToast(`Tiket ${ticketId} berhasil dihapus.`);
+        showToast(`Tiket servis ${deleteTargetTicketId} berhasil dihapus.`);
+        deleteTargetTicketId = null;
       }
-    }
+    });
 
     function openTicketDetailModal(ticketId) {
       const tickets = window.SarprasStore.getMaintenanceTickets();
@@ -2050,20 +2174,23 @@
       showToast(`Lokasi ${ruangan} berhasil ditambahkan!`);
     }
 
-    function handleResetDefaultData() {
-      if (confirm('Apakah Anda yakin ingin mereset seluruh data kembali ke setelan bawaan?')) {
-        window.SarprasStore.resetMockData();
-        closeModal('modalSettings');
-        populateDynamicDropdowns();
-        loadInitialAssets();
-        renderKategoriTable();
-        renderLokasiTable();
-        renderMaintenanceTable();
-        renderLaporanTable();
-        updateAllDashboardWidgets();
-        showToast('Seluruh data berhasil direset ke setelan awal.');
-      }
+    function promptResetDefaultData() {
+      openModal('modalResetConfirm');
     }
+
+    document.getElementById('confirmResetBtn').addEventListener('click', () => {
+      window.SarprasStore.resetMockData();
+      closeModal('modalResetConfirm');
+      closeModal('modalSettings');
+      populateDynamicDropdowns();
+      loadInitialAssets();
+      renderKategoriTable();
+      renderLokasiTable();
+      renderMaintenanceTable();
+      renderLaporanTable();
+      updateAllDashboardWidgets();
+      showToast('Seluruh data berhasil direset ke setelan awal.');
+    });
 
     function toggleSelectAll(master) {
       document.querySelectorAll('.row-checkbox').forEach(cb => cb.checked = master.checked);
@@ -2097,7 +2224,7 @@
         if (item.kondisi === 'Dalam Perawatan') badgeClass = 'badge-warning';
         else if (item.kondisi === 'Rusak') badgeClass = 'badge-danger';
 
-        const displayDate = item.tanggal || item.tgl || item.tgl_perolehan || '12 Jan 2023';
+        const displayDate = formatDisplayDate(item.tanggal || item.tgl || item.tgl_perolehan || '2025-10-14');
 
         html += `
           <tr>

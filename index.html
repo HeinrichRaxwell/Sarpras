@@ -251,6 +251,8 @@
         </div>
 
         <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+          <div id="loginAlertBox" style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 13px; margin-bottom: 16px;"></div>
+
           <div class="form-group">
             <label class="form-label" for="loginUser">Username</label>
             <div class="input-field-with-icon">
@@ -275,7 +277,7 @@
               <input type="checkbox" checked style="cursor: pointer;">
               <span>Ingat saya</span>
             </label>
-            <a href="javascript:void(0)" onclick="alert('Fitur reset password demo: hubungi Super Admin')" style="color: var(--color-primary); font-weight: 500;">
+            <a href="javascript:void(0)" onclick="showLoginMessage('Fitur reset password demo: hubungi Super Admin', 'info')" style="color: var(--color-primary); font-weight: 500;">
               Lupa password?
             </a>
           </div>
@@ -336,6 +338,22 @@
       }, 150);
     }
 
+    function showLoginMessage(msg, type = 'error') {
+      const box = document.getElementById('loginAlertBox');
+      if (!box) return;
+      box.textContent = msg;
+      box.style.display = 'block';
+      if (type === 'error') {
+        box.style.backgroundColor = 'var(--color-danger-bg)';
+        box.style.color = 'var(--color-danger-text)';
+        box.style.border = '1px solid var(--color-danger-border)';
+      } else {
+        box.style.backgroundColor = 'var(--color-surface-alt)';
+        box.style.color = 'var(--color-primary)';
+        box.style.border = '1px solid var(--color-border)';
+      }
+    }
+
     function handleLoginSubmit(e) {
       e.preventDefault();
       const u = userField.value.trim();
@@ -343,7 +361,7 @@
       if (u === 'admin' && p === 'admin123') {
         window.location.href = 'pages/dashboard.html';
       } else {
-        alert('Autentikasi gagal! Gunakan kredensial demo: admin / admin123');
+        showLoginMessage('Autentikasi gagal! Gunakan kredensial demo: admin / admin123', 'error');
       }
     }
   </script>
